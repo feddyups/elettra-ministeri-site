@@ -9,6 +9,8 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Series chapters** – each chapter takes its tone and color swatches from its painting.
 - **Page tone** – the page background and header follow the section in view.
 - **Color map** – each series has one color, used for its section on the home page and for its own page, so the colors work as a map of the site. One config file drives both.
+- **Color infographic** – reusable blocks that show the colors of the work (a hue wheel, the loudest colors, the share of warm and cool, a warm-to-cool map of every painting, and a strip of colors per painting). The same component renders the whole body of work on the About page, one series on each series page, and a compact version on the home page. Every color and painting links to the painting's page.
+- **Color names** – colors are named the way a painter would (vermilion, ochre, bottle green) everywhere they are shown, from one list in `src/lib/color-science.js`.
 - **Artist video** – the video in the home page's artist section shows a cover image with a play button; the YouTube player loads only when the visitor presses play.
 - **Postcards page** – the standalone "Scrivo una cartolina" landing page gets a link back to the home page and a centered text card.
 - **Enquiry drawer** – on every page, links to `/enquire` open the enquiry form in a side drawer so visitors keep their place. The form can arrive with `?SQF_WORK=<title>` and then says which work the enquiry is about.
@@ -37,6 +39,12 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 <script src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.3/src/themes/series-attr.js"></script>
 ```
 
+Site-wide Code Injection, Footer (the color infographic; it does nothing on a page without one):
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.9.0/src/color/main.js"></script>
+```
+
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
 
 ```html
@@ -55,6 +63,8 @@ src/
     dom.js                    initOnceFor, onFirstVisible
     image.js                  loadImage, sampleImage
     color.js                 palette extraction, hex, tones, swatches
+    color-science.js          OKLab math and the list of color names
+    elements.js               h() and svg(): build DOM elements
     motion.js                 prefersReducedMotion
     stylesheet.js             loadStylesheet
   paint/
@@ -75,6 +85,21 @@ src/
     page-tone.js
     video-facade.js           click-to-play YouTube video (cover image + play button)
     video-facade.css
+  color/
+    main.js                   entry point: renders every [data-color-atlas] element on the page
+    color-atlas.js            composes the blocks for a scope (the whole body of work, or one series)
+    color-atlas.css           the infographic's styles
+    scope.js                  resolves `all` or `series:<slug>` to the data a block shows
+    nearest-work.js           which painting shows a given color most (where a color links to)
+    text.js                   joinNames
+    atlas.generated.js        generated: every work's palette and every series' color fingerprint
+    blocks/
+      hue-wheel.js            how much of each hue appears
+      palette-bar.js          the main colors, sized by coverage, each linking to a painting
+      color-pair.js           the complementary pair the work returns to most
+      stat-row.js             warm, green, cool, violet and vivid shares
+      warmth-map.js           every work as a dot, warm to cool and quiet to loud
+      work-strips.js          each work as a strip of its colors, linking to the work
   themes/
     tones.config.js           THE FILE TO EDIT: which painting gives each series its color, and the global settings
     tones.generated.js        generated: the tones as a JS module (home page sections)
@@ -83,6 +108,9 @@ src/
     series-attr.js            tags a series page with data-series before it is painted
   scripts/
     build-tones.mjs           generates the two tones.generated files
+    build-atlas.mjs           generates atlas.generated.js from the catalogue images
+    analyze-palette.mjs       prints and saves the full color analysis
+    palette/                  the analysis: works.config.mjs, k-means clustering, image decoding
   pages/
     scrivo.js                 back link for the standalone postcards page
     scrivo.css                its centered card layout
@@ -123,6 +151,36 @@ git tag vX.Y.Z && git push origin main vX.Y.Z
 ```
 
 Then check that jsDelivr serves the new tag and change the version in the two places that load it: the home page code block (`src/main.js`) and the site-wide Header Code Injection (the three tags above). The text colors used on the tones are variables in the site's Custom CSS (`--em-bg`, `--em-ink`, `--em-muted`, `--em-line`, `--em-body`).
+
+## The color infographic
+
+Put an element where the infographic should appear; the site-wide script fills it in:
+
+```html
+<div id="colors" data-color-atlas data-scope="all"></div>
+<div data-color-atlas data-scope="series:archive"></div>
+<div data-color-atlas data-scope="all" data-blocks="wheel,palette,stats" data-heading="none" data-surface="inherit"
+     data-more-href="/about-me#colors"></div>
+```
+
+- `data-scope`: `all`, or `series:<slug>` (the slugs in `src/themes/tones.config.js`).
+- `data-blocks`: which blocks to show (`wheel`, `palette`, `pair`, `stats`, `map`, `strips`); default is all.
+- `data-surface`: `plate` (its own dark ground; the default for `all`), `theme` (sits on the series color; the default for a series) or `inherit` (uses the surrounding section's text color).
+- `data-heading="none"` drops the heading; `data-more-href` and `data-more-label` add a link below.
+
+A new block is one file in `src/color/blocks/` that takes a scope and returns an element, plus a line in `color-atlas.js`.
+
+**Adding a painting.** Add it to `scripts/palette/works.config.mjs` (its `series`, the `anchor` id of its entry on the series page, and its image), then:
+
+```sh
+npm run build:atlas -- --catalogue "/path/to/catalogue"
+git add -A && git commit -m "Add <work> to the color atlas"
+git tag vX.Y.Z && git push origin main vX.Y.Z
+```
+
+and change the version in the footer line above. The work's strip, its dot on the map and the series numbers update, and each links to `<series page>#<anchor>`.
+
+**Renaming colors.** The names come from the list in `src/lib/color-science.js` (`NAMED`); a color is given the nearest name. Edit the list and the names change on the hero, the home chapters and the infographic.
 
 ## Changing the works
 

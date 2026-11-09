@@ -5,6 +5,7 @@
   "description": "Front-end modules for elettraministeri.com, served via jsDelivr.",
   "scripts": {
     "build:tones": "node --use-system-ca scripts/build-tones.mjs",
+    "build:atlas": "node --use-system-ca scripts/build-atlas.mjs",
     "analyze:palette": "node --use-system-ca scripts/analyze-palette.mjs"
   },
   "devDependencies": {

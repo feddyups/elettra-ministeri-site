@@ -1,3 +1,5 @@
+import { nameColors, rgbToOklab } from './color-science.js';
+
 /** The `count` most common distinct colors of RGBA pixel data, as [r, g, b] arrays. */
 export const extractPalette = (data, count = 5) => {
   const buckets = {};
@@ -40,5 +42,6 @@ export const backgroundTone = (palette, { pick, darkness = DEFAULT_DARKNESS } = 
 /** Fills `container` with one swatch per palette color. */
 export const renderSwatches = (container, palette) => {
   if (!container) return;
-  container.innerHTML = palette.map((c) => `<i title="${toHex(c)}" style="background:${toHex(c)}"></i>`).join('');
+  const names = nameColors(palette.map((c) => rgbToOklab(...c)));
+  container.innerHTML = palette.map((c, i) => `<i title="${names[i]}" style="background:${toHex(c)}"></i>`).join('');
 };

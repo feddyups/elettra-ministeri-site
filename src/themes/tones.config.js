@@ -22,11 +22,15 @@ export const TONE_SETTINGS = {
 const IMG = 'https://images.squarespace-cdn.com/content';
 const SITE = '596fbc34c534a5fa937bd9bf';
 
+/**
+ * One entry per series. `label` is its display name and `path` its page (default `/paintings/<slug>`);
+ * the color infographic uses both to name and link each series.
+ */
 export const SERIES = {
-  mediterranean: { cover: `${IMG}/v1/${SITE}/1528638173689-P8T0RMNYOWAKAER05R02/wave.jpg?format=1500w` },
-  maternity: { cover: `${IMG}/v1/${SITE}/9973033c-2b50-4c30-8ff6-89088a5f9c7b/maternity+II.jpg?format=1500w` },
-  sicily: { cover: `${IMG}/${SITE}/8b291fd7-893e-4537-b1e8-9aa92c587177/carretto.jpg?format=1500w`, bg: 'rgb(20,63,74)' },
-  'human-figure': { cover: `${IMG}/v1/${SITE}/1661720261897-CK1FYNCF1NS8AKUMLYKD/The+Hug+series.jpg?format=1500w` },
-  archive: { cover: `${IMG}/v1/${SITE}/1528638090169-3WYNVACGH7G9O9XEUX92/help.jpg?format=1500w`, bg: 'rgb(96,28,19)' },
-  textiles: { cover: `${IMG}/${SITE}/7dca847c-fdb9-4619-8b03-e8f6fcb84afa/textile-mask.jpg?format=1500w` },
+  mediterranean: { label: 'Mediterranean', cover: `${IMG}/v1/${SITE}/1528638173689-P8T0RMNYOWAKAER05R02/wave.jpg?format=1500w` },
+  maternity: { label: 'Maternity', cover: `${IMG}/v1/${SITE}/9973033c-2b50-4c30-8ff6-89088a5f9c7b/maternity+II.jpg?format=1500w` },
+  sicily: { label: 'Sicily', cover: `${IMG}/${SITE}/8b291fd7-893e-4537-b1e8-9aa92c587177/carretto.jpg?format=1500w`, bg: 'rgb(20,63,74)' },
+  'human-figure': { label: 'Human figure', cover: `${IMG}/v1/${SITE}/1661720261897-CK1FYNCF1NS8AKUMLYKD/The+Hug+series.jpg?format=1500w` },
+  archive: { label: 'Archive', cover: `${IMG}/v1/${SITE}/1528638090169-3WYNVACGH7G9O9XEUX92/help.jpg?format=1500w`, bg: 'rgb(96,28,19)' },
+  textiles: { label: 'Textiles', path: '/textiles', cover: `${IMG}/${SITE}/7dca847c-fdb9-4619-8b03-e8f6fcb84afa/textile-mask.jpg?format=1500w` },
 };

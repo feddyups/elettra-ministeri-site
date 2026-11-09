@@ -1,0 +1,15 @@
+import { h } from '../../lib/elements.js';
+import { seriesList } from '../scope.js';
+
+const strip = (work) => h('a', { class: 'ca-strip', href: work.href, 'data-work': work.id, title: work.title, 'aria-label': work.title },
+  work.palette.map(([hex, name, share]) => h('i', { style: { '--share': share, '--color': hex }, title: name })));
+
+const group = (label, href, works) => h('div', { class: label ? 'ca-row' : 'ca-row ca-row--bare' },
+  label && h('a', { class: 'ca-row-name', href }, label),
+  h('div', { class: 'ca-strips' }, works.map(strip)));
+
+/** Each work as a stack of its colors, sized by how much of the work they cover; every strip links to the work. */
+export const renderWorkStrips = (scope) => {
+  if (scope.id !== 'all') return h('div', { class: 'ca-rows' }, group(null, null, scope.works));
+  return h('div', { class: 'ca-rows' }, seriesList().map(({ slug, label, path }) => group(label, path, scope.works.filter((w) => w.series === slug))));
+};
