@@ -32,8 +32,8 @@ const draw = (host, scope) => {
     svg('line', { class: 'ca-grid', x1: PAD.left, y1: height - PAD.bottom + 18, x2: width - PAD.right, y2: height - PAD.bottom + 18 }),
     axis('COOL', { x: PAD.left, y: height - 14 }),
     axis('WARM', { x: width - PAD.right, y: height - 14, 'text-anchor': 'end' }),
-    axis('LOUD', { x: 0, y: PAD.top - 12 }),
-    axis('QUIET', { x: 0, y: height - PAD.bottom - 6 }),
+    axis('SATURATED', { x: 0, y: PAD.top - 12 }),
+    axis('MUTED', { x: 0, y: height - PAD.bottom - 6 }),
   ];
 
   const dots = scope.universe.map((work) => {

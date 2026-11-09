@@ -35,5 +35,5 @@ export const renderHueWheel = (scope) => {
     svg('svg', { viewBox: '-300 -300 600 600', role: 'img', 'aria-label': `How much of each hue appears in ${scope.id === 'all' ? 'the whole body of work' : scope.label}` }, rings, wedges),
     h('figcaption', { class: 'ca-wheel-center' },
       h('b', null, `${scope.stats.warm}%`),
-      h('span', null, 'warm')));
+      h('span', null, 'reds & yellows')));
 };

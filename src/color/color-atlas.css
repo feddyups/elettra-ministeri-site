@@ -164,6 +164,7 @@ html .ca .ca-pair b { font-weight: var(--em-weight-medium); color: var(--ca-ink)
 /* stats */
 .ca-stats { display: flex; flex-wrap: wrap; gap: var(--em-space-ml) var(--em-space-l); margin: var(--em-space-xl) 0 0; }
 .ca-stats div { min-width: 0; }
+.ca-stats .ca-stat--apart { padding-left: var(--em-space-l); border-left: var(--em-hairline) solid var(--ca-line); }
 .ca-stats dt { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
 .ca-stats dd { margin: var(--em-space-2xs) 0 0; font-family: var(--em-font-serif); font-size: var(--em-display-sm); line-height: var(--em-leading-none); }
 
