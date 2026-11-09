@@ -2,6 +2,7 @@ import { CATALOGUE } from './catalogue.js';
 import { resolveScope, seriesInfo } from '../color/scope.js';
 import { renderWorkHero } from './work-hero.js';
 import { renderWorkStory } from './work-story.js';
+import { renderWorkContext } from './work-context.js';
 import { renderWorkDetails } from './work-details.js';
 import { renderWorkColors } from './work-colors.js';
 import { renderWorkSeriesNav } from './work-series-nav.js';
@@ -31,6 +32,7 @@ export const initWorkPage = (host) => {
   host.replaceChildren(...[
     hero.element,
     renderWorkStory(info),
+    renderWorkContext(info),
     renderWorkDetails(info, series),
     renderWorkColors({ host, work, scope, series }),
     renderWorkSeriesNav(work, series),

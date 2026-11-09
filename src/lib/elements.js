@@ -6,7 +6,7 @@ const build = (node, attrs, children) => {
     if (name === 'style' && typeof value === 'object') Object.entries(value).forEach(([k, v]) => node.style.setProperty(k, v));
     else node.setAttribute(name, value === true ? '' : value);
   }
-  for (const child of children.flat()) {
+  for (const child of children.flat(Infinity)) {
     if (child == null || child === false) continue;
     node.append(child);
   }

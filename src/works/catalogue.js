@@ -1,7 +1,7 @@
 /**
  * What is known about each painting, written by hand (everything about its colors is generated; see src/color/).
  * Keyed by the work's page name: its page is /paintings/<key> and its entry on the series page has the same id.
- * Every field but title, series, medium, image and alt is optional, and a section of the page appears only when
+ * Every field but title, series, medium, image and alt is optional (a 'context' adds a "roots and echoes" section: intro, figure, echoes with sources, closing), and a section of the page appears only when
  * its field exists: add 'story' (one string per paragraph), 'year', 'size' or 'frame' as the artist provides them.
  */
 export const CATALOGUE = {
@@ -343,5 +343,102 @@ export const CATALOGUE = {
       "Two round cacti in dark pots stand on either side of an empty space, and a rainbow bridges the gap between them. They do not touch, but they are clearly together.",
       "Even the prickliest things can be joined by color."
     ]
+  },
+  'mask-divine': {
+    title: "Mask Divine",
+    series: "textiles",
+    medium: "Felt, buttons and linen",
+    size: "41 × 50 cm",
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/7dca847c-fdb9-4619-8b03-e8f6fcb84afa/textile-mask.jpg",
+      width: 1000,
+      height: 1400
+    },
+    alt: "Mask Divine: a yellow felt face with a white stitched border, black hair in two lobes, red lips and five small buttons on the forehead, hung from a branch between two green monstera leaves on cream linen with blue and violet squares",
+    story: [
+      "A face made of felt, stitched by hand, in the yellow of a lit window. A black coiffure rises above it in two soft lobes, five buttons sit on the forehead like a jewel, and the whole mask hangs from a branch against two squares of blue and violet linen, between a pair of green monstera leaves.",
+      "I made it slowly, one piece of felt at a time, so that color could be something you touch. It is a mask in the oldest sense: not something to hide behind, but a face that holds a presence."
+    ],
+    context: {
+      heading: "Roots and echoes",
+      intro: [
+        "Mask Divine is a mask made of cloth rather than carved from wood, but the idea it is built on is an old one in West and Central Africa: the calm, idealized face of a woman, set on a pale ground, crowned with a built-up coiffure and marked on the forehead.",
+        "What follows is a reading of resemblances in form and idea, with the traditions it most closely echoes. It is not a record of a source, and the work does not copy any single mask."
+      ],
+      figure: [
+        [
+          "The face",
+          "Oval, symmetrical and level-eyed, with arched brows and full red lips. It is an ideal rather than a portrait: nothing in it is about one person’s likeness."
+        ],
+        [
+          "The pale rim",
+          "A white border, stitched with a dashed line, frames the yellow face the way a coat of white clay frames a carved one."
+        ],
+        [
+          "The coiffure",
+          "Black hair rises in two lobes, banded in white and crowned with a small yellow triangle."
+        ],
+        [
+          "The forehead",
+          "Five buttons sit in a diamond between the brows, where many masks carry a raised lozenge."
+        ],
+        [
+          "The ornament",
+          "Small coils of orange, violet and red follow the edge of the hair, and buttons mark the line of the jaw."
+        ]
+      ],
+      echoes: [
+        {
+          name: "Punu mukudj masks",
+          place: "Gabon",
+          text: "The closest match. A mukudj mask shows an idealized woman, often described as the most beautiful of her community, and also an ancestor spirit. Its face is whitened with kaolin, the color of the spirit world, and framed by a black coiffure that is often bi-lobed or crested. A raised diamond on the forehead recalls the scarification of Punu women, and the lips and lozenge are often picked out in red. The mask is danced on stilts, at funerals and celebrations, to honor a life and accompany the passage of the dead to the spirits.",
+          sources: [
+            {
+              label: "Brooklyn Museum",
+              url: "https://www.brooklynmuseum.org/objects/4806"
+            },
+            {
+              label: "Art Institute of Chicago",
+              url: "https://www.artic.edu/artworks/20578/mask-mukudj"
+            },
+            {
+              label: "The Metropolitan Museum of Art",
+              url: "https://www.metmuseum.org/art/collection/search/318667"
+            }
+          ]
+        },
+        {
+          name: "Baule portrait masks (ndoma)",
+          place: "Côte d’Ivoire",
+          text: "Baule portrait masks do not copy a face; they transfigure it. The word ndoma means “double”. A high forehead, narrow lowered eyes and a carefully arranged hairstyle stand for health, intelligence and moral character, and fine facial marks signal beauty and belonging. The mask is made to honor a living person, often a woman.",
+          sources: [
+            {
+              label: "The Metropolitan Museum of Art",
+              url: "https://metmuseum.org/art/collection/search/317834"
+            },
+            {
+              label: "Cleveland Museum of Art",
+              url: "https://clevelandart.org/art/1974.203"
+            }
+          ]
+        },
+        {
+          name: "Yoruba Gelede masks",
+          place: "Nigeria and Benin",
+          text: "Gelede masquerades honor women, living and dead, above all the powerful “Mothers”. The lower mask is a woman’s face expressing the calm, patience and “coolness” admired in women, set beneath an elaborate hairstyle, often in three lobes. Men dance them to honor, amuse and appease the Mothers.",
+          sources: [
+            {
+              label: "Hofstra University Museum",
+              url: "https://www.hofstra.edu/pdf/community/museum/gelede.pdf"
+            },
+            {
+              label: "Princeton University Art Museum",
+              url: "https://artmuseum.princeton.edu/art/collections/objects/61091"
+            }
+          ]
+        }
+      ],
+      closing: "Across these traditions the mask does the same work: it makes a woman’s face into something to honor, calm and a little beyond the human. Mask Divine takes up that idea in felt and thread, in line with the portfolio’s own words that her work “often explores my idea of femininity and womanhood”. Interpretations differ between communities, and the sources above are museum catalogues and collections, not the voices of the mask’s makers."
+    }
   }
 };
