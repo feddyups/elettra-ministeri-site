@@ -17,5 +17,5 @@ const withStyles = (names, init) => (element) => {
   init(element);
 };
 
-initOnceFor('[data-work-page]', 'work-page', withStyles(['../color/swatch.css', '../color/color-atlas.css', './work-page.css'], initWorkPage));
-initOnceFor('.th-work', 'series-strip', withStyles(['../color/swatch.css', './series-strip.css'], initSeriesStrip));
+initOnceFor('[data-work-page]', 'work-page', withStyles(['../color/swatch.css', '../color/color-strip.css', '../color/color-atlas.css', './work-page.css'], initWorkPage));
+initOnceFor('.th-work', 'series-strip', withStyles(['../color/swatch.css', '../color/color-strip.css'], initSeriesStrip));

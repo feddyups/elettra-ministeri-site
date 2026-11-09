@@ -10,8 +10,8 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Page tone** – the page background and header follow the section in view.
 - **Color map** – each series has one color, used for its section on the home page and for its own page, so the colors work as a map of the site. One config file drives both.
 - **Color infographic** – reusable blocks that show the colors of the work (a hue wheel, the loudest colors, the share of warm and cool, a warm-to-cool map of every painting, and a strip of colors per painting). The same component renders the whole body of work on the About page, one series on each series page, and a compact version on the home page. Every color and painting links to the painting's page.
-- **Strips on the series pages** – each painting on a series page has a thin strip of its colors under its picture; pointing at a color turns that picture black and white except where the color lives, and clicking copies its code.
-- **Painting pages** – every painting has its own page (`/paintings/<name>`) with the picture (painted stroke by stroke as it comes into view, like the home hero; click to enlarge), its story in the artist's words, the technical details, a reading of its colors (point at a color to see where it lives in the picture; click to copy its code), where it sits among all the work, the paintings closest to it in color, the rest of its series, and the enquiry form inline. Each page is one empty placeholder in Squarespace; everything on it comes from `src/works/catalogue.js` and the generated color data.
+- **Strips of color** – each painting has a thin strip of its colors under its picture, on its series page and on its own page; pointing at a color turns that picture black and white except where the color lives, and clicking copies its code.
+- **Painting pages** – every painting has its own page (`/paintings/<name>`) with the picture (painted stroke by stroke as it comes into view, like the home hero; click to enlarge) with its strip of colors beneath, its story in the artist's words, the technical details, a story in the artist's words (written by hand in `catalogue.js`), a reading of its colors (point at a color to see where it lives in the picture; click to copy its code), where it sits among all the work, the paintings closest to it in color, the rest of its series, and the enquiry form inline. Each page is one empty placeholder in Squarespace; everything on it comes from `src/works/catalogue.js` and the generated color data.
 - **One theme** – every stylesheet is built on `src/theme/tokens.css`: the colors, type, spacing, shadows and durations are defined once, so changing the look of the site, or adding to it, starts there (see "The theme").
 - **Color focus** – pointing at a color (a hero tile, a chip on a home section, or a color on a painting page) turns the rest of the picture black and white, leaving only that color's cluster in color, so you can see where a color lives.
 - **Copyable colors** – every swatch (the hero's tiles, the chips on each home chapter, a painting page's colors) is one reusable component: it shows the color's name, copies its hex code when clicked, and uses the same analysed palette as the infographic. It carries its data in the page and announces what people look at and take, so colors can be gathered for further analysis (see "Gathering colors").
@@ -33,7 +33,7 @@ Home page code block (painting effect, hero, chapters, page tone):
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.0/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.1/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -47,7 +47,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.0/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.1/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -102,8 +102,7 @@ src/
     work-enquiry.js           the inline enquiry form
     describe-work.js          a plain-language reading of a painting's colors
     similar-works.js          the paintings closest in color
-    series-strip.js           a painting's strip of colors under its picture on a series page
-    series-strip.css          its styles
+    series-strip.js           puts a painting's strip of colors under its picture on a series page
     work-paint.js             the brushing effect on the picture, with Repaint
     lightbox.js               the enlarged view
     main.js                   entry point: renders every [data-work-page] and adds the strips on series pages
@@ -112,6 +111,8 @@ src/
     main.js                   entry point: renders every [data-color-atlas] element on the page
     color-atlas.js            composes the blocks for a scope (the whole body of work, or one series)
     color-atlas.css           the infographic's styles
+    color-strip.js            a painting's colors as a thin strip (swatches sized by coverage)
+    color-strip.css           its styles
     color-focus.js            turns a picture black and white except one palette color's cluster
     scope.js                  resolves `all` or `series:<slug>` to the data a block shows
     nearest-work.js           which painting shows a given color most (where a color links to)

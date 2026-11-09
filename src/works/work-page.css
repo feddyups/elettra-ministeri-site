@@ -33,11 +33,15 @@ html .wp .wp-hero {
   align-items: end;
 }
 
-.wp-figure { position: relative; margin: 0; }
+.wp-figure { margin: 0; }
+/* the picture, its Repaint button and the strip of colors beneath all share the picture's width */
+.wp-stage,
+.wp-figure .em-strip { position: relative; width: min(100%, calc(var(--wp-figure-max-height) * var(--ratio, 1))); }
+.wp-figure .em-strip { position: static; }
 html .wp .wp-zoom {
   position: relative;
   display: block;
-  width: min(100%, calc(var(--wp-figure-max-height) * var(--ratio, 1)));
+  width: 100%;
   padding: 0;
   border: 0;
   background: none;

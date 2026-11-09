@@ -5,7 +5,7 @@
  * its field exists: add 'story' (one string per paragraph), 'year', 'size' or 'frame' as the artist provides them.
  */
 export const CATALOGUE = {
-  lighthouses: {
+  'lighthouses': {
     title: "Lighthouses in the open sea",
     series: "mediterranean",
     medium: "Acrylic on canvas",
@@ -22,7 +22,7 @@ export const CATALOGUE = {
       "At the mercy of the waves, carried away by the currents: we were not ready for a pandemic. In my painting, the scene is held together by the lighthouses, bearers of hope and strongholds among the waves. In their stillness they light up our future, while the effort to reach them is evident."
     ]
   },
-  wave: {
+  'wave': {
     title: "Wave",
     series: "mediterranean",
     medium: "Acrylic on canvas",
@@ -32,9 +32,13 @@ export const CATALOGUE = {
       width: 1000,
       height: 1000
     },
-    alt: "Wave: a patterned blue wave above a shoal of colorful fish and jellyfish, acrylic on canvas"
+    alt: "Wave: a patterned blue wave above a shoal of colorful fish and jellyfish, acrylic on canvas",
+    story: [
+      "The sea is a pattern before it is a picture. In Wave I let the water curl into scales, rings and stripes, and set a shoal of small fish moving beneath it, so that you feel the surface and the depth at once.",
+      "Under the wave the colors turn from sky to turquoise to a deep, inky blue. I wanted calm and force to share one canvas, the way they do in the sea I grew up beside."
+    ]
   },
-  flow: {
+  'flow': {
     title: "Flow",
     series: "mediterranean",
     medium: "Acrylic on canvas",
@@ -44,9 +48,13 @@ export const CATALOGUE = {
       width: 1000,
       height: 1000
     },
-    alt: "Flow: a red seahorse among shells and swirling currents on a green ground, acrylic on canvas"
+    alt: "Flow: a red seahorse among shells and swirling currents on a green ground, acrylic on canvas",
+    story: [
+      "A red seahorse rides a current that is part water and part fire. Shells, spirals and ribbons of paint pull around it, and the green behind them keeps everything moving.",
+      "Flow is about letting go of the shore: not choosing a direction, but trusting the current to carry the shapes. I wanted the whole canvas to feel carried, every shape moving a little ahead of the next."
+    ]
   },
-  pomegranates: {
+  'pomegranates': {
     title: "Pomegranates",
     series: "mediterranean",
     medium: "Acrylic on canvas",
@@ -56,9 +64,13 @@ export const CATALOGUE = {
       width: 1000,
       height: 667
     },
-    alt: "Pomegranates: a cut pomegranate and a whole one beside a blue bowl on a table, with soft clouds behind, acrylic on canvas"
+    alt: "Pomegranates: a cut pomegranate and a whole one beside a blue bowl on a table, with soft clouds behind, acrylic on canvas",
+    story: [
+      "A table set in the sun: a blue bowl, a pomegranate split open, another one whole, and clouds drifting behind as if the room had no walls.",
+      "The pomegranate is an old symbol of abundance and of things shared, and a Mediterranean table is where the two meet. I painted the fruit like a small jewel box, every seed its own red."
+    ]
   },
-  fishfit: {
+  'fishfit': {
     title: "FishFit",
     series: "mediterranean",
     medium: "Acrylic on canvas",
@@ -68,7 +80,11 @@ export const CATALOGUE = {
       width: 1000,
       height: 750
     },
-    alt: "FishFit: patterned fish in pink, green and blue swimming in a dark starry sea, acrylic on canvas"
+    alt: "FishFit: patterned fish in pink, green and blue swimming in a dark starry sea, acrylic on canvas",
+    story: [
+      "Fish in pink, green and blue turn through a dark, starry water, each one wearing its own pattern. It is a crowded, joyful picture, and a little confusing on purpose.",
+      "I like how a shoal can be many and one at the same time. The patterns repeat, but no two fish are alike."
+    ]
   },
   'maternity-i': {
     title: "Maternity I",
@@ -82,7 +98,8 @@ export const CATALOGUE = {
     },
     alt: "Maternity I: a pregnant body in profile, pink and orange with black outlines, on a yellow ground in a blue frame, acrylic on canvas",
     story: [
-      "One of three paintings that reflect my own pregnancy journey. They show the real experience of pregnancy and avoid idealized images: the challenges, the strength and the beauty of maternity."
+      "A body in profile, round and unhurried, drawn with a heavy black line and held inside a blue frame on a warm yellow ground. I wanted the pregnant body to look the way it is: strong, ordinary and very much present.",
+      "Maternity I is the first of three paintings from my own pregnancy."
     ]
   },
   'maternity-ii': {
@@ -97,7 +114,8 @@ export const CATALOGUE = {
     },
     alt: "Maternity II: a pregnant torso seen from the front in vivid red and orange, outlined in deep blue, acrylic on canvas",
     story: [
-      "One of three paintings that reflect my own pregnancy journey. They show the real experience of pregnancy and avoid idealized images: the challenges, the strength and the beauty of maternity."
+      "A torso seen from the front, so close that the body becomes the whole picture: red and orange pressed against a deep blue edge. There is nothing to look past, and no idealized image to measure it against.",
+      "Maternity II is the loudest of the three, and the most direct about the intensity of that time."
     ]
   },
   'maternity-iii': {
@@ -112,7 +130,8 @@ export const CATALOGUE = {
     },
     alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, acrylic on canvas",
     story: [
-      "One of three paintings that reflect my own pregnancy journey. They show the real experience of pregnancy and avoid idealized images: the challenges, the strength and the beauty of maternity."
+      "A figure sits, orange against pink and crimson, and takes up the space she needs. Her posture says what the whole series says: this body has agency.",
+      "Maternity III is the third of the paintings from my pregnancy."
     ]
   },
   'the-shape-of-beauty': {
@@ -124,9 +143,13 @@ export const CATALOGUE = {
       width: 1000,
       height: 1393
     },
-    alt: "The Shape of Beauty: a pink figure kneeling with its back turned, against warm oranges and rust-striped hills, acrylic on canvas"
+    alt: "The Shape of Beauty: a pink figure kneeling with its back turned, against warm oranges and rust-striped hills, acrylic on canvas",
+    story: [
+      "A figure kneels with her back to us, pink and soft against warm oranges and rust-striped hills. We usually meet a body from the front, as something to be judged; here I turned it around.",
+      "Beauty has a shape, and it is not always the one we are shown."
+    ]
   },
-  carretto: {
+  'carretto': {
     title: "Carretto siciliano",
     series: "sicily",
     medium: "Acrylic on canvas",
@@ -136,9 +159,13 @@ export const CATALOGUE = {
       width: 1000,
       height: 850
     },
-    alt: "Carretto siciliano: a painted Sicilian cart and a plumed horse inside a hand-painted red and cream frame"
+    alt: "Carretto siciliano: a painted Sicilian cart and a plumed horse inside a hand-painted red and cream frame",
+    story: [
+      "The painted cart is one of Sicily’s best-loved images: a horse in a plume of red and blue feathers, a cart covered in small scenes, wheels turning in color. I painted it the way the carts themselves are decorated, with nothing left plain.",
+      "The frame is part of the work. I painted it by hand so the whole object would feel as bright and crowded as the island."
+    ]
   },
-  pistacchi: {
+  'pistacchi': {
     title: "Pistacchi",
     series: "sicily",
     medium: "Acrylic on canvas",
@@ -148,9 +175,13 @@ export const CATALOGUE = {
       width: 1000,
       height: 850
     },
-    alt: "Pistacchi: three pistachios on a blue disc surrounded by a mandala, inside a hand-painted yellow and blue frame"
+    alt: "Pistacchi: three pistachios on a blue disc surrounded by a mandala, inside a hand-painted yellow and blue frame",
+    story: [
+      "Three pistachios rest on a blue disc, and a mandala opens around them as if the nut were a flower. Pistachios are one of the island’s treasures, and I wanted to treat them like jewels.",
+      "The yellow and blue frame, painted by hand, carries the pattern outward, so the picture has no clear edge."
+    ]
   },
-  sole: {
+  'sole': {
     title: "Il sole",
     series: "sicily",
     medium: "Acrylic on canvas",
@@ -160,7 +191,11 @@ export const CATALOGUE = {
       width: 1000,
       height: 850
     },
-    alt: "Il sole: a smiling sun in a blue diamond on a red, orange and green geometric field, inside a hand-painted cream frame with blue and red arches"
+    alt: "Il sole: a smiling sun in a blue diamond on a red, orange and green geometric field, inside a hand-painted cream frame with blue and red arches",
+    story: [
+      "A sun with a wide smile sits inside a blue diamond, over a field of red, orange and green. It is the Sicilian sun as I carry it: warm, a little loud, impossible to ignore.",
+      "The cream frame, painted by hand with blue and red arches, makes the picture feel like a tile, or a doorway."
+    ]
   },
   'the-bonding': {
     title: "The Bonding",
@@ -172,7 +207,11 @@ export const CATALOGUE = {
       width: 1000,
       height: 1500
     },
-    alt: "The Bonding: two intertwined figures, one orange-red and one yellow-green, lifting a blue sphere against a deep blue ground, acrylic on canvas"
+    alt: "The Bonding: two intertwined figures, one orange-red and one yellow-green, lifting a blue sphere against a deep blue ground, acrylic on canvas",
+    story: [
+      "Two figures, one orange-red and one yellow-green, twist around each other and lift a blue sphere together. Their faces fall away, and what remains is the gesture of effort shared.",
+      "I think of the sphere as whatever two people carry between them: a home, a child, a worry. It is lighter because there are two pairs of hands."
+    ]
   },
   'amore-e-pandemia-i': {
     title: "Amore e Pandemia I",
@@ -220,7 +259,11 @@ export const CATALOGUE = {
       width: 1000,
       height: 1393
     },
-    alt: "Keep looking up: a brown figure kneeling on a rainbow and lifting a smiling sun with golden rays above her head, acrylic on canvas pad"
+    alt: "Keep looking up: a brown figure kneeling on a rainbow and lifting a smiling sun with golden rays above her head, acrylic on canvas pad",
+    story: [
+      "A woman kneels on a rainbow and lifts the sun above her head. The sun has a face, and under its eyes a few lines that look a little like tears.",
+      "Keep looking up is a reminder I give myself: that light is something you can hold up, even when it is heavy."
+    ]
   },
   'hes-raining-flowers': {
     title: "He’s raining Flowers",
@@ -231,9 +274,13 @@ export const CATALOGUE = {
       width: 1000,
       height: 1393
     },
-    alt: "He’s raining Flowers: a green torso with raised arms, with small red flowers and clovers falling on either side against a pale yellow and pink ground, acrylic on canvas"
+    alt: "He’s raining Flowers: a green torso with raised arms, with small red flowers and clovers falling on either side against a pale yellow and pink ground, acrylic on canvas",
+    story: [
+      "A green torso with raised arms, strong and without a face, and small red flowers and clovers falling down both sides of it. The body could be a plant, or a tree, or a person standing in a shower of petals.",
+      "I like that it is not clear whether the flowers are falling or growing. Gentleness and strength share the same body."
+    ]
   },
-  help: {
+  'help': {
     title: "Help",
     series: "archive",
     medium: "Acrylic on textured paper",
@@ -243,7 +290,11 @@ export const CATALOGUE = {
       width: 1000,
       height: 750
     },
-    alt: "Help: a red hand and a blue hand reaching towards each other through green jungle leaves, acrylic on textured paper"
+    alt: "Help: a red hand and a blue hand reaching towards each other through green jungle leaves, acrylic on textured paper",
+    story: [
+      "A red hand and a blue hand reach toward each other through a thick tangle of green leaves. They have not touched yet.",
+      "Help is the moment before: the decision to reach, and the hope that someone else is reaching too."
+    ]
   },
   'messengers-of-love': {
     title: "Messengers of Love",
@@ -263,7 +314,7 @@ export const CATALOGUE = {
       "Once again nature has shown benevolence, but are we ready to reach out and change our ways, even without the danger of an imminent catastrophe?"
     ]
   },
-  scarab: {
+  'scarab': {
     title: "Scarab",
     series: "archive",
     medium: "Acrylic on canvas",
@@ -272,7 +323,11 @@ export const CATALOGUE = {
       width: 1000,
       height: 1346
     },
-    alt: "Scarab: a red and brown scarab beetle with pale blue wings lifting a golden sun, on a green field of stars and gems, acrylic on canvas"
+    alt: "Scarab: a red and brown scarab beetle with pale blue wings lifting a golden sun, on a green field of stars and gems, acrylic on canvas",
+    story: [
+      "A scarab, red and brown with pale blue wings, lifts a golden sun over a green sky of stars. In ancient Egypt the scarab pushed the sun across the sky; I wanted that old image to feel new, with gems and glitter for stars.",
+      "It is meant as an amulet: renewal you can hold in your hand."
+    ]
   },
   'rainbow-and-cacti': {
     title: "Rainbow and cacti",
@@ -283,6 +338,10 @@ export const CATALOGUE = {
       width: 1000,
       height: 697
     },
-    alt: "Rainbow and cacti: two round green cacti in dark pots joined by a rainbow, on a terracotta floor under a pale peach sky, acrylic on paper"
+    alt: "Rainbow and cacti: two round green cacti in dark pots joined by a rainbow, on a terracotta floor under a pale peach sky, acrylic on paper",
+    story: [
+      "Two round cacti in dark pots stand on either side of an empty space, and a rainbow bridges the gap between them. They do not touch, but they are clearly together.",
+      "Even the prickliest things can be joined by color."
+    ]
   }
 };
