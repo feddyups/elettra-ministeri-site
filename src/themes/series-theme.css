@@ -4,7 +4,7 @@
  * keeps the default cream look, because every variable below has a fallback.
  *
  * Depends on the color variables declared in the site's Custom CSS (:root): --em-bg, --em-ink,
- * --em-muted, --em-line, --em-body and the --em-card-* variables for text on paper.
+ * --em-muted, --em-line and --em-body.
  */
 
 html[data-series] {
@@ -21,16 +21,10 @@ html[data-series] .header-background {
   background-color: var(--em-bg) !important;
 }
 
-/* The cards that hold the paintings stay on paper, so their text keeps the paper colors */
-html[data-series] .th-work,
-html[data-series] .th-tile {
-  color: var(--em-card-ink, #1c1a18);
-}
-html[data-series] .th-work *,
-html[data-series] .th-tile * {
-  --em-ink: var(--em-card-ink, #1c1a18);
-  --em-muted: var(--em-card-muted, #5b544c);
-  --em-body: var(--em-card-body, #3a352f);
+/* The paintings sit directly on the page color; the white border around each is part of the image */
+html[data-series] .th-work {
+  background: none;
+  padding: 0;
 }
 
 /* The mobile menu button is drawn with plain bars */

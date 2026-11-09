@@ -32,9 +32,9 @@ Site-wide Code Injection, Footer (enquiry drawer):
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.0/src/themes/tones.generated.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.0/src/themes/series-theme.css">
-<script src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.0/src/themes/series-attr.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.1/src/themes/tones.generated.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.1/src/themes/series-theme.css">
+<script src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.1/src/themes/series-attr.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -122,7 +122,7 @@ git add -A && git commit -m "Update series colors"
 git tag vX.Y.Z && git push origin main vX.Y.Z
 ```
 
-Then check that jsDelivr serves the new tag and change the version in the two places that load it: the home page code block (`src/main.js`) and the site-wide Header Code Injection (the three tags above). The text colors used on dark tones, and the paper colors kept inside the cards, are variables in the site's Custom CSS (`--em-body`, `--em-card-ink`, `--em-card-muted`, `--em-card-body`).
+Then check that jsDelivr serves the new tag and change the version in the two places that load it: the home page code block (`src/main.js`) and the site-wide Header Code Injection (the three tags above). The text colors used on the tones are variables in the site's Custom CSS (`--em-bg`, `--em-ink`, `--em-muted`, `--em-line`, `--em-body`).
 
 ## Changing the works
 
