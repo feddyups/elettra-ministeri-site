@@ -10,15 +10,17 @@
   cursor: pointer;
   overflow: hidden;
 }
-.em-video img {
+/* the extra specificity keeps a page's general image rules from overriding the cover sizing */
+html .em-video > img {
   display: block;
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: cover;
-  object-position: 50% 40%;
+  object-position: 50% 35%;
   transition: filter 0.4s ease;
 }
-.em-video:hover img { filter: brightness(0.9); }
+html .em-video:hover > img { filter: brightness(0.9); }
 
 .em-video-play {
   position: absolute;
@@ -58,6 +60,6 @@
   .em-video-play::before { border-width: 9px 0 9px 15px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .em-video img,
+  html .em-video > img,
   .em-video-play { transition: none; }
 }
