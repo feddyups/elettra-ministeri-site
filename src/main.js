@@ -18,4 +18,4 @@ initOnceFor('.em-home > section, .em-home > footer', 'tone', trackSectionTone);
 trackHeaderOnScroll();
 loadStylesheet(new URL('./features/section-rail.css', import.meta.url).href);
 // the sections come from several Squarespace blocks, so the rail is built once the page has settled
-addEventListener('load', () => setTimeout(() => initSectionRail('.em-home > section, .em-home > footer'), 600));
+addEventListener('load', () => setTimeout(() => initSectionRail('.em-home > section, .em-home > footer', { hideOver: '.eh-hero' }), 600));

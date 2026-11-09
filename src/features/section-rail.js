@@ -20,8 +20,11 @@ const labelOf = (section) => {
  * A slim vertical rail at the edge of the page, one tick per section: pointing at it names the sections,
  * the current one is highlighted, and choosing one scrolls to it smoothly. Sections without a height or
  * a name are left out. Add `data-rail="Name"` to a section to name it or to include it.
+ *
+ * `hideOver` is a selector for sections the rail must never lie over (the home page's hero slideshow): the rail
+ * fades out while any part of such a section is behind it, and returns once the section has scrolled clear.
  */
-export const initSectionRail = (selector) => {
+export const initSectionRail = (selector, { hideOver } = {}) => {
   const sections = [...document.querySelectorAll(selector)].filter((s) => s.getBoundingClientRect().height > 0 && labelOf(s));
   if (sections.length < 2) return;
 
@@ -47,4 +50,18 @@ export const initSectionRail = (selector) => {
     if (current) setCurrent(current.section);
   }, { rootMargin: '-45% 0px -45% 0px' });
   sections.forEach((section) => observer.observe(section));
+
+  if (!hideOver) return;
+  const keepClear = [...document.querySelectorAll(hideOver)];
+  let queued = false;
+  const update = () => {
+    queued = false;
+    const bar = rail.getBoundingClientRect();
+    const over = keepClear.some((el) => { const box = el.getBoundingClientRect(); return box.bottom > bar.top && box.top < bar.bottom; });
+    rail.classList.toggle('is-hidden', over);
+  };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', queue, { passive: true });
+  addEventListener('resize', queue);
+  update();
 };

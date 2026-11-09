@@ -17,7 +17,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Copyable colors** – every swatch (the hero's tiles, the chips on each home chapter, a painting page's colors) is one reusable component: it shows the color's name, copies its hex code when clicked, and uses the same analysed palette as the infographic. It carries its data in the page and announces what people look at and take, so colors can be gathered for further analysis (see "Gathering colors").
 - **Color names** – colors are named the way a painter would (vermilion, ochre, bottle green) everywhere they are shown, from one list in `src/lib/color-science.js`.
 - **Glass** – floating surfaces and buttons (the Paintings dropdown, the rail's labels, every "View ..." and enquire button) share one material in the theme: a blurred, saturated view of what is behind, a faint gradient, a bright thin edge and a soft drop, with a tint and text color that adapt to a light or dark surface, so it looks right on any background. A home section sets `data-glass` from its own text color, so glass in a cream section is light and in a dark one is dark.
-- **Section rail** – a slim vertical rail on the home page, one tick per section: pointing at it names the sections, the current one is highlighted and choosing one scrolls to it smoothly (`data-rail="Name"` on a section names or includes it).
+- **Section rail** – a slim vertical rail on the home page (never over the hero slideshow: it fades out while the hero is behind it), one tick per section: pointing at it names the sections, the current one is highlighted and choosing one scrolls to it smoothly (`data-rail="Name"` on a section names or includes it).
 - **Artist video** – the video in the home page's artist section shows a cover image with a play button; the YouTube player loads only when the visitor presses play.
 - **Postcards page** – the standalone "Scrivo una cartolina" landing page gets a link back to the home page and a centered text card.
 - **Enquiry drawer** – on every page, links to `/enquire` open the enquiry form in a side drawer so visitors keep their place. The form can arrive with `?SQF_WORK=<title>` and then says which work the enquiry is about.
@@ -29,13 +29,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.26/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.27/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.26/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.27/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -49,7 +49,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.26/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.27/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
