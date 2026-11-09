@@ -1,0 +1,48 @@
+@import url('../theme/tokens.css');
+
+/*
+ * Every section of the home page fits in one screen (the "fold"): none is taller than the window.
+ *  - A chapter's picture keeps its proportions but is capped so that picture and padding fit in one screen,
+ *    wider than tall or not (chapters.js sets --ratio on the frame).
+ *  - The intro puts its text beside a compact infographic instead of above it.
+ */
+:root {
+  --em-fold: 100svh;
+  --em-chapter-pad: 7.5rem;
+  --em-frame-max: calc(var(--em-fold) - 2 * var(--em-chapter-pad));
+}
+
+html .em-home .chapter .frame {
+  width: min(100%, calc(var(--em-frame-max) * var(--ratio, 1)));
+  margin-inline: auto;
+}
+
+/* the infographic inside the home page is the compact version */
+html .em-home .ca {
+  --ca-wheel-max: 17rem;
+  --ca-bar-height: 3.5rem;
+  margin-top: 0;
+}
+html .em-home .ca .ca-top { grid-template-columns: minmax(0, auto) minmax(0, 1fr); gap: var(--em-space-l); }
+html .em-home .ca .ca-stats { margin-top: var(--em-space-l); }
+html .em-home .ca .ca-stats dd { font-size: var(--em-text-xl); }
+
+@media (min-width: 56.25em) {
+  html .em-home .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    gap: var(--em-block-gap);
+    align-items: center;
+    box-sizing: border-box;
+    max-height: var(--em-fold);
+  }
+  html .em-home .intro > :not([data-color-atlas]) { grid-column: 1; }
+  html .em-home .intro > [data-color-atlas] { grid-column: 2; grid-row: 1 / span 3; }
+}
+
+@media (max-width: 56.25em) {
+  :root { --em-chapter-pad: 4rem; --em-frame-max: 45svh; }
+  html .em-home .ca { --ca-wheel-max: 13rem; }
+  html .em-home .ca .ca-names,
+  html .em-home .ca .ca-stats { display: none; }
+}

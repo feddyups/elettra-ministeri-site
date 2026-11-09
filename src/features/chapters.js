@@ -40,6 +40,7 @@ export const initChapter = (chapter) => {
       })));
     } else renderSwatches(chips, palette);
     frame.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+    frame.style.setProperty('--ratio', img.naturalWidth / img.naturalHeight);
     onFirstVisible(chapter, 0.35, () => frame.classList.add('done'));
   });
 };

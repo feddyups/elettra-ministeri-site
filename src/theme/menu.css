@@ -3,23 +3,37 @@
 /*
  * The header menu.
  *
- * Order: Paintings comes first, then the rest in the order of the Pages panel. Squarespace puts a new page at
- * the top of the panel and the panel cannot be reordered by script, so the first entry is placed here. `order`
- * only moves Paintings; every other entry keeps its place. Squarespace spaces entries with a left margin on all
- * but the first one in the page, so the spacing is set as a gap instead, which does not depend on the order.
- * (Paintings is a folder: a button with a data-href on desktop, and a link in the mobile menu.)
+ * Order: set by the numbers below, not by the Pages panel (which cannot be reordered by script and puts a new
+ * page at the top). Squarespace spaces entries with a left margin on all but the first one in the page, so the
+ * spacing is set as a gap instead, which does not depend on the order. (Paintings is a folder: a button with a
+ * data-href on desktop, and a link in the mobile menu.)
  */
 :root {
   --em-menu-gap: 1.35rem;
   --em-menu-panel-min: 15rem;
+  /* THE ORDER OF THE MENU: change these numbers (the smallest comes first). */
+  --em-menu-paintings: 1;
+  --em-menu-textiles: 2;
+  --em-menu-about: 3;
+  --em-menu-downloads: 4;
+  --em-menu-blog: 5;
 }
 
 .header-nav-list { gap: var(--em-menu-gap); }
-.header-nav-list > .header-nav-item { margin-left: 0 !important; }
-.header-nav-list > .header-nav-item--folder:has(> .header-nav-folder-title[data-href^="/paintings"]) { order: -1; }
+.header-nav-list > .header-nav-item { margin-left: 0 !important; order: 9; }
+.header-nav-list > .header-nav-item--folder:has(> .header-nav-folder-title[data-href^="/paintings"]) { order: var(--em-menu-paintings); }
+.header-nav-list > .header-nav-item:has(> a[href="/textiles"]) { order: var(--em-menu-textiles); }
+.header-nav-list > .header-nav-item:has(> a[href="/about-me"]) { order: var(--em-menu-about); }
+.header-nav-list > .header-nav-item:has(> a[href="/scrivo-una-cartolina"]) { order: var(--em-menu-downloads); }
+.header-nav-list > .header-nav-item:has(> a[href="/blog"]) { order: var(--em-menu-blog); }
 
 .header-menu-nav-wrapper { display: flex; flex-direction: column; }
-.header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href^="/paintings"]) { order: -1; }
+.header-menu-nav-wrapper > .header-menu-nav-item { order: 9; }
+.header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href^="/paintings"]) { order: var(--em-menu-paintings); }
+.header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/textiles"]) { order: var(--em-menu-textiles); }
+.header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/about-me"]) { order: var(--em-menu-about); }
+.header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/scrivo-una-cartolina"]) { order: var(--em-menu-downloads); }
+.header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/blog"]) { order: var(--em-menu-blog); }
 
 /*
  * The dropdown under Paintings: a solid panel in the page's deeper tone (the series' second color on a series
