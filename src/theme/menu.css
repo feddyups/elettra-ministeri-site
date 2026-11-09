@@ -1,0 +1,10 @@
+/*
+ * The order of the header menu: Paintings comes first, then the rest in the order of the Pages panel.
+ * Squarespace puts a new page at the top of the panel and the panel cannot be reordered by script, so the
+ * order of the first entry is set here. `order` only moves Paintings; every other entry keeps its place.
+ * (Paintings is a folder: a button with a data-href on desktop, and a link in the mobile menu.)
+ */
+.header-nav-list > .header-nav-item--folder:has(> .header-nav-folder-title[data-href^="/paintings"]) { order: -1; }
+
+.header-menu-nav-wrapper { display: flex; flex-direction: column; }
+.header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href^="/paintings"]) { order: -1; }

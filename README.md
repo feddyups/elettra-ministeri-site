@@ -11,7 +11,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Color map** – each series has one color, used for its section on the home page and for its own page, so the colors work as a map of the site. One config file drives both.
 - **Color infographic** – reusable blocks that show the colors of the work (a hue wheel, the loudest colors, the share of warm and cool, a warm-to-cool map of every painting, and a strip of colors per painting). The same component renders the whole body of work on the About page, one series on each series page, and a compact version on the home page. Every color and painting links to the painting's page.
 - **Strips of color** – each painting has a thin strip of its colors under its picture, on its series page and on its own page; pointing at a color turns that picture black and white except where the color lives, and clicking copies its code.
-- **Painting pages** – every painting has its own page (`/paintings/<name>`) with the picture (painted stroke by stroke as it comes into view, like the home hero; click to enlarge) with its strip of colors beneath, its story in the artist's words, the technical details, a story in the artist's words (written by hand in `catalogue.js`), where a work has one a "roots and echoes" reading in a neutral voice with linked museum sources (the `context` field; Mask Divine has one), a reading of its colors (point at a color to see where it lives in the picture; click to copy its code), where it sits among all the work, the paintings closest to it in color, the rest of its series, and the enquiry form inline. Each page is one empty placeholder in Squarespace; everything on it comes from `src/works/catalogue.js` and the generated color data.
+- **Painting pages** – every painting has its own page (`/paintings/<name>`) with the picture (painted stroke by stroke as it comes into view, like the home hero; click to enlarge) with its strip of colors beneath, its story in the artist's words, the technical details, a story in the artist's words (written by hand in `catalogue.js`), where a work has one, a section on where it comes from, in the artist's voice with linked museum sources (the `context` field; Mask Divine has one), a reading of its colors (point at a color to see where it lives in the picture; click to copy its code), where it sits among all the work, the paintings closest to it in color, the rest of its series, and the enquiry form inline. Each page is one empty placeholder in Squarespace; everything on it comes from `src/works/catalogue.js` and the generated color data.
 - **One theme** – every stylesheet is built on `src/theme/tokens.css`: the colors, type, spacing, shadows and durations are defined once, so changing the look of the site, or adding to it, starts there (see "The theme").
 - **Color focus** – pointing at a color (with a soft, configurable reach: neighboring shades keep part of their color and the edge fades; see `src/color/focus-config.js`) (a hero tile, a chip on a home section, or a color on a painting page) turns the rest of the picture black and white, leaving only that color's cluster in color, so you can see where a color lives.
 - **Copyable colors** – every swatch (the hero's tiles, the chips on each home chapter, a painting page's colors) is one reusable component: it shows the color's name, copies its hex code when clicked, and uses the same analysed palette as the infographic. It carries its data in the page and announces what people look at and take, so colors can be gathered for further analysis (see "Gathering colors").
@@ -27,13 +27,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.15.0/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.16.0/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.15.1/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.16.0/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -47,7 +47,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.15.1/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.16.0/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -96,7 +96,7 @@ src/
     work-page.js              renders a painting page into [data-work-page]
     work-hero.js              the picture, series, title, facts and the enquire button
     work-story.js             the story, when there is one
-    work-context.js           the cultural reading (roots and echoes, with linked sources), when a work has a `context`
+    work-context.js           where a work comes from (with linked sources), when it has a `context`
     work-details.js           the technical details that are known
     work-colors.js            the colors, their numbers, the map, and the paintings close in color
     work-series-nav.js        the rest of the series and previous/next
@@ -132,6 +132,7 @@ src/
       warmth-map.js           every work as a dot, warm to cool and quiet to loud
       work-strips.js          each work as a strip of its colors, linking to the work
   theme/
+    menu.css                  the header menu order (Paintings first)
     tokens.css                THE THEME: colors, type, spacing, shadows, motion and layout, in three layers
   themes/
     tones.config.js           THE FILE TO EDIT: which painting gives each series its color, and the global settings

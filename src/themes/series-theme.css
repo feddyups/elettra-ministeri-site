@@ -1,4 +1,5 @@
 @import url('../theme/tokens.css');
+@import url('../theme/menu.css');
 
 /*
  * Series pages take the color of their home page section, so the colors work as a map of the site.
