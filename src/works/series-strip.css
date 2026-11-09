@@ -1,0 +1,25 @@
+@import url('../theme/tokens.css');
+
+/* A painting's strip of colors under its picture on a series page (see series-strip.js). */
+.th-strip {
+  --ts-height: 0.5rem;
+  --ts-lift: 1.75;
+  display: flex;
+  gap: var(--em-space-3xs);
+  height: var(--ts-height);
+  margin-top: var(--em-space-xs);
+}
+.th-strip .th-chip { display: block; min-width: var(--em-space-xs); height: 100%; }
+.th-strip .th-chip i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: top;
+  transition: transform var(--em-duration-quick) var(--em-ease);
+}
+.th-strip .th-chip:hover i,
+.th-strip .th-chip:focus-visible i { transform: scaleY(var(--ts-lift)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .th-strip .th-chip i { transition: none; }
+}

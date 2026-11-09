@@ -51,7 +51,8 @@ html[data-series] .item-pagination-title {
 }
 
 /* A painting's picture and title on a series page link to the painting's own page. */
-html .th-work > a.th-img { display: block; }
+html .th-work > a.th-img { position: relative; display: block; }
+html .th-work > a.th-img img { display: block; }
 html .th-work b a { color: inherit; text-decoration: none; }
 html .th-work b a:hover { text-decoration: underline; text-underline-offset: var(--em-space-2xs); }
 html .th-work > a.th-img:focus-visible, html .th-work b a:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
