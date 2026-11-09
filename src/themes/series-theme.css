@@ -53,6 +53,9 @@ html[data-series] .item-pagination-title {
 /* A painting's picture and title on a series page link to the painting's own page. */
 html .th-work > a.th-img { position: relative; display: block; }
 html .th-work > a.th-img img { display: block; }
-html .th-work b a { color: inherit; text-decoration: none; }
+/* The title keeps the title's own type: the site styles the links in a caption as small uppercase text, which must not reach it */
+html .th-work .th-cap b a { padding: 0; border: 0; color: inherit; font: inherit; letter-spacing: inherit; text-transform: none; text-decoration: none; }
+html .th-work .th-cap b a::before,
+html .th-work .th-cap b a::after { content: none; }
 html .th-work b a:hover { text-decoration: underline; text-underline-offset: var(--em-space-2xs); }
 html .th-work > a.th-img:focus-visible, html .th-work b a:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
