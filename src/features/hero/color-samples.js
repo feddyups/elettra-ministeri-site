@@ -1,8 +1,12 @@
+import { h } from '../../lib/elements.js';
 import { extractPalette, toHex } from '../../lib/color.js';
 import { nameColors, rgbToOklab } from '../../lib/color-science.js';
 import { sampleImage } from '../../lib/image.js';
 import { renderSwatch } from '../../color/swatch.js';
+import { createColorFocus } from '../../color/color-focus.js';
 import { workColors } from '../../color/scope.js';
+
+const FOCUS_WIDTH = 480;
 
 /** The colors to show for `work`: the analysed palette (the same one its page and the infographic use), or, for a work that is not in the analysis, colors sampled from the image. */
 const colorsFor = (work, img) => {
@@ -14,17 +18,28 @@ const colorsFor = (work, img) => {
 };
 
 /**
- * Shows the painting's main colors as buttons in `container`, each labeled with its name. Hovering one
- * washes the hero in that color; clicking copies its hex code.
+ * Shows the painting's main colors as buttons in `container`, each labeled with its name. Pointing at one
+ * turns the rest of the hero black and white so only that color's cluster stays in color; clicking copies its hex code.
+ *
+ * @param {HTMLElement} container the row of swatches
+ * @param {{ root: HTMLElement, canvas: HTMLCanvasElement, image: HTMLImageElement }} hero the hero, its painting canvas and its image
+ * @param {{ title: string }} work the work being shown
  */
-export const renderColorSamples = (container, wash, img, work) => {
+export const renderColorSamples = (container, { root, canvas, image }, work) => {
   container.querySelectorAll('button').forEach((button) => button.remove());
-  const { colors, slug, series } = colorsFor(work, img);
-  colors.forEach((color) => {
-    container.appendChild(renderSwatch(color, {
-      work: slug, series, nameFirst: true,
-      onEnter: () => { wash.style.background = color.hex; wash.style.opacity = 0.55; },
-      onLeave: () => { wash.style.opacity = 0; },
-    }));
+  let overlay = root.querySelector('canvas.em-focus');
+  if (!overlay) {
+    overlay = h('canvas', { class: 'em-focus', 'aria-hidden': 'true' });
+    canvas.after(overlay);
+  }
+  overlay.classList.remove('is-on');
+
+  const { colors, slug, series } = colorsFor(work, image);
+  const focus = createColorFocus({
+    canvas: overlay, source: image, hexes: colors.map((color) => color.hex),
+    width: FOCUS_WIDTH, height: Math.round(FOCUS_WIDTH * root.clientHeight / root.clientWidth), cover: true,
+  });
+  colors.forEach((color, index) => {
+    container.appendChild(renderSwatch(color, { work: slug, series, nameFirst: true, onEnter: () => focus.show(index), onLeave: () => focus.hide() }));
   });
 };

@@ -1,9 +1,30 @@
-/* A clickable color (see swatch.js). Layout of the swatches' container is left to the page that holds them. */
+@import url('../theme/tokens.css');
+
+/* A clickable color (see swatch.js). The layout of the container that holds the swatches is left to the page. */
 button.em-swatch {
   all: unset;
   box-sizing: border-box;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-button.em-swatch:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-button.em-swatch.is-copied i { box-shadow: 0 0 0 2px currentColor; }
+button.em-swatch:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
+button.em-swatch.is-copied i { box-shadow: 0 0 0 var(--em-stroke) currentColor; }
+
+/*
+ * The color focus (see color-focus.js): a canvas laid over a picture that turns everything black and white
+ * except the color being pointed at. It never takes clicks.
+ */
+canvas.em-focus {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--em-duration-base) var(--em-ease);
+}
+canvas.em-focus.is-on { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  canvas.em-focus { transition: none; }
+}

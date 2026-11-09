@@ -1,3 +1,5 @@
+@import url('../theme/tokens.css');
+
 /*
  * Series pages take the color of their home page section, so the colors work as a map of the site.
  * The colors come from tones.generated.css (one rule per series). A page with no entry there
@@ -51,5 +53,5 @@ html[data-series] .item-pagination-title {
 /* A painting's picture and title on a series page link to the painting's own page. */
 html .th-work > a.th-img { display: block; }
 html .th-work b a { color: inherit; text-decoration: none; }
-html .th-work b a:hover { text-decoration: underline; text-underline-offset: 4px; }
-html .th-work > a.th-img:focus-visible, html .th-work b a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+html .th-work b a:hover { text-decoration: underline; text-underline-offset: var(--em-space-2xs); }
+html .th-work > a.th-img:focus-visible, html .th-work b a:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }

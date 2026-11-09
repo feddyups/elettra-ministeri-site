@@ -1,22 +1,31 @@
+@import url('../theme/tokens.css');
+
 /* "Scrivo una cartolina" landing page: the postcard fills the screen with the text on a centered card. */
+
+:root {
+  --em-card-width: 33.75rem;
+  --em-card-padding-y: 2.25rem;
+  --em-card-padding-bottom: 2.5rem;
+  --em-button-height: 3.25rem;
+}
 
 .scrivo-back {
   position: fixed;
-  top: 18px;
-  left: 18px;
-  z-index: 50;
-  padding: 10px 16px;
-  background: rgba(250, 248, 245, 0.92);
-  color: #1c1a18;
-  font: 500 12px/1 Jost, sans-serif;
-  letter-spacing: 0.14em;
+  top: var(--em-space-ml);
+  left: var(--em-space-ml);
+  z-index: var(--em-z-raised);
+  padding: var(--em-space-s) var(--em-space-m);
+  background: var(--em-glass);
+  color: var(--em-ink-strong);
+  font: var(--em-weight-medium) var(--em-text-xs) / var(--em-leading-none) var(--em-font-sans);
+  letter-spacing: var(--em-tracking-label);
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 99px;
-  box-shadow: 0 10px 30px -14px rgba(0, 0, 0, 0.5);
+  border-radius: var(--em-radius-pill);
+  box-shadow: var(--em-shadow-float);
 }
-.scrivo-back:hover { background: #faf8f5; }
-.scrivo-back:focus-visible { outline: 2px solid #b5472b; outline-offset: 3px; }
+.scrivo-back:hover { background: var(--em-paper); }
+.scrivo-back:focus-visible { outline: var(--em-stroke) solid var(--em-accent); outline-offset: var(--em-space-2xs); }
 
 .page-section {
   min-height: 100vh !important;
@@ -35,13 +44,13 @@
   display: flex !important;
   flex-direction: column;
   align-items: flex-start;
-  gap: 14px;
+  gap: var(--em-space-s);
   box-sizing: border-box !important;
-  width: min(540px, calc(100% - 32px)) !important;
+  width: min(var(--em-card-width), calc(100% - var(--em-space-xl))) !important;
   margin: 0 auto !important;
-  padding: 36px 36px 40px;
-  background: #faf8f5;
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5);
+  padding: var(--em-card-padding-y) var(--em-card-padding-y) var(--em-card-padding-bottom);
+  background: var(--em-paper);
+  box-shadow: var(--em-shadow-card);
 }
 .fluid-engine > .fe-block {
   grid-area: auto !important;
@@ -59,11 +68,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 52px;
+  min-height: var(--em-button-height);
   box-sizing: border-box;
 }
 
-@media (max-width: 600px) {
-  .fluid-engine { padding: 28px 24px 32px; }
-  .scrivo-back { top: 12px; left: 12px; }
+@media (max-width: 37.5em) {
+  .fluid-engine { padding: var(--em-space-l) var(--em-space-l) var(--em-space-xl); }
+  .scrivo-back { top: var(--em-space-s); left: var(--em-space-s); }
 }

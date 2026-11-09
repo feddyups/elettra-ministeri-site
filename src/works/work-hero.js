@@ -1,5 +1,5 @@
 import { h } from '../lib/elements.js';
-import { createColorReveal } from './color-reveal.js';
+import { createColorFocus } from '../color/color-focus.js';
 import { openLightbox } from './lightbox.js';
 import { createWorkPaint } from './work-paint.js';
 
@@ -7,7 +7,7 @@ const WIDTHS = [500, 1000, 1500, 2500];
 
 /**
  * The top of a painting page: the picture (painted stroke by stroke as it comes into view; click to enlarge;
- * pointing at a color below dims the rest of it),
+ * pointing at a color below turns the rest of it black and white),
  * its series, title, one line of facts and the way to enquire.
  *
  * @returns {{ element: HTMLElement, showColor: (index: number|null) => void }}
@@ -15,14 +15,14 @@ const WIDTHS = [500, 1000, 1500, 2500];
 export const renderWorkHero = (info, work, series) => {
   const { src, width, height } = info.image;
   const paintCanvas = h('canvas', { class: 'wp-paint', 'aria-hidden': 'true' });
-  const canvas = h('canvas', { class: 'wp-reveal', 'aria-hidden': 'true' });
+  const focusCanvas = h('canvas', { class: 'em-focus', 'aria-hidden': 'true' });
   const img = h('img', {
     src: `${src}?format=1500w`,
     srcset: WIDTHS.map((w) => `${src}?format=${w}w ${w}w`).join(', '),
     sizes: '(max-width: 900px) 100vw, 58vw',
     alt: info.alt, width, height,
   });
-  const zoom = h('button', { class: 'wp-zoom', type: 'button', style: { '--ratio': width / height }, 'aria-label': `View ${info.title} larger` }, img, paintCanvas, canvas);
+  const zoom = h('button', { class: 'wp-zoom', type: 'button', style: { '--ratio': width / height }, 'aria-label': `View ${info.title} larger` }, img, paintCanvas, focusCanvas);
   zoom.addEventListener('click', () => openLightbox({ src: `${src}?format=2500w`, alt: info.alt }));
 
   const facts = [info.medium, info.size, info.year].filter(Boolean).join(' · ');
@@ -38,5 +38,6 @@ export const renderWorkHero = (info, work, series) => {
       h('p', { class: 'wp-facts' }, facts),
       h('a', { class: 'wp-cta', href: '#enquire' }, 'Enquire about this painting')));
 
-  return { element, showColor: createColorReveal(canvas, `${src}?format=500w`, work.palette.map(([hex]) => hex)) };
+  const focus = createColorFocus({ canvas: focusCanvas, source: `${src}?format=500w`, hexes: work.palette.map(([hex]) => hex) });
+  return { element, showColor: (index) => (index == null ? focus.hide() : focus.show(index)) };
 };

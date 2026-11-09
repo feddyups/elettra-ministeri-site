@@ -1,0 +1,114 @@
+/*
+ * THE THEME. Every design decision the stylesheets in this repo build on lives here, so changing the
+ * look of the site, or adding to it, starts in this file.
+ *
+ * Three layers, each built on the one before it:
+ *   1. Primitives   the raw scales: colors, type sizes, spacing steps, radii, shadows, durations.
+ *   2. Roles        named uses of the primitives (--em-gutter, --em-measure, --em-section-gap).
+ *   3. Components   custom properties a component declares at the top of its own stylesheet
+ *                   (for example --ca-strip-width in color-atlas.css), built from layers 1 and 2.
+ *
+ * Rules for every stylesheet:
+ *   - No raw pixel values in a rule. Use a token, or a component property declared in rem at the top of the file.
+ *     The only pixel values are the hairline and stroke widths below.
+ *   - No raw colors in a rule. Use a token (or one of the site's --em-bg / --em-ink / --em-muted / --em-line /
+ *     --em-body, which series pages remap to the series color).
+ *   - Media queries cannot read variables, so breakpoints are written in em and kept to these three:
+ *       56.25em  (900px)  the layout stacks
+ *       48em     (768px)  the phone/tablet line Squarespace itself uses
+ *       37.5em   (600px)  small phones
+ *   - Sizes are in rem, so everything scales with the visitor's text size.
+ *
+ * Start a stylesheet with:  @import url('../theme/tokens.css');  (a path relative to the file)
+ */
+
+:root {
+  /* ---------- 1. Primitives ---------- */
+
+  /* Color. --em-bg, --em-ink, --em-muted, --em-line and --em-body come from the site's Custom CSS and are remapped per series. */
+  --em-paper: #faf8f5;
+  --em-paper-warm: #f1ede6;
+  --em-ink-strong: #1c1a18;
+  --em-night: #14110f;
+  --em-accent: #b5472b;
+  --em-rule: #e0d9ce;
+  --em-scrim: rgb(28 26 24 / 0.55);
+  --em-glass: rgb(250 248 245 / 0.92);
+  --em-shadow-color: rgb(0 0 0 / 0.7);
+
+  /* Type */
+  --em-font-sans: "Jost", system-ui, sans-serif;
+  --em-font-serif: "Cormorant Garamond", Georgia, serif;
+  --em-text-2xs: 0.6875rem;
+  --em-text-xs: 0.75rem;
+  --em-text-sm: 0.8125rem;
+  --em-text-md: 0.875rem;
+  --em-text-base: 1rem;
+  --em-text-lg: 1.125rem;
+  --em-text-xl: clamp(1.25rem, 2vw, 1.625rem);
+  --em-display-sm: clamp(1.625rem, 3vw, 2.25rem);
+  --em-display-md: clamp(2rem, 4vw, 3.5rem);
+  --em-display-lg: clamp(2.5rem, 5vw, 5.25rem);
+  --em-weight-regular: 400;
+  --em-weight-medium: 500;
+  --em-leading-none: 1;
+  --em-leading-tight: 1.05;
+  --em-leading-snug: 1.3;
+  --em-leading-body: 1.6;
+  --em-tracking-tight: -0.01em;
+  --em-tracking-caps: 0.1em;
+  --em-tracking-label: 0.14em;
+  --em-tracking-wide: 0.2em;
+
+  /* Space: t-shirt steps on a 4px grid */
+  --em-space-3xs: 0.125rem;
+  --em-space-2xs: 0.25rem;
+  --em-space-xs: 0.5rem;
+  --em-space-s: 0.75rem;
+  --em-space-m: 1rem;
+  --em-space-ml: 1.25rem;
+  --em-space-l: 1.5rem;
+  --em-space-xl: 2rem;
+  --em-space-2xl: 3rem;
+  --em-space-3xl: 4rem;
+  --em-space-4xl: 6rem;
+  --em-space-5xl: 8rem;
+
+  /* Shape and lines */
+  --em-radius-sm: 0.125rem;
+  --em-radius-pill: 6.25rem;
+  --em-hairline: 1px;
+  --em-stroke: 2px;
+  --em-stroke-heavy: 3px;
+
+  /* Elevation */
+  --em-shadow-lift: 0 1.125rem 1.875rem -1.375rem var(--em-shadow-color);
+  --em-shadow-plate: 0 1.625rem 3.125rem -1.875rem var(--em-shadow-color);
+  --em-shadow-figure: 0 2.5rem 5rem -2.5rem var(--em-shadow-color);
+  --em-shadow-card: 0 1.875rem 3.75rem -1.875rem var(--em-shadow-color);
+  --em-shadow-float: 0 0.625rem 1.875rem -0.875rem var(--em-shadow-color);
+  --em-shadow-drawer: -1.5rem 0 3.75rem -1.875rem var(--em-shadow-color);
+  --em-shadow-play: 0 0.875rem 2.125rem -0.75rem var(--em-shadow-color);
+
+  /* Motion */
+  --em-duration-quick: 0.18s;
+  --em-duration-base: 0.3s;
+  --em-duration-medium: 0.4s;
+  --em-duration-slow: 0.9s;
+  --em-ease: ease;
+  --em-ease-drawer: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Stacking */
+  --em-z-raised: 50;
+  --em-z-shade: 99998;
+  --em-z-overlay: 99999;
+
+  /* ---------- 2. Roles ---------- */
+  --em-measure: 62ch;
+  --em-measure-narrow: 54ch;
+  --em-content-max: 68.75rem;
+  --em-gutter: var(--em-space-xl);
+  --em-section-gap: clamp(var(--em-space-3xl), 9vw, var(--em-space-5xl));
+  --em-block-gap: clamp(var(--em-space-xl), 6vw, var(--em-space-3xl));
+  --em-plate-padding: clamp(var(--em-space-l), 5vw, var(--em-space-4xl));
+}

@@ -26,7 +26,6 @@ export const initHero = (root) => {
   const image = $('#eh-heroImg');
   const canvas = $('#eh-heroCanvas');
   const samples = $('#eh-samples') || $('.samples');
-  const wash = $('.wash');
   const copy = $('.copy');
   const label = copy.querySelector('p.label');
   const title = copy.querySelector('h1');
@@ -118,7 +117,7 @@ export const initHero = (root) => {
       image.alt = work.alt;
       link.textContent = `View ${work.series}`;
       link.setAttribute('href', work.href);
-      renderColorSamples(samples, wash, image, work);
+      renderColorSamples(samples, { root, canvas, image }, work);
       paint();
       queueNext();
       preloadNext();
