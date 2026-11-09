@@ -94,6 +94,7 @@ html .header-nav-list > .header-nav-item.is-current > a,
 html .header-nav-list > .header-nav-item.is-current .header-nav-folder-title-text {
   border-bottom: var(--em-stroke) solid currentColor;
   padding-bottom: var(--em-space-2xs);
+  background-image: none !important;  /* Squarespace draws its own underline under the current page; one mark is enough */
 }
 html .header-nav-list .header-nav-folder-item.is-current a {
   background: var(--em-glass-press);

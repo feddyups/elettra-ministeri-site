@@ -60,6 +60,14 @@ html .ca[data-surface="inherit"] {
   text-align: left;
 }
 
+/* The whole-body-of-work plate runs from one edge of the window to the other, directly below the section before it. */
+html .page-section:has(.ca[data-surface="plate"]) { background: var(--em-night); }
+html .page-section:has(.ca[data-surface="plate"]) .content-wrapper,
+html .page-section:has(+ .page-section .ca[data-surface="plate"]) .content-wrapper { padding-top: 0 !important; padding-bottom: 0 !important; }
+html .page-section:has(+ .page-section .ca[data-surface="plate"]) .image-block-outer-wrapper { margin-bottom: 0 !important; }
+html .page-section:has(.ca[data-surface="plate"]) .fe-block:has(.ca[data-surface="plate"]) { grid-column: 1 / -1 !important; }
+html .ca[data-surface="plate"] { margin-top: 0; padding-inline: max(var(--em-plate-padding), calc((100% - 75rem) / 2)); }
+
 html .ca *,
 html .ca *::before,
 html .ca *::after { box-sizing: border-box; }

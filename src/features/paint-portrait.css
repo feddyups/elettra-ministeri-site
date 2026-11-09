@@ -1,0 +1,7 @@
+@import url('../theme/tokens.css');
+
+/* The canvas lies over a Squarespace image while it is painted (see paint-portrait.js). */
+.em-portrait-host { position: relative; }
+.em-portrait-host img { transition: opacity var(--em-duration-slow) var(--em-ease); }
+.em-portrait-host.is-painting img { opacity: 0 !important; }
+.em-portrait-paint { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; transition: opacity var(--em-duration-slow) var(--em-ease); }
