@@ -22,9 +22,8 @@ html[data-series] {
   --em-body: var(--series-body, #3a352f);
 }
 
-/* Squarespace paints each section and the header on a layer of their own */
-html[data-series] .section-background,
-html[data-series] .header-background {
+/* Squarespace paints each section on a layer of its own */
+html[data-series] .section-background {
   background-color: var(--em-bg) !important;
 }
 

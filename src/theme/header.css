@@ -41,7 +41,8 @@ html .header {
   box-shadow: none !important;
 }
 html .header-announcement-bar-wrapper,
-html .header-inner { background: transparent !important; }
+html .header-inner,
+html #header .header-background { background: transparent !important; }  /* Squarespace's own header layer would hide the glass */
 
 /* Squarespace pads the top of the header on inner pages; the pill sits at the top edge everywhere once scrolled. */
 html #header .header-announcement-bar-wrapper { transition: padding 0.45s ease; }
