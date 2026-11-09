@@ -13,15 +13,15 @@ export const createReveal = ({ ctx, W, H, source, flowField, sizeScale }) => {
   const maxRadius = cell * 1.7;
   const reach = Math.ceil(maxRadius * stretch) + 2;
 
-  const centres = [];
+  const centers = [];
   for (let y = 0; y < H + cell; y += cell) {
     for (let x = 0; x < W + cell; x += cell) {
-      centres.push([x + (Math.random() - 0.5) * cell * 0.8, y + (Math.random() - 0.5) * cell * 0.8]);
+      centers.push([x + (Math.random() - 0.5) * cell * 0.8, y + (Math.random() - 0.5) * cell * 0.8]);
     }
   }
-  for (let i = centres.length - 1; i > 0; i--) {
+  for (let i = centers.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [centres[i], centres[j]] = [centres[j], centres[i]];
+    [centers[i], centers[j]] = [centers[j], centers[i]];
   }
   /* A feathered patch opacifies about 55% of its elliptical area, so the count follows the canvas area. */
   const meanRadius = cell * 1.3;
@@ -67,6 +67,6 @@ export const createReveal = ({ ctx, W, H, source, flowField, sizeScale }) => {
   let laid = 0;
   return (progress) => {
     const due = Math.floor(total * Math.min(1, progress));
-    while (laid < due) { const c = centres[laid % centres.length]; lay(c[0], c[1]); laid++; }
+    while (laid < due) { const c = centers[laid % centers.length]; lay(c[0], c[1]); laid++; }
   };
 };

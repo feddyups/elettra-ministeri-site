@@ -19,7 +19,7 @@ const pillPath = (ctx, x, y, angle, ca, sa, len, wid) => {
   ctx.closePath();
 };
 
-const bristles = (ctx, x, y, ca, sa, len, wid, bendX, bendY, colour, alpha, jitter) => {
+const bristles = (ctx, x, y, ca, sa, len, wid, bendX, bendY, color, alpha, jitter) => {
   const hx = ca * len / 2;
   const hy = sa * len / 2;
   ctx.lineCap = 'round';
@@ -29,7 +29,7 @@ const bristles = (ctx, x, y, ca, sa, len, wid, bendX, bendY, colour, alpha, jitt
     const ox = -sa * offset;
     const oy = ca * offset;
     ctx.globalAlpha = alpha * 0.22;
-    ctx.strokeStyle = rgb(colour, jitter + (Math.random() < 0.5 ? 20 : -20));
+    ctx.strokeStyle = rgb(color, jitter + (Math.random() < 0.5 ? 20 : -20));
     ctx.beginPath();
     ctx.moveTo(x - hx * 0.85 + ox, y - hy * 0.85 + oy);
     ctx.quadraticCurveTo(x + bendX * 0.5 + ox, y + bendY * 0.5 + oy, x + hx * 0.85 + ox, y + hy * 0.85 + oy);
@@ -41,7 +41,7 @@ const bristles = (ctx, x, y, ca, sa, len, wid, bendX, bendY, colour, alpha, jitt
  * Lays one brush mark on the canvas: mostly tapered leaves, some elongated
  * pills and round dots. Leaves wider than 10px also get faint bristle lines.
  */
-export const drawMark = (ctx, { x, y, angle, length, width, colour, alpha, jitter }) => {
+export const drawMark = (ctx, { x, y, angle, length, width, color, alpha, jitter }) => {
   const ca = Math.cos(angle);
   const sa = Math.sin(angle);
   const bend = (Math.random() - 0.5) * length * 0.25;
@@ -57,8 +57,8 @@ export const drawMark = (ctx, { x, y, angle, length, width, colour, alpha, jitte
   else leafPath(ctx, x, y, ca, sa, length, width, bendX, bendY);
 
   ctx.globalAlpha = alpha;
-  ctx.fillStyle = rgb(colour, jitter);
+  ctx.fillStyle = rgb(color, jitter);
   ctx.fill();
-  if (!isPill && !isDot && width > 10) bristles(ctx, x, y, ca, sa, length, width, bendX, bendY, colour, alpha, jitter);
+  if (!isPill && !isDot && width > 10) bristles(ctx, x, y, ca, sa, length, width, bendX, bendY, color, alpha, jitter);
   ctx.globalAlpha = 1;
 };

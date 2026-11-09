@@ -1,5 +1,5 @@
 import { loadImage, sampleImage } from '../lib/image.js';
-import { extractPalette, backgroundTone, renderSwatches } from '../lib/colour.js';
+import { extractPalette, backgroundTone, renderSwatches } from '../lib/color.js';
 import { onFirstVisible } from '../lib/dom.js';
 
 /**

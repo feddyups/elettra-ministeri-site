@@ -32,7 +32,7 @@ export const paintImage = (img, canvas, W, H, speed = 1) => new Promise((resolve
   const brush = createBrushHand({ ctx, W, H, sizeScale, flowField, source });
   const reveal = createReveal({ ctx, W, H, source, flowField, sizeScale });
 
-  const ground = source.averageColour().map((v) => Math.max(0, Math.min(255, v | 0)));
+  const ground = source.averageColor().map((v) => Math.max(0, Math.min(255, v | 0)));
   ctx.fillStyle = `rgb(${ground.join(',')})`;
   ctx.fillRect(0, 0, W, H);
 

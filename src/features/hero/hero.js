@@ -3,7 +3,7 @@ import { PAINT } from '../../paint/config.js';
 import { prefersReducedMotion } from '../../lib/motion.js';
 import { WORKS } from './works.js';
 import { createSlideshowControls } from './slideshow-controls.js';
-import { renderColourSamples } from './colour-samples.js';
+import { renderColorSamples } from './color-samples.js';
 
 /** Time each painting stays up, from the first stroke to the next slide. */
 const CYCLE_MS = 14000;
@@ -116,7 +116,7 @@ export const initHero = (root) => {
       image.alt = work.alt;
       link.textContent = `View ${work.series}`;
       link.setAttribute('href', work.href);
-      renderColourSamples(samples, wash, image);
+      renderColorSamples(samples, wash, image);
       paint();
       queueNext();
       preloadNext();

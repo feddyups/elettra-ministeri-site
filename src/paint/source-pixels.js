@@ -23,13 +23,13 @@ export const createSourcePixels = (img, W, H) => {
     const p = pixel(x, y);
     return 0.299 * p[0] + 0.587 * p[1] + 0.114 * p[2];
   };
-  /** Average of the centre pixel and its four neighbours at distance r. */
+  /** Average of the center pixel and its four neighbors at distance r. */
   const mean = (x, y, r) => {
     const samples = [pixel(x, y), pixel(x - r, y), pixel(x + r, y), pixel(x, y - r), pixel(x, y + r)];
     return [0, 1, 2].map((ch) => samples.reduce((sum, s) => sum + s[ch], 0) / 5);
   };
-  /** Average colour of the whole picture, from random samples. */
-  const averageColour = (samples = 300) => {
+  /** Average color of the whole picture, from random samples. */
+  const averageColor = (samples = 300) => {
     const sum = [0, 0, 0];
     for (let i = 0; i < samples; i++) {
       const p = pixel(Math.random() * W, Math.random() * H);
@@ -40,5 +40,5 @@ export const createSourcePixels = (img, W, H) => {
     return sum.map((v) => v / samples);
   };
 
-  return { canvas, pixel, luminance, mean, averageColour };
+  return { canvas, pixel, luminance, mean, averageColor };
 };

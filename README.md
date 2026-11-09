@@ -6,7 +6,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 
 - **Painting effect** – the home hero repaints each work stroke by stroke (leaves, pills and dots that follow the contours of the painting), then lays soft patches of the real image across the canvas and eases a uniform glaze in over the top, so the last frame is the picture itself.
 - **Hero slideshow** – cycles through the works, with dots to jump to one and a thin two-part line showing the time left on the current slide: a gold segment while the painting is being painted, an off-white one while the finished painting is on show. Hovering the hero with a mouse holds the current work once its painting has been revealed (never while it is still being painted); leaving lets the remaining time run out.
-- **Series chapters** – each chapter takes its tone and colour swatches from its painting.
+- **Series chapters** – each chapter takes its tone and color swatches from its painting.
 - **Page tone** – the page background and header follow the section in view.
 - **Enquiry drawer** – on every page, links to `/enquire` open the enquiry form in a side drawer so visitors keep their place. The form can arrive with `?SQF_WORK=<title>` and then says which work the enquiry is about.
 
@@ -36,7 +36,7 @@ src/
   lib/
     dom.js                    initOnceFor, onFirstVisible
     image.js                  loadImage, sampleImage
-    colour.js                 palette extraction, hex, tones, swatches
+    color.js                 palette extraction, hex, tones, swatches
     motion.js                 prefersReducedMotion
   paint/
     paint-image.js            paintImage(img, canvas, W, H, speed): the timeline
@@ -51,7 +51,7 @@ src/
       hero.js                 the slideshow
       works.js                the works it cycles through
       slideshow-controls.js   dots and progress line
-      colour-samples.js       colour swatches that wash the hero
+      color-samples.js       color swatches that wash the hero
     chapters.js
     page-tone.js
   enquiry/

@@ -39,7 +39,7 @@ export const createBrushHand = ({ ctx, W, H, sizeScale, flowField, source }) => 
     hand.y += (Math.random() - 0.5) * width * 0.9;
 
     const angle = (flow.angle === null ? hand.angle : flow.angle) + (Math.random() - 0.5) * (0.5 - 0.3 * progress);
-    const colour = width > 14 ? source.mean(x, y, width * 0.4) : (width > 7 ? source.mean(x, y, width * 0.25) : source.pixel(x, y));
-    drawMark(ctx, { x, y, angle, length, width, colour, alpha: 0.97, jitter: (Math.random() - 0.5) * (12 - 6 * progress) });
+    const color = width > 14 ? source.mean(x, y, width * 0.4) : (width > 7 ? source.mean(x, y, width * 0.25) : source.pixel(x, y));
+    drawMark(ctx, { x, y, angle, length, width, color, alpha: 0.97, jitter: (Math.random() - 0.5) * (12 - 6 * progress) });
   };
 };
