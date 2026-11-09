@@ -23,7 +23,10 @@ export const createReveal = ({ ctx, W, H, source, flowField, sizeScale }) => {
     const j = Math.floor(Math.random() * (i + 1));
     [centres[i], centres[j]] = [centres[j], centres[i]];
   }
-  const total = Math.floor(centres.length * PAINT.patchCoverage);
+  /* A feathered patch opacifies about 55% of its elliptical area, so the count follows the canvas area. */
+  const meanRadius = cell * 1.3;
+  const patchArea = Math.PI * meanRadius * meanRadius * stretch * 0.55;
+  const total = Math.floor(PAINT.patchCoverage * W * H / patchArea);
 
   const scratch = document.createElement('canvas');
   scratch.width = reach * 2;
