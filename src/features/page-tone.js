@@ -18,15 +18,24 @@ const backgroundOf = (section) => {
   return section.getAttribute('data-bg') || (section.classList.contains('chapter') ? null : PAPER);
 };
 
+/** The text color a section is designed for: paper on the footer, the section's `data-fg` if it has one, otherwise ink. */
+const foregroundOf = (section) => (section.classList.contains('foot') ? PAPER : section.getAttribute('data-fg') || INK);
+
 /**
- * Paints a section with its own background, so its text always sits on the color it was designed for, even while
+ * Paints a section with its own background and text color, so its text always sits on the color it was designed for, even while
  * the page behind it changes tone (the footer comes into view long before the section above it has left). The hero is
  * its picture; a chapter waits until its tone is known.
  */
 export const paintSection = (section) => {
   if (section.classList.contains('eh-hero')) return;
   const background = backgroundOf(section);
-  if (background) section.style.backgroundColor = background;
+  if (!background) return;
+  const foreground = foregroundOf(section);
+  section.style.backgroundColor = background;
+  section.style.color = foreground;
+  // text inside the section that is colored from the page-wide tone follows the section's own instead
+  section.style.setProperty('--eh-bg', background);
+  section.style.setProperty('--eh-fg', foreground);
 };
 
 const toneObserver = new IntersectionObserver((entries) => {
