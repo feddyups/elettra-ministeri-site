@@ -13,7 +13,7 @@ const TOP_BLOCKS = ['wheel', 'palette', 'pair', 'stats'];
 const MAIN_COLORS_SHOWN = 3;
 
 const heading = (scope) => (scope.id === 'all'
-  ? { kicker: 'The colors I speak in', title: 'My colors, measured.', lede: `I measured the colors of ${scope.count} works. This is what they are made of, and what they shout with.` }
+  ? { kicker: 'The colors I speak in', title: 'My colors, measured.', lede: `I measured the colors of ${scope.count} works. This is what they are made of, and which colors stand out.` }
   : {
     kicker: `Color in ${scope.label}`,
     title: null,
@@ -44,7 +44,7 @@ export const initAtlas = (host) => {
   const top = [
     wanted.has('wheel') && renderHueWheel(scope),
     TOP_BLOCKS.slice(1).some((name) => wanted.has(name)) && h('div', { class: 'ca-side' },
-      wanted.has('palette') && section(scope.id === 'all' ? 'The colors I shout with' : `What ${scope.label} is made of`, renderPaletteBar(scope)),
+      wanted.has('palette') && section(scope.id === 'all' ? 'The colors that stand out' : `What ${scope.label} is made of`, renderPaletteBar(scope)),
       wanted.has('pair') && renderColorPair(scope),
       wanted.has('stats') && renderStatRow(scope)),
   ].filter(Boolean);
