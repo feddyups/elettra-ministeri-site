@@ -23,9 +23,6 @@ html .fe-block:has(.sqs-code-container > [data-work-page]) {
   grid-row: 1 / -1 !important;
 }
 
-/* Squarespace's own previous/next item link follows the collection's order, not the series; the page has its own. */
-html:has([data-work-page]) .item-pagination { display: none; }
-
 html .wp .wp-hero {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);

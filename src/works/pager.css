@@ -1,0 +1,42 @@
+@import url('../theme/tokens.css');
+
+/* The bar at the bottom of a series page and of a painting page (see pager.js). It sits on the page's deeper tone (--em-bg-alt). */
+html .item-pagination.em-pager {
+  padding: var(--em-space-xl) var(--sqs-site-gutter, var(--em-gutter));
+  color: var(--em-ink);
+}
+.em-pager-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--em-space-l);
+}
+html .em-pager .em-pager-link {
+  display: grid;
+  gap: var(--em-space-2xs);
+  color: var(--em-ink);
+  text-decoration: none;
+  border: 0;
+}
+.em-pager-link--next { margin-left: auto; text-align: right; }
+.em-pager-link small {
+  font: var(--em-weight-medium) var(--em-text-2xs) / var(--em-leading-none) var(--em-font-sans);
+  letter-spacing: var(--em-tracking-label);
+  text-transform: uppercase;
+  color: var(--em-muted);
+}
+.em-pager-link b {
+  font-family: var(--em-font-serif);
+  font-size: var(--em-display-sm);
+  font-weight: var(--em-weight-medium);
+  line-height: var(--em-leading-tight);
+  border-bottom: var(--em-stroke) solid transparent;
+  transition: border-color var(--em-duration-quick) var(--em-ease);
+}
+html .em-pager .em-pager-link:hover b,
+html .em-pager .em-pager-link:focus-visible b { border-bottom-color: currentColor; }
+html .em-pager .em-pager-link:focus-visible { outline: var(--em-stroke) solid var(--em-ink); outline-offset: var(--em-space-xs); }
+
+@media (prefers-reduced-motion: reduce) {
+  .em-pager-link b { transition: none; }
+}
