@@ -7,8 +7,14 @@ export const PAINT = {
   strokesEnd: 0.86,
   /** Extra strokes (as a share of the total) added after that, until the end. */
   extraStrokes: 0.12,
-  /** Share of the duration at which the real image starts to be glazed over the canvas, easing in until the end. */
-  glazeStart: 0.5,
+  /** Share of the duration during which soft patches of the real image are laid across the canvas. */
+  revealStart: 0.5,
+  revealEnd: 0.93,
+  /** Patch size in pixels at 1300px canvas width, and how many times over the canvas the patches cover. */
+  patchSize: 44,
+  patchCoverage: 2.2,
+  /** Share of the duration at which the real image starts to be glazed uniformly, easing in until the end. */
+  glazeStart: 0.74,
   /** Stroke size at the start and the end of the painting, in pixels at 1300px canvas width. */
   strokeSizeStart: 26,
   strokeSizeEnd: 3,

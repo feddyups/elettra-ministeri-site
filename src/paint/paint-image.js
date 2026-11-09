@@ -2,15 +2,16 @@ import { PAINT } from './config.js';
 import { createSourcePixels } from './source-pixels.js';
 import { createFlowField } from './flow-field.js';
 import { createBrushHand } from './brush-hand.js';
+import { createReveal } from './reveal.js';
 
 const runs = new WeakMap();
 
 const smoothstep = (x) => x * x * (3 - 2 * x);
 
 /**
- * Repaints `img` onto `canvas` (W x H) stroke by stroke. Part-way through, the
- * real image is glazed over the canvas with an eased fade while the strokes
- * keep going, so the last frame is the picture itself.
+ * Repaints `img` onto `canvas` (W x H) stroke by stroke. Part-way through, soft
+ * patches of the real image are laid across the canvas and a uniform glaze
+ * eases in while the strokes keep going, so the last frame is the picture itself.
  *
  * Starting a new paint on the same canvas cancels the previous one.
  *
@@ -29,6 +30,7 @@ export const paintImage = (img, canvas, W, H, speed = 1) => new Promise((resolve
   const flowField = createFlowField(source.luminance, W, H);
   const sizeScale = Math.max(0.4, Math.min(1, W / 1300));
   const brush = createBrushHand({ ctx, W, H, sizeScale, flowField, source });
+  const reveal = createReveal({ ctx, W, H, source, flowField, sizeScale });
 
   const ground = source.averageColour().map((v) => Math.max(0, Math.min(255, v | 0)));
   ctx.fillStyle = `rgb(${ground.join(',')})`;
@@ -36,7 +38,7 @@ export const paintImage = (img, canvas, W, H, speed = 1) => new Promise((resolve
 
   const duration = PAINT.durationMs / speed;
   const strokeTotal = PAINT.strokesPerMegapixel * (W * H / 1e6);
-  const { strokesEnd, extraStrokes, glazeStart } = PAINT;
+  const { strokesEnd, extraStrokes, revealStart, revealEnd, glazeStart } = PAINT;
 
   let strokesDrawn = 0;
   let glazed = 0;
@@ -61,6 +63,7 @@ export const paintImage = (img, canvas, W, H, speed = 1) => new Promise((resolve
       ? Math.floor(strokeTotal * Math.pow(t / strokesEnd, 1.05))
       : Math.floor(strokeTotal * (1 + extraStrokes * Math.min(1, (t - strokesEnd) / (1 - strokesEnd))));
     while (strokesDrawn < wanted) { brush(Math.min(1, strokesDrawn / strokeTotal)); strokesDrawn++; }
+    if (t > revealStart) reveal((t - revealStart) / (revealEnd - revealStart));
     if (t > glazeStart) glaze(smoothstep((t - glazeStart) / (1 - glazeStart)));
 
     if (t >= 1) { glaze(1); resolve(true); return; }
