@@ -69,3 +69,7 @@ html[data-series] .item-pagination {
   background-color: var(--em-bg-alt) !important;
   border-top: var(--em-hairline) solid var(--em-line);
 }
+html[data-series] .item-pagination .item-pagination-icon svg,
+html[data-series] .item-pagination .item-pagination-icon svg * {
+  stroke: var(--em-ink) !important;
+}
