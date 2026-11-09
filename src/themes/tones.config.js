@@ -21,6 +21,11 @@
 export const TONE_SETTINGS = {
   /** 0 is black, 1 is the painting's own color. Lower is darker. */
   darkness: 0.42,
+  /**
+   * The second tone of each series' family, used for secondary surfaces such as the Previous / Next bar at the
+   * bottom of a page: the same hue, with its lightness multiplied by this (1 is the series color, lower is deeper).
+   */
+  altDepth: 0.68,
   /** Text color on every tone. */
   ink: '#faf8f5',
 };

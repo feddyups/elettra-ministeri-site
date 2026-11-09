@@ -10,6 +10,7 @@
  */
 
 html[data-series] {
+  --em-bg-alt: var(--series-bg-alt, var(--em-paper-warm));
   --em-bg: var(--series-bg, #faf8f5);
   --em-ink: var(--series-fg, #1c1a18);
   --em-muted: var(--series-muted, #5b544c);
@@ -59,3 +60,12 @@ html .th-work .th-cap b a::before,
 html .th-work .th-cap b a::after { content: none; }
 html .th-work b a:hover { text-decoration: underline; text-underline-offset: var(--em-space-2xs); }
 html .th-work > a.th-img:focus-visible, html .th-work b a:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
+
+/*
+ * The second tone of a series' family (--em-bg-alt, a deeper shade of the same hue) colors secondary surfaces.
+ * The Previous / Next bar at the bottom of a page uses it, so it sits on the page color without disappearing into it.
+ */
+html[data-series] .item-pagination {
+  background-color: var(--em-bg-alt) !important;
+  border-top: var(--em-hairline) solid var(--em-line);
+}
