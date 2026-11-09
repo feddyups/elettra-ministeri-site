@@ -76,11 +76,7 @@ html.em-scrolled #header .header-inner {
   border-radius: var(--em-radius-panel);
 }
 /* the tint is thin, so the page shows through the blur; the glass material (sheen, lit lips, glow, drop shadow) sits on top of it */
-html.em-scrolled #header .header-inner::before {
-  opacity: var(--glass-op);
-  -webkit-backdrop-filter: var(--em-header-blur);
-  backdrop-filter: var(--em-header-blur);
-}
+html.em-scrolled #header .header-inner::before { opacity: var(--glass-op); }
 html #header .header-inner::after {
   content: "";
   position: absolute;
@@ -95,13 +91,10 @@ html #header .header-inner::after {
 }
 html.em-scrolled #header .header-inner::after { opacity: 1; }
 
-/*
- * A backdrop blur on the pill itself would make the pill a boundary that the dropdown inside it cannot see past: the
- * dropdown would blur nothing and the page would show through it sharp. So the pill carries no blur of its own.
- */
+/* The pill blurs what is behind it, as the home page's does. */
 html.em-scrolled #header .header-inner {
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
+  -webkit-backdrop-filter: var(--em-header-blur);
+  backdrop-filter: var(--em-header-blur);
 }
 
 @media (prefers-reduced-motion: reduce) {

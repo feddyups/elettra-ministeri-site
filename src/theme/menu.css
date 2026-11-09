@@ -53,6 +53,10 @@ html .header-nav-list .header-nav-folder-content {
   box-shadow: var(--em-glass-shadow) !important;
   text-align: left;
 }
+/* Inside the scrolled pill (which blurs the page itself) the panel cannot blur again, so it carries a firmer tint of the page color. */
+html.em-scrolled .header-nav-list .header-nav-folder-content {
+  background: var(--em-glint, none), var(--em-glass-fill), color-mix(in srgb, var(--glass-fill) 78%, transparent) !important;
+}
 html .header-nav-list .header-nav-folder-item { margin: 0; }
 html .header-nav-list .header-nav-folder-item + .header-nav-folder-item { margin-top: var(--em-space-3xs); }
 html .header-nav-list .header-nav-folder-item:first-child {
