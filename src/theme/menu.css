@@ -11,6 +11,7 @@
 :root {
   --em-menu-gap: 1.35rem;
   --em-menu-panel-min: 15rem;
+  --em-header-blur: blur(22px) saturate(1.6); /* the scrolled header pill's own blur, as the site's header style sets it */
   /* THE ORDER OF THE MENU: change these numbers (the smallest comes first). */
   --em-menu-paintings: 1;
   --em-menu-textiles: 2;
@@ -54,12 +55,25 @@ html .header-nav-list .header-nav-folder-content {
   text-align: left;
 }
 /*
- * Once the page has scrolled, the header's pill blurs the page itself, and a blur inside a blur cannot see past the
- * pill: the dropdown would blur nothing and let the content behind it show through. A tone-matched backing layer
- * under the glass keeps it as solid as it is at the top of the page.
+ * Once the page has scrolled, the header's pill blurs what is behind it. A blur on the pill itself would make the
+ * pill a boundary the dropdown inside it cannot see past, so the dropdown would blur nothing and the page would
+ * show through it sharp. The pill's blur therefore lives on a layer behind the pill (a pseudo-element), and the
+ * dropdown stays free to blur the page the same way at the top of the page and once it has scrolled.
  */
-html.em-scrolled .header-nav-list .header-nav-folder-content {
-  background: linear-gradient(var(--em-glass-backing), var(--em-glass-backing)), var(--em-glass-fill) !important;
+html.em-scrolled .header-inner {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  isolation: isolate;
+}
+html.em-scrolled .header-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-backdrop-filter: var(--em-header-blur);
+  backdrop-filter: var(--em-header-blur);
 }
 html .header-nav-list .header-nav-folder-item { margin: 0; }
 html .header-nav-list .header-nav-folder-item + .header-nav-folder-item { margin-top: var(--em-space-3xs); }

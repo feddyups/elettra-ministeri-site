@@ -37,7 +37,6 @@ html .wp button.wp-repaint:hover,
 html .wp button.wp-repaint:focus-visible {
   background: linear-gradient(var(--em-glass-press), var(--em-glass-press)), var(--em-glass-fill) !important;
   color: var(--em-glass-ink) !important;
-  transform: translateY(calc(var(--em-stroke) * -1));
 }
 html .em-home a.btn:active,
 html .em-home button.replay:active,
@@ -53,6 +52,4 @@ html .wp button.wp-repaint:focus-visible { outline: var(--em-stroke) solid var(-
   html .em-home button.replay,
   html .wp a.wp-cta,
   html .wp button.wp-repaint { transition: none; }
-  html .em-home a.btn:hover,
-  html .wp a.wp-cta:hover { transform: none; }
 }
