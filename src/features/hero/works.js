@@ -29,8 +29,8 @@ const shuffled = (items) => {
   return copy;
 };
 
-/** Every painting (not the textile or the wheel) that has a page of its own. */
-const paintings = () => allWorks().filter((work) => CATALOGUE[work.slug] && /acrylic/i.test(CATALOGUE[work.slug].medium));
+/** Every work on paper or canvas (not the felt mask or the wooden wheel) that has a page of its own. */
+const paintings = () => allWorks().filter((work) => CATALOGUE[work.slug] && !/felt|wood/i.test(CATALOGUE[work.slug].medium));
 
 /**
  * The paintings one visit's hero slideshow cycles through: `count` different ones drawn at random from the whole

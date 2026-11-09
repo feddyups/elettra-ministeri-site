@@ -11,7 +11,7 @@
 
  * (width / height) when the real proportions are known. `--refine` snaps each side of the quadrilateral to the strongest
  * edge near it (the outer edge of the frame against the bed sheet), fits a straight line through those edge points
- * and takes the new corners from where the lines cross, so rough corners are enough. `--round <#rrggbb>` is for round objects (a wheel): everything
+ * and takes the new corners from where the lines cross, so rough corners are enough. `--inset` is how far inside the found edge the crop sits, as a fraction (default 0.004; use more for a ragged deckle edge). `--round <#rrggbb>` is for round objects (a wheel): everything
  * outside the circle that fills the rectangle is painted that color.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -19,7 +19,7 @@ import jpeg from 'jpeg-js';
 
 const [input, output, cornerArg, ...flags] = process.argv.slice(2);
 const flag = (name) => { const i = flags.indexOf(`--${name}`); return i > -1 ? flags[i + 1] : undefined; };
-if (!input || !output || !cornerArg) { console.error('usage: rectify.mjs <photo> <out> <corners> [--width n] [--ratio r] [--round #hex] [--refine] [--outline]'); process.exit(1); }
+if (!input || !output || !cornerArg) { console.error('usage: rectify.mjs <photo> <out> <corners> [--width n] [--ratio r] [--round #hex] [--refine] [--inset 0.004] [--outline]'); process.exit(1); }
 
 const photo = jpeg.decode(readFileSync(input), { useTArray: true, maxMemoryUsageInMB: 4096 });
 const nums = cornerArg.split(',').map(Number);
@@ -80,11 +80,12 @@ const refineCorners = (guess) => {
   };
   return [cross(lines[3], lines[0]), cross(lines[0], lines[1]), cross(lines[1], lines[2]), cross(lines[2], lines[3])];
 };
+const inset = Number(flag('inset') || 0.004);
 if (flags.includes('--refine')) {
   const refined = refineCorners(corners);
   // a hair inside the edge it found, so no thread of the sheet survives at the border
   const centre = refined.reduce((a, c) => [a[0] + c[0] / 4, a[1] + c[1] / 4], [0, 0]);
-  refined.forEach((c, i) => { refined[i] = [c[0] + (centre[0] - c[0]) * 0.004, c[1] + (centre[1] - c[1]) * 0.004]; });
+  refined.forEach((c, i) => { refined[i] = [c[0] + (centre[0] - c[0]) * inset, c[1] + (centre[1] - c[1]) * inset]; });
   refined.forEach((c, i) => { corners[i] = c; });
   console.error('corners:', refined.map((c) => `${(c[0] / photo.width).toFixed(4)},${(c[1] / photo.height).toFixed(4)}`).join(','));
 }

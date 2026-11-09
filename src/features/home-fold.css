@@ -3,13 +3,13 @@
 /*
  * Every section of the home page fits in one screen (the "fold"): none is taller than the window.
  *  - A chapter's picture keeps its proportions but is capped so that picture and padding fit in one screen,
- *    wider than tall or not (chapters.js sets --ratio on the frame).
+ *    wider than tall or not (chapters.js sets --ratio on the frame); a chapter is only as tall as its picture and margins.
  *  - The intro puts its text beside a compact infographic instead of above it.
  */
 :root {
   --em-fold: 100svh;
-  --em-chapter-pad: 7.5rem;
-  --em-frame-max: calc(var(--em-fold) - 2 * var(--em-chapter-pad));
+  --em-chapter-pad: 5rem;
+  --em-frame-max: calc(var(--em-fold) - 15rem);  /* the picture, so that picture and a generous margin fit in one screen */
 }
 
 /*
@@ -30,6 +30,13 @@ html.em-home-page main,
 html.em-home-page main .page-section {
   transition: none !important;
 }
+
+/* a chapter is as tall as its picture and its margins, not a full window, so sections follow each other without wide empty bands */
+html .em-home .chapter {
+  min-height: 0;
+  padding-block: var(--em-chapter-pad);
+}
+html .em-home .intro { padding-block: clamp(5.5rem, 9vw, 8rem) clamp(2.5rem, 4vw, 4rem); }
 
 html .em-home .chapter .frame {
   width: min(100%, calc(var(--em-frame-max) * var(--ratio, 1)));

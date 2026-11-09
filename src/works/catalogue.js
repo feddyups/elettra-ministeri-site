@@ -390,6 +390,84 @@ export const CATALOGUE = {
       "Even the prickliest things can be joined by color."
     ]
   },
+  'lilies': {
+    title: "Lilies",
+    series: "archive",
+    medium: "Watercolor on vintage paper",
+    size: "26 × 20 cm",
+    year: 2013,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/d5a7dd26-1194-4a8e-a24f-11499baa0132/archive-lilies.jpg",
+      width: 2000,
+      height: 2609
+    },
+    alt: "Lilies: two white calla lilies with yellow centers and teal leaves, painted in loose watercolor strokes over a page of an old Italian book"
+  },
+  'lemons': {
+    title: "Lemons",
+    series: "archive",
+    medium: "Watercolor on vintage paper",
+    size: "26 × 20 cm",
+    year: 2013,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/6dbcf195-0fef-459a-9136-987abc4152d1/archive-lemons.jpg",
+      width: 2000,
+      height: 1520
+    },
+    alt: "Lemons: a whole lemon and a halved one above a band of deep blue, painted in watercolor over a page of an old Italian book"
+  },
+  'cactus-in-the-desert': {
+    title: "Cactus in the desert",
+    series: "archive",
+    medium: "Acrylic on paper",
+    size: "30 × 20.5 cm",
+    year: 2020,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/05ae3784-8080-4dde-b51b-3341ccb99eba/archive-cactus-in-the-desert.jpg",
+      width: 2000,
+      height: 3002
+    },
+    alt: "Cactus in the desert: a green prickly pear on scaled hills under a large yellow sun with rays of orange, pink and cream"
+  },
+  'seahorse': {
+    title: "Seahorse",
+    series: "archive",
+    medium: "Acrylic on paper",
+    size: "18 × 26.5 cm",
+    year: 2020,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/33fd3c9a-6746-4745-9825-87532b5c3847/archive-seahorse.jpg",
+      width: 2000,
+      height: 2868
+    },
+    alt: "Seahorse: a green and yellow seahorse inside a green oval, ringed by green marks, on a ground split between yellow and orange"
+  },
+  'swan-in-a-shell': {
+    title: "Swan inside a shell",
+    series: "archive",
+    medium: "Oil pastels on handmade recycled cotton paper",
+    size: "30 × 21 cm",
+    year: 2026,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/3aa8092a-ca54-4921-bad3-e787ff7e5d96/archive-swan-in-a-shell.jpg",
+      width: 2000,
+      height: 1394
+    },
+    alt: "Swan inside a shell: a white swan with open wings resting in a teal scalloped shell, on handmade grey-brown paper"
+  },
+  'rainbow-shell': {
+    title: "Rainbow shell",
+    series: "archive",
+    medium: "Oil pastels on handmade recycled cotton paper",
+    size: "30 × 21 cm",
+    year: 2026,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/320d4c89-dfdb-415c-b8d9-100281252c6f/archive-rainbow-shell.jpg",
+      width: 2000,
+      height: 1383
+    },
+    alt: "Rainbow shell: a spiral shell with wide bands of red, ochre, blue, violet and yellow, outlined in black, on handmade grey-brown paper"
+  },
   'mask-divine': {
     title: "Mask Divine",
     series: "textiles",

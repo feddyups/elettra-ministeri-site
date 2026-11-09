@@ -45,6 +45,12 @@ export const WORKS = [
   { id: 'raining-flowers', anchor: 'hes-raining-flowers', title: "He's raining Flowers", series: 'human-figure', onSite: true, catalogue: sent("11 He's raining Flowers.png") },
   { id: 'shape-of-beauty', anchor: 'the-shape-of-beauty', title: 'The Shape of Beauty', series: 'maternity', onSite: true, catalogue: sent('12 The Shape of Beauty.png') },
   { id: 'rainbow-cacti', anchor: 'rainbow-and-cacti', title: 'Rainbow and cacti', series: 'archive', onSite: true, catalogue: sent('13.png') },
+  { id: 'lilies', anchor: 'lilies', title: 'Lilies', series: 'archive', onSite: true, catalogue: 'rectified/archive-lilies.jpg' },
+  { id: 'lemons', anchor: 'lemons', title: 'Lemons', series: 'archive', onSite: true, catalogue: 'rectified/archive-lemons.jpg' },
+  { id: 'cactus-in-the-desert', anchor: 'cactus-in-the-desert', title: 'Cactus in the desert', series: 'archive', onSite: true, catalogue: 'rectified/archive-cactus-in-the-desert.jpg' },
+  { id: 'seahorse', anchor: 'seahorse', title: 'Seahorse', series: 'archive', onSite: true, catalogue: 'rectified/archive-seahorse.jpg' },
+  { id: 'swan-in-a-shell', anchor: 'swan-in-a-shell', title: 'Swan inside a shell', series: 'archive', onSite: true, catalogue: 'rectified/archive-swan-in-a-shell.jpg' },
+  { id: 'rainbow-shell', anchor: 'rainbow-shell', title: 'Rainbow shell', series: 'archive', onSite: true, catalogue: 'rectified/archive-rainbow-shell.jpg' },
   { id: 'scarab', anchor: 'scarab', title: 'Scarab', series: 'archive', onSite: true, catalogue: '12.jpg', crop: [0.14, 0.11, 0.93, 0.88] },
   { id: 'textile-mask', anchor: 'mask-divine', title: 'Mask Divine', series: 'textiles', onSite: true, material: 'textile', catalogue: sent('08.png'), crop: [0.10, 0.26, 0.90, 0.96] },
 ];
