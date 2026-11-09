@@ -26,7 +26,7 @@ export const WORKS = [
     title: 'Carretto siciliano',
     meta: 'Acrylic on canvas · hand-painted frame',
     href: '/paintings/sicily',
-    image: v0('8b291fd7-893e-4537-b1e8-9aa92c587177/carretto.jpg?format=2000w'),
+    image: v0('d0403442-5dd2-4b6c-8c1b-93b9b2388298/carretto-siciliano-v2.jpg?format=2000w'),
     alt: 'Carretto siciliano, a painted Sicilian cart and horse in a hand-painted frame, by Elettra Ministeri',
   },
   {
