@@ -36,8 +36,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
-  width: min(540px, calc(100% - 40px));
-  margin: 0 auto;
+  width: min(540px, calc(100% - 32px)) !important;
+  margin: 0 auto !important;
   padding: 36px 36px 40px;
   background: #faf8f5;
   box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5);
