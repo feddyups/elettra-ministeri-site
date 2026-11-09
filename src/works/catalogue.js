@@ -206,7 +206,11 @@ export const CATALOGUE = {
       width: 2400,
       height: 2401
     },
-    alt: "Testa di moro: a smiling man's head in profile, with a yellow headscarf and a red curl, beside a prickly pear and a red cart wheel inside a ring of red and blue eyes, with lemons in the four corners of a blue and white tiled ground, in a red frame"
+    alt: "Testa di moro: a smiling man's head in profile, with a yellow headscarf and a red curl, beside a prickly pear and a red cart wheel inside a ring of red and blue eyes, with lemons in the four corners of a blue and white tiled ground, in a red frame",
+    story: [
+      "The testa di moro is one of Sicily’s oldest images: a painted ceramic head, a man with a mustache and a turban, set on a balcony with basil growing out of it. The story told about it is a dark love story, and I wanted to keep the face and let the color say what is bright about the island.",
+      "Around his head I put what I see when I think of home: the prickly pear with its red fruit, lemons in the four corners, the wheel of a Sicilian cart, and a ring of the same painted eyes that run along the carts’ sides."
+    ]
   },
   'santa-rosalia': {
     title: "Santa Rosalia",
@@ -218,7 +222,11 @@ export const CATALOGUE = {
       width: 2400,
       height: 3129
     },
-    alt: "Santa Rosalia, the protector of Palermo: a woman with a crown of roses and long fair hair, in a brown mantle and a pink dress, holding white lilies against a green ground, inside a hand-painted frame of red, green and blue panels with shells and suns"
+    alt: "Santa Rosalia, the protector of Palermo: a woman with a crown of roses and long fair hair, in a brown mantle and a pink dress, holding white lilies against a green ground, inside a hand-painted frame of red, green and blue panels with shells and suns",
+    story: [
+      "Santa Rosalia is the protector of Palermo. She lived as a hermit on Monte Pellegrino, and her bones, found there in 1624, are remembered as the end of a plague that had gripped the city. Every July Palermo still celebrates her, with a procession and a night of fireworks.",
+      "I painted her as she is shown in so many Sicilian images: young, with a crown of roses and white lilies in her hand. The frame carries her world outward, with shells, suns and stars, and, as in the rest of this series, it is painted by hand."
+    ]
   },
   'cart-wheel': {
     title: "Cart wheel",
@@ -229,7 +237,11 @@ export const CATALOGUE = {
       width: 2000,
       height: 2048
     },
-    alt: "Cart wheel: a red wooden wheel with twelve yellow and red spokes, a blue, white and green flower at the hub and a ring of rainbow arches and lotus flowers on the rim"
+    alt: "Cart wheel: a red wooden wheel with twelve yellow and red spokes, a blue, white and green flower at the hub and a ring of rainbow arches and lotus flowers on the rim",
+    story: [
+      "A Sicilian cart is painted all over, and its wheels are some of the most carefully painted parts: spokes in red and yellow, a flower at the hub, small arches of color around the rim. This one is a wheel on its own.",
+      "It is wood, not canvas, and I painted it the same way as the paintings in this series: flat color, no shading, every part given its own bright patch."
+    ]
   },
   'the-bonding': {
     title: "The Bonding",
