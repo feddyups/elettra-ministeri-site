@@ -71,9 +71,11 @@
 .ov-wheel .ca-wheel { width: 100%; max-width: 13rem; }
 .ov-wheel .ca-wheel-center b { font-size: var(--em-text-xl); }
 .ov-wheel .ca-wheel-center span { display: none; }
-.ov-wheel figcaption { font-family: var(--em-font-serif); font-size: var(--em-text-xl); }
+.ov-wheel figcaption { display: grid; gap: var(--em-space-3xs); font-family: var(--em-font-serif); font-size: var(--em-text-xl); }
+.ov-wheel figcaption small { font-family: var(--em-font-sans); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ov-muted); }
 
-.ov-map { display: grid; gap: var(--em-space-m); min-width: 0; }
+.ov-map { --ca-ink: var(--em-paper); --ca-muted: color-mix(in srgb, var(--em-paper) 68%, transparent); --ca-line: color-mix(in srgb, var(--em-paper) 16%, transparent); display: grid; gap: var(--em-space-m); min-width: 0; }
+.ov-section .ca { margin-top: 0; }
 .ov-map .ca-dot.is-away { opacity: 0.14; }
 .ov-map .ca-dot { transition: opacity var(--em-duration-base) var(--em-ease), transform var(--em-duration-quick) var(--em-ease); }
 
@@ -90,6 +92,7 @@ button.ov-chip, button.ov-clear {
   letter-spacing: var(--em-tracking-caps);
   transition: background var(--em-duration-quick) var(--em-ease), color var(--em-duration-quick) var(--em-ease), border-color var(--em-duration-quick) var(--em-ease);
 }
+button.ov-clear[hidden] { display: none; }
 button.ov-chip:hover, button.ov-clear:hover { border-color: currentColor; }
 button.ov-chip[aria-pressed="true"] { background: var(--em-paper); border-color: var(--em-paper); color: var(--em-night); }
 button.ov-chip:focus-visible, button.ov-clear:focus-visible, .ov-bar:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }

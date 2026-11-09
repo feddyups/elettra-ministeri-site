@@ -29,7 +29,7 @@ export const renderSeriesRows = (seriesData) => {
 /** A small wheel of hues for every series, so their shapes can be compared at a glance. */
 export const renderWheels = (seriesData) => h('div', { class: 'ov-wheels' }, seriesData.map((series) => h('figure', { class: 'ov-wheel' },
   renderHueWheel(resolveScope(`series:${series.slug}`)),
-  h('figcaption', null, h('a', { href: series.path }, series.label)))));
+  h('figcaption', null, h('a', { href: series.path }, series.label), h('small', null, `${series.stats.warm}% reds and yellows`)))));
 
 /**
  * The warm-to-cool map of every work, with a choice of series: the other series' dots step back.
