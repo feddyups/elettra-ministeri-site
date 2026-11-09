@@ -27,9 +27,12 @@ export const WORKS = [
   { id: 'maternity-2', anchor: 'maternity-ii', title: 'Maternity II', series: 'maternity', onSite: true, catalogue: sent('06 Maternity II.png') },
   { id: 'maternity-3', anchor: 'maternity-iii', title: 'Maternity III', series: 'maternity', onSite: true, url: cdn('1706395444458-IDVDZH17PKKRSE1QCNTQ/maternity+III.jpg') },
 
-  { id: 'carretto', anchor: 'carretto', title: 'Carretto siciliano', series: 'sicily', onSite: true, url: cdnLegacy('8b291fd7-893e-4537-b1e8-9aa92c587177/carretto.jpg') },
-  { id: 'pistacchi', anchor: 'pistacchi', title: 'Pistacchi', series: 'sicily', onSite: true, url: cdnLegacy('489625cb-1c9d-4bbd-9191-7b925e86ffd8/pistacchi.jpg') },
-  { id: 'sole', anchor: 'sole', title: 'Il sole', series: 'sicily', onSite: true, url: cdnLegacy('70b83ee7-7ffe-44c9-a374-0687b055c447/sole.jpg') },
+  { id: 'carretto', anchor: 'carretto', title: 'Carretto siciliano', series: 'sicily', onSite: true, catalogue: 'rectified/carretto-siciliano.jpg' },
+  { id: 'pistacchi', anchor: 'pistacchi', title: 'Pistacchi', series: 'sicily', onSite: true, catalogue: 'rectified/pistacchi.jpg' },
+  { id: 'sole', anchor: 'sole', title: 'Il sole', series: 'sicily', onSite: true, catalogue: 'rectified/il-sole.jpg' },
+  { id: 'testa-di-moro', anchor: 'testa-di-moro', title: 'Testa di moro', series: 'sicily', onSite: true, catalogue: 'rectified/sicily-moor-head.jpg' },
+  { id: 'woman-with-lilies', anchor: 'woman-with-lilies', title: 'Woman with lilies', series: 'sicily', onSite: true, catalogue: 'rectified/sicily-lilies.jpg' },
+  { id: 'cart-wheel', anchor: 'cart-wheel', title: 'Cart wheel', series: 'sicily', onSite: true, catalogue: 'rectified/sicilian-wheel.jpg' },
 
   { id: 'bonding', anchor: 'the-bonding', title: 'The Bonding', series: 'human-figure', onSite: true, catalogue: sent('09 The Bonding.png') },
   { id: 'hug-1', anchor: 'amore-e-pandemia-i', title: 'Amore e Pandemia I', series: 'human-figure', onSite: true, catalogue: sent('01 The Hug.png') },

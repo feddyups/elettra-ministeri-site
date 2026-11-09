@@ -8,14 +8,15 @@
  *
  * Corners are fractions of the photograph's width and height (0 to 1), clockwise from the top left.
  * The width of the result defaults to 2400 pixels; its height follows the shape the corners describe, or `--ratio`
- * (width / height) when the real proportions are known.
+ * (width / height) when the real proportions are known. `--round <#rrggbb>` is for round objects (a wheel): everything
+ * outside the circle that fills the rectangle is painted that color.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import jpeg from 'jpeg-js';
 
 const [input, output, cornerArg, ...flags] = process.argv.slice(2);
 const flag = (name) => { const i = flags.indexOf(`--${name}`); return i > -1 ? flags[i + 1] : undefined; };
-if (!input || !output || !cornerArg) { console.error('usage: rectify.mjs <photo> <out> <corners> [--width n] [--ratio r] [--outline]'); process.exit(1); }
+if (!input || !output || !cornerArg) { console.error('usage: rectify.mjs <photo> <out> <corners> [--width n] [--ratio r] [--round #hex] [--outline]'); process.exit(1); }
 
 const photo = jpeg.decode(readFileSync(input), { useTArray: true, maxMemoryUsageInMB: 4096 });
 const nums = cornerArg.split(',').map(Number);
@@ -79,11 +80,14 @@ const shape = ((dist(corners[0], corners[1]) + dist(corners[3], corners[2])) / 2
 const ratio = Number(flag('ratio') || shape);
 const height = Math.round(width / ratio);
 const [a, b, c, d, e, f, g, h] = homography(corners);
+const round = flag('round');
+const fill = round && [1, 3, 5].map((i) => parseInt(round.slice(i, i + 2), 16));
 const out = Buffer.alloc(width * height * 4);
 for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
   const s = x / (width - 1); const t = y / (height - 1);
   const w = g * s + h * t + 1;
-  const px = bilinear((a * s + b * t + c) / w, (d * s + e * t + f) / w);
+  const outside = round && Math.hypot(s - 0.5, t - 0.5) > 0.5 / Math.max(1, 1) * (1 + 0.0);
+  const px = outside ? fill : bilinear((a * s + b * t + c) / w, (d * s + e * t + f) / w);
   const i = (y * width + x) * 4;
   out[i] = px[0]; out[i + 1] = px[1]; out[i + 2] = px[2]; out[i + 3] = 255;
 }
