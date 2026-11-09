@@ -53,6 +53,14 @@ html .header-nav-list .header-nav-folder-content {
   box-shadow: var(--em-glass-shadow) !important;
   text-align: left;
 }
+/*
+ * Once the page has scrolled, the header's pill blurs the page itself, and a blur inside a blur cannot see past the
+ * pill: the dropdown would blur nothing and let the content behind it show through. A tone-matched backing layer
+ * under the glass keeps it as solid as it is at the top of the page.
+ */
+html.em-scrolled .header-nav-list .header-nav-folder-content {
+  background: linear-gradient(var(--em-glass-backing), var(--em-glass-backing)), var(--em-glass-fill) !important;
+}
 html .header-nav-list .header-nav-folder-item { margin: 0; }
 html .header-nav-list .header-nav-folder-item + .header-nav-folder-item { margin-top: var(--em-space-3xs); }
 html .header-nav-list .header-nav-folder-item:first-child {
