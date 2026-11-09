@@ -21,7 +21,7 @@ const section = (kicker, title, lede, ...children) => h('section', { class: 'ov-
  */
 export const initPaintingsOverview = (host) => {
   const works = overviewWorks();
-  const series = seriesList().filter((s) => works.some((w) => w.series === s.slug));
+  const series = seriesList().filter((s) => works.some((w) => w.series === s.slug)).map((s) => ({ ...s, palette: s.stats.palette }));
   const worksBySeries = Object.fromEntries(series.map((s) => [s.slug, works.filter((w) => w.series === s.slug)]));
   const filter = createFilter();
 
