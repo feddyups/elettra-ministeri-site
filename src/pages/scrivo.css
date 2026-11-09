@@ -9,24 +9,6 @@
   --em-button-height: 3.25rem;
 }
 
-.scrivo-back {
-  position: fixed;
-  top: var(--em-space-ml);
-  left: var(--em-space-ml);
-  z-index: var(--em-z-raised);
-  padding: var(--em-space-s) var(--em-space-m);
-  background: var(--em-glass);
-  color: var(--em-ink-strong);
-  font: var(--em-weight-medium) var(--em-text-xs) / var(--em-leading-none) var(--em-font-sans);
-  letter-spacing: var(--em-tracking-label);
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: var(--em-radius-pill);
-  box-shadow: var(--em-shadow-float);
-}
-.scrivo-back:hover { background: var(--em-paper); }
-.scrivo-back:focus-visible { outline: var(--em-stroke) solid var(--em-accent); outline-offset: var(--em-space-2xs); }
-
 .page-section {
   min-height: 100vh !important;
   min-height: 100svh !important;
