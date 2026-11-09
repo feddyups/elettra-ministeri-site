@@ -42,7 +42,12 @@ button.em-rail-item:focus-visible { outline: var(--em-stroke) solid currentColor
 
 .em-rail-label {
   padding: var(--em-space-2xs) var(--em-space-s);
-  background: color-mix(in srgb, var(--eh-bg, var(--em-night)) 82%, transparent);
+  background: var(--em-glass-fill);
+  -webkit-backdrop-filter: var(--em-glass-blur);
+  backdrop-filter: var(--em-glass-blur);
+  border-radius: var(--em-radius-pill);
+  box-shadow: var(--em-glass-shadow);
+  color: var(--em-glass-ink);
   font: var(--em-weight-medium) var(--em-text-2xs) / var(--em-leading-none) var(--em-font-sans);
   letter-spacing: var(--em-tracking-label);
   text-transform: uppercase;

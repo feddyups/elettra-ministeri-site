@@ -93,8 +93,23 @@
   /* raised, soft glass like the header's pill: a dark shadow below-right and a light one above-left */
   --em-shadow-neu: 0.875rem 0.875rem 2.125rem -1rem rgb(0 0 0 / 0.45), -0.75rem -0.75rem 1.75rem -0.875rem rgb(255 255 255 / 0.13);
   --em-shadow-neu-pressed: inset 0.25rem 0.25rem 0.625rem rgb(0 0 0 / 0.35), inset -0.25rem -0.25rem 0.625rem rgb(255 255 255 / 0.08);
-  --em-glass-blur: blur(22px) saturate(1.6);
   --em-shadow-play: 0 0.875rem 2.125rem -0.75rem var(--em-shadow-color);
+
+  /*
+   * Glass: one material for every floating surface (menus, labels). A blurred, saturated view of what is behind,
+   * a faint gradient fill, a bright thin edge and a soft drop. The tint and the text color adapt to the surface
+   * behind: glass.js sets html[data-glass="light"] over light surfaces and "dark" over dark ones.
+   */
+  --em-glass-blur: blur(1.5rem) saturate(1.8);
+  --em-glass-hi: rgb(255 255 255 / 0.2);
+  --em-glass-lo: rgb(255 255 255 / 0.06);
+  --em-glass-ink: var(--em-paper);
+  --em-glass-edge: rgb(255 255 255 / 0.5);
+  --em-glass-edge-soft: rgb(255 255 255 / 0.12);
+  --em-glass-drop: rgb(0 0 0 / 0.4);
+  --em-glass-press: rgb(255 255 255 / 0.16);
+  --em-glass-fill: linear-gradient(135deg, var(--em-glass-hi), var(--em-glass-lo));
+  --em-glass-shadow: inset 0 1px 0 var(--em-glass-edge), inset 0 0 0 1px var(--em-glass-edge-soft), inset 0 -1px 0 rgb(0 0 0 / 0.12), 0 1.5rem 3rem -1.25rem var(--em-glass-drop);
 
   /* Motion */
   --em-duration-quick: 0.18s;
@@ -117,4 +132,15 @@
   --em-section-gap: clamp(var(--em-space-3xl), 9vw, var(--em-space-5xl));
   --em-block-gap: clamp(var(--em-space-xl), 6vw, var(--em-space-3xl));
   --em-plate-padding: clamp(var(--em-space-l), 5vw, var(--em-space-4xl));
+}
+
+/* over a light surface the glass is brighter and its text is dark */
+html[data-glass="light"] {
+  --em-glass-hi: rgb(255 255 255 / 0.7);
+  --em-glass-lo: rgb(255 255 255 / 0.4);
+  --em-glass-ink: var(--em-ink-strong);
+  --em-glass-edge: rgb(255 255 255 / 0.95);
+  --em-glass-edge-soft: rgb(255 255 255 / 0.6);
+  --em-glass-drop: rgb(0 0 0 / 0.22);
+  --em-glass-press: rgb(0 0 0 / 0.07);
 }
