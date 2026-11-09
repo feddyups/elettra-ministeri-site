@@ -40,6 +40,13 @@ html .header {
   background: transparent !important;
   box-shadow: none !important;
 }
+/* slides away on the way down, returns on the way up (theme/header.js) */
+html #header.header { transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
+html.em-hdr-hidden #header.header {
+  transform: translateY(calc(-100% - 1.5rem));
+  pointer-events: none;
+}
+
 html .header-announcement-bar-wrapper,
 html .header-inner,
 html #header .header-background { background: transparent !important; }  /* Squarespace's own header layer would hide the glass */
@@ -100,5 +107,6 @@ html.em-scrolled #header .header-inner {
 @media (prefers-reduced-motion: reduce) {
   html #header .header-inner,
   html #header .header-inner::before,
-  html #header .header-inner::after { transition: none; }
+  html #header .header-inner::after,
+  html #header.header { transition: none; }
 }
