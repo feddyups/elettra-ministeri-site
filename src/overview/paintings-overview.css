@@ -18,7 +18,7 @@
 [data-paintings-overview] a { color: inherit; text-decoration: none; border: 0; }
 [data-paintings-overview] h2,
 [data-paintings-overview] h3,
-[data-paintings-overview] p { margin: 0; }
+[data-paintings-overview] p { margin: 0; color: inherit !important; }  /* the site colors headings; here they take the ink of the section */
 
 .ov-section { display: grid; gap: var(--em-block-gap); min-width: 0; }
 .ov-section > header { display: grid; gap: var(--em-space-s); }
@@ -56,8 +56,8 @@
 
 /* the series compared */
 .ov-rows { display: grid; min-width: 0; }
-.ov-row { display: grid; grid-template-columns: minmax(7rem, 11rem) minmax(0, 1.5fr) minmax(0, 1.5fr) 3.5rem; align-items: center; gap: var(--em-space-ml); padding-block: var(--em-space-ml); border-top: var(--em-hairline) solid var(--ov-line); }
-.ov-row > a { font-family: var(--em-font-serif); font-size: var(--em-display-sm); line-height: var(--em-leading-none); }
+.ov-row { display: grid; grid-template-columns: minmax(9.5rem, 12rem) minmax(0, 1.5fr) minmax(0, 1.5fr) 3.5rem; align-items: center; gap: var(--em-space-ml); padding-block: var(--em-space-ml); border-top: var(--em-hairline) solid var(--ov-line); }
+.ov-row > a { font-family: var(--em-font-serif); font-size: var(--em-text-xl); line-height: var(--em-leading-none); }
 .ov-row .ov-strip, .ov-row .ov-hues { height: var(--em-space-ml); }
 .ov-row-head { padding-block: 0 var(--em-space-s); border-top: 0; font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ov-muted); }
 .ov-vivid { text-align: right; font-family: var(--em-font-serif); font-size: var(--em-text-xl); font-variant-numeric: tabular-nums; }

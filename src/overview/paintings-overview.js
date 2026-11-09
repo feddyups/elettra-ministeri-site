@@ -7,7 +7,7 @@ import { renderSeriesRows, renderWheels, renderMap } from './series-compare.js';
 import { renderSubjectBars, renderMediumBars } from './bars.js';
 import { renderWorkIndex } from './work-index.js';
 
-const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
 const section = (kicker, title, lede, ...children) => h('section', { class: 'ov-section' },
   h('header', null, h('p', { class: 'ov-kicker' }, kicker), h('h2', null, title), lede && h('p', { class: 'ov-lede' }, lede)), children);
@@ -29,7 +29,7 @@ export const initPaintingsOverview = (host) => {
   const range = works.map((w) => w.year).filter(Boolean);
 
   host.replaceChildren(
-    section('Series', `${plural(works.length, 'work')} in ${plural(series.length, 'series')}`,
+    section('Series', `${count(works.length, 'work', 'works')} in ${count(series.length, 'series', 'series')}`,
       'Choose a series to see its works. The strip under each name is the series’ main colors, as wide as the share they cover.',
       renderSeriesTiles(series, worksBySeries)),
     h('div', { class: 'ov-plate' },
