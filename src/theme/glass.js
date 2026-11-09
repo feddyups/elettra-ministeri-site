@@ -2,8 +2,8 @@
  * Tells the glass material (see the glass tokens in tokens.css) whether the surface behind it is light or dark, by
  * setting html[data-glass="light" | "dark"], so its tint and text color adapt the way Apple's glass does.
  *
- * Over the home page the surface is the current section's tone (--eh-bg / --eh-fg, set by the page-tone engine; light
- * text means a dark surface). Elsewhere it is the page's background color.
+ * The surface is the one directly under the header (a home section declares its own); over the hero's picture it is
+ * the page tone (--eh-fg: light text means a dark surface), and on other pages the page's background color.
  */
 const root = document.documentElement;
 const canvas = document.createElement('canvas').getContext('2d');
@@ -20,15 +20,35 @@ const luminance = (css) => {
 /** 'dark' for a surface that carries light text, otherwise 'light': the value for a `data-glass` attribute. */
 export const glassFor = (textColor) => (luminance(textColor) > 0.5 ? 'dark' : 'light');
 
+/**
+ * The surface the header's glass sits on: whatever section is under the header's dropdown. A home section
+ * declares its own data-glass; over anything else (the hero's picture, a series page) the page itself decides.
+ */
+const surfaceUnderHeader = () => {
+  const stack = document.elementsFromPoint(innerWidth * 0.66, Math.min(140, innerHeight / 4));
+  const behind = stack.find((el) => !el.closest('header, .em-rail'));
+  const holder = behind && behind.closest('[data-glass]');
+  return holder && holder !== root ? holder.getAttribute('data-glass') : null;
+};
+
 const sense = () => {
   const style = getComputedStyle(root);
   const text = style.getPropertyValue('--eh-fg').trim();
   const surface = style.getPropertyValue('--eh-bg').trim();
-  const dark = text ? luminance(text) > 0.5 : luminance(surface || getComputedStyle(document.body).backgroundColor) < 0.4;
-  const value = dark ? 'dark' : 'light';
+  const page = text ? glassFor(text) : (luminance(surface || getComputedStyle(document.body).backgroundColor) < 0.4 ? 'dark' : 'light');
+  const value = surfaceUnderHeader() || page;
   if (root.getAttribute('data-glass') !== value) root.setAttribute('data-glass', value);
+};
+
+let queued = false;
+const senseSoon = () => {
+  if (queued) return;
+  queued = true;
+  requestAnimationFrame(() => { queued = false; sense(); });
 };
 
 sense();
 addEventListener('load', sense);
-new MutationObserver(sense).observe(root, { attributes: true, attributeFilter: ['style', 'class'] });
+addEventListener('scroll', senseSoon, { passive: true });
+addEventListener('resize', senseSoon);
+new MutationObserver(senseSoon).observe(root, { attributes: true, attributeFilter: ['style', 'class'] });

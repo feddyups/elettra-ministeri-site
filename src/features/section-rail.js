@@ -38,7 +38,7 @@ export const initSectionRail = (selector) => {
   const setCurrent = (section) => items.forEach((i) => {
     const on = i.section === section;
     i.button.classList.toggle('is-current', on);
-    if (on) i.button.setAttribute('aria-current', 'true'); else i.button.removeAttribute('aria-current');
+    if (on) { i.button.setAttribute('aria-current', 'true'); if (section.dataset.glass) rail.dataset.glass = section.dataset.glass; } else i.button.removeAttribute('aria-current');
   });
   const visible = new Map();
   const observer = new IntersectionObserver((entries) => {
