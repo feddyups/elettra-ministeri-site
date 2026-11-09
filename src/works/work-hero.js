@@ -1,17 +1,20 @@
 import { h } from '../lib/elements.js';
 import { createColorReveal } from './color-reveal.js';
 import { openLightbox } from './lightbox.js';
+import { createWorkPaint } from './work-paint.js';
 
 const WIDTHS = [500, 1000, 1500, 2500];
 
 /**
- * The top of a painting page: the picture (click to enlarge; pointing at a color below dims the rest of it),
+ * The top of a painting page: the picture (painted stroke by stroke as it comes into view; click to enlarge;
+ * pointing at a color below dims the rest of it),
  * its series, title, one line of facts and the way to enquire.
  *
  * @returns {{ element: HTMLElement, showColor: (index: number|null) => void }}
  */
 export const renderWorkHero = (info, work, series) => {
   const { src, width, height } = info.image;
+  const paintCanvas = h('canvas', { class: 'wp-paint', 'aria-hidden': 'true' });
   const canvas = h('canvas', { class: 'wp-reveal', 'aria-hidden': 'true' });
   const img = h('img', {
     src: `${src}?format=1500w`,
@@ -19,12 +22,16 @@ export const renderWorkHero = (info, work, series) => {
     sizes: '(max-width: 900px) 100vw, 58vw',
     alt: info.alt, width, height,
   });
-  const zoom = h('button', { class: 'wp-zoom', type: 'button', 'aria-label': `View ${info.title} larger` }, img, canvas);
+  const zoom = h('button', { class: 'wp-zoom', type: 'button', style: { '--ratio': width / height }, 'aria-label': `View ${info.title} larger` }, img, paintCanvas, canvas);
   zoom.addEventListener('click', () => openLightbox({ src: `${src}?format=2500w`, alt: info.alt }));
 
   const facts = [info.medium, info.size, info.year].filter(Boolean).join(' · ');
+  const figure = h('figure', { class: 'wp-figure' }, zoom);
+  const painter = createWorkPaint({ figure, zoom, canvas: paintCanvas, url: `${src}?format=1500w`, width, height });
+  const repaint = painter.ready && h('button', { class: 'wp-repaint', type: 'button' }, 'Repaint');
+  if (repaint) { repaint.addEventListener('click', painter.replay); figure.append(repaint); }
   const element = h('section', { class: 'wp-hero' },
-    h('figure', { class: 'wp-figure' }, zoom),
+    figure,
     h('div', { class: 'wp-info' },
       h('a', { class: 'wp-kicker', href: series.path }, `${series.label} ›`),
       h('h1', null, info.title),
