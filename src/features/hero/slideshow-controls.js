@@ -5,7 +5,7 @@ import { prefersReducedMotion } from '../../lib/motion.js';
  * Styled by `.eh-nav` and `.eh-line` in the site's custom CSS.
  *
  * @param {{ onSelect: (index: number) => void, cycleMs: number }} options
- * @returns {{ setActive: (index: number) => void, restartProgress: () => void }}
+ * @returns {{ setActive: (index: number) => void, restartProgress: () => void, freezeProgress: () => void, resumeProgress: (remainingMs: number) => void }}
  */
 export const createSlideshowControls = (root, slides, { onSelect, cycleMs }) => {
   const nav = document.createElement('div');
@@ -44,5 +44,20 @@ export const createSlideshowControls = (root, slides, { onSelect, cycleMs }) => 
     bar.style.transform = 'scaleX(1)';
   };
 
-  return { setActive, restartProgress };
+  /** Stops the progress line where it is. */
+  const freezeProgress = () => {
+    const matrix = getComputedStyle(bar).transform;
+    const scale = matrix === 'none' ? 0 : parseFloat(matrix.slice(7));
+    bar.style.transition = 'none';
+    bar.style.transform = `scaleX(${scale})`;
+  };
+
+  /** Continues the progress line from where it stopped, finishing in `remainingMs`. */
+  const resumeProgress = (remainingMs) => {
+    void bar.offsetWidth;
+    bar.style.transition = `transform ${remainingMs}ms linear`;
+    bar.style.transform = 'scaleX(1)';
+  };
+
+  return { setActive, restartProgress, freezeProgress, resumeProgress };
 };

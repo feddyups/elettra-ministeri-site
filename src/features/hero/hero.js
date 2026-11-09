@@ -39,6 +39,10 @@ export const initHero = (root) => {
   let current = pickFirstWork();
   let timer = 0;
   let visible = true;
+  let hovering = false;
+  let paused = false;
+  let timeLeft = CYCLE_MS;
+  let scheduledAt = 0;
 
   const controls = createSlideshowControls(root, WORKS, { cycleMs: CYCLE_MS, onSelect: (index) => show(index) });
 
@@ -52,17 +56,44 @@ export const initHero = (root) => {
     setTimeout(() => root.classList.add('titled'), 500);
     const W = Math.min(1440, root.clientWidth);
     const H = Math.round(W * root.clientHeight / root.clientWidth);
-    paintImage(image, canvas, W, H).then((finished) => { if (finished) root.classList.add('done'); });
+    paintImage(image, canvas, W, H).then((finished) => {
+      if (!finished) return;
+      root.classList.add('done');
+      pause();
+    });
   };
 
-  const queueNext = () => {
+  const schedule = (ms) => {
     clearTimeout(timer);
-    controls.restartProgress();
+    timeLeft = ms;
+    scheduledAt = performance.now();
     if (prefersReducedMotion) return;
     timer = setTimeout(() => {
       if (!visible || document.hidden) queueNext();
       else show((current + 1) % WORKS.length);
-    }, CYCLE_MS);
+    }, ms);
+  };
+
+  const queueNext = () => {
+    paused = false;
+    controls.restartProgress();
+    schedule(CYCLE_MS);
+  };
+
+  /** Holds the slide while the pointer is over the hero, but only once the painting has been revealed. */
+  const pause = () => {
+    if (!hovering || paused || prefersReducedMotion || !root.classList.contains('done')) return;
+    paused = true;
+    clearTimeout(timer);
+    timeLeft -= performance.now() - scheduledAt;
+    controls.freezeProgress();
+  };
+
+  const resume = () => {
+    if (!paused) return;
+    paused = false;
+    controls.resumeProgress(timeLeft);
+    schedule(timeLeft);
   };
 
   const preloadNext = () => {
@@ -94,6 +125,9 @@ export const initHero = (root) => {
     image.onload = () => { image.onload = null; apply(); };
     image.setAttribute('src', work.image);
   };
+
+  root.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { hovering = true; pause(); } });
+  root.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { hovering = false; resume(); } });
 
   new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; }, { threshold: 0.3 }).observe(root);
   show(current);
