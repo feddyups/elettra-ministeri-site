@@ -108,8 +108,8 @@
    * behind: glass.js sets html[data-glass="light"] over light surfaces and "dark" over dark ones.
    */
   --em-glass-blur: blur(1.5rem) saturate(1.8);
-  --em-glass-hi: rgb(255 255 255 / 0.2);
-  --em-glass-lo: rgb(255 255 255 / 0.06);
+  --em-glass-hi: rgb(255 255 255 / 0.26);
+  --em-glass-lo: rgb(255 255 255 / 0.12);
   --em-glass-ink: var(--em-paper);
   --em-glass-edge: rgb(255 255 255 / 0.5);
   --em-glass-edge-soft: rgb(255 255 255 / 0.12);
@@ -143,8 +143,8 @@
 
 /* over a light surface the glass is brighter and its text is dark; data-glass can be set on any element (a section, the page) */
 [data-glass="light"] {
-  --em-glass-hi: rgb(255 255 255 / 0.7);
-  --em-glass-lo: rgb(255 255 255 / 0.4);
+  --em-glass-hi: rgb(255 255 255 / 0.86);
+  --em-glass-lo: rgb(255 255 255 / 0.68);
   --em-glass-ink: var(--em-ink-strong);
   --em-glass-edge: rgb(255 255 255 / 0.95);
   --em-glass-edge-soft: rgb(255 255 255 / 0.6);
@@ -153,8 +153,8 @@
 }
 
 [data-glass="dark"] {
-  --em-glass-hi: rgb(255 255 255 / 0.2);
-  --em-glass-lo: rgb(255 255 255 / 0.06);
+  --em-glass-hi: rgb(255 255 255 / 0.26);
+  --em-glass-lo: rgb(255 255 255 / 0.12);
   --em-glass-ink: var(--em-paper);
   --em-glass-edge: rgb(255 255 255 / 0.5);
   --em-glass-edge-soft: rgb(255 255 255 / 0.12);
