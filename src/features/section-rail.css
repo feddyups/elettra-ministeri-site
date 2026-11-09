@@ -1,0 +1,67 @@
+@import url('../theme/tokens.css');
+
+/* The vertical rail of sections on the home page (see section-rail.js). Its ink follows the page tone (--eh-fg). */
+.em-rail {
+  --er-ink: var(--eh-fg, var(--em-paper));
+  --er-tick: 1rem;
+  --er-tick-current: 1.75rem;
+  position: fixed;
+  top: 50%;
+  right: var(--em-space-s);
+  z-index: var(--em-z-raised);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--em-space-xs);
+  transform: translateY(-50%);
+  color: var(--er-ink);
+  transition: color var(--em-duration-base) var(--em-ease);
+}
+button.em-rail-item {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--em-space-s);
+  padding: var(--em-space-2xs) 0 var(--em-space-2xs) var(--em-space-s);
+  cursor: pointer;
+}
+button.em-rail-item:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
+
+.em-rail-tick {
+  display: block;
+  width: var(--er-tick);
+  height: var(--em-stroke);
+  background: currentColor;
+  opacity: 0.4;
+  transition: width var(--em-duration-quick) var(--em-ease), opacity var(--em-duration-quick) var(--em-ease);
+}
+.em-rail-item.is-current .em-rail-tick { width: var(--er-tick-current); opacity: 1; }
+.em-rail-item:hover .em-rail-tick,
+.em-rail-item:focus-visible .em-rail-tick { width: var(--er-tick-current); opacity: 1; }
+
+.em-rail-label {
+  padding: var(--em-space-2xs) var(--em-space-s);
+  background: color-mix(in srgb, var(--eh-bg, var(--em-night)) 82%, transparent);
+  font: var(--em-weight-medium) var(--em-text-2xs) / var(--em-leading-none) var(--em-font-sans);
+  letter-spacing: var(--em-tracking-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(var(--em-space-xs));
+  pointer-events: none;
+  transition: opacity var(--em-duration-quick) var(--em-ease), transform var(--em-duration-quick) var(--em-ease);
+}
+.em-rail:hover .em-rail-label,
+.em-rail:focus-within .em-rail-label { opacity: 0.7; transform: none; }
+.em-rail-item:hover .em-rail-label,
+.em-rail-item:focus-visible .em-rail-label,
+.em-rail-item.is-current:hover .em-rail-label { opacity: 1; }
+
+/* a phone has no pointer to hover with, and the rail would sit on the content */
+@media (max-width: 48em) {
+  .em-rail { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .em-rail, .em-rail-tick, .em-rail-label { transition: none; }
+}
