@@ -1,6 +1,7 @@
 import { loadImage, sampleImage } from '../lib/image.js';
 import { extractPalette, backgroundTone, renderSwatches } from '../lib/color.js';
 import { onFirstVisible } from '../lib/dom.js';
+import { paintSection } from './page-tone.js';
 import { TONES } from '../themes/tones.generated.js';
 import { h } from '../lib/elements.js';
 import { renderSwatch } from '../color/swatch.js';
@@ -29,6 +30,7 @@ export const initChapter = (chapter) => {
     const tone = TONES[seriesOf(chapter)];
     chapter.setAttribute('data-bg', tone ? tone.bg : `rgb(${backgroundTone(palette).map(Math.round).join(',')})`);
     chapter.setAttribute('data-fg', tone ? tone.fg : '#faf8f5');
+    paintSection(chapter);
     const chips = chapter.querySelector('.chips');
     const analysed = seriesColors(seriesOf(chapter));
     if (analysed && chips) {

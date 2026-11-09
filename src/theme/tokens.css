@@ -77,6 +77,8 @@
   /* Shape and lines */
   --em-radius-sm: 0.125rem;
   --em-radius-pill: 6.25rem;
+  --em-radius-panel: 1.625rem;
+  --em-radius-item: 1rem;
   --em-hairline: 1px;
   --em-stroke: 2px;
   --em-stroke-heavy: 3px;
@@ -88,6 +90,10 @@
   --em-shadow-card: 0 1.875rem 3.75rem -1.875rem var(--em-shadow-color);
   --em-shadow-float: 0 0.625rem 1.875rem -0.875rem var(--em-shadow-color);
   --em-shadow-drawer: -1.5rem 0 3.75rem -1.875rem var(--em-shadow-color);
+  /* raised, soft glass like the header's pill: a dark shadow below-right and a light one above-left */
+  --em-shadow-neu: 0.875rem 0.875rem 2.125rem -1rem rgb(0 0 0 / 0.45), -0.75rem -0.75rem 1.75rem -0.875rem rgb(255 255 255 / 0.13);
+  --em-shadow-neu-pressed: inset 0.25rem 0.25rem 0.625rem rgb(0 0 0 / 0.35), inset -0.25rem -0.25rem 0.625rem rgb(255 255 255 / 0.08);
+  --em-glass-blur: blur(22px) saturate(1.6);
   --em-shadow-play: 0 0.875rem 2.125rem -0.75rem var(--em-shadow-color);
 
   /* Motion */
