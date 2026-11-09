@@ -1,7 +1,7 @@
 import { h } from '../../lib/elements.js';
-import { seriesList } from '../scope.js';
+import { seriesInfo, seriesList } from '../scope.js';
 
-const strip = (work) => h('a', { class: 'ca-strip', href: work.href, 'data-work': work.id, 'data-meta': `${work.warm}% warm · ${work.vivid}% vivid`, 'aria-label': work.title },
+const strip = (work) => h('a', { class: 'ca-strip', href: work.href, 'data-work': work.id, 'data-series': (seriesInfo(work.series) || {}).label, 'data-meta': `${work.warm}% warm · ${work.vivid}% vivid`, 'aria-label': work.title },
   work.palette.map(([hex, name, share]) => h('i', { style: { '--share': share, '--color': hex }, 'data-name': name })));
 
 const group = (label, href, works) => h('div', { class: label ? 'ca-row' : 'ca-row ca-row--bare' },

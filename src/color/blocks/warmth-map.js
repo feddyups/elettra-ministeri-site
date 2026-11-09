@@ -1,5 +1,5 @@
 import { h, svg } from '../../lib/elements.js';
-import { accentOf } from '../scope.js';
+import { accentOf, seriesInfo } from '../scope.js';
 
 const PAD = { left: 36, right: 36, top: 30, bottom: 46 };
 const NARROW = 520;
@@ -44,7 +44,7 @@ const draw = (host, scope) => {
       work.palette[1] && svg('circle', { cx: x(work) + radius / 4, cy: y(work) + radius / 4, r: radius / 2.6, fill: work.palette[1][0] }),
     ];
     const group = live
-      ? svg('a', { class: 'ca-dot', href: work.href, 'data-work': work.id, 'aria-label': work.title }, svg('title', null, work.title), dot)
+      ? svg('a', { class: 'ca-dot', href: work.href, 'data-work': work.id, 'aria-label': work.title, 'data-tip': work.title, 'data-series': (seriesInfo(work.series) || {}).label, 'data-meta': `${work.warm}% warm · ${work.vivid}% vivid` }, dot)
       : svg('g', { class: 'ca-dot is-dim', 'aria-hidden': 'true' }, dot);
     return group;
   });

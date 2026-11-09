@@ -3,8 +3,9 @@ import { loadStylesheet } from '../lib/stylesheet.js';
 
 /**
  * A label that names a strip of color while it is pointed at or focused, wherever strips appear (series pages,
- * the infographic, painting pages). A strip is any `.ca-strip` carrying `aria-label` (the work's title); optional
- * `data-meta` adds a second line and a color's `data-name` (on its `<i>`) adds the color's name.
+ * the infographic, painting pages). A target is a `.ca-strip` carrying `aria-label`, or anything carrying `data-tip` (the work's title).
+ * Optional lines follow: the color's name (`data-name` on the target or on an `<i>` inside it), the series
+ * (`data-series`) and `data-meta`.
  */
 const GAP = 10;
 let label;
@@ -29,11 +30,11 @@ const place = (strip) => {
 };
 
 const show = (event) => {
-  const strip = event.target.closest && event.target.closest('.ca-strip[aria-label]');
+  const strip = event.target.closest && event.target.closest('.ca-strip[aria-label], [data-tip]');
   if (!strip) return;
   const tip = ensure();
-  const swatch = event.target.closest('i[data-name]');
-  const lines = [strip.getAttribute('aria-label'), swatch && swatch.dataset.name, strip.dataset.meta].filter(Boolean);
+  const swatch = strip.dataset.name ? strip : event.target.closest('i[data-name]');
+  const lines = [strip.dataset.tip || strip.getAttribute('aria-label'), swatch && swatch.dataset.name, strip.dataset.series, strip.dataset.meta].filter(Boolean);
   tip.replaceChildren(h('b', null, lines[0]), ...lines.slice(1).map((text) => h('span', null, text)));
   current = strip;
   place(strip);
