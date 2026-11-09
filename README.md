@@ -42,7 +42,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.9.0/src/color/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.9.1/src/color/main.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:

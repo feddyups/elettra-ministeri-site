@@ -50,14 +50,14 @@ export const initAtlas = (host) => {
       wanted.has('stats') && renderStatRow(scope)),
   ].filter(Boolean);
 
-  host.replaceChildren(
+  host.replaceChildren(...[
     host.dataset.heading !== 'none' && h('header', { class: 'ca-head' }, h('p', { class: 'ca-label' }, kicker), title && h('h2', null, title), h('p', { class: 'ca-lede' }, lede)),
     top.length > 0 && h('div', { class: 'ca-top' }, top),
     wanted.has('map') && section('Warm to cool, quiet to loud', renderWarmthMap(scope), h('p', { class: 'ca-note' }, 'Each dot is one work, ringed in its series color. The further right, the warmer; the higher, the more saturated.')),
     wanted.has('strips') && section(scope.id === 'all' ? 'Every work, as a strip of its colors' : 'Each work, as a strip of its colors', renderWorkStrips(scope)),
     caption,
     more,
-  );
+  ].filter(Boolean));
 
   const describe = (event) => {
     const target = event.target.closest && event.target.closest('[data-work]');
