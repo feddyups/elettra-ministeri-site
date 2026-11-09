@@ -43,6 +43,10 @@ html .header {
 html .header-announcement-bar-wrapper,
 html .header-inner { background: transparent !important; }
 
+/* Squarespace pads the top of the header on inner pages; the pill sits at the top edge everywhere once scrolled. */
+html #header .header-announcement-bar-wrapper { transition: padding 0.45s ease; }
+html.em-scrolled #header .header-announcement-bar-wrapper { padding-top: 0 !important; }
+
 html #header .header-inner {
   position: relative;
   isolation: isolate;
