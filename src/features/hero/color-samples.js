@@ -10,7 +10,7 @@ const FOCUS_WIDTH = 480;
 
 /** The colors to show for `work`: the analysed palette (the same one its page and the infographic use), or, for a work that is not in the analysis, colors sampled from the image. */
 const colorsFor = (work, img) => {
-  const analysed = work && workColors(work.title);
+  const analysed = work && workColors(work.colorKey || work.title);
   if (analysed) return analysed;
   const palette = extractPalette(sampleImage(img));
   const names = nameColors(palette.map((color) => rgbToOklab(...color)));

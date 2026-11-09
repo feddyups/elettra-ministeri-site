@@ -32,7 +32,7 @@ export const WORKS = [
   { id: 'sole', anchor: 'sole', title: 'Il sole', series: 'sicily', onSite: true, catalogue: 'rectified/il-sole.jpg' },
   { id: 'testa-di-moro', anchor: 'testa-di-moro', title: 'Testa di moro', series: 'sicily', onSite: true, catalogue: 'rectified/sicily-moor-head.jpg' },
   { id: 'santa-rosalia', anchor: 'santa-rosalia', title: 'Santa Rosalia', series: 'sicily', onSite: true, catalogue: 'rectified/sicily-lilies.jpg' },
-  { id: 'cart-wheel', anchor: 'cart-wheel', title: 'Cart wheel', series: 'sicily', onSite: true, catalogue: 'rectified/sicilian-wheel.jpg' },
+  { id: 'cart-wheel', anchor: 'cart-wheel', title: 'Cart wheel', series: 'sicily', onSite: true, catalogue: 'rectified/sicilian-wheel-masked-for-analysis.jpg' },
 
   { id: 'bonding', anchor: 'the-bonding', title: 'The Bonding', series: 'human-figure', onSite: true, catalogue: sent('09 The Bonding.png') },
   { id: 'hug-1', anchor: 'amore-e-pandemia-i', title: 'Amore e Pandemia I', series: 'human-figure', onSite: true, catalogue: sent('01 The Hug.png') },

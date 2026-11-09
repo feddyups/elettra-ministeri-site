@@ -1,27 +1,29 @@
 import { paintImage } from '../../paint/paint-image.js';
 import { PAINT } from '../../paint/config.js';
 import { prefersReducedMotion } from '../../lib/motion.js';
-import { WORKS } from './works.js';
+import { heroPlaylist } from './works.js';
 import { createSlideshowControls } from './slideshow-controls.js';
 import { renderColorSamples } from './color-samples.js';
 
 /** Time each painting stays up, from the first stroke to the next slide. */
 const CYCLE_MS = 14000;
-const LAST_WORK_KEY = 'em-hero';
+const SLIDES_PER_VISIT = 6;
+const LAST_WORK_KEY = 'em-hero-first';
 
-/** Starts on the work after the one shown on the previous visit. */
-const pickFirstWork = () => {
+/** A new random selection of paintings for every visit, which never opens on the painting the previous visit opened on. */
+const pickPlaylist = () => {
   try {
-    const next = (parseInt(localStorage.getItem(LAST_WORK_KEY) || '-1', 10) + 1) % WORKS.length;
-    localStorage.setItem(LAST_WORK_KEY, String(next));
-    return next;
+    const playlist = heroPlaylist(SLIDES_PER_VISIT, localStorage.getItem(LAST_WORK_KEY) || undefined);
+    localStorage.setItem(LAST_WORK_KEY, playlist[0].id);
+    return playlist;
   } catch (e) {
-    return 0;
+    return heroPlaylist(SLIDES_PER_VISIT);
   }
 };
 
-/** Slideshow of the home page hero: each work repaints itself, then the next one follows. */
+/** Slideshow of the home page hero: each work repaints itself, then the next one follows; the selection is random for every visit. */
 export const initHero = (root) => {
+  const WORKS = pickPlaylist();
   const $ = (selector) => root.querySelector(selector);
   const image = $('#eh-heroImg');
   const canvas = $('#eh-heroCanvas');
@@ -37,7 +39,7 @@ export const initHero = (root) => {
     copy.appendChild(link);
   }
 
-  let current = pickFirstWork();
+  let current = 0;
   let timer = 0;
   let visible = true;
   let hovering = false;

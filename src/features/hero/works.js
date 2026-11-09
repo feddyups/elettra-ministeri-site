@@ -1,48 +1,50 @@
-const CDN = 'https://images.squarespace-cdn.com/content';
-const SITE = '596fbc34c534a5fa937bd9bf';
-const v1 = (path) => `${CDN}/v1/${SITE}/${path}`;
-const v0 = (path) => `${CDN}/${SITE}/${path}`;
+import { CATALOGUE } from '../../works/catalogue.js';
+import { allWorks, seriesInfo } from '../../color/scope.js';
 
-/** The paintings the hero slideshow cycles through, in order. */
-export const WORKS = [
-  {
-    series: 'Mediterranean',
-    title: 'Lighthouses in the open sea',
-    meta: 'Acrylic on canvas · 100 × 50 cm · Zürich, 2020',
-    href: '/paintings/mediterranean',
-    image: v1('f579f6ec-e9d0-4f53-a90e-01a221511ff5/Lighthouses_in_the_open_sea.jpg?format=2500w'),
-    alt: 'Lighthouses in the open sea, acrylic on canvas by Elettra Ministeri',
-  },
-  {
-    series: 'Maternity',
-    title: 'Maternity II',
-    meta: 'Acrylic on canvas · 50 × 70 cm',
-    href: '/paintings/maternity',
-    image: v1('9973033c-2b50-4c30-8ff6-89088a5f9c7b/maternity+II.jpg?format=2000w'),
-    alt: 'Maternity II, acrylic on canvas by Elettra Ministeri',
-  },
-  {
-    series: 'Sicily',
-    title: 'Carretto siciliano',
-    meta: 'Acrylic on canvas · hand-painted frame',
-    href: '/paintings/sicily',
-    image: v0('d0403442-5dd2-4b6c-8c1b-93b9b2388298/carretto-siciliano-v2.jpg?format=2000w'),
-    alt: 'Carretto siciliano, a painted Sicilian cart and horse in a hand-painted frame, by Elettra Ministeri',
-  },
-  {
-    series: 'Human figure',
-    title: 'The Bonding',
-    meta: 'Acrylic on canvas · 116 × 73 cm',
-    href: '/paintings/human-figure',
-    image: v1('1619440724228-0ZEOJ7JXZYDOZFJ4UK4M/thebonding_1.jpg?format=2000w'),
-    alt: 'The Bonding, two intertwined figures lifting a blue sphere, acrylic on canvas by Elettra Ministeri',
-  },
-  {
-    series: 'Archive',
-    title: 'Help',
-    meta: 'Acrylic on textured paper · 32 × 25 cm',
-    href: '/paintings/archive',
-    image: v1('1528638090169-3WYNVACGH7G9O9XEUX92/help.jpg?format=2000w'),
-    alt: 'Help, a red hand and a blue hand reaching through green leaves, acrylic on textured paper, by Elettra Ministeri',
-  },
-];
+const WIDTH = 2000;
+const MAX_PER_SERIES = 2;
+
+/** One slide of the hero for a painting: what its caption says and where its button leads. */
+const slideFor = (atlasWork) => {
+  const work = CATALOGUE[atlasWork.slug];
+  const series = seriesInfo(atlasWork.series);
+  return {
+    id: atlasWork.slug,
+    colorKey: atlasWork.title,
+    series: series.label,
+    title: work.title,
+    meta: [work.medium, work.size, work.year].filter(Boolean).join(' · '),
+    href: series.path,
+    image: `${work.image.src}?format=${WIDTH}w`,
+    alt: work.alt,
+  };
+};
+
+const shuffled = (items) => {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+};
+
+/** Every painting (not the textile or the wheel) that has a page of its own. */
+const paintings = () => allWorks().filter((work) => CATALOGUE[work.slug] && /acrylic/i.test(CATALOGUE[work.slug].medium));
+
+/**
+ * The paintings one visit's hero slideshow cycles through: `count` different ones drawn at random from the whole
+ * body of work, in random order, never more than two from the same series, and never starting on `notFirst`.
+ *
+ * @param {number} count
+ * @param {string} [notFirst] the id of the painting the previous visit started with
+ */
+export const heroPlaylist = (count, notFirst) => {
+  const perSeries = {};
+  const chosen = shuffled(paintings()).filter((work) => {
+    perSeries[work.series] = (perSeries[work.series] || 0) + 1;
+    return perSeries[work.series] <= MAX_PER_SERIES;
+  }).slice(0, count);
+  if (chosen.length > 1 && chosen[0].slug === notFirst) chosen.push(chosen.shift());
+  return chosen.map(slideFor);
+};

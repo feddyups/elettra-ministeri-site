@@ -35,6 +35,9 @@ export const resolveScope = (spec = 'all') => {
 };
 
 /** A work by its page name (its `slug`), with its palette and numbers. */
+/** Every analysed work, in catalogue order. */
+export const allWorks = () => ATLAS.works;
+
 export const findWork = (slug) => ATLAS.works.find((w) => w.slug === slug);
 
 /** A series' label, page and works, or undefined. */
