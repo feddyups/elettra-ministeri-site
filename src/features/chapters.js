@@ -2,7 +2,9 @@ import { loadImage, sampleImage } from '../lib/image.js';
 import { extractPalette, backgroundTone, renderSwatches } from '../lib/color.js';
 import { onFirstVisible } from '../lib/dom.js';
 import { TONES } from '../themes/tones.generated.js';
+import { h } from '../lib/elements.js';
 import { renderSwatch } from '../color/swatch.js';
+import { createColorFocus } from '../color/color-focus.js';
 import { seriesColors } from '../color/scope.js';
 
 /** The series a chapter belongs to, from the link to its page (/paintings/<series>). */
@@ -30,7 +32,12 @@ export const initChapter = (chapter) => {
     const chips = chapter.querySelector('.chips');
     const analysed = seriesColors(seriesOf(chapter));
     if (analysed && chips) {
-      chips.replaceChildren(...analysed.map((color) => renderSwatch(color, { series: seriesOf(chapter), showName: false })));
+      const overlay = h('canvas', { class: 'em-focus', 'aria-hidden': 'true' });
+      frame.append(overlay);
+      const focus = createColorFocus({ canvas: overlay, source: img, hexes: analysed.map((color) => color.hex) });
+      chips.replaceChildren(...analysed.map((color, index) => renderSwatch(color, {
+        series: seriesOf(chapter), showName: false, onEnter: () => focus.show(index), onLeave: () => focus.hide(),
+      })));
     } else renderSwatches(chips, palette);
     frame.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
     onFirstVisible(chapter, 0.35, () => frame.classList.add('done'));
