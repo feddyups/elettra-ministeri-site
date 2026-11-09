@@ -208,8 +208,8 @@ export const CATALOGUE = {
     },
     alt: "Testa di moro: a smiling man's head in profile, with a yellow headscarf and a red curl, beside a prickly pear and a red cart wheel inside a ring of red and blue eyes, with lemons in the four corners of a blue and white tiled ground, in a red frame"
   },
-  'woman-with-lilies': {
-    title: "Woman with lilies",
+  'santa-rosalia': {
+    title: "Santa Rosalia",
     series: "sicily",
     medium: "Acrylic on canvas",
     frame: "Hand-painted frame, part of the work",
@@ -218,16 +218,16 @@ export const CATALOGUE = {
       width: 2400,
       height: 3129
     },
-    alt: "Woman with lilies: a woman with a crown of roses and long fair hair, in a brown mantle and a pink dress, holding white lilies against a green ground, inside a hand-painted frame of red, green and blue panels with shells and suns"
+    alt: "Santa Rosalia, the protector of Palermo: a woman with a crown of roses and long fair hair, in a brown mantle and a pink dress, holding white lilies against a green ground, inside a hand-painted frame of red, green and blue panels with shells and suns"
   },
   'cart-wheel': {
     title: "Cart wheel",
     series: "sicily",
     medium: "Painted wood",
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/bcf077ee-0b5e-4602-ac52-cf1b5c769cb3/sicilian-wheel.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/d78134ef-a644-4aca-98a2-16e0c64c2b66/sicilian-wheel-on-sheet.jpg",
       width: 2000,
-      height: 2000
+      height: 2048
     },
     alt: "Cart wheel: a red wooden wheel with twelve yellow and red spokes, a blue, white and green flower at the hub and a ring of rainbow arches and lotus flowers on the rim"
   },
