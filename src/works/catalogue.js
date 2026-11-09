@@ -397,7 +397,7 @@ export const CATALOGUE = {
     size: "26 × 20 cm",
     year: 2013,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/e49e5100-045d-4762-b472-9334e270da5e/archive-lilies-v2.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/8573e1e8-5e8e-4ebb-89d6-4bfaaf1f7675/archive-lilies-v3.jpg",
       width: 2000,
       height: 2600
     },
@@ -410,7 +410,7 @@ export const CATALOGUE = {
     size: "26 × 20 cm",
     year: 2013,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/33c7c478-7235-41b9-a2b7-2f8cf683bc53/archive-lemons-v2.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/8deedb6b-8664-4834-9b9e-d7b41429aec0/archive-lemons-v3.jpg",
       width: 2000,
       height: 1538
     },
@@ -423,7 +423,7 @@ export const CATALOGUE = {
     size: "30 × 20.5 cm",
     year: 2020,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/ee4f529c-89cd-407b-a3d4-e1a96ad7e736/archive-cactus-in-the-desert-v2.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/fbefe225-5643-4268-bd12-008e6da26dba/archive-cactus-in-the-desert-v3.jpg",
       width: 1880,
       height: 2608
     },
@@ -436,9 +436,9 @@ export const CATALOGUE = {
     size: "18 × 26.5 cm",
     year: 2020,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/05ed3f8e-bb48-4d40-9421-e7e1f132ff9e/archive-seahorse-v2.jpg",
-      width: 2000,
-      height: 2945
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cada1a4c-bf8b-4b4d-b405-d5f1cf5b6d65/archive-seahorse-v3.jpg",
+      width: 1978,
+      height: 2929
     },
     alt: "Seahorse: a green and yellow seahorse inside a green oval, ringed by green marks, on a ground split between yellow and orange"
   },
@@ -449,7 +449,7 @@ export const CATALOGUE = {
     size: "30 × 21 cm",
     year: 2026,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/b3bb952b-85ad-40c8-8635-596610254f78/archive-swan-in-a-shell-v2.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/800f31e7-f56e-452f-af89-3c0d58745e19/archive-swan-in-a-shell-v3.jpg",
       width: 2000,
       height: 1400
     },
@@ -462,7 +462,7 @@ export const CATALOGUE = {
     size: "30 × 21 cm",
     year: 2026,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/6c571937-4e7d-4825-b59a-404c1fafa518/archive-rainbow-shell-v2.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cadea2a3-13ce-41ac-a2bd-16c4e227f367/archive-rainbow-shell-v3.jpg",
       width: 2000,
       height: 1400
     },
