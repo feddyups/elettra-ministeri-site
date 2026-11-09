@@ -3,6 +3,9 @@
 /* The label that names a strip of color (see strip-label.js): a small glass tag that adapts its ink to the glass. */
 .em-strip-label {
   position: fixed;
+  left: 0;
+  top: 0;
+  width: max-content;
   z-index: var(--em-z-overlay);
   display: grid;
   gap: var(--em-space-3xs);
