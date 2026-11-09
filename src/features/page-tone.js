@@ -23,23 +23,33 @@ const backgroundOf = (section) => {
 /** The text color a section is designed for: paper on the footer, the section's `data-fg` if it has one, otherwise ink. */
 const foregroundOf = (section) => (section.classList.contains('foot') ? PAPER : section.getAttribute('data-fg') || INK);
 
+const SECTIONS = '.em-home > section, .em-home > footer';
+
 /**
- * Paints a section with its own background and text color, so its text always sits on the color it was designed for, even while
- * the page behind it changes tone (the footer comes into view long before the section above it has left). The hero is
- * its picture; a chapter waits until its tone is known.
+ * Paints every home section with its own background and text color, so its text always sits on the color it was
+ * designed for, even while the page behind it changes tone (the footer comes into view long before the section
+ * above it has left). The top of each section fades in from the color of the section before it (the length of the
+ * fade is --em-tone-fade in home-fold.css), so the page still changes tone smoothly as it scrolls. The hero is its
+ * picture; a chapter waits until its tone is known.
  */
-export const paintSection = (section) => {
-  if (section.classList.contains('eh-hero')) return;
-  const background = backgroundOf(section);
-  if (!background) return;
-  const foreground = foregroundOf(section);
-  section.style.backgroundColor = background;
-  section.style.color = foreground;
-  // text inside the section that is colored from the page-wide tone follows the section's own instead
-  section.style.setProperty('--eh-bg', background);
-  section.style.setProperty('--eh-fg', foreground);
-  // glass inside the section (buttons, labels) adapts to the section's own surface
-  section.setAttribute('data-glass', glassFor(foreground));
+export const paintSections = () => {
+  let previous = null;
+  document.querySelectorAll(SECTIONS).forEach((section) => {
+    if (section.classList.contains('eh-hero')) { previous = null; return; }
+    if (!section.offsetHeight) return;
+    const background = backgroundOf(section);
+    if (!background) { previous = null; return; }
+    const foreground = foregroundOf(section);
+    section.style.setProperty('--tone-to', background);
+    section.style.setProperty('--tone-from', previous || background);
+    section.style.color = foreground;
+    // text inside the section that is colored from the page-wide tone follows the section's own instead
+    section.style.setProperty('--eh-bg', background);
+    section.style.setProperty('--eh-fg', foreground);
+    // glass inside the section (buttons, labels) adapts to the section's own surface
+    section.setAttribute('data-glass', glassFor(foreground));
+    previous = background;
+  });
 };
 
 const toneObserver = new IntersectionObserver((entries) => {
@@ -54,7 +64,7 @@ const toneObserver = new IntersectionObserver((entries) => {
 
 /** The page tone follows whichever section is in view. */
 export const trackSectionTone = (section) => {
-  paintSection(section);
+  paintSections();
   toneObserver.observe(section);
 };
 

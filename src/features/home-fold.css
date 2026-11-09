@@ -10,6 +10,13 @@
   --em-fold: 100svh;
   --em-chapter-pad: 7.5rem;
   --em-frame-max: calc(var(--em-fold) - 2 * var(--em-chapter-pad));
+  /* how far down a section the color of the section before it fades into its own (see page-tone.js) */
+  --em-tone-fade: 16svh;
+}
+
+html .em-home > section:not(.eh-hero),
+html .em-home > footer {
+  background: linear-gradient(to bottom, var(--tone-from, var(--tone-to, transparent)), var(--tone-to, transparent) var(--em-tone-fade));
 }
 
 html .em-home .chapter .frame {

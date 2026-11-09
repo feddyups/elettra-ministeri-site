@@ -7,7 +7,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Painting effect** – the home hero repaints each work stroke by stroke (leaves, pills and dots that follow the contours of the painting), then lays soft patches of the real image across the canvas and eases a uniform glaze in over the top, so the last frame is the picture itself.
 - **Hero slideshow** – cycles through the works, with dots to jump to one and a thin two-part line showing the time left on the current slide: a gold segment while the painting is being painted, an off-white one while the finished painting is on show. Hovering the hero with a mouse holds the current work once its painting has been revealed (never while it is still being painted); leaving lets the remaining time run out.
 - **Series chapters** – each chapter takes its tone and color swatches from its painting.
-- **Page tone** – the page background and header follow the section in view.
+- **Page tone** (each home section carries its own background and text color, and fades in from the color of the section before it as the page scrolls; `--em-tone-fade` sets how far) – the page background and header follow the section in view.
 - **Color map** – each series has one color, used for its section on the home page and for its own page, so the colors work as a map of the site. One config file drives both.
 - **Color infographic** – reusable blocks that show the colors of the work (a hue wheel, the loudest colors, the share of warm and cool, a warm-to-cool map of every painting, and a strip of colors per painting). The same component renders the whole body of work on the About page, one series on each series page, and a compact version on the home page. Every color and painting links to the painting's page.
 - **Strips of color** – each painting has a thin strip of its colors under its picture, on its series page and on its own page; pointing at a color turns that picture black and white except where the color lives, and clicking copies its code.
@@ -29,13 +29,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.20.1/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.21.0/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.20.1/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.21.0/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -49,7 +49,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.20.1/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.21.0/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -144,7 +144,7 @@ src/
     buttons.css               glass buttons: the hero and section links, the enquire and repaint buttons
     glass.js                  senses a light or dark surface behind the glass (html[data-glass])
     menu.css                  the header menu: its order (named numbers at the top), spacing and the Paintings dropdown
-    tokens.css                THE THEME: colors, type, spacing, shadows, motion and layout, in three layers
+    tokens.css                THE THEME (one variable, --em-radius, sets every box's corner radius): colors, type, spacing, shadows, motion and layout, in three layers
   themes/
     tones.config.js           THE FILE TO EDIT: which painting gives each series its color, and the global settings
     tones.generated.js        generated: the tones as a JS module (home page sections)

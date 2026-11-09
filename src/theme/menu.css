@@ -35,6 +35,9 @@
 .header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/scrivo-una-cartolina"]) { order: var(--em-menu-downloads); }
 .header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/blog"]) { order: var(--em-menu-blog); }
 
+/* the header's pill takes the panel radius, so the bar and the dropdown under it match */
+html .header-inner { border-radius: var(--em-radius-panel); }
+
 /*
  * The dropdown under Paintings: glass (see the glass tokens in tokens.css). It is translucent and blurs whatever is
  * behind it, so it suits any background, and its tint and text color adapt to a light or dark surface. The

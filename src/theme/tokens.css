@@ -77,9 +77,15 @@
   /* Shape and lines */
   --em-radius-sm: 0.125rem;
   --em-radius-pill: 6.25rem;
-  --em-radius-control: 0.75rem;
-  --em-radius-panel: 1.25rem;
-  --em-radius-item: 0.625rem;
+  /*
+   * THE BOX RADIUS: one variable. Buttons, labels and the rail use it as it is; a panel is concentric with the
+   * controls inside it (the radius plus the panel's padding) and a control inside a panel steps down from it.
+   * Change this number to make every box sharper or rounder.
+   */
+  --em-radius: 0.75rem;
+  --em-radius-control: var(--em-radius);
+  --em-radius-panel: calc(var(--em-radius) + var(--em-space-xs));
+  --em-radius-item: calc(var(--em-radius) - var(--em-space-2xs));
   --em-hairline: 1px;
   --em-stroke: 2px;
   --em-stroke-heavy: 3px;
