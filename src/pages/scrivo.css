@@ -1,0 +1,68 @@
+/* "Scrivo una cartolina" landing page: the postcard fills the screen with the text on a centered card. */
+
+.scrivo-back {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 50;
+  padding: 10px 16px;
+  background: rgba(250, 248, 245, 0.92);
+  color: #1c1a18;
+  font: 500 12px/1 Jost, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 99px;
+  box-shadow: 0 10px 30px -14px rgba(0, 0, 0, 0.5);
+}
+.scrivo-back:hover { background: #faf8f5; }
+.scrivo-back:focus-visible { outline: 2px solid #b5472b; outline-offset: 3px; }
+
+.page-section {
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+}
+.page-section .content-wrapper {
+  min-height: 100vh;
+  min-height: 100svh;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The blocks were placed on a grid for a wide banner; stack them in a card instead. */
+.fluid-engine {
+  --social-icons-justify-content: flex-start;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  width: min(540px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 36px 36px 40px;
+  background: #faf8f5;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5);
+}
+.fluid-engine > .fe-block {
+  grid-area: auto !important;
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+/* the first block is the old banner background shape */
+.fluid-engine > .fe-block:first-child { display: none !important; }
+.fluid-engine .sqs-svg-icon--list { justify-content: flex-start !important; }
+.fluid-engine .sqs-block-button-container { justify-content: stretch; }
+.fluid-engine .sqs-block-button-element {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .fluid-engine { padding: 28px 24px 32px; }
+  .scrivo-back { top: 12px; left: 12px; }
+}

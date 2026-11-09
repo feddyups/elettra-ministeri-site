@@ -8,6 +8,8 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Hero slideshow** – cycles through the works, with dots to jump to one and a thin two-part line showing the time left on the current slide: a gold segment while the painting is being painted, an off-white one while the finished painting is on show. Hovering the hero with a mouse holds the current work once its painting has been revealed (never while it is still being painted); leaving lets the remaining time run out.
 - **Series chapters** – each chapter takes its tone and color swatches from its painting.
 - **Page tone** – the page background and header follow the section in view.
+- **Artist video** – the video in the home page's artist section shows a cover image with a play button; the YouTube player loads only when the visitor presses play.
+- **Postcards page** – the standalone "Scrivo una cartolina" landing page gets a link back to the home page and a centered text card.
 - **Enquiry drawer** – on every page, links to `/enquire` open the enquiry form in a side drawer so visitors keep their place. The form can arrive with `?SQF_WORK=<title>` and then says which work the enquiry is about.
 
 ## Loading it on the site
@@ -17,7 +19,7 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.5.2/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.0/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
@@ -26,7 +28,14 @@ Site-wide Code Injection, Footer (enquiry drawer):
 <script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.1.0/src/enquiry/main.js"></script>
 ```
 
-Always pin a release tag (for example `@v1.5.2`). `@main` is cached by jsDelivr for hours, so a tag is the only way to know which code the site runs. To roll out a change: commit, tag a new version, and change the version in that line. To roll back, put the old version back.
+Postcards page, Page Settings → Advanced → Page Header Code Injection:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.0/src/pages/scrivo.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.0/src/pages/scrivo.js"></script>
+```
+
+Always pin a release tag (for example `@v1.6.0`). `@main` is cached by jsDelivr for hours, so a tag is the only way to know which code the site runs. To roll out a change: commit, tag a new version, and change the version in that line. To roll back, put the old version back.
 
 ## Layout
 
@@ -38,6 +47,7 @@ src/
     image.js                  loadImage, sampleImage
     color.js                 palette extraction, hex, tones, swatches
     motion.js                 prefersReducedMotion
+    stylesheet.js             loadStylesheet
   paint/
     paint-image.js            paintImage(img, canvas, W, H, speed): the timeline
     config.js                 duration, stroke counts, sizes, shape mix
@@ -54,6 +64,11 @@ src/
       color-samples.js       color swatches that wash the hero
     chapters.js
     page-tone.js
+    video-facade.js           click-to-play YouTube video (cover image + play button)
+    video-facade.css
+  pages/
+    scrivo.js                 back link for the standalone postcards page
+    scrivo.css                its centered card layout
   enquiry/
     main.js                   entry point for every page: drawer links, embedded form, work note
     drawer.js                 the side drawer
@@ -64,7 +79,7 @@ src/
 `paintImage` knows nothing about the page, so any page can import it:
 
 ```js
-import { paintImage } from 'https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.5.2/src/paint/paint-image.js';
+import { paintImage } from 'https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.0/src/paint/paint-image.js';
 ```
 
 ## Expected markup
