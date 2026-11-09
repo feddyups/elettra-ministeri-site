@@ -64,7 +64,7 @@ html .header-nav-list .header-nav-folder-item a {
   display: block;
   padding: var(--em-space-s) var(--em-space-m);
   border-radius: var(--em-radius-item);
-  color: var(--em-glass-ink);
+  color: var(--em-glass-ink) !important; /* the header's own states (light, ink, scrolled) must not recolor the dropdown's links */
   text-align: left;
   transition: background var(--em-duration-quick) var(--em-ease), box-shadow var(--em-duration-quick) var(--em-ease);
 }
