@@ -2,6 +2,15 @@
  * Painting pages (see work-page.js). The page is also an infographic host (class `ca`), so it shares the
  * infographic's ink, labels, strips, stats and map, and follows the series color through the site's --em-* tokens.
  */
+/* A Squarespace code block that holds only the page spans the whole content grid, however it was sized in the editor. */
+html .fe-block:has(.sqs-code-container > [data-work-page]) {
+  grid-column: 2 / -2 !important;
+  grid-row: 1 / -1 !important;
+}
+
+/* Squarespace's own previous/next item link follows the collection's order, not the series; the page has its own. */
+html:has([data-work-page]) .item-pagination { display: none; }
+
 html .wp { margin: 0; padding-top: clamp(24px, 4vw, 56px); }
 
 html .wp .wp-hero {
