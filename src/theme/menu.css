@@ -64,7 +64,10 @@ html .header-nav-list .header-nav-folder-item a {
   display: block;
   padding: var(--em-space-s) var(--em-space-m);
   border-radius: var(--em-radius-item);
-  color: var(--em-glass-ink) !important; /* the header's own states (light, ink, scrolled) must not recolor the dropdown's links */
+  color: var(--em-glass-ink);
+  /* The header's own states (light, ink, scrolled) set the links' color with rules no ordinary rule can outrank, so the
+     text is painted through its fill color, which they do not touch. */
+  -webkit-text-fill-color: var(--em-glass-ink) !important;
   text-align: left;
   transition: background var(--em-duration-quick) var(--em-ease), box-shadow var(--em-duration-quick) var(--em-ease);
 }
