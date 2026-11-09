@@ -27,7 +27,18 @@ html[data-series] .th-work {
   padding: 0;
 }
 
-/* The mobile menu button is drawn with plain bars */
-html[data-series] body:not(.header--menu-open) .header-burger-btn .burger-inner > div {
+/* The mobile menu: its overlay takes the page color, and the open/close button is drawn with plain bars */
+html[data-series] .header-menu-bg {
+  background-color: var(--em-bg) !important;
+}
+html[data-series] .header-burger-btn .burger-inner > div {
   background-color: var(--em-ink) !important;
+}
+
+/* The Previous / Next links at the bottom of the page */
+html[data-series] .item-pagination-prev-next {
+  color: var(--em-muted) !important;
+}
+html[data-series] .item-pagination-title {
+  color: var(--em-ink) !important;
 }
