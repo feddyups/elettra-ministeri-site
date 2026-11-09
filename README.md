@@ -8,6 +8,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Hero slideshow** – cycles through the works, with dots to jump to one and a thin two-part line showing the time left on the current slide: a gold segment while the painting is being painted, an off-white one while the finished painting is on show. Hovering the hero with a mouse holds the current work once its painting has been revealed (never while it is still being painted); leaving lets the remaining time run out.
 - **Series chapters** – each chapter takes its tone and color swatches from its painting.
 - **Page tone** – the page background and header follow the section in view.
+- **Color map** – each series has one color, used for its section on the home page and for its own page, so the colors work as a map of the site. One config file drives both.
 - **Artist video** – the video in the home page's artist section shows a cover image with a play button; the YouTube player loads only when the visitor presses play.
 - **Postcards page** – the standalone "Scrivo una cartolina" landing page gets a link back to the home page and a centered text card.
 - **Enquiry drawer** – on every page, links to `/enquire` open the enquiry form in a side drawer so visitors keep their place. The form can arrive with `?SQF_WORK=<title>` and then says which work the enquiry is about.
@@ -19,7 +20,7 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.2/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.0/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
@@ -28,14 +29,22 @@ Site-wide Code Injection, Footer (enquiry drawer):
 <script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.1.0/src/enquiry/main.js"></script>
 ```
 
+Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.0/src/themes/tones.generated.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.0/src/themes/series-theme.css">
+<script src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.0/src/themes/series-attr.js"></script>
+```
+
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.2/src/pages/scrivo.css">
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.2/src/pages/scrivo.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.4/src/pages/scrivo.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.4/src/pages/scrivo.js"></script>
 ```
 
-Always pin a release tag (for example `@v1.6.2`). `@main` is cached by jsDelivr for hours, so a tag is the only way to know which code the site runs. To roll out a change: commit, tag a new version, and change the version in that line. To roll back, put the old version back.
+Always pin a release tag (for example `@v1.7.0`). `@main` is cached by jsDelivr for hours, so a tag is the only way to know which code the site runs. To roll out a change: commit, tag a new version, and change the version in that line. To roll back, put the old version back.
 
 ## Layout
 
@@ -66,6 +75,14 @@ src/
     page-tone.js
     video-facade.js           click-to-play YouTube video (cover image + play button)
     video-facade.css
+  themes/
+    tones.config.js           THE FILE TO EDIT: which painting gives each series its color, and the global settings
+    tones.generated.js        generated: the tones as a JS module (home page sections)
+    tones.generated.css       generated: the tones as CSS variables (series pages)
+    series-theme.css          maps the tone onto the site's color variables for series pages
+    series-attr.js            tags a series page with data-series before it is painted
+  scripts/
+    build-tones.mjs           generates the two tones.generated files
   pages/
     scrivo.js                 back link for the standalone postcards page
     scrivo.css                its centered card layout
@@ -79,12 +96,33 @@ src/
 `paintImage` knows nothing about the page, so any page can import it:
 
 ```js
-import { paintImage } from 'https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.6.2/src/paint/paint-image.js';
+import { paintImage } from 'https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.0/src/paint/paint-image.js';
 ```
 
 ## Expected markup
 
 The modules look for `.em-home` with `.eh-hero` (containing `#eh-heroImg`, `#eh-heroCanvas`, `.samples`, `.wash`, `.copy`, `.replay`) and `.chapter` elements with a `data-img` attribute and a `.frame` holding an `img`. The styles for these, and for `.eh-nav`, `.eh-line` and `.eh-seg*`, are in the site's Custom CSS.
+
+## Colors
+
+Every series has one color. The home page section for a series and the series page itself both use it, so a visitor learns that Mediterranean is deep sea blue, Maternity is rust, and so on.
+
+All of it comes from `src/themes/tones.config.js`:
+
+- **One series:** give it `pick: 2` to use another color from its painting, or `bg: '#1f3a2e'` to set the color directly.
+- **All series at once:** change `TONE_SETTINGS`, for example a lower `darkness` for darker tones.
+- **A new series:** add one line with the series' page name and the painting its color should come from.
+
+Then regenerate and release:
+
+```sh
+npm install                # once
+npm run build:tones        # prints each series' color and the alternative palette colors to pick from
+git add -A && git commit -m "Update series colors"
+git tag vX.Y.Z && git push origin main vX.Y.Z
+```
+
+Then check that jsDelivr serves the new tag and change the version in the two places that load it: the home page code block (`src/main.js`) and the site-wide Header Code Injection (the three tags above). The text colors used on dark tones, and the paper colors kept inside the cards, are variables in the site's Custom CSS (`--em-body`, `--em-card-ink`, `--em-card-muted`, `--em-card-body`).
 
 ## Changing the works
 

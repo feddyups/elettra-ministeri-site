@@ -22,11 +22,19 @@ export const extractPalette = (data, count = 5) => {
 
 export const toHex = (color) => `#${color.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('')}`;
 
-/** A deep background tone derived from the most saturated color of the palette. */
-export const backgroundTone = (palette) => {
+/** How strongly a palette color is darkened to make a background tone. */
+export const DEFAULT_DARKNESS = 0.42;
+
+/**
+ * A deep background tone derived from the palette: the most saturated color by
+ * default, or `pick` (an index into the palette) to choose another, scaled by `darkness`.
+ */
+export const backgroundTone = (palette, { pick, darkness = DEFAULT_DARKNESS } = {}) => {
   const saturation = (c) => Math.max(...c) - Math.min(...c);
-  const richest = [...palette].sort((a, b) => saturation(b) - saturation(a))[0];
-  return richest.map((v) => v * 0.42);
+  const source = pick === undefined || !palette[pick]
+    ? [...palette].sort((a, b) => saturation(b) - saturation(a))[0]
+    : palette[pick];
+  return source.map((v) => v * darkness);
 };
 
 /** Fills `container` with one swatch per palette color. */

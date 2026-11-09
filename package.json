@@ -1,0 +1,12 @@
+{
+  "name": "elettra-ministeri-site",
+  "private": true,
+  "type": "module",
+  "description": "Front-end modules for elettraministeri.com, served via jsDelivr.",
+  "scripts": {
+    "build:tones": "node --use-system-ca scripts/build-tones.mjs"
+  },
+  "devDependencies": {
+    "jpeg-js": "^0.4.4"
+  }
+}

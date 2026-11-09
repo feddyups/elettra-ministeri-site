@@ -1,0 +1,39 @@
+/*
+ * Series pages take the color of their home page section, so the colors work as a map of the site.
+ * The colors come from tones.generated.css (one rule per series). A page with no entry there
+ * keeps the default cream look, because every variable below has a fallback.
+ *
+ * Depends on the color variables declared in the site's Custom CSS (:root): --em-bg, --em-ink,
+ * --em-muted, --em-line, --em-body and the --em-card-* variables for text on paper.
+ */
+
+html[data-series] {
+  --em-bg: var(--series-bg, #faf8f5);
+  --em-ink: var(--series-fg, #1c1a18);
+  --em-muted: var(--series-muted, #5b544c);
+  --em-line: var(--series-line, #e6e1da);
+  --em-body: var(--series-body, #3a352f);
+}
+
+/* Squarespace paints each section and the header on a layer of their own */
+html[data-series] .section-background,
+html[data-series] .header-background {
+  background-color: var(--em-bg) !important;
+}
+
+/* The cards that hold the paintings stay on paper, so their text keeps the paper colors */
+html[data-series] .th-work,
+html[data-series] .th-tile {
+  color: var(--em-card-ink, #1c1a18);
+}
+html[data-series] .th-work *,
+html[data-series] .th-tile * {
+  --em-ink: var(--em-card-ink, #1c1a18);
+  --em-muted: var(--em-card-muted, #5b544c);
+  --em-body: var(--em-card-body, #3a352f);
+}
+
+/* The mobile menu button is drawn with plain bars */
+html[data-series] body:not(.header--menu-open) .header-burger-btn .burger-inner > div {
+  background-color: var(--em-ink) !important;
+}
