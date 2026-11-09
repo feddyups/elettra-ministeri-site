@@ -6,7 +6,9 @@
   "scripts": {
     "build:tones": "node --use-system-ca scripts/build-tones.mjs",
     "build:atlas": "node --use-system-ca scripts/build-atlas.mjs",
-    "analyze:palette": "node --use-system-ca scripts/analyze-palette.mjs"
+    "analyze:palette": "node --use-system-ca scripts/analyze-palette.mjs",
+    "sync": "node --use-system-ca scripts/sync.mjs",
+    "check:site": "node --use-system-ca scripts/check-site.mjs"
   },
   "devDependencies": {
     "jpeg-js": "^0.4.4",
