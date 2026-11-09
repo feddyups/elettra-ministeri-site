@@ -26,7 +26,10 @@ html .ca {
 
 /* The page around the infographic may style paragraphs and headings (the home intro does); start from a clean slate. */
 html .ca p,
-html .ca h2 { margin: 0; max-width: none; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
+html .ca h2 { margin: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
+/* The page may also set a typeface and width on paragraphs with a more specific rule; these two always hold. */
+html .ca p { font-family: "Jost", system-ui, sans-serif !important; max-width: none !important; }
+html .ca h2 { font-family: var(--ca-serif) !important; }
 
 html .ca[data-surface="plate"] {
   --ca-ink: #faf8f5;
@@ -74,7 +77,7 @@ html .ca .ca-head h2 {
 }
 
 html .ca .ca-lede {
-  max-width: 54ch;
+  max-width: 54ch !important;
   margin: 0 0 clamp(36px, 5vw, 64px);
   font-size: 18px;
   line-height: 1.6;
@@ -156,7 +159,7 @@ html .ca .ca-pair b { font-weight: 500; color: var(--ca-ink); }
 .ca-dot:focus-visible { transform: scale(1.18); }
 .ca-dot.is-dim { opacity: 0.22; pointer-events: none; }
 .ca-dot-label { font-size: 12px; fill: var(--ca-ink); }
-html .ca .ca-note { max-width: 60ch; margin: 14px 0 0; font-size: 14px; color: var(--ca-muted); }
+html .ca .ca-note { max-width: 60ch !important; margin: 14px 0 0; font-size: 14px; color: var(--ca-muted); }
 
 /* strips */
 .ca-rows { display: grid; gap: 22px; }
