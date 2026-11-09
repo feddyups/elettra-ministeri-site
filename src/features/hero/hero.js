@@ -118,7 +118,7 @@ export const initHero = (root) => {
       image.alt = work.alt;
       link.textContent = `View ${work.series}`;
       link.setAttribute('href', work.href);
-      renderColorSamples(samples, wash, image);
+      renderColorSamples(samples, wash, image, work);
       paint();
       queueNext();
       preloadNext();

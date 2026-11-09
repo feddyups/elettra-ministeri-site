@@ -9,6 +9,7 @@ import { initWorkPage } from './work-page.js';
 let styled = false;
 initOnceFor('[data-work-page]', 'work-page', (host) => {
   if (!styled) {
+    loadStylesheet(new URL('../color/swatch.css', import.meta.url).href);
     loadStylesheet(new URL('../color/color-atlas.css', import.meta.url).href);
     loadStylesheet(new URL('./work-page.css', import.meta.url).href);
     styled = true;

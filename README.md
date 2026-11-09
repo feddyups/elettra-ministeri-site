@@ -11,6 +11,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Color map** – each series has one color, used for its section on the home page and for its own page, so the colors work as a map of the site. One config file drives both.
 - **Color infographic** – reusable blocks that show the colors of the work (a hue wheel, the loudest colors, the share of warm and cool, a warm-to-cool map of every painting, and a strip of colors per painting). The same component renders the whole body of work on the About page, one series on each series page, and a compact version on the home page. Every color and painting links to the painting's page.
 - **Painting pages** – every painting has its own page (`/paintings/<name>`) with the picture (painted stroke by stroke as it comes into view, like the home hero; click to enlarge), its story in the artist's words, the technical details, a reading of its colors (point at a color to see where it lives in the picture; click to copy its code), where it sits among all the work, the paintings closest to it in color, the rest of its series, and the enquiry form inline. Each page is one empty placeholder in Squarespace; everything on it comes from `src/works/catalogue.js` and the generated color data.
+- **Copyable colors** – every swatch (the hero's tiles, the chips on each home chapter, a painting page's colors) is one reusable component: it shows the color's name, copies its hex code when clicked, and uses the same analysed palette as the infographic. It carries its data in the page and announces what people look at and take, so colors can be gathered for further analysis (see "Gathering colors").
 - **Color names** – colors are named the way a painter would (vermilion, ochre, bottle green) everywhere they are shown, from one list in `src/lib/color-science.js`.
 - **Artist video** – the video in the home page's artist section shows a cover image with a play button; the YouTube player loads only when the visitor presses play.
 - **Postcards page** – the standalone "Scrivo una cartolina" landing page gets a link back to the home page and a centered text card.
@@ -23,13 +24,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.9.3/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.11.0/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.10.3/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.11.0/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -43,7 +44,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.10.3/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.11.0/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -109,6 +110,9 @@ src/
     color-atlas.css           the infographic's styles
     scope.js                  resolves `all` or `series:<slug>` to the data a block shows
     nearest-work.js           which painting shows a given color most (where a color links to)
+    swatch.js                 a clickable color: name, hex copy, data attributes and events
+    swatch.css                its base styles
+    copy-color.js             copies a hex code and announces it
     text.js                   joinNames
     atlas.generated.js        generated: every work's palette and every series' color fingerprint
     blocks/
@@ -199,6 +203,18 @@ git tag vX.Y.Z && git push origin main vX.Y.Z
 and change the version in the footer line above. The work's strip, its dot on the map and the series numbers update, and each links to `<series page>#<anchor>`.
 
 **Renaming colors.** The names come from the list in `src/lib/color-science.js` (`NAMED`); a color is given the nearest name. Edit the list and the names change on the hero, the home chapters and the infographic.
+
+## Gathering colors
+
+`renderSwatch(color, options)` in `src/color/swatch.js` is the one way a color is shown and copied. Each swatch carries `data-hex`, `data-name`, `data-share` (how much of the painting it covers), `data-work` and `data-series`, and announces two events on `document`:
+
+```js
+document.addEventListener('em:color', (event) => {
+  const { action, hex, name, share, work, series } = event.detail; // action is "hover" or "copy"
+});
+```
+
+Nothing is recorded or sent anywhere; the events are the place to attach it (for example to count which colors are copied most, per painting) if that is ever wanted. The same component takes the colors of any source: the analysed palettes (`seriesColors(slug)`, `workColors(title)` in `src/color/scope.js`) or colors sampled from an image.
 
 ## Painting pages
 

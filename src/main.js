@@ -10,6 +10,7 @@ document.documentElement.classList.add('em-home-page', 'em-hdr-light');
 initOnceFor('.em-home .eh-hero', 'hero', initHero);
 initOnceFor('.em-home .chapter', 'chapter', initChapter);
 loadStylesheet(new URL('./features/video-facade.css', import.meta.url).href);
+loadStylesheet(new URL('./color/swatch.css', import.meta.url).href);
 initOnceFor('.em-home .em-video', 'video', initVideoFacade);
 initOnceFor('.em-home > section, .em-home > footer', 'tone', trackSectionTone);
 trackHeaderOnScroll();

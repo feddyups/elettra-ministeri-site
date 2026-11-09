@@ -1,0 +1,9 @@
+/* A clickable color (see swatch.js). Layout of the swatches' container is left to the page that holds them. */
+button.em-swatch {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+button.em-swatch:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+button.em-swatch.is-copied i { box-shadow: 0 0 0 2px currentColor; }

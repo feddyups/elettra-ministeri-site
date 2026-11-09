@@ -34,3 +34,12 @@ export const accentOf = (slug) => (ATLAS.series[slug] ? ATLAS.series[slug].accen
 
 /** Series in display order, for blocks that group works by series. */
 export const seriesList = () => Object.entries(ATLAS.series).map(([slug, s]) => ({ slug, label: s.label, path: s.path, accent: s.accent, stats: s }));
+
+/** A series' main colors as swatch data, or undefined for a series that is not in the analysis. */
+export const seriesColors = (slug) => (ATLAS.series[slug] ? ATLAS.series[slug].palette.map(([hex, name, share]) => ({ hex, name, share })) : undefined);
+
+/** A work's main colors (matched by its title) as swatch data, or undefined if it is not in the analysis. */
+export const workColors = (title) => {
+  const work = ATLAS.works.find((w) => w.title === title);
+  return work ? { slug: work.slug, series: work.series, colors: work.palette.map(([hex, name, share]) => ({ hex, name, share })) } : undefined;
+};
