@@ -5,6 +5,12 @@
  * --em-* tokens, so it follows the color map. With data-surface="plate" (the default for the
  * whole body of work) it draws its own dark ground.
  */
+/* A Squarespace code block that holds only the infographic spans the whole content grid, however it was sized in the editor. */
+html .fe-block:has(.sqs-code-container > [data-color-atlas]) {
+  grid-column: 2 / -2 !important;
+  grid-row: 1 / -1 !important;
+}
+
 html .ca {
   --ca-ink: var(--em-ink, #faf8f5);
   --ca-muted: var(--em-muted, rgba(250, 248, 245, 0.72));
