@@ -17,7 +17,7 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.5.1/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.5.2/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
@@ -26,7 +26,7 @@ Site-wide Code Injection, Footer (enquiry drawer):
 <script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.1.0/src/enquiry/main.js"></script>
 ```
 
-Always pin a release tag (for example `@v1.5.1`). `@main` is cached by jsDelivr for hours, so a tag is the only way to know which code the site runs. To roll out a change: commit, tag a new version, and change the version in that line. To roll back, put the old version back.
+Always pin a release tag (for example `@v1.5.2`). `@main` is cached by jsDelivr for hours, so a tag is the only way to know which code the site runs. To roll out a change: commit, tag a new version, and change the version in that line. To roll back, put the old version back.
 
 ## Layout
 
@@ -64,7 +64,7 @@ src/
 `paintImage` knows nothing about the page, so any page can import it:
 
 ```js
-import { paintImage } from 'https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.5.1/src/paint/paint-image.js';
+import { paintImage } from 'https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.5.2/src/paint/paint-image.js';
 ```
 
 ## Expected markup

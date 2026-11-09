@@ -28,6 +28,7 @@ export const initHero = (root) => {
   const samples = $('#eh-samples') || $('.samples');
   const wash = $('.wash');
   const copy = $('.copy');
+  const label = copy.querySelector('p.label');
   const title = copy.querySelector('h1');
   const meta = copy.querySelector('.sub');
   let link = copy.querySelector('.hero-link');
@@ -111,6 +112,7 @@ export const initHero = (root) => {
     canvas.style.opacity = 0;
 
     const apply = () => {
+      if (label) label.textContent = work.series;
       title.textContent = work.title;
       meta.textContent = work.meta;
       image.alt = work.alt;
