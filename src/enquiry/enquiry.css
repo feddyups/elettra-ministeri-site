@@ -1,0 +1,74 @@
+/* Enquiry drawer and the embedded enquiry form. Loaded by enquiry/main.js. */
+
+/* The /enquire page when shown inside the drawer: no site chrome, drawer-coloured background */
+html.em-embed header,
+html.em-embed footer,
+html.em-embed #header,
+html.em-embed #footer-sections { display: none !important; }
+html.em-embed body,
+html.em-embed #page { background: #f1ede6 !important; }
+html.em-embed #page section:first-of-type .content-wrapper { padding-top: 32px !important; }
+
+/* "Enquiring about: <work>" note above the form */
+.em-ask {
+  margin: 0 0 24px;
+  padding: 12px 16px;
+  background: #faf8f5;
+  border-left: 3px solid #b5472b;
+  font: 400 15px/1.5 Jost, sans-serif;
+  color: #1c1a18;
+}
+.em-ask b { font-weight: 500; }
+
+/* Drawer */
+.em-drawer-shade {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 26, 24, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 99998;
+}
+.em-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(560px, 100vw);
+  background: #f1ede6;
+  box-shadow: -24px 0 60px -30px rgba(0, 0, 0, 0.6);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+}
+.em-drawer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid #e0d9ce;
+  font: 500 12px/1 Jost, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1c1a18;
+}
+.em-drawer-bar button {
+  all: unset;
+  cursor: pointer;
+  padding: 8px 4px;
+  border-bottom: 1px solid currentColor;
+}
+.em-drawer-bar button:focus-visible { outline: 2px solid #b5472b; outline-offset: 3px; }
+.em-drawer iframe { flex: 1; width: 100%; border: 0; background: #f1ede6; }
+
+html.em-open .em-drawer-shade { opacity: 1; pointer-events: auto; }
+html.em-open .em-drawer { transform: none; }
+html.em-open { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .em-drawer,
+  .em-drawer-shade { transition: none; }
+}
