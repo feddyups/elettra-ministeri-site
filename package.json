@@ -4,9 +4,11 @@
   "type": "module",
   "description": "Front-end modules for elettraministeri.com, served via jsDelivr.",
   "scripts": {
-    "build:tones": "node --use-system-ca scripts/build-tones.mjs"
+    "build:tones": "node --use-system-ca scripts/build-tones.mjs",
+    "analyze:palette": "node --use-system-ca scripts/analyze-palette.mjs"
   },
   "devDependencies": {
-    "jpeg-js": "^0.4.4"
+    "jpeg-js": "^0.4.4",
+    "pngjs": "^7.0.0"
   }
 }
