@@ -47,3 +47,9 @@ html[data-series] .item-pagination-prev-next {
 html[data-series] .item-pagination-title {
   color: var(--em-ink) !important;
 }
+
+/* A painting's picture and title on a series page link to the painting's own page. */
+html .th-work > a.th-img { display: block; }
+html .th-work b a { color: inherit; text-decoration: none; }
+html .th-work b a:hover { text-decoration: underline; text-underline-offset: 4px; }
+html .th-work > a.th-img:focus-visible, html .th-work b a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
