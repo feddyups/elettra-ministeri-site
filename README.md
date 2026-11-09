@@ -29,13 +29,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.21.1/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.0/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.21.1/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.0/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -49,7 +49,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.21.1/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.0/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -83,6 +83,7 @@ src/
     shapes.js                 leaf, pill and dot marks
     reveal.js                 soft patches of the real image laid across the canvas
   menu/
+    active.js                 marks the current page (and its folder) in the header menus
     links.js                  makes the header menu's links to this site open in the same tab
   features/
     hero/
@@ -142,6 +143,9 @@ src/
       work-strips.js          each work as a strip of its colors, linking to the work
   theme/
     buttons.css               glass buttons: the hero and section links, the enquire and repaint buttons
+    header.css                the header on every page: fixed, transparent, and a floating glass pill once scrolled
+    header.js                 its scroll and tone states on every page but the home page
+    glass.css                 the pointer-following highlight of the glass
     glass.js                  senses a light or dark surface behind the glass (html[data-glass])
     menu.css                  the header menu: its order (named numbers at the top), spacing and the Paintings dropdown
     tokens.css                THE THEME (one variable, --em-radius, sets every box's corner radius): colors, type, spacing, shadows, motion and layout, in three layers

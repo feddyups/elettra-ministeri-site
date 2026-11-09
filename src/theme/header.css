@@ -1,0 +1,96 @@
+@import url('./tokens.css');
+
+/*
+ * THE HEADER, on every page. It lies over the top of the page, transparent, and once the page has scrolled it
+ * becomes a floating pill of glass, as it does on the home page. Colors come from the page: --eh-hdr (the links)
+ * and --eh-bg (the tint) where a page sets them (the home page does, per section), otherwise the page's own
+ * --em-ink and --em-bg, which a series page remaps to its series color.
+ *
+ * Classes on <html> that drive it (set by theme/header.js, and on the home page by features/page-tone.js):
+ *   em-scrolled   the page has scrolled a little: the header is a pill
+ *   em-hdr-light  the page behind is dark, so the pill's lights are pale
+ *   em-hdr-ink    the page behind is light, so the pill's lights are bright and its shadows warm
+ */
+:root {
+  --em-header-blur: blur(22px) saturate(1.6);
+  --em-header-gap: 0.625rem 1.25rem;       /* the pill's margin: above and below, left and right */
+  --em-header-pad: 0.875rem 2rem;          /* the pill's padding */
+  --em-header-tint: 0.62;                  /* how much of the page color tints the pill */
+}
+
+html {
+  --glass-fill: var(--eh-bg, var(--em-bg));
+  --glass-op: var(--em-header-tint);
+  --glass-hi: rgb(255 255 255 / 0.13);
+  --glass-lo: rgb(0 0 0 / 0.45);
+}
+html.em-hdr-ink {
+  --glass-hi: rgb(255 255 255 / 0.85);
+  --glass-lo: rgb(70 56 40 / 0.24);
+}
+
+/* lies over the top of the page, as on the home page (every page's first section already makes room for it) */
+html #header.header,
+html .header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html .header-announcement-bar-wrapper,
+html .header-inner { background: transparent !important; }
+
+html #header .header-inner {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  transition: margin 0.45s ease, padding 0.45s ease, border-radius 0.45s ease, box-shadow 0.6s ease;
+}
+
+/* the pill's own tint, and its blur: both live on a layer behind the pill, never on the pill itself (see below) */
+html #header .header-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--glass-fill);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease, background-color 0.6s ease;
+}
+
+html.em-scrolled #header .header-inner {
+  width: auto !important;
+  max-width: none !important;
+  margin: var(--em-header-gap);
+  padding: var(--em-header-pad) !important;
+  border-radius: var(--em-radius-panel);
+  box-shadow:
+    14px 14px 34px -16px var(--glass-lo),
+    -12px -12px 28px -14px var(--glass-hi),
+    inset 1px 1px 2px var(--glass-hi),
+    inset -1px -1px 2px var(--glass-lo);
+}
+html.em-scrolled #header .header-inner::before {
+  opacity: var(--glass-op);
+  -webkit-backdrop-filter: var(--em-header-blur);
+  backdrop-filter: var(--em-header-blur);
+}
+
+/*
+ * A backdrop blur on the pill itself would make the pill a boundary that the dropdown inside it cannot see past: the
+ * dropdown would blur nothing and the page would show through it sharp. So the pill carries no blur of its own.
+ */
+html.em-scrolled #header .header-inner {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html #header .header-inner,
+  html #header .header-inner::before { transition: none; }
+}

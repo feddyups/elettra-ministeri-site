@@ -52,3 +52,23 @@ addEventListener('load', sense);
 addEventListener('scroll', senseSoon, { passive: true });
 addEventListener('resize', senseSoon);
 new MutationObserver(senseSoon).observe(root, { attributes: true, attributeFilter: ['style', 'class'] });
+
+/*
+ * The pointer highlight: while the pointer moves over a glass surface, its position inside the surface is written to
+ * --gx and --gy, which glass.css turns into a light that follows it.
+ */
+const SURFACES = '.header-nav-folder-content, .em-home a.btn, .em-home button.replay, .wp a.wp-cta, .wp button.wp-repaint';
+let pending = null;
+addEventListener('pointermove', (event) => {
+  const surface = event.target.closest && event.target.closest(SURFACES);
+  if (!surface) return;
+  pending = { surface, x: event.clientX, y: event.clientY };
+  requestAnimationFrame(() => {
+    if (!pending) return;
+    const { surface: el, x, y } = pending;
+    pending = null;
+    const box = el.getBoundingClientRect();
+    el.style.setProperty('--gx', `${x - box.left}px`);
+    el.style.setProperty('--gy', `${y - box.top}px`);
+  });
+}, { passive: true });

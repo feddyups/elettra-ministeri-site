@@ -11,7 +11,6 @@
 :root {
   --em-menu-gap: 1.35rem;
   --em-menu-panel-min: 15rem;
-  --em-header-blur: blur(22px) saturate(1.6); /* the scrolled header pill's own blur, as the site's header style sets it */
   /* THE ORDER OF THE MENU: change these numbers (the smallest comes first). */
   --em-menu-paintings: 1;
   --em-menu-textiles: 2;
@@ -47,33 +46,12 @@ html .header-inner { border-radius: var(--em-radius-panel); }
 html .header-nav-list .header-nav-folder-content {
   min-width: var(--em-menu-panel-min);
   padding: var(--em-space-xs) !important;
-  background: var(--em-glass-fill) !important;
+  background: var(--em-glint, none), var(--em-glass-fill) !important;
   -webkit-backdrop-filter: var(--em-glass-blur);
   backdrop-filter: var(--em-glass-blur);
   border-radius: var(--em-radius-panel);
   box-shadow: var(--em-glass-shadow) !important;
   text-align: left;
-}
-/*
- * Once the page has scrolled, the header's pill blurs what is behind it. A blur on the pill itself would make the
- * pill a boundary the dropdown inside it cannot see past, so the dropdown would blur nothing and the page would
- * show through it sharp. The pill's blur therefore lives on a layer behind the pill (a pseudo-element), and the
- * dropdown stays free to blur the page the same way at the top of the page and once it has scrolled.
- */
-html.em-scrolled .header-inner {
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
-  isolation: isolate;
-}
-html.em-scrolled .header-inner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  pointer-events: none;
-  -webkit-backdrop-filter: var(--em-header-blur);
-  backdrop-filter: var(--em-header-blur);
 }
 html .header-nav-list .header-nav-folder-item { margin: 0; }
 html .header-nav-list .header-nav-folder-item + .header-nav-folder-item { margin-top: var(--em-space-3xs); }
@@ -102,4 +80,23 @@ html .header-nav-list .header-nav-folder-item a:focus-visible { outline: var(--e
 
 @media (prefers-reduced-motion: reduce) {
   html .header-nav-list .header-nav-folder-item a { transition: none; }
+}
+
+/*
+ * Where you are (see menu/active.js): the entry for the current page, and the folder that holds it. In the bar it is
+ * underlined; in the dropdown it is a pressed piece of glass with a bar on its edge; in the phone menu it is underlined.
+ */
+html .header-nav-list > .header-nav-item.is-current > a,
+html .header-nav-list > .header-nav-item.is-current .header-nav-folder-title-text {
+  border-bottom: var(--em-stroke) solid currentColor;
+  padding-bottom: var(--em-space-2xs);
+}
+html .header-nav-list .header-nav-folder-item.is-current a {
+  background: var(--em-glass-press);
+  box-shadow: inset var(--em-space-2xs) 0 0 var(--em-glass-ink), inset 0 1px 0 var(--em-glass-edge-soft);
+}
+html .header-menu-nav-item.is-current a {
+  text-decoration: underline;
+  text-decoration-thickness: var(--em-stroke);
+  text-underline-offset: 0.4em;
 }

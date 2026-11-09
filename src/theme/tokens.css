@@ -103,21 +103,13 @@
   --em-shadow-play: 0 0.875rem 2.125rem -0.75rem var(--em-shadow-color);
 
   /*
-   * Glass: one material for every floating surface (menus, labels). A blurred, saturated view of what is behind,
-   * a faint gradient fill, a bright thin edge and a soft drop. The tint and the text color adapt to the surface
-   * behind: glass.js sets html[data-glass="light"] over light surfaces and "dark" over dark ones.
+   * Glass: one material for every floating surface (menus, labels, buttons), modeled on macOS Liquid Glass: a clear,
+   * blurred and saturated view of what is behind, a specular sheen across the upper left, bright lips along the
+   * edges, a soft glow just inside them, and a highlight that follows the pointer (glass.css). The tint, the lips and
+   * the text color adapt to the surface behind: glass.js sets html[data-glass="light"] over light surfaces and "dark"
+   * over dark ones, and a section sets its own.
    */
-  --em-glass-blur: blur(1.5rem) saturate(1.8);
-  --em-glass-hi: rgb(255 255 255 / 0.26);
-  --em-glass-lo: rgb(255 255 255 / 0.12);
-  --em-glass-ink: var(--em-paper);
-  --em-glass-edge: rgb(255 255 255 / 0.5);
-  --em-glass-edge-soft: rgb(255 255 255 / 0.12);
-  --em-glass-drop: rgb(0 0 0 / 0.4);
-  --em-glass-press: rgb(255 255 255 / 0.16);
-  --em-glass-fill: linear-gradient(135deg, var(--em-glass-hi), var(--em-glass-lo));
-  --em-glass-shadow: inset 0 1px 0 var(--em-glass-edge), inset 0 0 0 1px var(--em-glass-edge-soft), inset 0 -1px 0 rgb(0 0 0 / 0.12), 0 1.5rem 3rem -1.25rem var(--em-glass-drop);
-
+  --em-glass-blur: blur(1.25rem) saturate(2) brightness(1.06);
   /* Motion */
   --em-duration-quick: 0.18s;
   --em-duration-base: 0.3s;
@@ -141,23 +133,53 @@
   --em-plate-padding: clamp(var(--em-space-l), 5vw, var(--em-space-4xl));
 }
 
-/* over a light surface the glass is brighter and its text is dark; data-glass can be set on any element (a section, the page) */
-[data-glass="light"] {
-  --em-glass-hi: rgb(255 255 255 / 0.86);
-  --em-glass-lo: rgb(255 255 255 / 0.68);
-  --em-glass-ink: var(--em-ink-strong);
-  --em-glass-edge: rgb(255 255 255 / 0.95);
-  --em-glass-edge-soft: rgb(255 255 255 / 0.6);
-  --em-glass-drop: rgb(0 0 0 / 0.22);
-  --em-glass-press: rgb(0 0 0 / 0.07);
-}
-
+/*
+ * Glass primitives per surface. Dark is the default. The composites below are declared on :root and on every
+ * [data-glass] element, so each recomputes from its own primitives (a custom property is resolved where it is declared).
+ */
+:root,
 [data-glass="dark"] {
-  --em-glass-hi: rgb(255 255 255 / 0.26);
-  --em-glass-lo: rgb(255 255 255 / 0.12);
+  --em-glass-hi: rgb(255 255 255 / 0.22);
+  --em-glass-lo: rgb(255 255 255 / 0.08);
+  --em-glass-sheen-color: rgb(255 255 255 / 0.3);
   --em-glass-ink: var(--em-paper);
-  --em-glass-edge: rgb(255 255 255 / 0.5);
+  --em-glass-lip: rgb(255 255 255 / 0.85);
+  --em-glass-lip-side: rgb(255 255 255 / 0.4);
+  --em-glass-lip-low: rgb(255 255 255 / 0.2);
   --em-glass-edge-soft: rgb(255 255 255 / 0.12);
+  --em-glass-glow: rgb(255 255 255 / 0.1);
+  --em-glass-outline: rgb(0 0 0 / 0.25);
   --em-glass-drop: rgb(0 0 0 / 0.4);
   --em-glass-press: rgb(255 255 255 / 0.16);
+  --em-glass-glint-color: 255 255 255;
+}
+[data-glass="light"] {
+  --em-glass-hi: rgb(255 255 255 / 0.72);
+  --em-glass-lo: rgb(255 255 255 / 0.5);
+  --em-glass-sheen-color: rgb(255 255 255 / 0.9);
+  --em-glass-ink: var(--em-ink-strong);
+  --em-glass-lip: rgb(255 255 255 / 1);
+  --em-glass-lip-side: rgb(255 255 255 / 0.85);
+  --em-glass-lip-low: rgb(255 255 255 / 0.7);
+  --em-glass-edge-soft: rgb(255 255 255 / 0.6);
+  --em-glass-glow: rgb(255 255 255 / 0.55);
+  --em-glass-outline: rgb(0 0 0 / 0.07);
+  --em-glass-drop: rgb(0 0 0 / 0.22);
+  --em-glass-press: rgb(0 0 0 / 0.07);
+  --em-glass-glint-color: 255 255 255;
+}
+:root,
+[data-glass="dark"],
+[data-glass="light"] {
+  --em-glass-fill: linear-gradient(155deg, var(--em-glass-sheen-color), transparent 42%), linear-gradient(135deg, var(--em-glass-hi), var(--em-glass-lo));
+  --em-glass-shadow:
+    inset 0 1px 1px var(--em-glass-lip),
+    inset 1px 0 1px var(--em-glass-lip-side),
+    inset 0 -1px 1px var(--em-glass-lip-low),
+    inset -1px 0 1px var(--em-glass-lip-low),
+    inset 0 0 0 1px var(--em-glass-edge-soft),
+    inset 0 0 1.5rem var(--em-glass-glow),
+    0 0 0 1px var(--em-glass-outline),
+    0 0.25rem 0.75rem rgb(0 0 0 / 0.12),
+    0 1.5rem 3rem -1.25rem var(--em-glass-drop);
 }

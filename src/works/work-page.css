@@ -141,9 +141,26 @@ html .wp .wp-colors .ca-stats { margin-top: var(--em-space-xl); }
 .wp-pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--em-space-s) var(--em-space-xl); margin-top: var(--em-space-xl); padding-top: var(--em-space-ml); border-top: var(--em-hairline) solid var(--ca-line); font-size: var(--em-text-sm); letter-spacing: var(--em-tracking-caps); }
 html .wp .wp-pager a:hover { text-decoration: underline; text-underline-offset: var(--em-space-2xs); }
 
-html .wp .wp-enquiry h2 { margin: 0 0 var(--em-space-s); font-family: var(--em-font-serif); font-size: var(--em-display-md); font-weight: var(--em-weight-medium); line-height: var(--em-leading-tight); }
+/*
+ * The enquiry section is a band in the form's own off-white that runs to both edges of the browser (the form sits on the
+ * same color, so its frame disappears). The band is the section's background plus a box-shadow that spreads it sideways;
+ * the clip keeps that spread from also growing upward and downward. Text in it is dark.
+ */
+html .wp .wp-enquiry {
+  --ca-ink: var(--em-ink-strong);
+  --ca-muted: color-mix(in srgb, var(--em-ink-strong) 66%, transparent);
+  --ca-line: color-mix(in srgb, var(--em-ink-strong) 18%, transparent);
+  max-width: none;
+  padding-block: var(--em-block-gap);
+  background: var(--em-paper-warm);
+  box-shadow: 0 0 0 100vmax var(--em-paper-warm);
+  clip-path: inset(0 -100vmax);
+  color: var(--em-ink-strong);
+}
+html .wp .wp-enquiry > * { max-width: var(--em-content-max); }
+html .wp .wp-enquiry h2 { margin: 0 0 var(--em-space-s); font-family: var(--em-font-serif); font-size: var(--em-display-md); font-weight: var(--em-weight-medium); line-height: var(--em-leading-tight); color: var(--ca-ink); }
 html .wp .wp-enquiry-note { max-width: var(--em-measure-narrow); margin: 0 0 var(--em-space-l); color: var(--ca-muted); }
-.wp-enquiry iframe { display: block; width: 100%; height: var(--wp-form-height); border: 0; background: var(--em-paper); }
+.wp-enquiry iframe { display: block; width: 100%; height: var(--wp-form-height); border: 0; background: var(--em-paper-warm); }
 
 /* enlarged view */
 html.wp-lightbox-open { overflow: hidden; }

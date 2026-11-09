@@ -16,7 +16,7 @@ html .wp button.wp-repaint {
   padding: var(--em-space-m) var(--em-space-xl) !important;
   border: 0 !important;
   border-radius: var(--em-radius-control) !important;
-  background: var(--em-glass-fill) !important;
+  background: var(--em-glint, none), var(--em-glass-fill) !important;
   -webkit-backdrop-filter: var(--em-glass-blur);
   backdrop-filter: var(--em-glass-blur);
   box-shadow: var(--em-glass-shadow) !important;
@@ -35,7 +35,7 @@ html .wp a.wp-cta:hover,
 html .wp a.wp-cta:focus-visible,
 html .wp button.wp-repaint:hover,
 html .wp button.wp-repaint:focus-visible {
-  background: linear-gradient(var(--em-glass-press), var(--em-glass-press)), var(--em-glass-fill) !important;
+  background: var(--em-glint, none), linear-gradient(var(--em-glass-press), var(--em-glass-press)), var(--em-glass-fill) !important;
   color: var(--em-glass-ink) !important;
 }
 html .em-home a.btn:active,
