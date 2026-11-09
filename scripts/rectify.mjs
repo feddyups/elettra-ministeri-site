@@ -8,7 +8,10 @@
  *
  * Corners are fractions of the photograph's width and height (0 to 1), clockwise from the top left.
  * The width of the result defaults to 2400 pixels; its height follows the shape the corners describe, or `--ratio`
- * (width / height) when the real proportions are known. `--round <#rrggbb>` is for round objects (a wheel): everything
+
+ * (width / height) when the real proportions are known. `--refine` snaps each side of the quadrilateral to the strongest
+ * edge near it (the outer edge of the frame against the bed sheet), fits a straight line through those edge points
+ * and takes the new corners from where the lines cross, so rough corners are enough. `--round <#rrggbb>` is for round objects (a wheel): everything
  * outside the circle that fills the rectangle is painted that color.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -16,12 +19,75 @@ import jpeg from 'jpeg-js';
 
 const [input, output, cornerArg, ...flags] = process.argv.slice(2);
 const flag = (name) => { const i = flags.indexOf(`--${name}`); return i > -1 ? flags[i + 1] : undefined; };
-if (!input || !output || !cornerArg) { console.error('usage: rectify.mjs <photo> <out> <corners> [--width n] [--ratio r] [--round #hex] [--outline]'); process.exit(1); }
+if (!input || !output || !cornerArg) { console.error('usage: rectify.mjs <photo> <out> <corners> [--width n] [--ratio r] [--round #hex] [--refine] [--outline]'); process.exit(1); }
 
 const photo = jpeg.decode(readFileSync(input), { useTArray: true, maxMemoryUsageInMB: 4096 });
 const nums = cornerArg.split(',').map(Number);
 const corners = [0, 1, 2, 3].map((i) => [nums[i * 2] * photo.width, nums[i * 2 + 1] * photo.height]);
 const dist = (p, q) => Math.hypot(p[0] - q[0], p[1] - q[1]);
+
+const luma = (x, y) => {
+  const xx = Math.max(0, Math.min(photo.width - 1, Math.round(x))); const yy = Math.max(0, Math.min(photo.height - 1, Math.round(y)));
+  const i = (yy * photo.width + xx) * 4;
+  return [photo.data[i], photo.data[i + 1], photo.data[i + 2]];
+};
+/** Color of the photo averaged over a small patch, so grain and paint texture do not decide where an edge is. */
+const patch = (x, y, r = 3) => {
+  const sum = [0, 0, 0]; let n = 0;
+  for (let dy = -r; dy <= r; dy += 2) for (let dx = -r; dx <= r; dx += 2) { const c = luma(x + dx, y + dy); sum[0] += c[0]; sum[1] += c[1]; sum[2] += c[2]; n++; }
+  return sum.map((v) => v / n);
+};
+
+/** Each side, moved onto the strongest edge near it and straightened; returns the corners where the new sides cross. */
+const refineCorners = (guess) => {
+  const reach = Math.min(photo.width, photo.height) * 0.03;  // how far from the guess an edge is looked for, outside
+  const grace = Math.min(photo.width, photo.height) * 0.012; // and inside
+  const centre = guess.reduce((a, c) => [a[0] + c[0] / 4, a[1] + c[1] / 4], [0, 0]);
+  const lines = [0, 1, 2, 3].map((e) => {
+    const p = guess[e]; const q = guess[(e + 1) % 4];
+    const len = dist(p, q); const d = [(q[0] - p[0]) / len, (q[1] - p[1]) / len];
+    let n = [-d[1], d[0]]; // outward normal
+    const mid = [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+    if ((mid[0] - centre[0]) * n[0] + (mid[1] - centre[1]) * n[1] < 0) n = [-n[0], -n[1]];
+    const points = [];
+    for (let k = 0; k < 80; k++) {
+      const t = 0.12 + 0.76 * k / 79;
+      const base = [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t];
+      let best = null;
+      for (let o = -grace; o <= reach; o += 1) {
+        const at = (off) => patch(base[0] + n[0] * (o + off), base[1] + n[1] * (o + off));
+        const outer = at(4); const inner = at(-4);
+        const g = Math.hypot(outer[0] - inner[0], outer[1] - inner[1], outer[2] - inner[2]);
+        if (!best || g > best.g) best = { g, o };
+      }
+      points.push([base[0] + n[0] * best.o, base[1] + n[1] * best.o, best.o]);
+    }
+    // discard points that sit far from the middle of the others (a pattern edge, a shadow), then fit a line through the rest
+    const offsets = points.map((pt) => pt[2]).sort((a, b) => a - b);
+    const median = offsets[Math.floor(offsets.length / 2)];
+    const kept = points.filter((pt) => Math.abs(pt[2] - median) < Math.min(photo.width, photo.height) * 0.006);
+    const mx = kept.reduce((a, pt) => a + pt[0], 0) / kept.length; const my = kept.reduce((a, pt) => a + pt[1], 0) / kept.length;
+    let sxx = 0; let sxy = 0; let syy = 0;
+    kept.forEach((pt) => { sxx += (pt[0] - mx) ** 2; sxy += (pt[0] - mx) * (pt[1] - my); syy += (pt[1] - my) ** 2; });
+    const angle = 0.5 * Math.atan2(2 * sxy, sxx - syy);
+    console.error(`side ${e}: ${kept.length}/${points.length} edge points, moved ${median.toFixed(1)}px`);
+    return { point: [mx, my], dir: [Math.cos(angle), Math.sin(angle)] };
+  });
+  const cross = (a, b) => {
+    const det = a.dir[0] * -b.dir[1] + a.dir[1] * b.dir[0];
+    const t = ((b.point[0] - a.point[0]) * -b.dir[1] + (b.point[1] - a.point[1]) * b.dir[0]) / det;
+    return [a.point[0] + a.dir[0] * t, a.point[1] + a.dir[1] * t];
+  };
+  return [cross(lines[3], lines[0]), cross(lines[0], lines[1]), cross(lines[1], lines[2]), cross(lines[2], lines[3])];
+};
+if (flags.includes('--refine')) {
+  const refined = refineCorners(corners);
+  // a hair inside the edge it found, so no thread of the sheet survives at the border
+  const centre = refined.reduce((a, c) => [a[0] + c[0] / 4, a[1] + c[1] / 4], [0, 0]);
+  refined.forEach((c, i) => { refined[i] = [c[0] + (centre[0] - c[0]) * 0.004, c[1] + (centre[1] - c[1]) * 0.004]; });
+  refined.forEach((c, i) => { corners[i] = c; });
+  console.error('corners:', refined.map((c) => `${(c[0] / photo.width).toFixed(4)},${(c[1] / photo.height).toFixed(4)}`).join(','));
+}
 
 /** Solves the 8 unknowns of the homography that sends the unit square's corners to `corners` (Gaussian elimination). */
 const homography = (dst) => {

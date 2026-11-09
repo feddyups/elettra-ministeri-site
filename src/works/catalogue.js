@@ -155,9 +155,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     frame: "Hand-painted frame, part of the work",
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/16f86f74-0689-4f01-abbf-ab6e74c21192/carretto-siciliano.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/d0403442-5dd2-4b6c-8c1b-93b9b2388298/carretto-siciliano-v2.jpg",
       width: 2400,
-      height: 1838
+      height: 1845
     },
     alt: "Carretto siciliano: a painted Sicilian cart and a plumed horse inside a hand-painted red and cream frame",
     story: [
@@ -171,9 +171,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     frame: "Hand-painted frame, part of the work",
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/b24cf851-8a21-44da-b979-64eadc4e7fda/pistacchi.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/34d3cfec-6b34-4410-9aee-d191daad4102/pistacchi-v2.jpg",
       width: 2400,
-      height: 1839
+      height: 1833
     },
     alt: "Pistacchi: three pistachios on a blue disc surrounded by a mandala, inside a hand-painted yellow and blue frame",
     story: [
@@ -187,9 +187,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     frame: "Hand-painted frame, part of the work",
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/6bf84f51-f1bd-4981-b04e-9d64726df05d/il-sole.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/3daf7474-cbdc-4815-a08a-1949bf772d23/il-sole-v2.jpg",
       width: 2400,
-      height: 1826
+      height: 1833
     },
     alt: "Il sole: a smiling sun in a blue diamond on a red, orange and green geometric field, inside a hand-painted cream frame with blue and red arches",
     story: [
@@ -202,9 +202,9 @@ export const CATALOGUE = {
     series: "sicily",
     medium: "Acrylic on canvas",
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/22eecdc8-af87-44e7-b95e-0199926da93b/sicily-moor-head.jpgmoor",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cd277713-b540-46f1-9c76-14f249705704/sicily-moor-head-v2.jpg",
       width: 2400,
-      height: 2393
+      height: 2401
     },
     alt: "Testa di moro: a smiling man's head in profile, with a yellow headscarf and a red curl, beside a prickly pear and a red cart wheel inside a ring of red and blue eyes, with lemons in the four corners of a blue and white tiled ground, in a red frame"
   },
@@ -214,9 +214,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     frame: "Hand-painted frame, part of the work",
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/626a3eee-c831-4b10-8dc1-24323143704c/sicily-lilies.jpglilies",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/63077b44-b92a-44af-824e-52d0a57003c3/sicily-lilies-v2.jpg",
       width: 2400,
-      height: 3112
+      height: 3129
     },
     alt: "Woman with lilies: a woman with a crown of roses and long fair hair, in a brown mantle and a pink dress, holding white lilies against a green ground, inside a hand-painted frame of red, green and blue panels with shells and suns"
   },
@@ -225,7 +225,7 @@ export const CATALOGUE = {
     series: "sicily",
     medium: "Painted wood",
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/bcf077ee-0b5e-4602-ac52-cf1b5c769cb3/sicilian-wheel.jpgwheel",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/bcf077ee-0b5e-4602-ac52-cf1b5c769cb3/sicilian-wheel.jpg",
       width: 2000,
       height: 2000
     },
