@@ -11,10 +11,12 @@ const loadStylesheet = () => {
   document.head.appendChild(link);
 };
 
-/** The enquiry form shown inside the drawer's iframe: hide the site chrome and let Escape close the drawer. */
+/** The enquiry form shown inside an iframe (the drawer, or inline on a painting page): hide the site chrome, report its height so an inline frame can fit it, and let Escape close the drawer. */
 const initEmbeddedForm = () => {
   document.documentElement.classList.add('em-embed');
   showEnquiringAbout();
+  const reportHeight = () => window.parent.postMessage({ type: 'em-height', height: document.documentElement.scrollHeight }, location.origin);
+  new ResizeObserver(reportHeight).observe(document.documentElement);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') window.parent.postMessage('em-close', location.origin);
   });
