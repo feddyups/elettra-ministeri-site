@@ -9,7 +9,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Series chapters** – each chapter takes its tone and color swatches from its painting.
 - **Page tone** (each home section carries its own background and text color, and fades in from the color of the section before it as the page scrolls; `--em-tone-fade` sets how far) – the page background and header follow the section in view.
 - **Color map** – each series has one color, used for its section on the home page and for its own page, so the colors work as a map of the site. One config file drives both.
-- **Color infographic** – reusable blocks that show the colors of the work (a hue wheel, the loudest colors, the share of warm and cool, a warm-to-cool map of every painting, and a strip of colors per painting). The same component renders the whole body of work on the About page, one series on each series page, and a compact version on the home page. Every color and painting links to the painting's page.
+- **Color infographic** – reusable blocks that show the colors of the work (a hue wheel, the most saturated colors, the share of warm and cool, a warm-to-cool map of every painting, and a strip of colors per painting). The same component renders the whole body of work on the About page, one series on each series page, and a compact version on the home page. Every color and painting links to the painting's page.
 - **Strips of color** – each painting has a thin strip of its colors under its picture, on its series page and on its own page; pointing at a color turns that picture black and white except where the color lives, and clicking copies its code.
 - **Painting pages** – every painting has its own page (`/paintings/<name>`) with the picture (painted stroke by stroke as it comes into view, like the home hero; click to enlarge) with its strip of colors beneath, its story in the artist's words, the technical details, a story in the artist's words (written by hand in `catalogue.js`), where a work has one, a section on where it comes from, in the artist's voice with linked museum sources (the `context` field; Mask Divine has one), a reading of its colors (point at a color to see where it lives in the picture; click to copy its code), where it sits among all the work, the paintings closest to it in color, the rest of its series, and the enquiry form inline. Each page is one empty placeholder in Squarespace; everything on it comes from `src/works/catalogue.js` and the generated color data.
 - **One theme** – every stylesheet is built on `src/theme/tokens.css`: the colors, type, spacing, shadows and durations are defined once, so changing the look of the site, or adding to it, starts there (see "The theme").
@@ -29,13 +29,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.16/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.17/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.16/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.17/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -49,7 +49,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.16/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.17/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -143,7 +143,7 @@ src/
       palette-bar.js          the main colors, sized by coverage, each linking to a painting
       color-pair.js           the complementary pair the work returns to most
       stat-row.js             warm, green, cool, violet and vivid shares
-      warmth-map.js           every work as a dot, warm to cool and quiet to loud
+      warmth-map.js           every work as a dot, warm to cool and muted to saturated
       work-strips.js          each work as a strip of its colors, linking to the work
   theme/
     buttons.css               glass buttons: the hero and section links, the enquire and repaint buttons

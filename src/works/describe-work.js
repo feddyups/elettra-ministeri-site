@@ -11,17 +11,17 @@ const standouts = (work, peers, seriesLabel) => {
     if (sorted[sorted.length - 1].slug === work.slug) return `the ${low} of the ${seriesLabel} works`;
     return null;
   };
-  return [rank(lean, 'warmest', 'coolest'), rank((w) => w.chroma, 'loudest', 'quietest')].filter(Boolean);
+  return [rank(lean, 'warmest', 'coolest'), rank((w) => w.chroma, 'most saturated', 'most muted')].filter(Boolean);
 };
 
 /** A plain-language reading of a painting's colors, built from its numbers. */
 export const describeWork = (work, peers, seriesLabel) => {
   const names = joinNames(work.palette.slice(0, 3).map(([, name]) => name));
   const temperature = lean(work) >= 40 ? 'warm' : lean(work) <= -25 ? 'cool' : 'balanced';
-  const loudness = work.vivid >= 40 ? 'loud' : work.vivid >= 15 ? 'lively' : 'quiet';
+  const intensity = work.vivid >= 40 ? 'vivid' : work.vivid >= 15 ? 'lively' : 'muted';
   const extra = standouts(work, peers, seriesLabel);
   return {
-    sentence: `Built mostly from ${names}. A ${loudness}, ${temperature} painting: ${work.warm}% warm, ${work.cool + work.violet}% cool, ${work.vivid}% vivid.`,
+    sentence: `Built mostly from ${names}. A ${intensity}, ${temperature} painting: ${work.warm}% warm, ${work.cool + work.violet}% cool, ${work.vivid}% vivid.`,
     standout: extra.length ? `It is ${extra.join(' and ')}.` : null,
   };
 };
