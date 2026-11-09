@@ -332,9 +332,9 @@ export const CATALOGUE = {
     medium: "Acrylic on textured paper",
     size: "32 × 25 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1528638090169-3WYNVACGH7G9O9XEUX92/help.jpg",
-      width: 1000,
-      height: 750
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/50112205-332a-418a-a6ca-d360f2b04d91/archive-help-v2.jpg",
+      width: 2430,
+      height: 1801
     },
     alt: "Help: a red hand and a blue hand reaching towards each other through green jungle leaves, acrylic on textured paper",
     story: [
@@ -349,9 +349,9 @@ export const CATALOGUE = {
     size: "80 × 100 cm",
     year: 2020,
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1656237965944-U8RGHTQWV9TP2Z9NC7FT/03+Messengers+of+Love.jpg",
-      width: 1000,
-      height: 800
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0979d960-fe28-469a-858d-36d96a14375b/archive-messengers-of-love-v2.jpg",
+      width: 2437,
+      height: 1918
     },
     alt: "Messengers of Love: two doves shaped like hands facing each other inside a red heart, with strawberry branches above, acrylic on canvas",
     story: [
@@ -397,9 +397,9 @@ export const CATALOGUE = {
     size: "26 × 20 cm",
     year: 2013,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/d5a7dd26-1194-4a8e-a24f-11499baa0132/archive-lilies.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/e49e5100-045d-4762-b472-9334e270da5e/archive-lilies-v2.jpg",
       width: 2000,
-      height: 2609
+      height: 2600
     },
     alt: "Lilies: two white calla lilies with yellow centers and teal leaves, painted in loose watercolor strokes over a page of an old Italian book"
   },
@@ -410,9 +410,9 @@ export const CATALOGUE = {
     size: "26 × 20 cm",
     year: 2013,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/6dbcf195-0fef-459a-9136-987abc4152d1/archive-lemons.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/33c7c478-7235-41b9-a2b7-2f8cf683bc53/archive-lemons-v2.jpg",
       width: 2000,
-      height: 1520
+      height: 1538
     },
     alt: "Lemons: a whole lemon and a halved one above a band of deep blue, painted in watercolor over a page of an old Italian book"
   },
@@ -423,9 +423,9 @@ export const CATALOGUE = {
     size: "30 × 20.5 cm",
     year: 2020,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/05ae3784-8080-4dde-b51b-3341ccb99eba/archive-cactus-in-the-desert.jpg",
-      width: 2000,
-      height: 3002
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/ee4f529c-89cd-407b-a3d4-e1a96ad7e736/archive-cactus-in-the-desert-v2.jpg",
+      width: 1880,
+      height: 2608
     },
     alt: "Cactus in the desert: a green prickly pear on scaled hills under a large yellow sun with rays of orange, pink and cream"
   },
@@ -436,9 +436,9 @@ export const CATALOGUE = {
     size: "18 × 26.5 cm",
     year: 2020,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/33fd3c9a-6746-4745-9825-87532b5c3847/archive-seahorse.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/05ed3f8e-bb48-4d40-9421-e7e1f132ff9e/archive-seahorse-v2.jpg",
       width: 2000,
-      height: 2868
+      height: 2945
     },
     alt: "Seahorse: a green and yellow seahorse inside a green oval, ringed by green marks, on a ground split between yellow and orange"
   },
@@ -449,9 +449,9 @@ export const CATALOGUE = {
     size: "30 × 21 cm",
     year: 2026,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/3aa8092a-ca54-4921-bad3-e787ff7e5d96/archive-swan-in-a-shell.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/b3bb952b-85ad-40c8-8635-596610254f78/archive-swan-in-a-shell-v2.jpg",
       width: 2000,
-      height: 1394
+      height: 1400
     },
     alt: "Swan inside a shell: a white swan with open wings resting in a teal scalloped shell, on handmade grey-brown paper"
   },
@@ -462,9 +462,9 @@ export const CATALOGUE = {
     size: "30 × 21 cm",
     year: 2026,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/320d4c89-dfdb-415c-b8d9-100281252c6f/archive-rainbow-shell.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/6c571937-4e7d-4825-b59a-404c1fafa518/archive-rainbow-shell-v2.jpg",
       width: 2000,
-      height: 1383
+      height: 1400
     },
     alt: "Rainbow shell: a spiral shell with wide bands of red, ochre, blue, violet and yellow, outlined in black, on handmade grey-brown paper"
   },

@@ -38,8 +38,8 @@ export const WORKS = [
   { id: 'hug-1', anchor: 'amore-e-pandemia-i', title: 'Amore e Pandemia I', series: 'human-figure', onSite: true, catalogue: sent('01 The Hug.png') },
   { id: 'hug-2', anchor: 'amore-e-pandemia-ii', title: 'Amore e Pandemia II', series: 'human-figure', onSite: true, catalogue: sent('02 The Hug.png') },
 
-  { id: 'help', anchor: 'help', title: 'Help', series: 'archive', onSite: true, url: cdn('1528638090169-3WYNVACGH7G9O9XEUX92/help.jpg') },
-  { id: 'messengers', anchor: 'messengers-of-love', title: 'Messengers of Love', series: 'archive', onSite: true, catalogue: sent('03 Messengers of Love.png') },
+  { id: 'help', anchor: 'help', title: 'Help', series: 'archive', onSite: true, catalogue: 'rectified/archive-help.jpg' },
+  { id: 'messengers', anchor: 'messengers-of-love', title: 'Messengers of Love', series: 'archive', onSite: true, catalogue: 'rectified/archive-messengers-of-love.jpg' },
 
   { id: 'keep-looking-up', anchor: 'keep-looking-up', title: 'Keep looking up', series: 'human-figure', onSite: true, catalogue: sent('10 Keep looking up.png') },
   { id: 'raining-flowers', anchor: 'hes-raining-flowers', title: "He's raining Flowers", series: 'human-figure', onSite: true, catalogue: sent("11 He's raining Flowers.png") },
