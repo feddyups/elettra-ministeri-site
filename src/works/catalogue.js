@@ -12,9 +12,9 @@ export const CATALOGUE = {
     size: "100 × 50 cm",
     year: 2020,
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1661718213586-IY1YAQJHTLOTSGYWKJV6/main.jpg",
-      width: 1000,
-      height: 505
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/80fe7bd2-f0e7-4ff0-b22b-bd5f5e4a1750/mediterranean-lighthouses.jpg",
+      width: 2476,
+      height: 1242
     },
     alt: "Lighthouses in the open sea: red and white lighthouses among bright green, blue and orange waves, acrylic on canvas",
     story: [
@@ -28,9 +28,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "60 × 60 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1528638173689-P8T0RMNYOWAKAER05R02/wave.jpg",
-      width: 1000,
-      height: 1000
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0b1d1e51-8576-4b9e-a2c5-99787967a690/mediterranean-wave.jpg",
+      width: 2404,
+      height: 2407
     },
     alt: "Wave: a patterned blue wave above a shoal of colorful fish and jellyfish, acrylic on canvas",
     story: [
@@ -44,9 +44,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "80 × 80 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1528637939887-YJZX423ATYQ6OB9W65L4/flow.jpg",
-      width: 1000,
-      height: 1000
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0d0224e8-438d-487a-8a13-f381c7c6a4d7/mediterranean-flow.jpg",
+      width: 2474,
+      height: 2476
     },
     alt: "Flow: a red seahorse among shells and swirling currents on a green ground, acrylic on canvas",
     story: [
@@ -60,9 +60,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "40 × 60 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/f91235b4-3558-4730-acf4-fd999724c8e3/pomegranates.jpg",
-      width: 1000,
-      height: 667
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/ee822018-8643-4294-bfc5-2e4d34ec1c35/mediterranean-pomegranates.jpg",
+      width: 2476,
+      height: 1634
     },
     alt: "Pomegranates: a cut pomegranate and a whole one beside a blue bowl on a table, with soft clouds behind, acrylic on canvas",
     story: [
@@ -76,9 +76,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "40 × 30 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1528638232839-OQIJ0LNO8CM609E5DQT3/fish_fit.jpg",
-      width: 1000,
-      height: 750
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/54bf4da4-8e49-48d0-8b7c-312a76934e89/mediterranean-fishfit.jpg",
+      width: 2424,
+      height: 1815
     },
     alt: "FishFit: patterned fish in pink, green and blue swimming in a dark starry sea, acrylic on canvas",
     story: [

@@ -38,7 +38,7 @@ const SITE = '596fbc34c534a5fa937bd9bf';
  * the color infographic uses both to name and link each series.
  */
 export const SERIES = {
-  mediterranean: { label: 'Mediterranean', cover: `${IMG}/v1/${SITE}/1528638173689-P8T0RMNYOWAKAER05R02/wave.jpg?format=1500w`, bg: 'rgb(0,64,89)' },
+  mediterranean: { label: 'Mediterranean', cover: `${IMG}/v1/${SITE}/0b1d1e51-8576-4b9e-a2c5-99787967a690/mediterranean-wave.jpg?format=1500w`, bg: 'rgb(0,64,89)' },
   maternity: { label: 'Maternity', cover: `${IMG}/v1/${SITE}/9973033c-2b50-4c30-8ff6-89088a5f9c7b/maternity+II.jpg?format=1500w`, bg: 'rgb(94,27,19)' },
   sicily: { label: 'Sicily', cover: `${IMG}/${SITE}/d0403442-5dd2-4b6c-8c1b-93b9b2388298/carretto-siciliano-v2.jpg?format=1500w`, bg: 'rgb(94,67,0)' },
   'human-figure': { label: 'Human figure', cover: `${IMG}/v1/${SITE}/1661720261897-CK1FYNCF1NS8AKUMLYKD/The+Hug+series.jpg?format=1500w`, bg: 'rgb(24,41,105)' },

@@ -18,10 +18,10 @@ const sent = (file) => `sent/png/${file}`;
 
 export const WORKS = [
   { id: 'lighthouses', anchor: 'lighthouses', title: 'Lighthouses in the open sea', series: 'mediterranean', onSite: true, catalogue: sent('14 Lighthouses in the open sea.png') },
-  { id: 'wave', anchor: 'wave', title: 'Wave', series: 'mediterranean', onSite: true, url: cdn('1528638173689-P8T0RMNYOWAKAER05R02/wave.jpg') },
+  { id: 'wave', anchor: 'wave', title: 'Wave', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-wave.jpg' },
   { id: 'flow', anchor: 'flow', title: 'Flow', series: 'mediterranean', onSite: true, catalogue: sent('07 Wave Flow Motion.png') },
   { id: 'pomegranates', anchor: 'pomegranates', title: 'Pomegranates', series: 'mediterranean', onSite: true, catalogue: sent('04 Pomenegrates.png') },
-  { id: 'fishfit', anchor: 'fishfit', title: 'FishFit', series: 'mediterranean', onSite: true, url: cdn('1528638232839-OQIJ0LNO8CM609E5DQT3/fish_fit.jpg') },
+  { id: 'fishfit', anchor: 'fishfit', title: 'FishFit', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-fishfit.jpg' },
 
   { id: 'maternity-1', anchor: 'maternity-i', title: 'Maternity I', series: 'maternity', onSite: true, catalogue: sent('05 Maternity I.png') },
   { id: 'maternity-2', anchor: 'maternity-ii', title: 'Maternity II', series: 'maternity', onSite: true, catalogue: sent('06 Maternity II.png') },
