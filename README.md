@@ -32,9 +32,9 @@ Site-wide Code Injection, Footer (enquiry drawer):
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.2/src/themes/tones.generated.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.2/src/themes/series-theme.css">
-<script src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.2/src/themes/series-attr.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.3/src/themes/tones.generated.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.3/src/themes/series-theme.css">
+<script src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.7.3/src/themes/series-attr.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:

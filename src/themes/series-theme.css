@@ -35,6 +35,11 @@ html[data-series] .header-burger-btn .burger-inner > div {
   background-color: var(--em-ink) !important;
 }
 
+/* The small arrow beside a menu entry that opens a list */
+html[data-series] .header-dropdown-icon svg {
+  stroke: var(--em-ink) !important;
+}
+
 /* The Previous / Next links at the bottom of the page */
 html[data-series] .item-pagination-prev-next {
   color: var(--em-muted) !important;
