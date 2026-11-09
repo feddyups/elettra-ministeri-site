@@ -12,10 +12,10 @@
  *   em-hdr-ink    the page behind is light, so the pill's lights are bright and its shadows warm
  */
 :root {
-  --em-header-blur: blur(22px) saturate(1.6);
+  --em-header-blur: var(--em-glass-blur);
   --em-header-gap: 0.625rem 1.25rem;       /* the pill's margin: above and below, left and right */
   --em-header-pad: 0.875rem 2rem;          /* the pill's padding */
-  --em-header-tint: 0.62;                  /* how much of the page color tints the pill */
+  --em-header-tint: 0.4;                   /* how much of the page color tints the pill */
 }
 
 html {
@@ -73,17 +73,26 @@ html.em-scrolled #header .header-inner {
   margin: var(--em-header-gap);
   padding: var(--em-header-pad) !important;
   border-radius: var(--em-radius-panel);
-  box-shadow:
-    14px 14px 34px -16px var(--glass-lo),
-    -12px -12px 28px -14px var(--glass-hi),
-    inset 1px 1px 2px var(--glass-hi),
-    inset -1px -1px 2px var(--glass-lo);
 }
+/* the tint is thin, so the page shows through the blur; the glass material (sheen, lit lips, glow, drop shadow) sits on top of it */
 html.em-scrolled #header .header-inner::before {
   opacity: var(--glass-op);
   -webkit-backdrop-filter: var(--em-header-blur);
   backdrop-filter: var(--em-header-blur);
 }
+html #header .header-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--em-glass-fill);
+  box-shadow: var(--em-glass-shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+html.em-scrolled #header .header-inner::after { opacity: 1; }
 
 /*
  * A backdrop blur on the pill itself would make the pill a boundary that the dropdown inside it cannot see past: the
@@ -96,5 +105,6 @@ html.em-scrolled #header .header-inner {
 
 @media (prefers-reduced-motion: reduce) {
   html #header .header-inner,
-  html #header .header-inner::before { transition: none; }
+  html #header .header-inner::before,
+  html #header .header-inner::after { transition: none; }
 }
