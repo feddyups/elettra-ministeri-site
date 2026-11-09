@@ -37,6 +37,7 @@ const show = (event) => {
   tip.replaceChildren(h('b', null, lines[0]), ...lines.slice(1).map((text) => h('span', null, text)));
   current = strip;
   place(strip);
+  requestAnimationFrame(() => current === strip && place(strip));
   tip.classList.add('is-visible');
 };
 
