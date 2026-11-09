@@ -165,6 +165,7 @@ src/
     build-tones.mjs           generates the two tones.generated files
     build-atlas.mjs           generates atlas.generated.js from the catalogue images
     analyze-palette.mjs       prints and saves the full color analysis
+    rectify.mjs               straightens a photo of a painting: its four corners become a flat rectangle cropped at the frame
     palette/                  the analysis: works.config.mjs, k-means clustering, image decoding
   pages/
     scrivo.css                the standalone postcards page: a centered card (the page shows the site header)
