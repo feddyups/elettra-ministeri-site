@@ -25,6 +25,6 @@ export const renderWorkColors = ({ host, work, scope, series }) => {
       renderWarmthMap(scope)),
     h('div', { class: 'wp-similar' },
       h('p', { class: 'ca-label' }, 'Close in color'),
-      h('div', { class: 'ca-strips' }, similar.map((other) => h('a', { class: 'ca-strip', href: other.href, title: other.title, 'aria-label': other.title },
-        other.palette.map(([hex, name, share]) => h('i', { style: { '--share': share, '--color': hex }, title: name })))))));
+      h('div', { class: 'ca-strips' }, similar.map((other) => h('a', { class: 'ca-strip', href: other.href, 'aria-label': other.title },
+        other.palette.map(([hex, name, share]) => h('i', { style: { '--share': share, '--color': hex }, 'data-name': name })))))));
 };

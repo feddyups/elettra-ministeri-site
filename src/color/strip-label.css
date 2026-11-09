@@ -1,0 +1,26 @@
+@import url('../theme/tokens.css');
+
+/* The label that names a strip of color (see strip-label.js): a small glass tag that adapts its ink to the glass. */
+.em-strip-label {
+  position: fixed;
+  z-index: var(--em-z-overlay);
+  display: grid;
+  gap: var(--em-space-3xs);
+  max-width: min(20rem, calc(100vw - var(--em-space-xl)));
+  padding: var(--em-space-xs) var(--em-space-s);
+  border-radius: var(--em-radius-item);
+  background: var(--em-glass-fill), color-mix(in srgb, var(--em-night) 55%, transparent);
+  -webkit-backdrop-filter: var(--em-glass-blur);
+  backdrop-filter: var(--em-glass-blur);
+  box-shadow: var(--em-glass-shadow);
+  color: var(--em-glass-ink);
+  font: var(--em-weight-regular) var(--em-text-xs) / var(--em-leading-tight) var(--em-font-sans);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--em-duration-quick) var(--em-ease);
+}
+.em-strip-label.is-visible { opacity: 1; }
+.em-strip-label b { font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; }
+.em-strip-label span { color: color-mix(in srgb, currentColor 75%, transparent); }
+
+@media (prefers-reduced-motion: reduce) { .em-strip-label { transition: none; } }

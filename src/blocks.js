@@ -9,4 +9,5 @@ import './theme/header.js';
 import './menu/active.js';
 import './menu/links.js';
 import './color/main.js';
+import './color/strip-label.js';
 import './works/main.js';

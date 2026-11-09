@@ -196,8 +196,6 @@ html .ca-strip:focus-visible { transform: translateY(var(--ca-lift)); }
 html .ca .ca-more { margin: var(--em-space-xl) 0 0; }
 html .ca-more a { padding-bottom: var(--em-space-2xs); border-bottom: var(--em-hairline) solid currentColor; font-size: var(--em-text-xs); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }
 
-html .ca .ca-caption { min-height: 1.5em; margin: var(--em-space-l) 0 0; font-size: var(--em-text-md); color: var(--ca-muted); }
-
 @media (max-width: 56.25em) {
   .ca-top { grid-template-columns: minmax(0, 1fr); }
   .ca-wheel { margin: 0 auto; }

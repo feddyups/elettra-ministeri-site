@@ -41,7 +41,6 @@ export const initAtlas = (host) => {
 
   const { kicker, title, lede } = heading(scope);
   const more = host.dataset.moreHref && h('p', { class: 'ca-more' }, h('a', { href: host.dataset.moreHref }, host.dataset.moreLabel || 'Explore all of my colors'));
-  const caption = h('p', { class: 'ca-caption', 'aria-live': 'polite' });
   const top = [
     wanted.has('wheel') && renderHueWheel(scope),
     TOP_BLOCKS.slice(1).some((name) => wanted.has(name)) && h('div', { class: 'ca-side' },
@@ -55,16 +54,6 @@ export const initAtlas = (host) => {
     top.length > 0 && h('div', { class: 'ca-top' }, top),
     wanted.has('map') && section('Warm to cool, quiet to loud', renderWarmthMap(scope), h('p', { class: 'ca-note' }, 'Each dot is one work, ringed in its series color. The further right, the warmer; the higher, the more saturated.')),
     wanted.has('strips') && section(scope.id === 'all' ? 'Every work, as a strip of its colors' : 'Each work, as a strip of its colors', renderWorkStrips(scope)),
-    caption,
     more,
   ].filter(Boolean));
-
-  const describe = (event) => {
-    const target = event.target.closest && event.target.closest('[data-work]');
-    const work = target && scope.universe.find((w) => w.id === target.dataset.work);
-    caption.textContent = work ? `${work.title} · ${work.warm}% warm · ${work.vivid}% vivid` : '';
-  };
-  host.addEventListener('pointerover', describe);
-  host.addEventListener('focusin', describe);
-  host.addEventListener('pointerleave', () => { caption.textContent = ''; });
 };

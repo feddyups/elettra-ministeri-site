@@ -1,7 +1,7 @@
 import { h } from '../lib/elements.js';
 
-const strip = (work, current) => h('a', { class: current ? 'ca-strip is-current' : 'ca-strip', href: work.href, title: work.title, 'aria-label': work.title, 'aria-current': current ? 'page' : false },
-  work.palette.map(([hex, name, share]) => h('i', { style: { '--share': share, '--color': hex }, title: name })));
+const strip = (work, current) => h('a', { class: current ? 'ca-strip is-current' : 'ca-strip', href: work.href, 'aria-label': work.title, 'aria-current': current ? 'page' : false },
+  work.palette.map(([hex, name, share]) => h('i', { style: { '--share': share, '--color': hex }, 'data-name': name })));
 
 /** The rest of the series as strips of color, with the way to the previous and next painting. */
 export const renderWorkSeriesNav = (work, series) => {
