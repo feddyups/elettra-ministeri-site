@@ -5,4 +5,5 @@ export const TONES = {
   'sicily': { bg: 'rgb(20,63,74)', fg: '#faf8f5' },
   'human-figure': { bg: 'rgb(1,57,84)', fg: '#faf8f5' },
   'archive': { bg: 'rgb(96,28,19)', fg: '#faf8f5' },
+  'textiles': { bg: 'rgb(101,72,16)', fg: '#faf8f5' },
 };

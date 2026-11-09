@@ -28,4 +28,5 @@ export const SERIES = {
   sicily: { cover: `${IMG}/${SITE}/8b291fd7-893e-4537-b1e8-9aa92c587177/carretto.jpg?format=1500w`, bg: 'rgb(20,63,74)' },
   'human-figure': { cover: `${IMG}/v1/${SITE}/1661720261897-CK1FYNCF1NS8AKUMLYKD/The+Hug+series.jpg?format=1500w` },
   archive: { cover: `${IMG}/v1/${SITE}/1528638090169-3WYNVACGH7G9O9XEUX92/help.jpg?format=1500w`, bg: 'rgb(96,28,19)' },
+  textiles: { cover: `${IMG}/${SITE}/7dca847c-fdb9-4619-8b03-e8f6fcb84afa/textile-mask.jpg?format=1500w` },
 };

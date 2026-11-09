@@ -34,3 +34,10 @@ html[data-series="archive"] {
   --series-line: rgba(250,248,245,0.22);
   --series-body: rgba(250,248,245,0.88);
 }
+html[data-series="textiles"] {
+  --series-bg: rgb(101,72,16);
+  --series-fg: #faf8f5;
+  --series-muted: rgba(250,248,245,0.78);
+  --series-line: rgba(250,248,245,0.22);
+  --series-body: rgba(250,248,245,0.88);
+}
