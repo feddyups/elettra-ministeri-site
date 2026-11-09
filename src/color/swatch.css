@@ -23,7 +23,8 @@ canvas.em-focus {
   pointer-events: none;
   transition: opacity var(--em-duration-base) var(--em-ease);
 }
-canvas.em-focus.is-on { opacity: 1; }
+/* !important: a page may fade the canvases inside a picture's frame (the home sections do); the focus must still show */
+canvas.em-focus.is-on { opacity: 1 !important; }
 
 @media (prefers-reduced-motion: reduce) {
   canvas.em-focus { transition: none; }

@@ -27,10 +27,10 @@ const colorsFor = (work, img) => {
  */
 export const renderColorSamples = (container, { root, canvas, image }, work) => {
   container.querySelectorAll('button').forEach((button) => button.remove());
-  let overlay = root.querySelector('canvas.em-focus');
+  let overlay = root.querySelector('canvas.em-focus'); // above the image, so it works once the real picture shows as well as while it is painted
   if (!overlay) {
     overlay = h('canvas', { class: 'em-focus', 'aria-hidden': 'true' });
-    canvas.after(overlay);
+    image.after(overlay);
   }
   overlay.classList.remove('is-on');
 
