@@ -1,4 +1,5 @@
 import { paintImage } from '../../paint/paint-image.js';
+import { PAINT } from '../../paint/config.js';
 import { prefersReducedMotion } from '../../lib/motion.js';
 import { WORKS } from './works.js';
 import { createSlideshowControls } from './slideshow-controls.js';
@@ -44,7 +45,7 @@ export const initHero = (root) => {
   let timeLeft = CYCLE_MS;
   let scheduledAt = 0;
 
-  const controls = createSlideshowControls(root, WORKS, { cycleMs: CYCLE_MS, onSelect: (index) => show(index) });
+  const controls = createSlideshowControls(root, WORKS, { paintMs: PAINT.durationMs, cycleMs: CYCLE_MS, onSelect: (index) => show(index) });
 
   const paint = () => {
     root.classList.remove('done', 'titled');
@@ -92,7 +93,7 @@ export const initHero = (root) => {
   const resume = () => {
     if (!paused) return;
     paused = false;
-    controls.resumeProgress(timeLeft);
+    controls.resumeProgress();
     schedule(timeLeft);
   };
 
