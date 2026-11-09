@@ -40,7 +40,7 @@ export const renderWorkHero = (info, work, series) => {
       h('a', { class: 'wp-kicker', href: series.path }, `${series.label} ›`),
       h('h1', null, info.title),
       h('p', { class: 'wp-facts' }, facts),
-      h('a', { class: 'wp-cta', href: '#enquire' }, 'Enquire about this painting')));
+      h('a', { class: 'wp-cta', href: '#enquire' }, 'Enquire about this work')));
 
   return { element, showColor: (index) => (index == null ? focus.hide() : focus.show(index)) };
 };
