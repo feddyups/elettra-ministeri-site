@@ -77,8 +77,9 @@
   /* Shape and lines */
   --em-radius-sm: 0.125rem;
   --em-radius-pill: 6.25rem;
-  --em-radius-panel: 1.625rem;
-  --em-radius-item: 1rem;
+  --em-radius-control: 0.75rem;
+  --em-radius-panel: 1.25rem;
+  --em-radius-item: 0.625rem;
   --em-hairline: 1px;
   --em-stroke: 2px;
   --em-stroke-heavy: 3px;

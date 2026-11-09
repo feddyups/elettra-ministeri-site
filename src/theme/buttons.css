@@ -1,7 +1,7 @@
 @import url('./tokens.css');
 
 /*
- * Buttons are glass pills (see the glass tokens in tokens.css): translucent, blurred, with a bright thin edge, and
+ * Buttons are glass controls (see the glass tokens in tokens.css): translucent, blurred, with a bright thin edge, and
  * with a tint and text color that follow the surface they sit on (data-glass). The hero's "View ..." link, the
  * links of every home section, the enquire button and the repaint buttons all use it. The selectors are strong on
  * purpose: the site's older button rules would otherwise win.
@@ -15,7 +15,7 @@ html .wp button.wp-repaint {
   justify-content: center;
   padding: var(--em-space-m) var(--em-space-xl) !important;
   border: 0 !important;
-  border-radius: var(--em-radius-pill) !important;
+  border-radius: var(--em-radius-control) !important;
   background: var(--em-glass-fill) !important;
   -webkit-backdrop-filter: var(--em-glass-blur);
   backdrop-filter: var(--em-glass-blur);
