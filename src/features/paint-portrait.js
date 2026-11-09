@@ -12,10 +12,12 @@ const GIVE_UP_MS = 9000;
 /**
  * On the pages listed above, the picture in each Squarespace image block is painted stroke by stroke the first time
  * it scrolls into view (the effect of the home hero and the painting pages), then the real photograph shows.
- * Visitors who prefer reduced motion, or whose browser cannot read the image, simply see the photograph.
+ * The portrait is not a link either. Visitors who prefer reduced motion, or whose browser cannot read the image, simply see the photograph.
  */
 const paintBlockImage = (img) => {
   const host = img.parentElement;
+  const link = img.closest('a[href]');
+  if (link) link.removeAttribute('href'); // the picture is a portrait to look at, not a way to another site
   const base = (img.currentSrc || img.src).split('?')[0];
   const canvas = h('canvas', { class: 'em-portrait-paint', 'aria-hidden': 'true' });
   host.append(canvas);
