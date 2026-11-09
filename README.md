@@ -4,7 +4,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 
 ## What it does
 
-- **Painting effect** – the home hero repaints each work stroke by stroke (leaves, pills and dots that follow the contours of the painting), then glazes the real image over the canvas so the last frame is the picture itself.
+- **Painting effect** – the home hero repaints each work stroke by stroke (leaves, pills and dots that follow the contours of the painting), then lays soft patches of the real image across the canvas and eases a uniform glaze in over the top, so the last frame is the picture itself.
 - **Hero slideshow** – cycles through the works, with dots to jump to one and a thin line showing the time left on the current slide.
 - **Series chapters** – each chapter takes its tone and colour swatches from its painting.
 - **Page tone** – the page background and header follow the section in view.
@@ -17,7 +17,7 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.2.0/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.3.0/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
@@ -26,7 +26,7 @@ Site-wide Code Injection, Footer (enquiry drawer):
 <script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.1.0/src/enquiry/main.js"></script>
 ```
 
-Always pin a release tag (for example `@v1.2.0`). `@main` is cached by jsDelivr for hours, so a tag is the only way to know which code the site runs. To roll out a change: commit, tag a new version, and change the version in that line. To roll back, put the old version back.
+Always pin a release tag (for example `@v1.3.0`). `@main` is cached by jsDelivr for hours, so a tag is the only way to know which code the site runs. To roll out a change: commit, tag a new version, and change the version in that line. To roll back, put the old version back.
 
 ## Layout
 
@@ -45,6 +45,7 @@ src/
     flow-field.js             contour directions for strokes to follow
     brush-hand.js             where, how big and which way the next mark goes
     shapes.js                 leaf, pill and dot marks
+    reveal.js                 soft patches of the real image laid across the canvas
   features/
     hero/
       hero.js                 the slideshow
@@ -63,7 +64,7 @@ src/
 `paintImage` knows nothing about the page, so any page can import it:
 
 ```js
-import { paintImage } from 'https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.2.0/src/paint/paint-image.js';
+import { paintImage } from 'https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.3.0/src/paint/paint-image.js';
 ```
 
 ## Expected markup
