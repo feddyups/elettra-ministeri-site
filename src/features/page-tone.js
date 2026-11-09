@@ -1,3 +1,5 @@
+import { glassFor } from '../theme/glass.js';
+
 const html = document.documentElement;
 const INK = '#1c1a18';
 const PAPER = '#faf8f5';
@@ -36,6 +38,8 @@ export const paintSection = (section) => {
   // text inside the section that is colored from the page-wide tone follows the section's own instead
   section.style.setProperty('--eh-bg', background);
   section.style.setProperty('--eh-fg', foreground);
+  // glass inside the section (buttons, labels) adapts to the section's own surface
+  section.setAttribute('data-glass', glassFor(foreground));
 };
 
 const toneObserver = new IntersectionObserver((entries) => {

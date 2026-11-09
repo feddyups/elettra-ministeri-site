@@ -16,7 +16,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Color focus** – pointing at a color (with a soft, configurable reach: neighboring shades keep part of their color and the edge fades; see `src/color/focus-config.js`) (a hero tile, a chip on a home section, or a color on a painting page) turns the rest of the picture black and white, leaving only that color's cluster in color, so you can see where a color lives.
 - **Copyable colors** – every swatch (the hero's tiles, the chips on each home chapter, a painting page's colors) is one reusable component: it shows the color's name, copies its hex code when clicked, and uses the same analysed palette as the infographic. It carries its data in the page and announces what people look at and take, so colors can be gathered for further analysis (see "Gathering colors").
 - **Color names** – colors are named the way a painter would (vermilion, ochre, bottle green) everywhere they are shown, from one list in `src/lib/color-science.js`.
-- **Glass** – floating surfaces (the Paintings dropdown, the rail's labels) share one material in the theme: a blurred, saturated view of what is behind, a faint gradient, a bright thin edge and a soft drop, with a tint and text color that adapt to a light or dark surface, so it looks right on any background.
+- **Glass** – floating surfaces and buttons (the Paintings dropdown, the rail's labels, every "View ..." and enquire button) share one material in the theme: a blurred, saturated view of what is behind, a faint gradient, a bright thin edge and a soft drop, with a tint and text color that adapt to a light or dark surface, so it looks right on any background. A home section sets `data-glass` from its own text color, so glass in a cream section is light and in a dark one is dark.
 - **Section rail** – a slim vertical rail on the home page, one tick per section: pointing at it names the sections, the current one is highlighted and choosing one scrolls to it smoothly (`data-rail="Name"` on a section names or includes it).
 - **Artist video** – the video in the home page's artist section shows a cover image with a play button; the YouTube player loads only when the visitor presses play.
 - **Postcards page** – the standalone "Scrivo una cartolina" landing page gets a link back to the home page and a centered text card.
@@ -29,13 +29,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.19.0/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.20.0/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.19.0/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.20.0/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -49,7 +49,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.19.0/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.20.0/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -141,6 +141,7 @@ src/
       warmth-map.js           every work as a dot, warm to cool and quiet to loud
       work-strips.js          each work as a strip of its colors, linking to the work
   theme/
+    buttons.css               glass-pill buttons: the hero and section links, the enquire and repaint buttons
     glass.js                  senses a light or dark surface behind the glass (html[data-glass])
     menu.css                  the header menu: its order (named numbers at the top), spacing and the Paintings dropdown
     tokens.css                THE THEME: colors, type, spacing, shadows, motion and layout, in three layers

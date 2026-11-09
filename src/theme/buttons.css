@@ -1,0 +1,58 @@
+@import url('./tokens.css');
+
+/*
+ * Buttons are glass pills (see the glass tokens in tokens.css): translucent, blurred, with a bright thin edge, and
+ * with a tint and text color that follow the surface they sit on (data-glass). The hero's "View ..." link, the
+ * links of every home section, the enquire button and the repaint buttons all use it. The selectors are strong on
+ * purpose: the site's older button rules would otherwise win.
+ */
+html .em-home a.btn,
+html .em-home button.replay,
+html .wp a.wp-cta,
+html .wp button.wp-repaint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--em-space-m) var(--em-space-xl) !important;
+  border: 0 !important;
+  border-radius: var(--em-radius-pill) !important;
+  background: var(--em-glass-fill) !important;
+  -webkit-backdrop-filter: var(--em-glass-blur);
+  backdrop-filter: var(--em-glass-blur);
+  box-shadow: var(--em-glass-shadow) !important;
+  color: var(--em-glass-ink) !important;
+  text-decoration: none;
+  transition: transform var(--em-duration-quick) var(--em-ease), background var(--em-duration-quick) var(--em-ease);
+}
+html .em-home button.replay,
+html .wp button.wp-repaint { padding: var(--em-space-xs) var(--em-space-m) !important; }
+
+html .em-home a.btn:hover,
+html .em-home a.btn:focus-visible,
+html .em-home button.replay:hover,
+html .em-home button.replay:focus-visible,
+html .wp a.wp-cta:hover,
+html .wp a.wp-cta:focus-visible,
+html .wp button.wp-repaint:hover,
+html .wp button.wp-repaint:focus-visible {
+  background: linear-gradient(var(--em-glass-press), var(--em-glass-press)), var(--em-glass-fill) !important;
+  color: var(--em-glass-ink) !important;
+  transform: translateY(calc(var(--em-stroke) * -1));
+}
+html .em-home a.btn:active,
+html .em-home button.replay:active,
+html .wp a.wp-cta:active,
+html .wp button.wp-repaint:active { transform: scale(0.98); }
+html .em-home a.btn:focus-visible,
+html .em-home button.replay:focus-visible,
+html .wp a.wp-cta:focus-visible,
+html .wp button.wp-repaint:focus-visible { outline: var(--em-stroke) solid var(--em-glass-ink); outline-offset: var(--em-space-2xs); }
+
+@media (prefers-reduced-motion: reduce) {
+  html .em-home a.btn,
+  html .em-home button.replay,
+  html .wp a.wp-cta,
+  html .wp button.wp-repaint { transition: none; }
+  html .em-home a.btn:hover,
+  html .wp a.wp-cta:hover { transform: none; }
+}

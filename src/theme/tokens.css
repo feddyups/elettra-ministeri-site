@@ -134,8 +134,8 @@
   --em-plate-padding: clamp(var(--em-space-l), 5vw, var(--em-space-4xl));
 }
 
-/* over a light surface the glass is brighter and its text is dark */
-html[data-glass="light"] {
+/* over a light surface the glass is brighter and its text is dark; data-glass can be set on any element (a section, the page) */
+[data-glass="light"] {
   --em-glass-hi: rgb(255 255 255 / 0.7);
   --em-glass-lo: rgb(255 255 255 / 0.4);
   --em-glass-ink: var(--em-ink-strong);
@@ -143,4 +143,14 @@ html[data-glass="light"] {
   --em-glass-edge-soft: rgb(255 255 255 / 0.6);
   --em-glass-drop: rgb(0 0 0 / 0.22);
   --em-glass-press: rgb(0 0 0 / 0.07);
+}
+
+[data-glass="dark"] {
+  --em-glass-hi: rgb(255 255 255 / 0.2);
+  --em-glass-lo: rgb(255 255 255 / 0.06);
+  --em-glass-ink: var(--em-paper);
+  --em-glass-edge: rgb(255 255 255 / 0.5);
+  --em-glass-edge-soft: rgb(255 255 255 / 0.12);
+  --em-glass-drop: rgb(0 0 0 / 0.4);
+  --em-glass-press: rgb(255 255 255 / 0.16);
 }

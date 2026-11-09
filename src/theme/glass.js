@@ -17,6 +17,9 @@ const luminance = (css) => {
   return 0.2126 * channel(1) + 0.7152 * channel(3) + 0.0722 * channel(5);
 };
 
+/** 'dark' for a surface that carries light text, otherwise 'light': the value for a `data-glass` attribute. */
+export const glassFor = (textColor) => (luminance(textColor) > 0.5 ? 'dark' : 'light');
+
 const sense = () => {
   const style = getComputedStyle(root);
   const text = style.getPropertyValue('--eh-fg').trim();
