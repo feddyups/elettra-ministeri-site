@@ -19,7 +19,14 @@ html .ca {
   box-sizing: border-box;
   margin: clamp(56px, 8vw, 112px) 0 0;
   color: var(--ca-ink);
+  font: 400 16px/1.6 "Jost", system-ui, sans-serif;
+  letter-spacing: normal;
+  text-transform: none;
 }
+
+/* The page around the infographic may style paragraphs and headings (the home intro does); start from a clean slate. */
+html .ca p,
+html .ca h2 { margin: 0; max-width: none; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
 
 html .ca[data-surface="plate"] {
   --ca-ink: #faf8f5;
@@ -46,7 +53,7 @@ html .ca *::after { box-sizing: border-box; }
 html .ca a { color: inherit; text-decoration: none; border: 0; }
 html .ca a:focus-visible { outline: 2px solid var(--ca-ink); outline-offset: 3px; }
 
-.ca-label {
+html .ca .ca-label {
   margin: 0 0 18px;
   font-size: 12px;
   font-weight: 500;
@@ -56,7 +63,7 @@ html .ca a:focus-visible { outline: 2px solid var(--ca-ink); outline-offset: 3px
   color: var(--ca-muted);
 }
 
-.ca-head h2 {
+html .ca .ca-head h2 {
   margin: 0 0 20px;
   font-family: var(--ca-serif);
   font-size: clamp(40px, 5vw, 76px);
@@ -66,7 +73,7 @@ html .ca a:focus-visible { outline: 2px solid var(--ca-ink); outline-offset: 3px
   color: var(--ca-ink);
 }
 
-.ca-lede {
+html .ca .ca-lede {
   max-width: 54ch;
   margin: 0 0 clamp(36px, 5vw, 64px);
   font-size: 18px;
@@ -129,8 +136,8 @@ html .ca-swatch:focus-visible { transform: translateY(-6px); }
 .ca-dots { display: flex; flex: none; }
 .ca-dots i { display: block; width: 52px; height: 52px; border-radius: 50%; }
 .ca-dots i + i { margin-left: -18px; box-shadow: -5px 0 0 var(--em-bg, #14110f); }
-.ca-pair p { margin: 0; color: var(--ca-muted); }
-.ca-pair b { font-weight: 500; color: var(--ca-ink); }
+html .ca .ca-pair p { margin: 0; color: var(--ca-muted); }
+html .ca .ca-pair b { font-weight: 500; color: var(--ca-ink); }
 
 /* stats */
 .ca-stats { display: flex; flex-wrap: wrap; gap: 20px 24px; margin: 32px 0 0; }
@@ -149,7 +156,7 @@ html .ca-swatch:focus-visible { transform: translateY(-6px); }
 .ca-dot:focus-visible { transform: scale(1.18); }
 .ca-dot.is-dim { opacity: 0.22; pointer-events: none; }
 .ca-dot-label { font-size: 12px; fill: var(--ca-ink); }
-.ca-note { max-width: 60ch; margin: 14px 0 0; font-size: 14px; color: var(--ca-muted); }
+html .ca .ca-note { max-width: 60ch; margin: 14px 0 0; font-size: 14px; color: var(--ca-muted); }
 
 /* strips */
 .ca-rows { display: grid; gap: 22px; }
@@ -172,10 +179,10 @@ html .ca-strip:hover,
 html .ca-strip:focus-visible { transform: translateY(-6px); }
 .ca-strip i { display: block; flex: var(--share); background: var(--color); }
 
-.ca-more { margin: 36px 0 0; }
+html .ca .ca-more { margin: 36px 0 0; }
 html .ca-more a { font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 4px; }
 
-.ca-caption { min-height: 1.5em; margin: 28px 0 0; font-size: 14px; color: var(--ca-muted); }
+html .ca .ca-caption { min-height: 1.5em; margin: 28px 0 0; font-size: 14px; color: var(--ca-muted); }
 
 @media (max-width: 900px) {
   .ca-top { grid-template-columns: minmax(0, 1fr); }
