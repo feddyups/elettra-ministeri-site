@@ -10,13 +10,25 @@
   --em-fold: 100svh;
   --em-chapter-pad: 7.5rem;
   --em-frame-max: calc(var(--em-fold) - 2 * var(--em-chapter-pad));
-  /* how far down a section the color of the section before it fades into its own (see page-tone.js) */
-  --em-tone-fade: 16svh;
 }
 
+/*
+ * The page's background and text color follow the scroll position (page-tone.js sets --eh-bg and --eh-fg), so the
+ * sections themselves are transparent and nothing eases them over time: the color moves only as the page does.
+ */
 html .em-home > section:not(.eh-hero),
 html .em-home > footer {
-  background: linear-gradient(to bottom, var(--tone-from, var(--tone-to, transparent)), var(--tone-to, transparent) var(--em-tone-fade));
+  background: none;
+  color: var(--eh-fg);
+}
+html.em-home-page body,
+html.em-home-page #page,
+html.em-home-page .site-container,
+html.em-home-page .overflow-wrapper,
+html.em-home-page .site-wrapper,
+html.em-home-page main,
+html.em-home-page main .page-section {
+  transition: none !important;
 }
 
 html .em-home .chapter .frame {

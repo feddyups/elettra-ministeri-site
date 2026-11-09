@@ -1,79 +1,71 @@
-import { glassFor } from '../theme/glass.js';
+import { mixColors } from '../lib/color-mix.js';
+import { locateBlend, readingLine } from '../lib/scroll-blend.js';
 
 const html = document.documentElement;
 const INK = '#1c1a18';
 const PAPER = '#faf8f5';
+const SECTIONS = '.em-home > section, .em-home > footer';
 
-/** Sets the page background and foreground, and switches the header between light and ink. */
+/** Fraction of the window's height over which one section's color hands over to the next's. */
+const HAND_OVER = 0.5;
+
+/** The tone a section is designed for: the hero is its picture (light header text), the footer is ink, a section names its own with `data-bg` and `data-fg`, anything else is paper. A chapter has none until its picture is analyzed. */
+const toneOf = (section) => {
+  if (section.classList.contains('eh-hero')) return { bg: PAPER, fg: PAPER };
+  if (section.classList.contains('foot')) return { bg: INK, fg: PAPER };
+  const bg = section.getAttribute('data-bg') || (section.classList.contains('chapter') ? null : PAPER);
+  return bg && { bg, fg: section.getAttribute('data-fg') || INK };
+};
+
+const last = {};
+const publish = (name, value) => {
+  if (last[name] === value) return;
+  last[name] = value;
+  html.style.setProperty(name, value);
+};
+
+/** Sets the page background and text color, the header's link color, and its light or ink state. */
 const setTone = (background, foreground) => {
-  html.style.setProperty('--eh-bg', background);
-  html.style.setProperty('--eh-fg', foreground);
+  publish('--eh-bg', background);
+  publish('--eh-fg', foreground);
   const light = foreground !== INK;
-  html.style.setProperty('--eh-hdr', light ? PAPER : INK);
+  publish('--eh-hdr', light ? PAPER : INK);
   html.classList.toggle('em-hdr-light', light);
   html.classList.toggle('em-hdr-ink', !light);
 };
 
-/** The background a section is designed for: the footer is ink, a section names its own with `data-bg`, anything else is paper. */
-const backgroundOf = (section) => {
-  if (section.classList.contains('foot')) return INK;
-  return section.getAttribute('data-bg') || (section.classList.contains('chapter') ? null : PAPER);
-};
-
-/** The text color a section is designed for: paper on the footer, the section's `data-fg` if it has one, otherwise ink. */
-const foregroundOf = (section) => (section.classList.contains('foot') ? PAPER : section.getAttribute('data-fg') || INK);
-
-const SECTIONS = '.em-home > section, .em-home > footer';
+const sections = new Set();
 
 /**
- * Paints every home section with its own background and text color, so its text always sits on the color it was
- * designed for, even while the page behind it changes tone (the footer comes into view long before the section
- * above it has left). The top of each section fades in from the color of the section before it (the length of the
- * fade is --em-tone-fade in home-fold.css), so the page still changes tone smoothly as it scrolls. The hero is its
- * picture; a chapter waits until its tone is known.
+ * The page's background follows the scroll position: the section at the reading line sets it, and while one
+ * section hands over to the next it moves steadily from the color of the one to the color of the other
+ * (mixed in OKLab) as the page is scrolled. Text and header links take the color of whichever side is nearer.
  */
-export const paintSections = () => {
-  let previous = null;
-  document.querySelectorAll(SECTIONS).forEach((section) => {
-    if (section.classList.contains('eh-hero')) { previous = null; return; }
-    if (!section.offsetHeight) return;
-    const background = backgroundOf(section);
-    if (!background) { previous = null; return; }
-    const foreground = foregroundOf(section);
-    section.style.setProperty('--tone-to', background);
-    section.style.setProperty('--tone-from', previous || background);
-    section.style.color = foreground;
-    // text inside the section that is colored from the page-wide tone follows the section's own instead
-    section.style.setProperty('--eh-bg', background);
-    section.style.setProperty('--eh-fg', foreground);
-    // glass inside the section (buttons, labels) adapts to the section's own surface
-    section.setAttribute('data-glass', glassFor(foreground));
-    previous = background;
-  });
+export const updateTone = () => {
+  const known = [...sections].filter((section) => section.offsetHeight && toneOf(section));
+  if (!known.length) return;
+  const tops = known.map((section) => section.getBoundingClientRect().top);
+  const focus = readingLine({ viewport: innerHeight, scrolled: scrollY, scrollable: document.documentElement.scrollHeight - innerHeight });
+  const { from, to, t } = locateBlend(tops, focus, innerHeight * HAND_OVER);
+  const a = toneOf(known[from]);
+  const b = toneOf(known[to]);
+  setTone(mixColors(a.bg, b.bg, t), (t < 0.5 ? a : b).fg);
 };
 
-const toneObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    const section = entry.target;
-    if (section.classList.contains('eh-hero')) setTone(PAPER, PAPER);
-    else if (section.classList.contains('foot')) setTone(INK, PAPER);
-    else setTone(section.getAttribute('data-bg') || PAPER, section.getAttribute('data-fg') || INK);
-  });
-}, { threshold: 0.5 });
-
-/** The page tone follows whichever section is in view. */
+/** Adds a section to the ones the page tone follows. */
 export const trackSectionTone = (section) => {
-  paintSections();
-  toneObserver.observe(section);
+  sections.add(section);
+  updateTone();
 };
 
-/** Header turns solid after the hero and gains a shadow once the page has scrolled. */
+/** Header turns solid after the hero and gains a shadow once the page has scrolled; the tone follows the scroll. */
 export const trackHeaderOnScroll = () => {
   const update = () => {
     html.classList.toggle('em-hdr-solid', scrollY > innerHeight * 0.9);
     html.classList.toggle('em-scrolled', scrollY > 24);
+    updateTone();
   };
   addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
   update();
 };

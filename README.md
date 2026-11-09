@@ -29,13 +29,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.10/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.11/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.10/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.11/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -49,7 +49,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.10/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.11/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -73,6 +73,8 @@ src/
     elements.js               h() and svg(): build DOM elements
     motion.js                 prefersReducedMotion
     stylesheet.js             loadStylesheet
+    scroll-blend.js           locateBlend, readingLine: where a scrolling page stands between stacked sections
+    color-mix.js              parseColor, mixColors: blend two CSS colors in OKLab
     scroll-direction.js       watchScrollDirection(onChange, options): "up" or "down" once the page has moved a set distance
     hover-focus-hold.js       holdWhileEngaged(element, onChange): is the pointer over it or focus inside it
   paint/
@@ -96,7 +98,7 @@ src/
     section-rail.js           the vertical rail of sections on the home page
     section-rail.css          its styles
     home-fold.css             keeps every home section within one screen
-    page-tone.js
+    page-tone.js              the page background and text color follow the scroll position, section to section
     video-facade.js           click-to-play YouTube video (cover image + play button)
     video-facade.css
   blocks.js                   entry point for the blocks placed from Squarespace: the infographic and the painting pages
