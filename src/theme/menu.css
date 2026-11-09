@@ -1,10 +1,56 @@
+@import url('./tokens.css');
+
 /*
- * The order of the header menu: Paintings comes first, then the rest in the order of the Pages panel.
- * Squarespace puts a new page at the top of the panel and the panel cannot be reordered by script, so the
- * order of the first entry is set here. `order` only moves Paintings; every other entry keeps its place.
+ * The header menu.
+ *
+ * Order: Paintings comes first, then the rest in the order of the Pages panel. Squarespace puts a new page at
+ * the top of the panel and the panel cannot be reordered by script, so the first entry is placed here. `order`
+ * only moves Paintings; every other entry keeps its place. Squarespace spaces entries with a left margin on all
+ * but the first one in the page, so the spacing is set as a gap instead, which does not depend on the order.
  * (Paintings is a folder: a button with a data-href on desktop, and a link in the mobile menu.)
  */
+:root {
+  --em-menu-gap: 1.35rem;
+  --em-menu-panel-min: 15rem;
+}
+
+.header-nav-list { gap: var(--em-menu-gap); }
+.header-nav-list > .header-nav-item { margin-left: 0 !important; }
 .header-nav-list > .header-nav-item--folder:has(> .header-nav-folder-title[data-href^="/paintings"]) { order: -1; }
 
 .header-menu-nav-wrapper { display: flex; flex-direction: column; }
 .header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href^="/paintings"]) { order: -1; }
+
+/*
+ * The dropdown under Paintings: a solid panel in the page's deeper tone (the series' second color on a series
+ * page, near-black elsewhere), with light left-aligned links that highlight under the pointer. The selectors are
+ * strong on purpose: Squarespace styles the panel with rules that would otherwise win.
+ */
+html .header-nav-list .header-nav-folder-content {
+  min-width: var(--em-menu-panel-min);
+  padding: var(--em-space-xs) 0 !important;
+  background-color: var(--em-bg-alt, var(--em-night)) !important;
+  border-radius: var(--em-radius-sm);
+  box-shadow: var(--em-shadow-float) !important;
+  text-align: left;
+}
+html .header-nav-list .header-nav-folder-item { margin: 0; }
+html .header-nav-list .header-nav-folder-item:first-child {
+  margin-bottom: var(--em-space-2xs);
+  padding-bottom: var(--em-space-2xs);
+  border-bottom: var(--em-hairline) solid color-mix(in srgb, var(--em-paper) 18%, transparent);
+}
+html .header-nav-list .header-nav-folder-item a {
+  display: block;
+  padding: var(--em-space-s) var(--em-space-ml);
+  color: var(--em-paper);
+  text-align: left;
+  transition: background var(--em-duration-quick) var(--em-ease);
+}
+html .header-nav-list .header-nav-folder-item a:hover,
+html .header-nav-list .header-nav-folder-item a:focus-visible { background: color-mix(in srgb, var(--em-paper) 12%, transparent); }
+html .header-nav-list .header-nav-folder-item a:focus-visible { outline: var(--em-stroke) solid var(--em-paper); outline-offset: calc(var(--em-stroke) * -1); }
+
+@media (prefers-reduced-motion: reduce) {
+  html .header-nav-list .header-nav-folder-item a { transition: none; }
+}

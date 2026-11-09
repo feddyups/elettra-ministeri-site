@@ -27,13 +27,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.16.0/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.16.1/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.16.0/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.16.1/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -47,7 +47,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.16.0/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.16.1/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -80,6 +80,8 @@ src/
     brush-hand.js             where, how big and which way the next mark goes
     shapes.js                 leaf, pill and dot marks
     reveal.js                 soft patches of the real image laid across the canvas
+  menu/
+    links.js                  makes the header menu's links to this site open in the same tab
   features/
     hero/
       hero.js                 the slideshow
@@ -132,7 +134,7 @@ src/
       warmth-map.js           every work as a dot, warm to cool and quiet to loud
       work-strips.js          each work as a strip of its colors, linking to the work
   theme/
-    menu.css                  the header menu order (Paintings first)
+    menu.css                  the header menu: order (Paintings first), spacing and the Paintings dropdown
     tokens.css                THE THEME: colors, type, spacing, shadows, motion and layout, in three layers
   themes/
     tones.config.js           THE FILE TO EDIT: which painting gives each series its color, and the global settings
