@@ -124,9 +124,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "50 × 70 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1706395444458-IDVDZH17PKKRSE1QCNTQ/maternity+III.jpg",
-      width: 1000,
-      height: 1447
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/3b49f37d-ceef-4b2b-bab1-5b8bd1d954bd/maternity-iii-v2.jpg",
+      width: 2400,
+      height: 3497
     },
     alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, acrylic on canvas",
     story: [

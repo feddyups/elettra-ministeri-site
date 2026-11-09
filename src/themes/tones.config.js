@@ -42,6 +42,6 @@ export const SERIES = {
   maternity: { label: 'Maternity', cover: `${IMG}/v1/${SITE}/9973033c-2b50-4c30-8ff6-89088a5f9c7b/maternity+II.jpg?format=1500w`, bg: 'rgb(94,27,19)' },
   sicily: { label: 'Sicily', cover: `${IMG}/${SITE}/d0403442-5dd2-4b6c-8c1b-93b9b2388298/carretto-siciliano-v2.jpg?format=1500w`, bg: 'rgb(94,67,0)' },
   'human-figure': { label: 'Human figure', cover: `${IMG}/v1/${SITE}/1661720261897-CK1FYNCF1NS8AKUMLYKD/The+Hug+series.jpg?format=1500w`, bg: 'rgb(24,41,105)' },
-  archive: { label: 'Archive', cover: `${IMG}/v1/${SITE}/1528638090169-3WYNVACGH7G9O9XEUX92/help.jpg?format=1500w`, bg: 'rgb(7,65,28)' },
+  archive: { label: 'Archive', cover: `${IMG}/v1/${SITE}/50112205-332a-418a-a6ca-d360f2b04d91/archive-help-v2.jpg?format=1500w`, bg: 'rgb(7,65,28)' },
   textiles: { label: 'Textiles', path: '/textiles', cover: `${IMG}/${SITE}/7dca847c-fdb9-4619-8b03-e8f6fcb84afa/textile-mask.jpg?format=1500w`, bg: 'rgb(81,31,72)' },
 };

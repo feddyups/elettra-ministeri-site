@@ -25,7 +25,7 @@ export const WORKS = [
 
   { id: 'maternity-1', anchor: 'maternity-i', title: 'Maternity I', series: 'maternity', onSite: true, catalogue: sent('05 Maternity I.png') },
   { id: 'maternity-2', anchor: 'maternity-ii', title: 'Maternity II', series: 'maternity', onSite: true, catalogue: sent('06 Maternity II.png') },
-  { id: 'maternity-3', anchor: 'maternity-iii', title: 'Maternity III', series: 'maternity', onSite: true, url: cdn('1706395444458-IDVDZH17PKKRSE1QCNTQ/maternity+III.jpg') },
+  { id: 'maternity-3', anchor: 'maternity-iii', title: 'Maternity III', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-iii.jpg' },
 
   { id: 'carretto', anchor: 'carretto', title: 'Carretto siciliano', series: 'sicily', onSite: true, catalogue: 'rectified/carretto-siciliano.jpg' },
   { id: 'pistacchi', anchor: 'pistacchi', title: 'Pistacchi', series: 'sicily', onSite: true, catalogue: 'rectified/pistacchi.jpg' },

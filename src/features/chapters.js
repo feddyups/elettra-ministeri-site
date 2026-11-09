@@ -7,6 +7,7 @@ import { h } from '../lib/elements.js';
 import { renderSwatch } from '../color/swatch.js';
 import { createColorFocus } from '../color/color-focus.js';
 import { seriesColors } from '../color/scope.js';
+import { coverOf, worksOfSeries } from '../works/series-notes.js';
 
 /** The series a chapter belongs to, from the link to its page (/paintings/<series>). */
 const seriesOf = (chapter) => {
@@ -22,6 +23,11 @@ const seriesOf = (chapter) => {
  * chapter scrolls into view.
  */
 export const initChapter = (chapter) => {
+  const series = seriesOf(chapter);
+  const cover = series && coverOf(series, 1500);
+  if (cover) chapter.setAttribute('data-img', cover); // the series' picture and its number of works come from the catalogue
+  const meta = chapter.querySelector('.meta');
+  if (meta && series) meta.textContent = meta.textContent.replace(/^\d+ works?/, `${worksOfSeries(series).length} works`);
   const frame = chapter.querySelector('.frame');
   const img = frame.querySelector('img');
 
