@@ -3,10 +3,12 @@ export const PAINT = {
   durationMs: 7800,
   /** Total strokes laid down per megapixel of canvas. */
   strokesPerMegapixel: 17000,
-  /** Share of the duration spent stroking before the real image is glazed over the canvas. */
-  glazeStart: 0.86,
-  /** Extra strokes (as a share of the total) added while the glaze fades in. */
-  glazeExtraStrokes: 0.12,
+  /** Share of the duration by which the strokes have all been laid down. */
+  strokesEnd: 0.86,
+  /** Extra strokes (as a share of the total) added after that, until the end. */
+  extraStrokes: 0.12,
+  /** Share of the duration at which the real image starts to be glazed over the canvas, easing in until the end. */
+  glazeStart: 0.5,
   /** Stroke size at the start and the end of the painting, in pixels at 1300px canvas width. */
   strokeSizeStart: 26,
   strokeSizeEnd: 3,

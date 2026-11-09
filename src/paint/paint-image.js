@@ -5,9 +5,12 @@ import { createBrushHand } from './brush-hand.js';
 
 const runs = new WeakMap();
 
+const smoothstep = (x) => x * x * (3 - 2 * x);
+
 /**
- * Repaints `img` onto `canvas` (W x H) stroke by stroke, then glazes the real
- * image over the top so the last frame is the picture itself.
+ * Repaints `img` onto `canvas` (W x H) stroke by stroke. Part-way through, the
+ * real image is glazed over the canvas with an eased fade while the strokes
+ * keep going, so the last frame is the picture itself.
  *
  * Starting a new paint on the same canvas cancels the previous one.
  *
@@ -33,7 +36,7 @@ export const paintImage = (img, canvas, W, H, speed = 1) => new Promise((resolve
 
   const duration = PAINT.durationMs / speed;
   const strokeTotal = PAINT.strokesPerMegapixel * (W * H / 1e6);
-  const { glazeStart, glazeExtraStrokes } = PAINT;
+  const { strokesEnd, extraStrokes, glazeStart } = PAINT;
 
   let strokesDrawn = 0;
   let glazed = 0;
@@ -54,16 +57,11 @@ export const paintImage = (img, canvas, W, H, speed = 1) => new Promise((resolve
     if (!startedAt) startedAt = now;
     const t = Math.min(1, (now - startedAt) / duration);
 
-    if (t < glazeStart) {
-      const stage = t / glazeStart;
-      const wanted = Math.floor(strokeTotal * Math.pow(stage, 1.05));
-      while (strokesDrawn < wanted) { brush(Math.min(1, strokesDrawn / strokeTotal)); strokesDrawn++; }
-    } else {
-      const stage = Math.min(1, (t - glazeStart) / (1 - glazeStart));
-      const wanted = Math.floor(strokeTotal * (1 + glazeExtraStrokes * stage));
-      while (strokesDrawn < wanted) { brush(1); strokesDrawn++; }
-      glaze(stage);
-    }
+    const wanted = t < strokesEnd
+      ? Math.floor(strokeTotal * Math.pow(t / strokesEnd, 1.05))
+      : Math.floor(strokeTotal * (1 + extraStrokes * Math.min(1, (t - strokesEnd) / (1 - strokesEnd))));
+    while (strokesDrawn < wanted) { brush(Math.min(1, strokesDrawn / strokeTotal)); strokesDrawn++; }
+    if (t > glazeStart) glaze(smoothstep((t - glazeStart) / (1 - glazeStart)));
 
     if (t >= 1) { glaze(1); resolve(true); return; }
     requestAnimationFrame(frame);
