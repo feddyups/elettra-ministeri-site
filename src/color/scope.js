@@ -1,4 +1,15 @@
-import { ATLAS } from './atlas.generated.js';
+import { ATLAS as GENERATED } from './atlas.generated.js';
+import { FOCUS } from './focus-config.js';
+import { mergeCloseColors } from './palette.js';
+
+const merged = (palette) => mergeCloseColors(palette, FOCUS.merge);
+
+/** The generated analysis with every palette's near-duplicate colors merged (see focus-config.js), so each swatch selects its own part of a painting. */
+const ATLAS = {
+  overall: { ...GENERATED.overall, palette: merged(GENERATED.overall.palette), loud: merged(GENERATED.overall.loud) },
+  series: Object.fromEntries(Object.entries(GENERATED.series).map(([slug, s]) => [slug, { ...s, palette: merged(s.palette) }])),
+  works: GENERATED.works.map((w) => ({ ...w, palette: merged(w.palette) })),
+};
 
 /**
  * What a block shows. `all` is the whole body of work; `series:<slug>` is one series; `work:<slug>` is one painting.

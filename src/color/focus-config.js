@@ -12,6 +12,11 @@ export const FOCUS = {
   smoothing: 2,
   /** How bright the black-and-white part is, from 0 (black) to 1 (the picture's own brightness). */
   grayLevel: 0.92,
+  /**
+   * Palette colors closer than this to each other are shown as one swatch (their shares add up), because the
+   * selections they would make mostly overlap. 0 keeps every color. Applies to every palette on the site.
+   */
+  merge: 0.09,
   /** Width in pixels of the working copy of the picture; larger is crisper and slower. */
   width: 360,
 };

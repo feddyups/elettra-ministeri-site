@@ -27,13 +27,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.0/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.3/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.2/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.3/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -47,7 +47,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.2/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.14.3/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -113,7 +113,8 @@ src/
     color-atlas.css           the infographic's styles
     color-strip.js            a painting's colors as a thin strip (swatches sized by coverage)
     color-strip.css           its styles
-    focus-config.js           how far the color focus reaches and how softly it fades (reach, core, smoothing, gray level)
+    palette.js                merges palette colors that are too close to be separate swatches
+    focus-config.js           how far the color focus reaches and how softly it fades, and how close two colors may be before they show as one swatch (reach, core, smoothing, gray level, merge)
     color-focus.js            turns a picture black and white except one palette color's cluster
     scope.js                  resolves `all` or `series:<slug>` to the data a block shows
     nearest-work.js           which painting shows a given color most (where a color links to)
