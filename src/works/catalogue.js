@@ -249,9 +249,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "116 × 73 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1619440724228-0ZEOJ7JXZYDOZFJ4UK4M/thebonding_1.jpg",
-      width: 1000,
-      height: 1500
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/b12f2950-9731-48af-b9ca-cf07dbab8a3d/the-bonding-clean.jpg",
+      width: 1551,
+      height: 2480
     },
     alt: "The Bonding: two intertwined figures, one orange-red and one yellow-green, lifting a blue sphere against a deep blue ground, acrylic on canvas",
     story: [
