@@ -29,13 +29,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.9/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.10/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.9/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.10/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -49,7 +49,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.9/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.10/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -73,6 +73,8 @@ src/
     elements.js               h() and svg(): build DOM elements
     motion.js                 prefersReducedMotion
     stylesheet.js             loadStylesheet
+    scroll-direction.js       watchScrollDirection(onChange, options): "up" or "down" once the page has moved a set distance
+    hover-focus-hold.js       holdWhileEngaged(element, onChange): is the pointer over it or focus inside it
   paint/
     paint-image.js            paintImage(img, canvas, W, H, speed): the timeline
     config.js                 duration, stroke counts, sizes, shape mix
@@ -144,6 +146,7 @@ src/
     buttons.css               glass buttons: the hero and section links, the enquire and repaint buttons
     header.css                the header on every page: fixed, transparent, and a floating glass pill once scrolled
     header.js                 its scroll and tone states on every page but the home page
+    header-hide.js            slides it away on the way down, back on the way up (built on lib/scroll-direction.js and lib/hover-focus-hold.js)
     glass.css                 the pointer-following highlight of the glass
     glass.js                  senses a light or dark surface behind the glass (html[data-glass])
     menu.css                  the header menu: its order (named numbers at the top), spacing and the Paintings dropdown

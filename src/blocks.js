@@ -6,6 +6,7 @@
  */
 import './theme/glass.js';
 import './theme/header.js';
+import './theme/header-hide.js';
 import './menu/active.js';
 import './menu/links.js';
 import './color/main.js';
