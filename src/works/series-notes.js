@@ -9,7 +9,7 @@ export const SERIES_NOTES = {
   mediterranean: { cover: 'wave', note: 'The sea I grew up beside and the places around it: waves, shells, fish, whitewashed islands and a table set in the sun.', home: 'The sea I grew up beside and the places around it: waves, shells and fish, lighthouses, whitewashed islands and a table set in the sun.' },
   maternity: { cover: 'maternity-ii', note: 'Pregnancy as it is lived: body, strength and agency.' },
   sicily: { cover: 'carretto', note: 'A tribute to the island of my birth, set in hand-painted frames.' },
-  'human-figure': { cover: 'amore-e-pandemia-i', note: 'Bodies reduced to gesture and color: bonds, embraces, states of mind.' },
+  'human-figure': { cover: 'amore-e-pandemia-i', note: 'Figures without faces, painted in colors chosen for the feeling, not the likeness: an embrace, a shared lift, a torso showered with flowers. What remains is the gesture.' },
   archive: { cover: 'help', note: 'An exploration of many styles and themes: works that stand on their own, outside a series.' },
   textiles: { cover: 'mask-divine', note: 'Color you can touch: felt, buttons and thread.' },
 };
