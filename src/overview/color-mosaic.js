@@ -1,4 +1,5 @@
 import { h } from '../lib/elements.js';
+import { workPath } from '../works/work-path.js';
 import { passes } from './filter-state.js';
 import { rgbToOklab, chroma, hue } from '../lib/color-science.js';
 
@@ -27,7 +28,7 @@ export const renderColorMosaic = (works, filter) => {
   const tiles = inOrder(works.flatMap((work) => work.palette.map((color) => tileOf(work, color))));
   const nodes = tiles.map((tile) => h('a', {
     class: tile.share >= LARGE ? 'ov-tile-color ov-tile-color--large' : 'ov-tile-color',
-    href: `/paintings/${tile.work.slug}`,
+    href: workPath(tile.work.slug),
     style: { '--color': tile.hex },
     'data-tip': tile.work.title, 'data-series': tile.work.seriesLabel, 'data-name': tile.name, 'data-meta': `${Math.round(tile.share * 100)}% of the picture`,
     'aria-label': `${tile.name} in ${tile.work.title}`,

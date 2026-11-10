@@ -1,4 +1,5 @@
 import { h } from '../lib/elements.js';
+import { workPath } from '../works/work-path.js';
 import { passes } from './filter-state.js';
 import { FAMILY_LABELS } from './works.js';
 import { SUBJECTS, MEDIA } from './subjects.js';
@@ -17,7 +18,7 @@ const row = (work) => {
   const entry = work.entry;
   const picture = `${entry.image.src}?format=500w`;
   return h('li', { class: 'ov-work' },
-    h('a', { href: `/paintings/${work.slug}`, 'data-tip': work.title, 'data-series': work.seriesLabel, 'data-meta': `${work.warm}% warm · ${work.vivid}% vivid` },
+    h('a', { href: workPath(work.slug), 'data-tip': work.title, 'data-series': work.seriesLabel, 'data-meta': `${work.warm}% warm · ${work.vivid}% vivid` },
       h('span', { class: 'ov-work-picture' }, h('img', { src: picture, alt: '', loading: 'lazy' })),
       h('span', { class: 'ov-work-title' }, work.title),
       h('span', { class: 'ov-work-series' }, work.seriesLabel),

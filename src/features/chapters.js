@@ -7,6 +7,7 @@ import { h } from '../lib/elements.js';
 import { renderSwatch } from '../color/swatch.js';
 import { createColorFocus } from '../color/color-focus.js';
 import { seriesColors } from '../color/scope.js';
+import { workPath } from '../works/work-path.js';
 import { SERIES_NOTES, pictureAt, randomWorkOf, worksOfSeries } from '../works/series-notes.js';
 
 /** The series a chapter belongs to, from the link to its page (/paintings/<series>). */
@@ -34,7 +35,7 @@ export const initChapter = (chapter) => {
   const frame = chapter.querySelector('.frame');
   const img = frame.querySelector('img');
   if (pick) img.alt = pick[1].alt;
-  if (pick) frame.append(h('a', { class: 'em-frame-link', href: `/paintings/${pick[0]}`, 'aria-label': `View ${pick[1].title}` })); // the picture leads to the painting it shows
+  if (pick) frame.append(h('a', { class: 'em-frame-link', href: workPath(pick[0]), 'aria-label': `View ${pick[1].title}` })); // the picture leads to the painting it shows
 
   loadImage(img, chapter.getAttribute('data-img')).then(() => {
     const palette = extractPalette(sampleImage(img));

@@ -11,7 +11,7 @@ const trim = (path) => path.replace(/\/$/, '') || '/';
 const here = trim(location.pathname);
 const seriesPath = (() => {
   const painting = CATALOGUE[here.split('/').pop()];
-  const series = painting && here.startsWith('/paintings/') ? seriesInfo(painting.series) : null;
+  const series = painting && (here.startsWith('/paintings/') || here.startsWith('/textiles/')) ? seriesInfo(painting.series) : null;
   return series ? trim(series.path) : null;
 })();
 

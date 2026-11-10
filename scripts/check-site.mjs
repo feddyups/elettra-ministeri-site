@@ -13,6 +13,7 @@ import { execSync } from 'node:child_process';
 import { CATALOGUE } from '../src/works/catalogue.js';
 import { SERIES } from '../src/themes/tones.config.js';
 import { factsLine } from '../src/works/facts.js';
+import { workPath } from '../src/works/work-path.js';
 
 const SITE = 'https://www.elettraministeri.com';
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -61,8 +62,8 @@ for (const [series, works] of Object.entries(bySeries)) {
 console.log('Painting pages');
 let missingPages = 0;
 for (const slug of Object.keys(CATALOGUE)) {
-  const { status } = await page(`/paintings/${slug}`);
-  if (status !== 200) { note(`/paintings/${slug} answers ${status}`); missingPages++; }
+  const { status } = await page(workPath(slug));
+  if (status !== 200) { note(`${workPath(slug)} answers ${status}`); missingPages++; }
 }
 if (!missingPages) ok(`all ${Object.keys(CATALOGUE).length} painting pages answer`);
 

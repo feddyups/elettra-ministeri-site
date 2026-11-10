@@ -1,6 +1,7 @@
 import { h } from '../lib/elements.js';
 import { worksOfSeries, pictureAt } from './series-notes.js';
 import { inSeriesOrder } from './series-order.js';
+import { workPath } from './work-path.js';
 import { markPicks } from './pick-star.js';
 import { factsLine } from './facts.js';
 import { enquiryTopic, priceOf } from './price.js';
@@ -10,7 +11,7 @@ const SIZES = '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw';
 
 /** One entry of a series page: the picture, its title and facts, and the way to enquire with the price beside it. */
 export const renderEntry = (slug, work) => {
-  const page = `/paintings/${slug}`;
+  const page = workPath(slug);
   const { width, height } = work.image;
   return h('li', { class: 'th-work', id: slug },
     h('a', { class: 'th-img', href: page },
