@@ -1,7 +1,7 @@
 import { h } from '../lib/elements.js';
 import { renderPaletteStrip } from './series-tiles.js';
 import { FAMILY_LABELS } from './works.js';
-import { gistOf } from '../color/readings.js';
+import { gistOf } from '../color/gist.js';
 
 const FAMILY_COLORS = { warm: '#e2674a', green: '#4f9a56', cool: '#3f7fc4', violet: '#8b5cc4' };
 

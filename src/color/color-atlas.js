@@ -2,11 +2,10 @@ import { h } from '../lib/elements.js';
 import { resolveScope } from './scope.js';
 import { joinNames } from './text.js';
 import { renderPaletteBar } from './blocks/palette-bar.js';
-import { renderReadings } from './blocks/readings.js';
-import { gistOf } from './readings.js';
+import { gistOf } from './gist.js';
 import { renderWorkStrips } from './blocks/work-strips.js';
 
-const ALL_BLOCKS = 'reading,palette,strips';
+const ALL_BLOCKS = 'palette,strips';
 const SERIES_BLOCKS = 'palette,strips';
 const MAIN_COLORS_SHOWN = 3;
 
@@ -24,8 +23,8 @@ const section = (label, ...children) => h('section', { class: 'ca-section' }, h(
  * Renders the color infographic into an element:
  *   <div data-color-atlas data-scope="all"></div>
  *   <div data-color-atlas data-scope="series:archive" data-blocks="palette,strips"></div>
- * `data-scope` is `all` or `series:<slug>`. `data-blocks` lists which blocks appear (reading, palette,
- * strips); without it the whole body of work shows every block and a series shows the palette and the strips. They always appear in that order.
+ * `data-scope` is `all` or `series:<slug>`. `data-blocks` lists which blocks appear (palette,
+ * strips); without it every scope shows both. They always appear in that order.
  * Optional: `data-heading="none"` drops the heading; `data-surface` is `plate` (own dark ground),
  * `theme` (the series colors) or `inherit` (the surrounding section's text color); `data-more-href`
  * and `data-more-label` add a link below.
@@ -44,7 +43,6 @@ export const initAtlas = (host) => {
 
   host.replaceChildren(...[
     host.dataset.heading !== 'none' && h('header', { class: 'ca-head' }, h('p', { class: 'ca-label' }, kicker), title && h('h2', null, title), h('p', { class: 'ca-lede' }, lede)),
-    wanted.has('reading') && renderReadings(scope),
     top && h('div', { class: 'ca-top' }, top),
     wanted.has('strips') && section(scope.id === 'all' ? 'Every work, as a strip of its colors' : 'Each work, as a strip of its colors', renderWorkStrips(scope)),
     more,

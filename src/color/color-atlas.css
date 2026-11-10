@@ -145,14 +145,6 @@ html .ca .ca-pair .ca-pair-proof { margin-top: var(--em-space-s); font-size: var
 html .ca .ca-pair p { margin: 0; color: var(--ca-muted); }
 html .ca .ca-pair b { font-weight: var(--em-weight-medium); color: var(--ca-ink); }
 
-/* the key to reading the paintings (see blocks/readings.js) */
-.ca-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.ca-reading-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--em-section-gap) var(--em-block-gap); }
-.ca-reading { display: grid; align-content: start; gap: var(--em-space-m); min-width: 0; }
-html .ca .ca-reading h3 { margin: 0; font-family: var(--em-font-serif); font-size: var(--em-display-sm); font-weight: var(--em-weight-medium); line-height: var(--em-leading-none); color: var(--ca-ink); }
-html .ca .ca-reading-text { margin: 0; max-width: var(--em-measure); font-size: var(--em-text-lg); line-height: var(--em-leading-body); color: var(--ca-ink); }
-.ca-reading small { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; color: var(--ca-muted); }
-
 /* strips */
 .ca-rows { display: grid; gap: var(--em-space-l); }
 .ca-row { display: grid; grid-template-columns: var(--ca-row-label) minmax(0, 1fr); align-items: center; gap: var(--em-space-l); }

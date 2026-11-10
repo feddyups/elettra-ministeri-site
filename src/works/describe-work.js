@@ -1,5 +1,5 @@
 import { joinNames } from '../color/text.js';
-import { vividWord } from '../color/readings.js';
+import { vividWord } from '../color/gist.js';
 
 const lean = (work) => work.warm - work.cool - work.violet;
 
