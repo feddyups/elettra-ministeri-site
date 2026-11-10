@@ -36,7 +36,8 @@ const settings = { ...TONE_SETTINGS.ground, ink };
 
 // the grounds come from each series' own colors in the color analysis (run `npm run build:atlas` first when the works change)
 const palettes = Object.fromEntries(Object.keys(SERIES).filter((slug) => !SERIES[slug].bg).map((slug) => [slug, ATLAS.series[slug].palette]));
-const derived = deriveGrounds(palettes, settings);
+const keys = Object.fromEntries(Object.entries(SERIES).filter(([, series]) => series.key).map(([slug, series]) => [slug, series.key]));
+const derived = deriveGrounds(palettes, settings, keys);
 const seriesHues = Object.keys(SERIES).map((slug) => (SERIES[slug].bg ? hueOf(parseColor(SERIES[slug].bg)) : derived[slug].hue));
 // the page of every work is the umbrella above the series, so its ground is calmer than theirs
 derived.all = deriveUmbrellaGround(ATLAS.overall.palette, { ...settings, ...TONE_SETTINGS.umbrella }, seriesHues, [40, 35, 30, 25, 20]);

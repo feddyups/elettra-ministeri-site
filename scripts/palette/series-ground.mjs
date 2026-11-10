@@ -5,18 +5,21 @@ import { rgbToOklab, oklabToRgb, chroma, hue } from '../../src/lib/color-science
  *
  * A ground is a deep, muted color of one hue. For each series, every hue that could serve is a candidate: the hue of each of its palette colors
  * (a tonal ground: the series sits on a deeper version of its own color) and the opposite of each (a complementary ground: the series' colors
- * stand out against it). A candidate hue G is judged on four things, all read from the series' pooled palette:
+ * stand out against it). A candidate hue G is judged on six things, all read from the series' pooled palette:
  *
  *   family     how much of the series lives in G's hue family (a ground that belongs to the series, as Sicily's ochre does)
  *   opposites  how much vivid color sits opposite G, which the ground makes stand out (Sicily's blues and teals against ochre)
  *   warmth     whether G agrees with the series' overall temperature (a warm series on a warm ground, a cool one on a cool ground)
  *   anchor     how salient the palette color that names G is (share times chroma), discounted when G is only its opposite
+ *   lead       whether G is the hue of the series' largest color (by share alone), the color that sets its key
+ *   distinct   how much more of G's hue family this series has than the other series do on average (sand and ochre are in every series, so they say little; a series' own reds or greens say a lot)
  *
- * The series are then assigned a hue together, so that the best total is reached while every pair stays at least `minGap` degrees apart
+ * The series then choose a hue in turn, the clearest claim first, so that every pair stays at least `minGap` degrees apart
  * (the site's colors keep working as a map: no two series look alike). The ground itself is the hue at a fixed lightness and a chroma taken
  * from how colorful the series is, lowered until the text color reads on it.
  *
  * @param {Record<string, [string, string, number][]>} palettes  series slug to its palette rows `[hex, name, share]`
+ * @param {Record<string, 'lead'>} keys  series that must take the hue family of their largest color
  * @param {{ ink: [number, number, number], lightness: number, minChroma: number, maxChroma: number, chromaShare: number, minContrast: number, gaps: number[], weights: object }} settings
  * @returns {Record<string, { rgb: number[], hue: number, why: string, score: number }>}
  */
@@ -37,12 +40,15 @@ const readPalette = (rows) => rows.map(([hex, name, share]) => {
   return { name, share, chroma: chroma(lab), hue: hue(lab), lab };
 });
 
-const candidatesOf = (colors, weights) => {
+const familyShare = (colors, g) => colors.filter((c) => c.chroma >= CHROMATIC && gapBetween(c.hue, g) <= FAMILY_SPAN).reduce((s, c) => s + c.share, 0);
+
+const candidatesOf = (colors, weights, others = []) => {
   const chromatic = colors.filter((c) => c.chroma >= CHROMATIC);
   if (!chromatic.length) return [];
   const total = chromatic.reduce((sum, c) => sum + c.share * c.chroma, 0);
   const temperature = chromatic.reduce((sum, c) => sum + c.share * c.chroma * warmth(c.hue), 0) / total;
   const peak = Math.max(...chromatic.map((c) => c.share * c.chroma));
+  const lead = chromatic.reduce((a, b) => (b.share > a.share ? b : a));
   const seen = new Set();
   const out = [];
   for (const source of chromatic) {
@@ -56,7 +62,10 @@ const candidatesOf = (colors, weights) => {
         .reduce((s, c) => s + c.share * Math.min(1, c.chroma / VIVID), 0);
       const agreement = 1 - Math.abs(warmth(g) - temperature);
       const anchor = (source.share * source.chroma / peak) * (opposite ? 0.8 : 1);
-      const score = weights.family * family + weights.opposites * opposites + weights.warmth * agreement + weights.anchor * anchor;
+      const leads = gapBetween(lead.hue, g) <= FAMILY_SPAN ? 1 : 0;
+      const elsewhere = others.length ? others.reduce((s, o) => s + familyShare(o, g), 0) / others.length : family;
+      const distinct = Math.max(0, family - elsewhere);
+      const score = weights.distinct * distinct + weights.family * family + weights.opposites * opposites + weights.warmth * agreement + weights.anchor * anchor + weights.lead * leads;
       const standsOut = chromatic.filter((c) => gapBetween(c.hue, (g + 180) % 360) <= OPPOSITE_SPAN).map((c) => c.name);
       out.push({ hue: g, score, why: `${opposite ? `opposite of ${source.name}` : `deep ${source.name}`}${standsOut.length ? `, sets off ${standsOut.join(' and ')}` : ''}` });
     }
@@ -78,26 +87,34 @@ const groundColor = (g, colors, settings) => {
   return rgb;
 };
 
-export const deriveGrounds = (palettes, settings) => {
+export const deriveGrounds = (palettes, settings, keys = {}) => {
   const slugs = Object.keys(palettes);
   const colors = Object.fromEntries(slugs.map((slug) => [slug, readPalette(palettes[slug])]));
-  const options = Object.fromEntries(slugs.map((slug) => [slug, candidatesOf(colors[slug], settings.weights)]));
+  const options = Object.fromEntries(slugs.map((slug) => [slug, candidatesOf(colors[slug], settings.weights, slugs.filter((o) => o !== slug).map((o) => colors[o]))]));
+  // a series keyed to its largest color keeps only the candidates at that color's own hue (its key is decided before the others are arranged around it)
+  for (const slug of slugs.filter((s) => keys[s] === 'lead')) {
+    const chromatic = colors[slug].filter((c) => c.chroma >= CHROMATIC);
+    const lead = chromatic.reduce((a, b) => (b.share > a.share ? b : a));
+    const kept = options[slug].filter((o) => gapBetween(o.hue, lead.hue) <= 8);
+    if (kept.length) options[slug] = kept;
+  }
+  // The series whose best hue is the clearest claim chooses first and the others arrange around it, so a series keeps its own hue unless a stronger
+  // claim stands in the way; if the order cannot keep every pair `minGap` apart, the gap is lowered and the order tried again.
+  const order = slugs.slice().sort((a, b) => Math.max(...options[b].map((o) => o.score)) - Math.max(...options[a].map((o) => o.score)));
   let best = null;
   for (const minGap of settings.gaps) {
-    const pick = [];
-    const walk = (i, total) => {
-      if (i === slugs.length) { if (!best || total > best.total) best = { total, pick: pick.slice() }; return; }
-      for (const option of options[slugs[i]]) {
-        if (pick.some((p) => gapBetween(p.hue, option.hue) < minGap)) continue;
-        pick.push(option); walk(i + 1, total + option.score); pick.pop();
-      }
-    };
-    walk(0, 0);
-    if (best) { best.minGap = minGap; break; }
+    const taken = [];
+    const chosen = {};
+    for (const slug of order) {
+      const pick = options[slug].filter((o) => taken.every((h) => gapBetween(h, o.hue) >= minGap)).sort((x, y) => y.score - x.score)[0];
+      if (!pick) break;
+      chosen[slug] = pick; taken.push(pick.hue);
+    }
+    if (Object.keys(chosen).length === slugs.length) { best = { chosen, minGap }; break; }
   }
   if (!best) throw new Error('No assignment keeps the series apart; lower the gaps in TONE_SETTINGS.ground');
-  return Object.fromEntries(slugs.map((slug, i) => {
-    const choice = best.pick[i];
+  return Object.fromEntries(slugs.map((slug) => {
+    const choice = best.chosen[slug];
     return [slug, { rgb: groundColor(choice.hue, colors[slug], settings), hue: Math.round(choice.hue), why: choice.why, score: choice.score, minGap: best.minGap }];
   }));
 };
