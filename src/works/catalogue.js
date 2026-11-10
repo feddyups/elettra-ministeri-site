@@ -204,7 +204,7 @@ export const CATALOGUE = {
       width: 2400,
       height: 1845
     },
-    alt: "Carretto siciliano: a painted Sicilian cart and a plumed horse inside a hand-painted red and cream frame",
+    alt: "Carretto siciliano: a painted Sicilian cart and a plumed horse inside a hand-painted frame",
     story: [
       "The painted cart is one of Sicily’s best-loved images: a horse in a plume of red and blue feathers, a cart covered in small scenes, wheels turning in color. I painted it the way the carts themselves are decorated, with nothing left plain.",
       "The frame is part of the work. I painted it by hand so the whole object would feel as bright and crowded as the island."
@@ -240,10 +240,10 @@ export const CATALOGUE = {
       width: 2400,
       height: 1833
     },
-    alt: "Il sole: a smiling sun in a blue diamond on a red, orange and green geometric field, inside a hand-painted cream frame with blue and red arches",
+    alt: "Il sole: a smiling sun in a blue diamond on a red, orange and green geometric field, inside a hand-painted frame",
     story: [
       "A sun with a wide smile sits inside a blue diamond, over a field of red, orange and green. It is the Sicilian sun as I carry it: warm, a little loud, impossible to ignore.",
-      "The cream frame, painted by hand with blue and red arches, makes the picture feel like a tile, or a doorway."
+      "The hand-painted frame makes the picture feel like a tile, or a doorway."
     ]
   },
   'testa-di-moro': {
@@ -278,10 +278,10 @@ export const CATALOGUE = {
       width: 2400,
       height: 3129
     },
-    alt: "Santa Rosalia, the protector of Palermo: a woman with a crown of roses and long fair hair, in a brown mantle and a pink dress, holding white lilies against a green ground, inside a hand-painted frame of red, green and blue panels with shells and suns",
+    alt: "Santa Rosalia, the protector of Palermo: a woman with a crown of roses and long fair hair, in a brown mantle and a pink dress, holding white lilies against a green ground, inside a hand-painted frame",
     story: [
       "Santa Rosalia is the protector of Palermo. She lived as a hermit on Monte Pellegrino, and her bones, found there in 1624, are remembered as the end of a plague that had gripped the city. Every July Palermo still celebrates her, with a procession and a night of fireworks.",
-      "I painted her as she is shown in so many Sicilian images: young, with a crown of roses and white lilies in her hand. The frame carries her world outward, with shells, suns and stars, and, as in the rest of this series, it is painted by hand."
+      "I painted her as she is shown in so many Sicilian images: young, with a crown of roses and white lilies in her hand. The hand-painted frame carries her world outward, with shells, suns and stars."
     ]
   },
   'cart-wheel': {
