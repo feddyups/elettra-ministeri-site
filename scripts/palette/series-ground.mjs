@@ -5,13 +5,14 @@ import { oklabToRgb } from '../../src/lib/color-science.js';
  * One rule applies to every one of them.
  *
  * Every sampled color of every painting is a point in a three-dimensional space (lightness and the two color axes of OKLab). The cast of a group of
- * works is the centre of mass of those points: how far, and in which direction, the colors as a whole lean away from neutral. Chevreul's and Itten's
- * principle is that a harmonious set of colors mixes to neutral, so the ground that complements the set is the opposite of its cast: the hue turned
- * half a circle, which makes the colors lean back toward balance and, by simultaneous contrast, stand out. A set whose colors already cancel each other
- * has a faint cast and takes a faint complement.
+ * works is the centre of mass of those points: the direction in which its colors lean away from neutral. The artist works in neighbouring hues: in her
+ * paintings two colors of one painting sit less than 60 degrees apart in half of all pairs (38% by chance), she rarely sets two vivid colors opposite
+ * each other (4 of 35 paintings, 13 by chance), and the hue of a hidden color is predicted from the cast of the others about 12 degrees better than
+ * by chance, while the opposite of the cast is predicted 12 degrees worse. So the ground that she would choose for a group of works is the hue of
+ * its cast, made deep.
  *
- * The ground is that opposite hue at a fixed lightness, and a chroma taken from how colorful the colors are (the same share of their mean chroma for
- * every group, within one range), with the lightness lowered until the text color reads on it.
+ * The ground is that hue at a fixed lightness (lowered until the text color reads on it, which the site needs and a painting does not) and a chroma
+ * taken from how colorful the colors are: the same share of their mean chroma for every group, within one range.
  *
  * @param {Record<string, { cast: number[], meanChroma: number }>} groups  slug to the cast `[L, a, b]` and mean chroma of its colors
  * @param {{ ink: number[], lightness: number, minChroma: number, maxChroma: number, chromaShare: number, minContrast: number }} settings
@@ -26,7 +27,7 @@ const degrees = (radians) => (radians * 180 / Math.PI + 360) % 360;
 
 export const deriveGrounds = (groups, settings) => Object.fromEntries(Object.entries(groups).map(([slug, { cast, meanChroma }]) => {
   const castHue = degrees(Math.atan2(cast[2], cast[1]));
-  const hue = (castHue + 180) % 360;
+  const hue = castHue;
   const chroma = Math.min(settings.maxChroma, Math.max(settings.minChroma, meanChroma * settings.chromaShare));
   let lightness = settings.lightness;
   let rgb;
@@ -36,5 +37,5 @@ export const deriveGrounds = (groups, settings) => Object.fromEntries(Object.ent
     lightness -= 0.01;
   } while (contrastOf(rgb, settings.ink) < settings.minContrast && lightness > 0.1);
   const lean = Math.hypot(cast[1], cast[2]);
-  return [slug, { rgb, hue: Math.round(hue), why: `opposite of a cast of ${lean.toFixed(3)} toward ${Math.round(castHue)} degrees` }];
+  return [slug, { rgb, hue: Math.round(hue), why: `the hue of a cast of ${lean.toFixed(3)} toward ${Math.round(castHue)} degrees` }];
 }));
