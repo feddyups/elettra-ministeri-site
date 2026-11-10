@@ -38,3 +38,10 @@ body.collection-598080d015d5db77a628d2b4 .sqs-image-shape-container-element:not(
 @media (prefers-reduced-motion: reduce) {
   body.collection-598080d015d5db77a628d2b4 .sqs-image-shape-container-element:not(.em-portrait-host) img { opacity: 1; animation: none; }
 }
+
+/* The portrait is not a link (features/paint-portrait.js removes the link's address). Squarespace still gives an image link's picture a pointer cursor, so the portrait takes the ordinary one. */
+body.collection-598080d015d5db77a628d2b4 .sqs-block-image .sqs-block-image-link,
+body.collection-598080d015d5db77a628d2b4 .sqs-block-image .image-block-wrapper,
+body.collection-598080d015d5db77a628d2b4 .sqs-block-image .sqs-image-shape-container-element,
+body.collection-598080d015d5db77a628d2b4 .sqs-block-image .sqs-image-shape-container-element img,
+body.collection-598080d015d5db77a628d2b4 .sqs-block-image .em-portrait-paint { cursor: default !important; }
