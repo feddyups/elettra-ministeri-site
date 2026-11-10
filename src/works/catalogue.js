@@ -347,6 +347,8 @@ export const CATALOGUE = {
     title: "He’s raining Flowers",
     series: "human-figure",
     medium: "Acrylic on canvas",
+    size: "21 × 29.7 cm (A4)",
+    price: 200,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/93237161-ce98-4d7b-9495-8083840f045c/hes-raining-flowers.jpg",
       width: 1000,
@@ -398,6 +400,8 @@ export const CATALOGUE = {
     title: "Scarab",
     series: "archive",
     medium: "Acrylic on canvas",
+    size: "18 × 24 cm",
+    price: 150,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/04609aa9-05d7-4834-9165-8e5681125efc/scarab.jpg",
       width: 1000,
@@ -413,6 +417,8 @@ export const CATALOGUE = {
     title: "Rainbow and cacti",
     series: "archive",
     medium: "Acrylic on paper",
+    size: "25.5 × 18 cm",
+    price: 15,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/e09a6489-1047-4ba6-a75c-87885fba59a7/rainbow-and-cacti.jpg",
       width: 1000,
