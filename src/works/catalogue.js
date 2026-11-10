@@ -206,7 +206,7 @@ export const CATALOGUE = {
     },
     alt: "Carretto siciliano: a painted Sicilian cart and a plumed horse inside a hand-painted frame",
     story: [
-      "The painted cart is one of Sicily’s best-loved images: a horse in a plume of red and blue feathers, a cart covered in small scenes, wheels turning in color. I painted it the way the carts themselves are decorated, with nothing left plain.",
+      "The painted cart is one of Sicily’s best-loved images: a horse in a plume of red and blue feathers, a cart covered in small scenes, wheels turning in color. Every inch is painted, as it would be on a real Sicilian cart.",
       "The frame is part of the work. I painted it by hand so the whole object would feel as bright and crowded as the island."
     ]
   },
