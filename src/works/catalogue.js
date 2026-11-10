@@ -721,5 +721,39 @@ export const CATALOGUE = {
       ],
       closing: "In all of them a woman’s face is made to be honored. That is what I wanted from mine: something calm, a little beyond the human, that you can look at for a long time. It is the same thing I keep coming back to in my work, my idea of femininity and womanhood. I came to these masks through museum collections, not through the people who made them, and I do not want to speak for them."
     }
+  },
+  'saguaro': {
+    title: "Saguaro",
+    series: "textiles",
+    medium: "Felt, fabric, beads and thread",
+    size: "27 × 47 cm",
+    price: 275,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/8af39c8c-ca60-492c-b334-d87aa8ef5f39/textile-saguaro-v2.jpg",
+      width: 1000,
+      height: 1713
+    },
+    alt: "Saguaro: a green felt cactus stitched with colored thread and tiny beads on a tan panel, inside a patchwork border of red, blue, violet, yellow and black cloth with a black binding, hung with five bead-topped tassels",
+    story: [
+      "A saguaro cut from green felt and stitched by hand with colored thread and tiny beads, standing alone on a tan field. Around it runs a border of patchwork in red, blue, violet, yellow and black, as if the desert were wrapped in a quilt.",
+      "Five tassels hang below, each in its own color and each topped with a wooden bead. The cactus is quiet; the edges are loud."
+    ]
+  },
+  'seated-figure': {
+    title: "Seated figure",
+    series: "textiles",
+    medium: "Felt, fabric, silk and thread",
+    size: "61 × 78 cm",
+    price: 650,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/97edb2e6-a19d-4c78-9085-d93ee8eb4ab5/textile-seated-figure-v2.jpg",
+      width: 1000,
+      height: 1347
+    },
+    alt: "Seated figure: a white felt figure seen from behind, outlined in colored stitches, on a gray-green woven ground with a blue and cream damask panel, two blue patches and a length of bright blue silk hanging at the right",
+    story: [
+      "A faceless figure seen from behind, cut from white felt, sits on a ground of gray-green weave. Behind her is a panel of blue and cream damask; beside her a length of bright blue silk falls over the edge.",
+      "Color enters only at the outline: thread in pink, blue, green and red traces the back, the arm and the knee, so the body is white and the drawing is color."
+    ]
   }
 };

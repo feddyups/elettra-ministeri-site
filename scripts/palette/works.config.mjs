@@ -58,4 +58,6 @@ export const WORKS = [
   { id: 'scio', anchor: 'scio', title: 'Sciò', series: 'archive', onSite: true, catalogue: 'rectified/archive-scio.jpg' },
   { id: 'scarab', anchor: 'scarab', title: 'Scarab', series: 'archive', onSite: true, catalogue: '12.jpg', crop: [0.14, 0.11, 0.93, 0.88] },
   { id: 'textile-mask', anchor: 'mask-divine', title: 'Mask Divine', series: 'textiles', onSite: true, material: 'textile', catalogue: sent('08.png'), crop: [0.10, 0.26, 0.90, 0.96] },
+  { id: 'saguaro', anchor: 'saguaro', title: 'Saguaro', series: 'textiles', onSite: true, material: 'textile', catalogue: 'rectified/textile-saguaro-v2.jpg', crop: [0.08, 0.04, 0.94, 0.80] },
+  { id: 'seated-figure', anchor: 'seated-figure', title: 'Seated figure', series: 'textiles', onSite: true, material: 'textile', catalogue: 'rectified/textile-seated-figure-v2.jpg', crop: [0.05, 0.14, 0.93, 0.91] },
 ];
