@@ -59,7 +59,8 @@ html .th-work > a.th-img { position: relative; display: block; }
 html .th-work > a.th-img img { display: block; }
 /* The title keeps the title's own type: the site styles the links in a caption as small uppercase text, which must not reach it */
 html .th-work .th-cap .th-act { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: var(--em-space-2xs) var(--em-space-s); }
-html .th-work .th-cap .th-price { font-size: var(--em-text-xs); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-caps); font-variant-numeric: tabular-nums; opacity: 0.78; }
+/* The price is a small tag in the series' own darker tone, so it belongs to each page's color */
+html .th-work .th-cap .th-price { align-self: center; padding: var(--em-space-2xs) var(--em-space-xs); border: var(--em-hairline) solid var(--em-line); border-radius: var(--em-radius-item); background: var(--em-bg-alt); color: var(--em-ink); font-size: var(--em-text-xs); font-weight: var(--em-weight-medium); line-height: 1; letter-spacing: var(--em-tracking-caps); font-variant-numeric: tabular-nums; white-space: nowrap; }
 html .th-work .th-cap b a { padding: 0; border: 0; color: inherit; font: inherit; letter-spacing: inherit; text-transform: none; text-decoration: none; }
 html .th-work .th-cap b a::before,
 html .th-work .th-cap b a::after { content: none; }
