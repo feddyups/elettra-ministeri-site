@@ -6,6 +6,7 @@ import { renderWorkContext } from './work-context.js';
 import { renderWorkDetails } from './work-details.js';
 import { renderWorkColors } from './work-colors.js';
 import { renderWorkSeriesNav } from './work-series-nav.js';
+import { renderWorkNext } from './work-next.js';
 import { renderWorkEnquiry } from './work-enquiry.js';
 
 /**
@@ -34,8 +35,9 @@ export const initWorkPage = (host) => {
     renderWorkStory(info),
     renderWorkContext(info),
     renderWorkDetails(info, series),
-    renderWorkColors({ host, work, scope, series }),
+    renderWorkColors({ host, work, series }),
     renderWorkSeriesNav(work, series),
+    renderWorkNext({ work, scope }),
     renderWorkEnquiry(info),
   ].filter(Boolean));
 };
