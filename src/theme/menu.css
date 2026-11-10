@@ -90,10 +90,15 @@ html .header-nav-list .header-nav-folder-item a:focus-visible { outline: var(--e
  * Where you are (see menu/active.js): the entry for the current page, and the folder that holds it. In the bar it is
  * underlined; in the dropdown it is a pressed piece of glass with a bar on its edge; in the phone menu it is underlined.
  */
+/* every item has the same box, with the underline's space reserved (transparent), so the current page's label sits level with the rest */
+html .header-nav-list > .header-nav-item > a,
+html .header-nav-list > .header-nav-item .header-nav-folder-title-text {
+  border-bottom: var(--em-stroke) solid transparent;
+  padding-bottom: var(--em-space-2xs);
+}
 html .header-nav-list > .header-nav-item.is-current > a,
 html .header-nav-list > .header-nav-item.is-current .header-nav-folder-title-text {
-  border-bottom: var(--em-stroke) solid currentColor;
-  padding-bottom: var(--em-space-2xs);
+  border-bottom-color: currentColor;
   background-image: none !important;  /* Squarespace draws its own underline under the current page; one mark is enough */
 }
 html .header-nav-list .header-nav-folder-item.is-current a {
