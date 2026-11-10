@@ -108,23 +108,6 @@ export const CATALOGUE = {
       "I painted her entirely in blues, so the one who turned people to stone looks quiet, almost serene."
     ]
   },
-  'evil-eye': {
-    title: "Evil eye",
-    series: "mediterranean",
-    medium: "Acrylic on canvas",
-    size: "20 × 20 cm",
-    price: 150,
-    image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/a0722e26-7597-4066-bb25-e479e75a6003/mediterranean-evil-eye.jpg",
-      width: 2400,
-      height: 2408
-    },
-    alt: "Evil eye: concentric rings of blue and teal around a black pupil circled by small gems, on a gold ground, acrylic on canvas",
-    story: [
-      "The evil eye, worn in the Mediterranean against envy, painted in rings of blue and teal on gold.",
-      "Tiny gems circle the pupil like a ring of lights. It is an eye that looks back."
-    ]
-  },
   'vacanze-in-santorini': {
     title: "Vacanze in Santorini",
     series: "mediterranean",
