@@ -30,13 +30,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.41/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.42/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.41/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.42/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -50,7 +50,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.41/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.42/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -116,7 +116,8 @@ src/
     work-series-nav.js        the rest of the series and previous/next
     work-enquiry.js           the inline enquiry form
     describe-work.js          a plain-language reading of a painting's colors
-    similar-works.js          the paintings closest in color
+    walk.js                   where to look next: three paintings suggested by color, each with a reason, staying in the series unless another is clearly closer, leaving out what this visit has seen
+    work-next.js              renders that suggestion: each painting's picture, strip of colors and reason
     pager.js                  the bar at the bottom: previous/next series on a series page, a link back to the series on a painting page
     pager.css                 its styles
     series-strip.js           puts a painting's strip of colors under its picture on a series page

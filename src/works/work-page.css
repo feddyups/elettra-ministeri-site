@@ -134,7 +134,17 @@ html .wp .wp-swatch {
 .wp-swatch span { font-size: var(--em-text-xs); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; }
 .wp-swatch small { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-caps); color: var(--ca-muted); }
 
-.wp-where, .wp-similar { margin-top: var(--em-block-gap); }
+.wp-next { margin-top: var(--em-section-gap); }
+.wp-next-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--em-block-gap); max-width: 64rem; }
+html .wp a.wp-next-item { display: grid; align-content: start; gap: var(--em-space-s); color: var(--ca-ink); text-decoration: none; }
+.wp-next-kind { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
+.wp-next-picture { display: grid; place-items: center; height: 15rem; background: color-mix(in srgb, var(--ca-ink) 8%, transparent); overflow: hidden; }
+.wp-next-picture img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; box-shadow: var(--em-shadow-lift); transition: transform var(--em-duration-base) var(--em-ease); }
+html .wp a.wp-next-item:hover .wp-next-picture img, html .wp a.wp-next-item:focus-visible .wp-next-picture img { transform: scale(1.03); }
+.wp-next-strip { display: flex; height: var(--em-space-s); }
+.wp-next-strip i { display: block; flex: var(--share) 1 0; background: var(--color); }
+.wp-next-item b { font-family: var(--em-font-serif); font-size: var(--em-text-xl); font-weight: var(--em-weight-medium); line-height: var(--em-leading-tight); }
+.wp-next-reason { max-width: 24rem; font-size: var(--em-text-sm); line-height: var(--em-leading-body); color: var(--ca-muted); }
 .ca-strip.is-current { outline: var(--em-stroke) solid var(--ca-ink); outline-offset: var(--em-space-2xs); }
 
 .wp-pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--em-space-s) var(--em-space-xl); margin-top: var(--em-space-xl); padding-top: var(--em-space-ml); border-top: var(--em-hairline) solid var(--ca-line); font-size: var(--em-text-sm); letter-spacing: var(--em-tracking-caps); }
