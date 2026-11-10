@@ -7,17 +7,20 @@
 
 html .wp {
   /* component sizes */
-  --wp-figure-max-height: 82vh;
+  --wp-figure-max-height: min(82vh, calc(100vh - 16rem));
   --wp-swatch-width: 8.25rem;
   --wp-swatch-height: 5.25rem;
   --wp-details-column: 11.25rem;
   --wp-form-height: 48.75rem;
   --wp-close-size: 2.75rem;
   margin: 0;
-  padding-top: clamp(var(--em-space-l), 4vw, var(--em-space-3xl));
+  padding-top: 0;
 }
 
 /* A Squarespace code block that holds only the page spans the whole content grid, however it was sized in the editor. */
+/* the page starts just under the header: the template's section padding is trimmed so the picture and its title sit high on the screen. */
+html .content-wrapper:has([data-work-page]) { padding-top: clamp(1rem, 2vw, 2rem); }
+
 html .fe-block:has(.sqs-code-container > [data-work-page]) {
   grid-column: 2 / -2 !important;
   grid-row: 1 / -1 !important;
@@ -27,7 +30,7 @@ html .wp .wp-hero {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(var(--em-space-xl), 6vw, var(--em-space-4xl));
-  align-items: end;
+  align-items: start;
 }
 
 .wp-figure { margin: 0; }
