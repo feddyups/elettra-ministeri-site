@@ -14,6 +14,7 @@ import { CATALOGUE } from '../src/works/catalogue.js';
 import { SERIES } from '../src/themes/tones.config.js';
 import { factsLine } from '../src/works/facts.js';
 import { workPath } from '../src/works/work-path.js';
+import { CARDS, cardPath } from '../src/print/cards.js';
 
 const SITE = 'https://www.elettraministeri.com';
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -72,6 +73,10 @@ const printPage = await page('/print');
 if (printPage.status !== 200) note(`/print answers ${printPage.status}`);
 else if (!/data-print/.test(printPage.html)) note('/print does not hold the postcard grid');
 else ok('/print holds the postcard grid');
+for (const card of CARDS) {
+  const { status } = await page(cardPath(card));
+  if (status !== 200) note(`${cardPath(card)} answers ${status}`);
+}
 const old = await page('/scrivo-una-cartolina');
 if (old.status !== 200 || !/data-print/.test(old.html)) note('/scrivo-una-cartolina does not lead to /print');
 

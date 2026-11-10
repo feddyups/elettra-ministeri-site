@@ -8,6 +8,8 @@ import { renderWorkColors } from './work-colors.js';
 import { renderWorkSeriesNav } from './work-series-nav.js';
 import { renderWorkNext } from './work-next.js';
 import { initWorkSlideshow } from './work-slideshow.js';
+import { cardOf } from '../print/cards.js';
+import { initCardPage } from '../print/card-page.js';
 import { renderWorkEnquiry } from './work-enquiry.js';
 
 /**
@@ -18,7 +20,8 @@ import { renderWorkEnquiry } from './work-enquiry.js';
  */
 export const initWorkPage = (host) => {
   const fromAddress = location.pathname.split('/').filter(Boolean).pop();
-  const slug = CATALOGUE[fromAddress] ? fromAddress : host.dataset.workPage;
+  const slug = CATALOGUE[fromAddress] || cardOf(fromAddress) ? fromAddress : host.dataset.workPage;
+  if (cardOf(slug)) { initCardPage(host, cardOf(slug)); return; }
   const info = CATALOGUE[slug];
   const scope = resolveScope(`work:${slug}`);
   const series = info && seriesInfo(info.series);

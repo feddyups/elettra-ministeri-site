@@ -18,10 +18,13 @@ const samePath = (href, other) => new URL(href, location.origin).pathname === ne
  * the next one slides in from the other side (not when the visitor prefers reduced motion). The neighbors are fetched ahead so the next
  * page is ready when asked for.
  */
-export const initWorkSlideshow = ({ host, work, series }) => {
-  const ordered = inSeriesOrder(series.slug, series.works, (w) => w.slug);
+export const initWorkSlideshow = ({ host, work, series }) => initSlideshow({ host, slug: work.slug, ordered: inSeriesOrder(series.slug, series.works, (w) => w.slug) });
+
+/** The same for any ordered list of pages, each with a `slug` and an `href`: the postcards of the Print page use it too. */
+export const initSlideshow = ({ host, slug, ordered }) => {
   if (ordered.length < 2) return;
-  const { previous, next } = around(ordered, work.slug);
+  const work = { slug };
+  const { previous, next } = around(ordered, slug);
   const root = document.documentElement;
   const animated = () => matchMedia(MOTION).matches;
   let leaving = false;
