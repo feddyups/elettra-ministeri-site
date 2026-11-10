@@ -21,6 +21,11 @@ export const showEnquiringAbout = () => {
     const title = document.createElement('b');
     title.textContent = decodeURIComponent(match[1].replace(/\+/g, ' '));
     note.appendChild(title);
+    if (/ · listed at /.test(title.textContent)) {
+      const caveat = document.createElement('small');
+      caveat.textContent = ' Prices are in US dollars and may change; the price shown today is recorded with your enquiry.';
+      note.append(document.createElement('br'), caveat);
+    }
     form.parentNode.insertBefore(note, form);
   };
   place();
