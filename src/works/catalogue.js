@@ -669,7 +669,7 @@ export const CATALOGUE = {
     alt: "Saguaro: a green felt cactus stitched with colored thread and tiny beads on a tan panel, inside a patchwork border of red, blue, violet, yellow and black cloth with a black binding, hung with five bead-topped tassels",
     story: [
       "A saguaro cut from green felt and stitched by hand with colored thread and tiny beads, standing alone on a tan field. Around it runs a border of patchwork in red, blue, violet, yellow and black, as if the desert were wrapped in a quilt.",
-      "Five tassels hang below, each in its own color and each topped with a wooden bead. The cactus is quiet; the edges are loud."
+      "Five tassels hang below, each in its own color and each topped with a wooden bead."
     ]
   },
   'seated-figure': {
