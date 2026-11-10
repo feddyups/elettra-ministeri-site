@@ -93,6 +93,9 @@ html[data-series="favorites"] {
 html[data-series="favorites"] .item-pagination { display: none !important; }
 html .th-grid .th-empty { grid-column: 1 / -1; padding-block: var(--em-space-xl); color: var(--em-muted); font-size: var(--em-text-lg); list-style: none; }
 
-/* the small star on a painting the artist has marked as a favorite */
-html .th-work .th-star { position: absolute; top: var(--em-space-s); right: var(--em-space-s); display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--em-paper); color: var(--em-night); box-shadow: var(--em-shadow-lift); }
+/* the star on a painting the artist has marked as a favorite hangs off the picture's right edge, near the top: a quarter of it over the painting,
+   the rest in the gap beside it (the grid is laid out in columns, which clip anything above the picture) */
+html .th-work { --star: 2.25rem; }
+html .th-work .th-star { position: absolute; top: var(--em-space-s); right: calc(var(--star) * -0.75); z-index: 1; display: grid; place-items: center; width: var(--star); height: var(--star); border-radius: 50%; background: var(--em-paper); color: var(--em-night); box-shadow: var(--em-shadow-lift); }
 html .th-work .th-star svg { width: 62%; height: 62%; fill: currentColor; }
+@media (max-width: 40em) { html .th-work .th-star { right: calc(var(--star) * -0.25); } }

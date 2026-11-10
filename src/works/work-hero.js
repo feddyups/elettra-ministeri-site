@@ -4,6 +4,8 @@ import { renderColorStrip } from '../color/color-strip.js';
 import { openLightbox } from './lightbox.js';
 import { createWorkPaint } from './work-paint.js';
 import { priceOf } from './price.js';
+import { readFavoriteSlugs } from './favorites.js';
+import { starIcon } from './favorite-star.js';
 
 const WIDTHS = [500, 1000, 1500, 2500];
 
@@ -35,10 +37,15 @@ export const renderWorkHero = (info, work, series) => {
   if (repaint) { repaint.addEventListener('click', painter.replay); stage.append(repaint); }
   const focus = createColorFocus({ canvas: focusCanvas, source: `${src}?format=500w`, hexes: work.palette.map(([hex]) => hex) });
   figure.append(renderColorStrip(work, { onEnter: (index) => focus.show(index), onLeave: () => focus.hide() }));
+  const kicker = h('a', { class: 'wp-kicker', href: series.path }, `${series.label} ›`);
+  // a painting the artist has marked as a favorite says so, beside its series, and leads to the page of her favorites
+  readFavoriteSlugs().then((slugs) => {
+    if (slugs && slugs.includes(work.slug)) kicker.after(h('a', { class: 'wp-kicker wp-pick', href: '/paintings/favorites' }, starIcon(), 'Artist pick ›'));
+  });
   const element = h('section', { class: 'wp-hero' },
     figure,
     h('div', { class: 'wp-info' },
-      h('a', { class: 'wp-kicker', href: series.path }, `${series.label} ›`),
+      kicker,
       h('h1', null, info.title),
       h('p', { class: 'wp-facts' }, facts),
       priceOf(info) && h('p', { class: 'wp-price' }, priceOf(info)),

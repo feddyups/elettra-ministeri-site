@@ -192,3 +192,6 @@ html.wp-lightbox-open { overflow: hidden; }
   html .wp .wp-hero { grid-template-columns: minmax(0, 1fr); align-items: start; }
   html .wp { --wp-form-height: 55rem; }
 }
+
+html .wp .wp-pick { margin-left: var(--em-space-m); }
+html .wp .wp-pick svg { width: 1.1em; height: 1.1em; margin-right: var(--em-space-2xs); vertical-align: -0.2em; fill: currentColor; }
