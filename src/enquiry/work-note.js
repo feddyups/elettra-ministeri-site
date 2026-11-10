@@ -30,7 +30,7 @@ export const showEnquiringAbout = () => {
     if (listed) {
       const day = new Date(`${listed[2]}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
       const price = document.createElement('small');
-      price.textContent = `Listed at ${listed[1]} (euros) on ${day}. Prices may change.`;
+      price.textContent = `Listed at ${listed[1]} on ${day}. Prices may change.`;
       note.append(price);
     }
     form.parentNode.insertBefore(note, form);
