@@ -1,12 +1,12 @@
 import { h } from '../lib/elements.js';
 import { worksOfSeries, pictureAt } from './series-notes.js';
 import { factsLine } from './facts.js';
-import { enquiryTopic } from './price.js';
+import { enquiryTopic, priceOf } from './price.js';
 
 const WIDTHS = [500, 1000, 1500];
 const SIZES = '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw';
 
-/** One entry of a series page: the picture, its title and facts, and the way to enquire. */
+/** One entry of a series page: the picture, its title and facts, and the way to enquire with the price beside it. */
 const renderEntry = (slug, work) => {
   const page = `/paintings/${slug}`;
   const { width, height } = work.image;
@@ -18,7 +18,9 @@ const renderEntry = (slug, work) => {
       })),
     h('div', { class: 'th-cap' },
       h('div', null, h('b', null, h('a', { href: page }, work.title)), h('small', null, factsLine(work))),
-      h('a', { href: `/enquire?SQF_WORK=${encodeURIComponent(enquiryTopic(work.title, work))}` }, 'Enquire')));
+      h('div', { class: 'th-act' },
+        priceOf(work) && h('span', { class: 'th-price' }, priceOf(work)),
+        h('a', { href: `/enquire?SQF_WORK=${encodeURIComponent(enquiryTopic(work.title, work))}` }, 'Enquire'))));
 };
 
 /**
