@@ -162,8 +162,8 @@ export const CATALOGUE = {
     title: "Maternity III",
     series: "maternity",
     medium: "Acrylic on canvas",
-    size: "50 × 70 cm",
-    price: 600,
+    size: "18 × 25.5 cm",
+    price: 150,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0b1d79c4-2ded-4f2e-87a6-509427c4da84/maternity-iii-v3.jpg",
       width: 2400,
