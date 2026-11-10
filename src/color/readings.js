@@ -1,5 +1,5 @@
 import { readPalette, harmonyOf } from '../lib/color-harmony.js';
-import { subjectsOf } from '../overview/subjects.js';
+import { depictsPeople } from '../overview/subjects.js';
 import { findAccentPattern } from './accent-pattern.js';
 import { joinNames } from './text.js';
 
@@ -34,10 +34,10 @@ const unique = (names) => [...new Set(names)];
 
 /** The readings that hold for a set of works: `[{ key, title, text, evidence, works }]`. */
 export const readingsFor = (works) => {
-  const entries = works.map((work) => ({ work, reading: readPalette(work.palette), subjects: subjectsOf(work.slug) }));
+  const entries = works.map((work) => ({ work, reading: readPalette(work.palette), people: depictsPeople(work.slug) }));
   const found = [];
 
-  const people = entries.filter((e) => e.subjects.includes('figures'));
+  const people = entries.filter((e) => e.people);
   const unreal = people.filter((e) => !hasSkinColor(e.reading));
   if (people.length >= 2 && unreal.length / people.length >= 0.5) {
     const names = unique(unreal.map((e) => e.reading.dominant && e.reading.dominant.name.replace(/^(light|deep|dark) /, '')).filter(Boolean)).slice(0, 4);

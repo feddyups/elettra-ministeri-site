@@ -38,3 +38,14 @@ export const mediumOf = (slug) => {
   const kind = work && MEDIA.find((m) => m.test(work.medium));
   return kind ? kind.key : null;
 };
+
+/**
+ * Whether a painting shows a person: a figure, a body, a face. Stricter than the "Figures and bodies" subject, which also
+ * counts a hand or a bust: a pair of hands in a jungle is not a picture of people.
+ */
+export const depictsPeople = (slug) => {
+  const work = CATALOGUE[slug];
+  if (!work) return false;
+  const described = (work.alt || '').split(/\b(?:inside|in) (?:a |an )?(?:hand-painted|red frame|deep blue frame)/i)[0];
+  return /\b(figures?|woman|man|men|torso|bod(?:y|ies)|embrac\w*|hug\w*|pregnan\w*|face|head|person|people|mother|child)\b/i.test(`${work.title}. ${described}`) || work.series === 'maternity';
+};
