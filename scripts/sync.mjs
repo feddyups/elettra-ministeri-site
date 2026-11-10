@@ -17,6 +17,8 @@ const run = (script, args = []) => {
   const result = spawnSync('node', ['--use-system-ca', script, ...args], { stdio: 'inherit' });
   if (result.status !== 0) process.exit(result.status || 1);
 };
+// the series backgrounds are worked out from the color analysis, and the analysis' accents from the backgrounds: analysis, tones, analysis
+run('scripts/build-atlas.mjs', ['--catalogue', catalogue]);
 run('scripts/build-tones.mjs');
 run('scripts/build-atlas.mjs', ['--catalogue', catalogue]);
 console.log('\nGenerated files are up to date. Next: commit, tag, publish the release, then `npm run check:site`.');

@@ -3,48 +3,15 @@
  *   src/themes/tones.generated.js   the tones as a JS module (home page sections)
  *   src/themes/tones.generated.css  the same tones as CSS variables (series pages, no flash of the wrong color)
  *
- * Usage: npm install && npm run build:tones
+ * Usage: npm run build:tones (after `npm run build:atlas`, which supplies the series palettes)
  */
 import { writeFileSync } from 'node:fs';
-import jpeg from 'jpeg-js';
-import { extractPalette, backgroundTone, toHex } from '../src/lib/color.js';
 import { rgbToOklab, oklabToRgb } from '../src/lib/color-science.js';
-import { SERIES, TONE_SETTINGS } from '../src/themes/tones.config.js';
+import { SERIES, TONE_SETTINGS, MANUAL_TONES } from '../src/themes/tones.config.js';
+import { ATLAS } from '../src/color/atlas.generated.js';
+import { deriveGrounds, deriveUmbrellaGround, contrastOf } from './palette/series-ground.mjs';
 
-const SAMPLE_WIDTH = 64;
 const OUT = new URL('../src/themes/', import.meta.url);
-
-/** Shrinks decoded RGBA pixels to SAMPLE_WIDTH wide by averaging the pixels each new pixel covers. */
-const downsample = ({ data, width, height }) => {
-  const w = SAMPLE_WIDTH;
-  const h = Math.max(1, Math.round(height * w / width));
-  const out = new Uint8ClampedArray(w * h * 4);
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const x0 = Math.floor(x * width / w);
-      const x1 = Math.max(x0 + 1, Math.floor((x + 1) * width / w));
-      const y0 = Math.floor(y * height / h);
-      const y1 = Math.max(y0 + 1, Math.floor((y + 1) * height / h));
-      let r = 0; let g = 0; let b = 0; let n = 0;
-      for (let sy = y0; sy < y1; sy++) {
-        for (let sx = x0; sx < x1; sx++) {
-          const i = (sy * width + sx) * 4;
-          r += data[i]; g += data[i + 1]; b += data[i + 2]; n++;
-        }
-      }
-      const o = (y * w + x) * 4;
-      out[o] = r / n; out[o + 1] = g / n; out[o + 2] = b / n; out[o + 3] = 255;
-    }
-  }
-  return out;
-};
-
-const fetchPalette = async (url) => {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`${res.status} for ${url}`);
-  const image = jpeg.decode(Buffer.from(await res.arrayBuffer()), { useTArray: true });
-  return extractPalette(downsample(image));
-};
 
 const parseColor = (value) => {
   const hex = value.trim().replace('#', '');
@@ -56,29 +23,35 @@ const parseColor = (value) => {
 
 const rgbString = (c) => `rgb(${c.map((v) => Math.round(v)).join(',')})`;
 const alpha = (c, a) => `rgba(${c.map((v) => Math.round(v)).join(',')},${a})`;
+const hueOf = (c) => Math.round((Math.atan2(...rgbToOklab(...c.map(Math.round)).slice(1).reverse()) * 180 / Math.PI + 360) % 360);
 
 /** The series color's deeper sibling: same hue, lightness scaled by TONE_SETTINGS.altDepth. */
 const deeper = (color) => {
   const [L, a, b] = rgbToOklab(...color.map(Math.round));
   return oklabToRgb([L * TONE_SETTINGS.altDepth, a * 0.92, b * 0.92]);
 };
-const lum = (c) => { const f = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); };
-const contrast = (a, b) => { const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x); return (hi + 0.05) / (lo + 0.05); };
+
+const ink = parseColor(TONE_SETTINGS.ink);
+const settings = { ...TONE_SETTINGS.ground, ink };
+
+// the grounds come from each series' own colors in the color analysis (run `npm run build:atlas` first when the works change)
+const palettes = Object.fromEntries(Object.keys(SERIES).filter((slug) => !SERIES[slug].bg).map((slug) => [slug, ATLAS.series[slug].palette]));
+const derived = deriveGrounds(palettes, settings);
+const seriesHues = Object.keys(SERIES).map((slug) => (SERIES[slug].bg ? hueOf(parseColor(SERIES[slug].bg)) : derived[slug].hue));
+derived.all = deriveUmbrellaGround(ATLAS.overall.palette, settings, seriesHues, [40, 35, 30, 25, 20]);
 
 const tones = {};
 const alts = {};
-for (const [slug, series] of Object.entries(SERIES)) {
-  const palette = await fetchPalette(series.cover);
-  const color = series.bg
-    ? parseColor(series.bg)
-    : backgroundTone(palette, { pick: series.pick, darkness: TONE_SETTINGS.darkness });
+for (const [slug, series] of [...Object.entries(SERIES), ['all', {}]]) {
+  const color = series.bg ? parseColor(series.bg) : derived[slug].rgb;
   tones[slug] = rgbString(color);
   alts[slug] = rgbString(deeper(color));
-  const how = series.bg ? 'set directly' : series.pick === undefined ? 'most saturated' : `palette color ${series.pick}`;
-  console.log(`${slug.padEnd(14)} ${tones[slug].padEnd(16)} (${how})  alt ${alts[slug]} (text contrast ${contrast(deeper(color), parseColor(TONE_SETTINGS.ink)).toFixed(1)}:1)  palette: ${palette.map((c, i) => `${i}:${toHex(c)}`).join('  ')}`);
+  const was = MANUAL_TONES[slug];
+  const how = series.bg ? 'set directly' : derived[slug].why;
+  console.log(`${slug.padEnd(14)} ${tones[slug].padEnd(16)} hue ${String(hueOf(color)).padStart(3)}  was ${(was || 'none').padEnd(16)}${was ? ` hue ${String(hueOf(parseColor(was))).padStart(3)}` : ''}  (${how})  text contrast ${contrastOf(color, ink).toFixed(1)}:1, alt ${contrastOf(deeper(color), ink).toFixed(1)}:1`);
 }
+console.log(`\nSeries kept at least ${derived.mediterranean ? derived.mediterranean.minGap : '-'} degrees apart.`);
 
-const ink = parseColor(TONE_SETTINGS.ink);
 const banner = 'Generated by scripts/build-tones.mjs from tones.config.js. Do not edit; change the config and run `npm run build:tones`.';
 
 const js = `/* ${banner} */

@@ -1,26 +1,13 @@
 /**
- * The site's color map: the one place to change which color belongs to which series.
+ * The site's color map: which color belongs to which series, and the settings that derive it.
  *
- * The home page sections and the series pages both take their background from
- * the tones generated from this file. After editing it, run `npm run build:tones`,
- * commit, and release a new version (see README.md).
- *
- * Each series needs a `cover`: the painting its color is taken from. By default
- * the tone is the painting's most saturated color, darkened. To change one series:
- *   - `pick: 2`        use the painting's third palette color instead (run the build to see the candidates)
- *   - `bg: '#1f3a2e'`  set the color directly, ignoring the painting
- * To change them all at once, edit TONE_SETTINGS.
- *
- * The six colors are set directly, one per region of the color wheel (hue in degrees, OKLCH), so no two
- * series look alike and the colors work as a map of the site. Keep new colors about 60 degrees apart and
- * dark enough for the text color (a contrast ratio of at least 7:1):
- *   maternity 30 (rust red) · sicily 85 (ochre) · archive 150 (forest green)
- *   mediterranean 225 (sea blue) · human-figure 268 (indigo) · textiles 335 (plum)
+ * The home page sections and the series pages both take their background from the tones generated from this file. Each series' background is
+ * worked out from the colors the series is made of (scripts/palette/series-ground.mjs reads the series' palette from the color analysis), so it
+ * follows the works: after a work is added, moved or retouched, `npm run sync` recomputes it. To pin one series to a color of your own, give it
+ * `bg: '#1f3a2e'`. After editing this file, run `npm run build:tones`, commit, and release a new version (see README.md).
  */
 
 export const TONE_SETTINGS = {
-  /** 0 is black, 1 is the painting's own color. Lower is darker. */
-  darkness: 0.42,
   /**
    * The second tone of each series' family, used for secondary surfaces such as the Previous / Next bar at the
    * bottom of a page: the same hue, with its lightness multiplied by this (1 is the series color, lower is deeper).
@@ -28,20 +15,41 @@ export const TONE_SETTINGS = {
   altDepth: 0.68,
   /** Text color on every tone. */
   ink: '#faf8f5',
+  /**
+   * How a ground is chosen from a series' colors (see series-ground.mjs): its lightness (OKLab), the range of its chroma and the share of the series' own mean chroma it takes, the contrast it must
+   * give the text color, the smallest hue distance kept between two series (the first that can be met is used), and the weight of each thing a
+   * candidate hue is judged on.
+   */
+  ground: {
+    lightness: 0.35,
+    minChroma: 0.075,
+    maxChroma: 0.125,
+    chromaShare: 0.85,
+    minContrast: 8,
+    gaps: [60, 55, 50, 45, 40, 35, 30],
+    weights: { family: 0.30, opposites: 0.25, warmth: 0.25, anchor: 0.20 },
+  },
 };
 
-const IMG = 'https://images.squarespace-cdn.com/content';
-const SITE = '596fbc34c534a5fa937bd9bf';
-
 /**
- * One entry per series. `label` is its display name and `path` its page (default `/paintings/<slug>`);
- * the color infographic uses both to name and link each series.
+ * One entry per series. `label` is its display name and `path` its page (default `/paintings/<slug>`); the color infographic uses both to
+ * name and link each series. `bg` pins the series' background to a color of your own instead of the one worked out from its colors.
  */
 export const SERIES = {
-  mediterranean: { label: 'Mediterranean', cover: `${IMG}/v1/${SITE}/0b1d1e51-8576-4b9e-a2c5-99787967a690/mediterranean-wave.jpg?format=1500w`, bg: 'rgb(0,64,89)' },
-  maternity: { label: 'Maternity', cover: `${IMG}/v1/${SITE}/9973033c-2b50-4c30-8ff6-89088a5f9c7b/maternity+II.jpg?format=1500w`, bg: 'rgb(94,27,19)' },
-  sicily: { label: 'Sicily', cover: `${IMG}/${SITE}/d0403442-5dd2-4b6c-8c1b-93b9b2388298/carretto-siciliano-v2.jpg?format=1500w`, bg: 'rgb(94,67,0)' },
-  'human-figure': { label: 'Human figure', cover: `${IMG}/v1/${SITE}/1661720261897-CK1FYNCF1NS8AKUMLYKD/The+Hug+series.jpg?format=1500w`, bg: 'rgb(24,41,105)' },
-  archive: { label: 'Archive', cover: `${IMG}/v1/${SITE}/50112205-332a-418a-a6ca-d360f2b04d91/archive-help-v2.jpg?format=1500w`, bg: 'rgb(7,65,28)' },
-  textiles: { label: 'Textiles', path: '/textiles', cover: `${IMG}/${SITE}/7dca847c-fdb9-4619-8b03-e8f6fcb84afa/textile-mask.jpg?format=1500w`, bg: 'rgb(81,31,72)' },
+  mediterranean: { label: 'Mediterranean' },
+  maternity: { label: 'Maternity' },
+  sicily: { label: 'Sicily' },
+  'human-figure': { label: 'Human figure' },
+  archive: { label: 'Archive' },
+  textiles: { label: 'Textiles', path: '/textiles' },
+};
+
+/** The backgrounds that were set by hand, one per region of the color wheel, before they were worked out from each series' colors. Kept to compare with `npm run build:tones`. */
+export const MANUAL_TONES = {
+  mediterranean: 'rgb(0,64,89)',
+  maternity: 'rgb(94,27,19)',
+  sicily: 'rgb(94,67,0)',
+  'human-figure': 'rgb(24,41,105)',
+  archive: 'rgb(7,65,28)',
+  textiles: 'rgb(81,31,72)',
 };

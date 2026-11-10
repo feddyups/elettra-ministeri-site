@@ -1,6 +1,7 @@
 import { h } from '../lib/elements.js';
 import { SERIES_NOTES, coverOf } from '../works/series-notes.js';
 import { MEDIA } from './subjects.js';
+import { TONES } from '../themes/tones.generated.js';
 
 const mediaOf = (works) => MEDIA.filter((kind) => works.some((w) => w.medium === kind.key)).map((kind) => kind.label);
 
@@ -8,13 +9,14 @@ const mediaOf = (works) => MEDIA.filter((kind) => works.some((w) => w.medium ===
 export const renderPaletteStrip = (series) => h('div', { class: 'ov-strip', role: 'img', 'aria-label': `Main colors of ${series.label}` },
   series.palette.map(([hex, name, share]) => h('i', { style: { '--color': hex, '--share': share }, 'data-tip': series.label, 'data-name': name, 'data-meta': `${Math.round(share * 100)}% of the series` })));
 
-/** One tile per series: its picture, a line about it, its colors, and what is in it. */
+/** One tile per series: its picture, a line about it, its colors, and what is in it, on the series' own background color. */
 export const renderSeriesTiles = (seriesData, worksBySeries) => h('div', { class: 'ov-tiles' }, seriesData.map((series) => {
   const works = worksBySeries[series.slug] || [];
   const note = SERIES_NOTES[series.slug] || {};
   const cover = coverOf(series.slug, 1000);
   const facts = [`${works.length} ${works.length === 1 ? 'work' : 'works'}`, mediaOf(works).join(', ')].filter(Boolean).join(' · ');
-  return h('a', { class: 'ov-tile', href: series.path },
+  const tone = TONES[series.slug];
+  return h('a', { class: 'ov-tile', href: series.path, style: tone ? { '--tile-bg': tone.bg, '--tile-fg': tone.fg } : undefined },
     h('div', { class: 'ov-tile-picture' }, cover && h('img', { src: cover, alt: '', loading: 'lazy' })),
     h('div', { class: 'ov-tile-text' },
       h('h3', null, series.label),

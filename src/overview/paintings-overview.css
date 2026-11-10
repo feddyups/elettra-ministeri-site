@@ -1,8 +1,9 @@
 @import url('../theme/tokens.css');
 
 /*
- * The Paintings page (see paintings-overview.js). Its first section sits on the page's paper; everything that compares sits
- * on a night plate that runs from one edge of the window to the other, like the color section on About me.
+ * The Paintings page (see paintings-overview.js). The page takes the background worked out from the colors of the whole body of work (data-series="all",
+ * tones.generated.css); everything that compares sits on a plate of its deeper tone that runs from one edge of the window to the other, and each series'
+ * tile sits on that series' own background. Without the generated tones the plate is the night color and the tiles are paper.
  */
 [data-paintings-overview] {
   --ov-muted: color-mix(in srgb, currentColor 66%, transparent);
@@ -32,15 +33,15 @@
   display: grid;
   gap: var(--em-section-gap);
   padding-block: var(--em-section-gap);
-  background: var(--em-night);
-  color: var(--em-paper);
-  box-shadow: 0 0 0 100vmax var(--em-night);
+  background: var(--em-bg-alt, var(--em-night));
+  color: var(--em-ink, var(--em-paper));
+  box-shadow: 0 0 0 100vmax var(--em-bg-alt, var(--em-night));
   clip-path: inset(0 -100vmax);
 }
 
 /* series tiles */
 .ov-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: var(--em-block-gap); }
-.ov-tile { display: grid; grid-template-rows: auto 1fr; background: var(--em-paper-warm); color: var(--em-ink-strong); transition: transform var(--em-duration-base) var(--em-ease), box-shadow var(--em-duration-base) var(--em-ease); }
+.ov-tile { display: grid; grid-template-rows: auto 1fr; background: var(--tile-bg, var(--em-paper-warm)); color: var(--tile-fg, var(--em-ink-strong)); transition: transform var(--em-duration-base) var(--em-ease), box-shadow var(--em-duration-base) var(--em-ease); }
 .ov-tile:hover, .ov-tile:focus-visible { transform: translateY(calc(var(--em-space-2xs) * -1)); box-shadow: var(--em-shadow-card); }
 .ov-tile-picture { aspect-ratio: 4 / 3; overflow: hidden; background: var(--ov-line); }
 .ov-tile-picture img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -82,7 +83,7 @@ button.ov-chip, button.ov-clear {
 }
 button.ov-clear[hidden] { display: none; }
 button.ov-chip:hover, button.ov-clear:hover { border-color: currentColor; }
-button.ov-chip[aria-pressed="true"] { background: var(--em-paper); border-color: var(--em-paper); color: var(--em-night); }
+button.ov-chip[aria-pressed="true"] { background: var(--em-ink, var(--em-paper)); border-color: var(--em-ink, var(--em-paper)); color: var(--em-bg-alt, var(--em-night)); }
 button.ov-chip:focus-visible, button.ov-clear:focus-visible, .ov-bar:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
 
 /* subjects and materials */
@@ -93,9 +94,9 @@ button.ov-chip:focus-visible, button.ov-clear:focus-visible, .ov-bar:focus-visib
 button.ov-bar { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "label count" "bar bar"; gap: var(--em-space-3xs) var(--em-space-m); width: 100%; }
 .ov-bar-label { grid-area: label; font-size: var(--em-text-sm); }
 .ov-bar b { grid-area: count; font-weight: var(--em-weight-medium); font-variant-numeric: tabular-nums; }
-.ov-bar i { grid-area: bar; display: block; height: var(--em-space-xs); width: calc(var(--size) * 100%); min-width: var(--em-space-s); background: color-mix(in srgb, var(--em-paper) 55%, transparent); transition: width var(--em-duration-base) var(--em-ease), background var(--em-duration-quick) var(--em-ease); }
-button.ov-bar:hover i { background: var(--em-paper); }
-button.ov-bar[aria-pressed="true"] i { background: var(--em-paper); }
+.ov-bar i { grid-area: bar; display: block; height: var(--em-space-xs); width: calc(var(--size) * 100%); min-width: var(--em-space-s); background: color-mix(in srgb, var(--em-ink, var(--em-paper)) 55%, transparent); transition: width var(--em-duration-base) var(--em-ease), background var(--em-duration-quick) var(--em-ease); }
+button.ov-bar:hover i { background: var(--em-ink, var(--em-paper)); }
+button.ov-bar[aria-pressed="true"] i { background: var(--em-ink, var(--em-paper)); }
 button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; text-underline-offset: var(--em-space-2xs); }
 
 /* the index */
@@ -108,7 +109,7 @@ button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; t
 .ov-bar-row select option { color: var(--em-ink-strong); }
 .ov-works { display: grid; margin: 0; padding: 0; list-style: none; }
 .ov-work a { display: grid; grid-template-columns: 3.75rem minmax(0, 1.2fr) minmax(0, 0.8fr) minmax(0, 1.4fr) 4.5rem minmax(0, 6rem); align-items: center; gap: var(--em-space-ml); padding-block: var(--em-space-s); border-top: var(--em-hairline) solid var(--ov-line); transition: background var(--em-duration-quick) var(--em-ease); }
-.ov-work a:hover, .ov-work a:focus-visible { background: color-mix(in srgb, var(--em-paper) 7%, transparent); }
+.ov-work a:hover, .ov-work a:focus-visible { background: color-mix(in srgb, var(--em-ink, var(--em-paper)) 7%, transparent); }
 .ov-work-picture { display: block; width: 3.75rem; height: 3.75rem; overflow: hidden; background: var(--ov-line); }
 .ov-work-picture img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ov-work-title { font-family: var(--em-font-serif); font-size: var(--em-text-xl); line-height: var(--em-leading-tight); }
