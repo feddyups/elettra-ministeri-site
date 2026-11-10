@@ -21,7 +21,7 @@ const parseCsv = (text) => {
 };
 
 /**
- * The page addresses (slugs) of the paintings the artist has marked, from the sheet's "Page address" and "Artist pick" columns
+ * The page addresses (slugs) of the paintings the artist has marked, from the sheet's "Page address" and "Artist pick" columns (a column headed "Favorite" works too)
  * (a cell of yes, y, x, 1, true or a star marks it). Resolves to `null` when there is no sheet or it cannot be read.
  */
 let reading;
@@ -35,7 +35,7 @@ const readSheet = async () => {
     const [header = [], ...rows] = parseCsv(await response.text());
     const column = (...names) => header.findIndex((cell) => names.includes(cell.trim().toLowerCase()));
     const address = column('page address');
-    const pick = column('artist pick', 'artist picks');
+    const pick = column('artist pick', 'artist picks', 'favorite', 'favorites');
     if (address < 0 || pick < 0) return null;
     return rows.filter((cells) => YES.test((cells[pick] || '').trim())).map((cells) => (cells[address] || '').trim().replace(/^\/?(paintings\/)?/, ''));
   } catch (error) {
