@@ -38,7 +38,8 @@ const settings = { ...TONE_SETTINGS.ground, ink };
 const palettes = Object.fromEntries(Object.keys(SERIES).filter((slug) => !SERIES[slug].bg).map((slug) => [slug, ATLAS.series[slug].palette]));
 const derived = deriveGrounds(palettes, settings);
 const seriesHues = Object.keys(SERIES).map((slug) => (SERIES[slug].bg ? hueOf(parseColor(SERIES[slug].bg)) : derived[slug].hue));
-derived.all = deriveUmbrellaGround(ATLAS.overall.palette, settings, seriesHues, [40, 35, 30, 25, 20]);
+// the page of every work is the umbrella above the series, so its ground is calmer than theirs
+derived.all = deriveUmbrellaGround(ATLAS.overall.palette, { ...settings, ...TONE_SETTINGS.umbrella }, seriesHues, [40, 35, 30, 25, 20]);
 
 const tones = {};
 const alts = {};

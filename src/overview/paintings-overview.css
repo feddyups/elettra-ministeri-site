@@ -52,7 +52,7 @@
 
 /* strips of color: every piece as wide as its share */
 .ov-strip, .ov-hues { display: flex; height: var(--em-space-s); min-width: 0; }
-.ov-strip i, .ov-hues i { display: block; flex: var(--share) 1 0; min-width: 2px; background: var(--color); transition: transform var(--em-duration-quick) var(--em-ease); }
+.ov-strip i, .ov-hues i { display: block; box-shadow: inset 0 0 0 var(--em-hairline) color-mix(in srgb, currentColor 30%, transparent); flex: var(--share) 1 0; min-width: 2px; background: var(--color); transition: transform var(--em-duration-quick) var(--em-ease); }
 .ov-strip i:hover, .ov-hues i:hover { transform: scaleY(1.9); }
 
 /* the series compared */

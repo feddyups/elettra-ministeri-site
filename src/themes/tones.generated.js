@@ -6,5 +6,5 @@ export const TONES = {
   'human-figure': { bg: 'rgb(0,70,87)', alt: 'rgb(0,39,54)', fg: '#faf8f5' },
   'archive': { bg: 'rgb(86,37,80)', alt: 'rgb(53,9,48)', fg: '#faf8f5' },
   'textiles': { bg: 'rgb(4,71,32)', alt: 'rgb(0,41,7)', fg: '#faf8f5' },
-  'all': { bg: 'rgb(48,66,0)', alt: 'rgb(22,36,0)', fg: '#faf8f5' },
+  'all': { bg: 'rgb(52,64,28)', alt: 'rgb(25,35,3)', fg: '#faf8f5' },
 };

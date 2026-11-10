@@ -29,6 +29,8 @@ export const TONE_SETTINGS = {
     gaps: [60, 55, 50, 45, 40, 35, 30],
     weights: { family: 0.30, opposites: 0.25, warmth: 0.25, anchor: 0.20 },
   },
+  /** The ground of the page of every work, calmer than a series' own so that it recedes behind the series' tiles. */
+  umbrella: { minChroma: 0.035, maxChroma: 0.065, chromaShare: 0.5 },
 };
 
 /**
