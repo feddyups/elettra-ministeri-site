@@ -2,7 +2,7 @@
  * The site's color map: which color belongs to which series, and the settings that derive it.
  *
  * The home page sections and the series pages both take their background from the tones generated from this file. Each series' background is
- * worked out from the colors the series is made of (scripts/palette/series-ground.mjs reads the series' palette from the color analysis), so it
+ * worked out from the colors the series is made of (scripts/palette/series-ground.mjs reads the cast of its colors from the color analysis), so it
  * follows the works: after a work is added, moved or retouched, `npm run sync` recomputes it. To pin one series to a color of your own, give it
  * `bg: '#1f3a2e'`. After editing this file, run `npm run build:tones`, commit, and release a new version (see README.md).
  */
@@ -16,18 +16,15 @@ export const TONE_SETTINGS = {
   /** Text color on every tone. */
   ink: '#faf8f5',
   /**
-   * How a ground is chosen from a series' colors (see series-ground.mjs): its lightness (OKLab), the range of its chroma and the share of the series' own mean chroma it takes, the contrast it must
-   * give the text color, the smallest hue distance kept between two series (the first that can be met is used), and the weight of each thing a
-   * candidate hue is judged on.
+   * How a ground is made from a series' colors (see series-ground.mjs): its lightness (OKLab), the range of its chroma and the share of the colors'
+   * mean chroma it takes, and the contrast it must give the text color.
    */
   ground: {
     lightness: 0.35,
-    minChroma: 0.075,
-    maxChroma: 0.125,
-    chromaShare: 0.85,
+    minChroma: 0.05,
+    maxChroma: 0.10,
+    chromaShare: 0.5,
     minContrast: 8,
-    gaps: [60, 55, 50, 45, 40, 35, 30],
-    weights: { family: 0.30, opposites: 0.25, warmth: 0.20, anchor: 0.15, lead: 0.10 },
   },
 };
 

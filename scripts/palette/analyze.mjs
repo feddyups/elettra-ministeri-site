@@ -95,9 +95,16 @@ export const poolPalette = (results, k, { vivid = false } = {}) => {
 
 const average = (results, pick) => round(results.reduce((sum, r) => sum + pick(r), 0) / results.length);
 
+/** The cast of a group of works: the centre of mass, in OKLab, of every sampled color of every work (each work contributes the same number of samples). */
+const castOf = (results) => {
+  const samples = results.flatMap((r) => r.samples);
+  return [0, 1, 2].map((axis) => round(samples.reduce((sum, s) => sum + s[axis], 0) / samples.length, 5));
+};
+
 /** Summary numbers for a group of works. */
 export const summarize = (results) => ({
   works: results.length,
+  cast: castOf(results),
   meanChroma: average(results, (r) => r.stats.meanChroma),
   vibrancy: average(results, (r) => r.stats.vibrancy),
   meanLightness: average(results, (r) => r.stats.meanLightness),

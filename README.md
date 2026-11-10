@@ -159,7 +159,7 @@ src/
     series-attr.js            generated: tags a series or painting page with data-series before it is painted
   scripts/
     build-tones.mjs           works out each series' background from its colors and generates the two tones.generated files
-    palette/series-ground.mjs the judgment that chooses a background hue for each series (see Colors)
+    palette/series-ground.mjs the rule that makes a background from the cast of a group's colors (see Colors)
     build-atlas.mjs           generates atlas.generated.js from the catalogue images
     sync.mjs                  rebuilds every generated file (colors, atlas, series attributes) in one command
     pins.mjs                  prints the lines to paste into the three Squarespace places after a release
@@ -196,27 +196,17 @@ The modules look for `.em-home` with `.eh-hero` (containing `#eh-heroImg`, `#eh-
 
 ## Colors
 
-Every series has one background, and so does the page of every painting (`data-series="all"`, the All paintings page). The home page section for a series and the series page itself both use it, so a visitor learns which color belongs to which series. The backgrounds are worked out from the colors the series are made of, so they follow the works. One judgment applies to all of them, with no exception for any series or page.
+Every series has one background, and so does the page of every painting (`data-series="all"`, the All paintings page). The home page section for a series and the series page itself both use it. The backgrounds are worked out from the colors the series are made of, so they follow the works. One rule applies to all of them, with no exception for any series or page.
 
-`npm run sync` does it: the color analysis first (each series' pooled palette, and the palette of the whole body of work), then `scripts/build-tones.mjs`, which hands those palettes to `scripts/palette/series-ground.mjs`.
+`npm run sync` does it: the color analysis first, then `scripts/build-tones.mjs`, which hands the result to `scripts/palette/series-ground.mjs`.
 
-**How much a color counts.** A palette color counts for how far its hue family rises above the same family in the whole body of work. Sand and ochre are in every series, so they count for little; a series' own reds or greens count for a lot. The whole body of work has nothing to rise above, so its colors count at their plain share.
-
-**What is judged.** Every hue that could serve (the hue of each palette color, and its opposite) is judged on five things:
-
-- **family:** how much of the series lives in that hue family, so the ground belongs to it (a deep ochre under Sicily's ochres);
-- **opposites:** how much vivid color sits opposite the ground, which the ground makes stand out (Sicily's blues and teals against ochre);
-- **warmth:** whether the ground agrees with the series' overall temperature;
-- **anchor:** how salient the palette color that names the hue is;
-- **lead:** whether it is the hue of the series' heaviest color, which sets its key.
-
-**How they are assigned.** All series and the All paintings page are assigned a hue together: the assignment with the best total, among those that keep every pair at least 60, 55, ... 30 degrees apart (the first gap that can be met), so the colors keep working as a map. A ground is its hue at a fixed lightness and a chroma taken from how colorful the series is, with the lightness lowered until the text color reads on it.
+**The rule.** Every sampled color of every painting is a point in three dimensions (lightness and the two color axes of OKLab). The *cast* of a group of works is the centre of mass of those points: how far, and in which direction, its colors lean away from neutral (`cast` in `atlas.generated.js`). A harmonious set of colors mixes to neutral (Chevreul, Itten), so the ground that complements the set is the opposite of its cast: the same direction turned half a circle, which makes the colors lean back toward balance and, by simultaneous contrast, stand out. A set whose colors already cancel each other has a faint cast and takes a faint complement. The ground is that opposite hue at a fixed lightness, with a chroma taken from how colorful the colors are, lowered in lightness until the text color reads on it.
 
 All of it is set in `src/themes/tones.config.js`:
 
-- **All series at once:** change `TONE_SETTINGS.ground` (lightness, chroma range, contrast, gaps, the weight of each judgment).
+- **All series at once:** change `TONE_SETTINGS.ground` (lightness, chroma range and share, contrast).
 - **A new series:** add one line with the series' page name and label.
-- **One series pinned by hand:** give it `bg: '#1f3a2e'`; it then leaves the judgment, and the others are arranged without it.
+- **One series pinned by hand:** give it `bg: '#1f3a2e'`.
 - **Compare with the hand-set colors:** `MANUAL_TONES` keeps the map that was set by hand; `npm run build:tones` prints each ground beside it.
 
 Then regenerate and release:

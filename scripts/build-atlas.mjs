@@ -40,7 +40,7 @@ const report = await runAnalysis({ catalogueDir: arg('catalogue', process.env.CA
 
 const fingerprint = (s) => ({
   warm: pct(s.warm), green: pct(s.green), cool: pct(s.cool), violet: pct(s.violet), vivid: pct(s.vibrancy),
-  chroma: +s.meanChroma.toFixed(3), light: +s.meanLightness.toFixed(3), hue: s.hueBins,
+  chroma: +s.meanChroma.toFixed(3), light: +s.meanLightness.toFixed(3), hue: s.hueBins, cast: s.cast,
 });
 
 const atlas = {
