@@ -30,13 +30,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.79/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.80/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.79/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.80/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -50,7 +50,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.79/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.80/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -285,7 +285,7 @@ The painting is read from the page's own address, so `<name>` is the key in `src
 
 ## Artist favorites
 
-The page `/paintings/favorites` (a page in the unlinked Paintings collection, holding the `.th` markup of a series page with `<ul class="th-grid" data-favorites>`) lists the paintings the artist marks as favorites, in the layout of a series page and in its smooth path through color. She marks them in a Google Sheet (the `Artist favorites.xlsx` made in the catalogue folder's `favorites/` directory, uploaded to her Google Drive): a Favorite column with Yes, next to each painting's page address. The sheet is published to the web as CSV and its address goes in `src/works/favorites-source.js`; after that every change she makes shows on the page within minutes, with no release. A new painting needs a new row in the sheet.
+The page `/paintings/favorites` (a page in the unlinked Paintings collection, holding the `.th` markup of a series page with `<ul class="th-grid" data-favorites>`) lists the paintings the artist marks as favorites, in the layout of a series page and in its smooth path through color. She marks them in a Google Sheet (the `Artist favorites.xlsx` made in the catalogue folder's `favorites/` directory, uploaded to her Google Drive): a Favorite column with Yes, next to each painting's page address. The sheet is shared so that anyone with the link can view it (only she can edit), and the site reads its `Paintings` sheet as CSV through the `gviz` address set in `src/works/favorites-source.js`; every change she makes shows on the page within minutes, with no release. A new painting needs a new row in the sheet.
 
 ## Changing the works
 
