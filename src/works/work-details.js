@@ -9,7 +9,7 @@ const format = (image) => {
 /** The technical facts that are known; a row appears only when its field exists. */
 export const renderWorkDetails = (info, series) => {
   const rows = [
-    ['Medium', info.medium], ['Dimensions', info.size], ['Frame', info.frame], ['Price', priceOf(info) && `${priceOf(info)} (euros, original work${info.frame ? `, frame included at €${frameCost(info)}` : ''}; prices may change)`],
+    ['Medium', info.medium], ['Dimensions', info.size], ['Frame', info.frame], ['Price', priceOf(info) && `${priceOf(info)}${info.frame ? ` (frame included at €${frameCost(info)})` : ''}`],
     ['Format', format(info.image)], ['Series', h('a', { href: series.path }, series.label)],
   ].filter(([, value]) => value);
   return h('section', { class: 'wp-section' },
