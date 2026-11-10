@@ -1,7 +1,7 @@
 import { h } from '../lib/elements.js';
 import { SERIES_NOTES, coverOf } from '../works/series-notes.js';
 import { MEDIA } from './subjects.js';
-import { TONES } from '../themes/tones.generated.js';
+import { toneOf } from '../themes/tone-choice.js';
 
 const mediaOf = (works) => MEDIA.filter((kind) => works.some((w) => w.medium === kind.key)).map((kind) => kind.label);
 
@@ -15,7 +15,7 @@ export const renderSeriesTiles = (seriesData, worksBySeries) => h('div', { class
   const note = SERIES_NOTES[series.slug] || {};
   const cover = coverOf(series.slug, 1000);
   const facts = [`${works.length} ${works.length === 1 ? 'work' : 'works'}`, mediaOf(works).join(', ')].filter(Boolean).join(' · ');
-  const tone = TONES[series.slug];
+  const tone = toneOf(series.slug);
   return h('a', { class: 'ov-tile', href: series.path, style: tone ? { '--tile-bg': tone.bg, '--tile-fg': tone.fg } : undefined },
     h('div', { class: 'ov-tile-picture' }, cover && h('img', { src: cover, alt: '', loading: 'lazy' })),
     h('div', { class: 'ov-tile-text' },

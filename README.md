@@ -149,9 +149,11 @@ src/
     header-hide.js            slides it away on the way down, back on the way up (built on lib/scroll-direction.js and lib/hover-focus-hold.js)
     glass.css                 the pointer-following highlight of the glass
     glass.js                  senses a light or dark surface behind the glass (html[data-glass])
+    tone-control.js           the palette button in the header and the panel of backgrounds it opens (tone-control.css styles them)
     menu.css                  the header menu: its order (named numbers at the top), spacing and the Paintings dropdown
     tokens.css                THE THEME (one variable, --em-radius, sets every box's corner radius): colors, type, spacing, shadows, motion and layout, in three layers
   themes/
+    tone-choice.js            reads and keeps a visitor's choice of background (localStorage) and gives the tone in force
     tones.config.js           THE FILE TO EDIT: the settings that derive each background from the colors, and the old hand-set map (MANUAL_TONES)
     tones.generated.js        generated: the tones as a JS module (home page sections)
     tones.generated.css       generated: the tones as CSS variables (series pages)
@@ -204,9 +206,19 @@ Every series has one background, and so does the page of every painting (`data-s
 
 **Why that rule.** It was learned from the artist's own paintings and checked against them. Across 35 paintings, two colors of one painting sit less than 60 degrees apart in 51% of pairs (38% by chance), and two vivid colors set opposite each other occur in 4 paintings (13 by chance). Hiding each of 174 colors in turn and predicting its hue from the others, the hue of the cast is wrong by about 70 degrees (82 by chance) while the opposite of the cast is wrong by 110, so she works in neighbouring hues and not in opposites. Against her actual grounds, the hue of the cast is closer than its opposite in every series.
 
+**Choosing a background.** A palette button in the header (`theme/tone-control.js`) lets a visitor choose between four backgrounds for the page they are on: on a series page or a painting page it sets that series' background, on the All paintings page that page's; pages with no presets (About me, Print, Artist picks) have no button. The four presets are made for every page by `scripts/build-tones.mjs`:
+
+- **Chosen:** the backgrounds picked by hand (`CHOSEN_TONES` in `tones.config.js`);
+- **Tonal:** the hue of the cast, made deep (the rule above);
+- **Contrast:** the opposite hue;
+- **Night:** the neutral near-black of the Print page.
+
+Each preset keeps the text readable: the build fails if the text color has less than 7:1 contrast on a preset's background or second tone. The choice is kept in the browser (`localStorage`, one key `em-tone-<series>` holding the preset's name, never a color) and shown before the first paint (`themes/series-attr.js` sets `data-tone` on the page; `tones.generated.css` holds one rule per preset), so there is no flash. Where storage is blocked the default preset (`DEFAULT_TONE`) shows. The parts of the page that draw their own colors read the choice through `themes/tone-choice.js`.
+
 All of it is set in `src/themes/tones.config.js`:
 
 - **All series at once:** change `TONE_SETTINGS.ground` (lightness, chroma range and share, contrast).
+- **The presets:** edit `TONE_PRESETS` (names and notes), `DEFAULT_TONE` (the preset shown until a visitor chooses), `CHOSEN_TONES` and `NIGHT_TONE`.
 - **A new series:** add one line with the series' page name and label.
 - **One series pinned by hand:** give it `bg: '#1f3a2e'`.
 - **Compare with the hand-set colors:** `MANUAL_TONES` keeps the map that was set by hand; `npm run build:tones` prints each ground beside it.

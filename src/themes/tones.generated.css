@@ -7,6 +7,18 @@ html[data-series="mediterranean"] {
   --series-line: rgba(250,248,245,0.22);
   --series-body: rgba(250,248,245,0.88);
 }
+html[data-series="mediterranean"][data-tone="chosen"] {
+  --series-bg: rgb(8,65,80);
+  --series-bg-alt: rgb(0,36,49);
+}
+html[data-series="mediterranean"][data-tone="contrast"] {
+  --series-bg: rgb(69,57,16);
+  --series-bg-alt: rgb(40,29,0);
+}
+html[data-series="mediterranean"][data-tone="night"] {
+  --series-bg: rgb(20,17,15);
+  --series-bg-alt: rgb(29,25,22);
+}
 html[data-series="maternity"] {
   --series-bg: rgb(94,39,30);
   --series-bg-alt: rgb(59,11,5);
@@ -14,6 +26,18 @@ html[data-series="maternity"] {
   --series-muted: rgba(250,248,245,0.78);
   --series-line: rgba(250,248,245,0.22);
   --series-body: rgba(250,248,245,0.88);
+}
+html[data-series="maternity"][data-tone="chosen"] {
+  --series-bg: rgb(84,48,29);
+  --series-bg-alt: rgb(51,21,4);
+}
+html[data-series="maternity"][data-tone="contrast"] {
+  --series-bg: rgb(0,69,83);
+  --series-bg-alt: rgb(0,38,51);
+}
+html[data-series="maternity"][data-tone="night"] {
+  --series-bg: rgb(20,17,15);
+  --series-bg-alt: rgb(29,25,22);
 }
 html[data-series="sicily"] {
   --series-bg: rgb(79,51,30);
@@ -23,6 +47,18 @@ html[data-series="sicily"] {
   --series-line: rgba(250,248,245,0.22);
   --series-body: rgba(250,248,245,0.88);
 }
+html[data-series="sicily"][data-tone="chosen"] {
+  --series-bg: rgb(49,68,48);
+  --series-bg-alt: rgb(22,38,21);
+}
+html[data-series="sicily"][data-tone="contrast"] {
+  --series-bg: rgb(29,62,83);
+  --series-bg-alt: rgb(3,33,51);
+}
+html[data-series="sicily"][data-tone="night"] {
+  --series-bg: rgb(20,17,15);
+  --series-bg-alt: rgb(29,25,22);
+}
 html[data-series="human-figure"] {
   --series-bg: rgb(74,55,22);
   --series-bg-alt: rgb(43,27,0);
@@ -30,6 +66,18 @@ html[data-series="human-figure"] {
   --series-muted: rgba(250,248,245,0.78);
   --series-line: rgba(250,248,245,0.22);
   --series-body: rgba(250,248,245,0.88);
+}
+html[data-series="human-figure"][data-tone="chosen"] {
+  --series-bg: rgb(74,55,22);
+  --series-bg-alt: rgb(43,27,0);
+}
+html[data-series="human-figure"][data-tone="contrast"] {
+  --series-bg: rgb(40,59,87);
+  --series-bg-alt: rgb(15,31,54);
+}
+html[data-series="human-figure"][data-tone="night"] {
+  --series-bg: rgb(20,17,15);
+  --series-bg-alt: rgb(29,25,22);
 }
 html[data-series="archive"] {
   --series-bg: rgb(70,57,17);
@@ -39,6 +87,18 @@ html[data-series="archive"] {
   --series-line: rgba(250,248,245,0.22);
   --series-body: rgba(250,248,245,0.88);
 }
+html[data-series="archive"][data-tone="chosen"] {
+  --series-bg: rgb(70,57,17);
+  --series-bg-alt: rgb(40,29,0);
+}
+html[data-series="archive"][data-tone="contrast"] {
+  --series-bg: rgb(48,56,89);
+  --series-bg-alt: rgb(22,28,56);
+}
+html[data-series="archive"][data-tone="night"] {
+  --series-bg: rgb(20,17,15);
+  --series-bg-alt: rgb(29,25,22);
+}
 html[data-series="textiles"] {
   --series-bg: rgb(47,57,88);
   --series-bg-alt: rgb(21,29,55);
@@ -47,6 +107,18 @@ html[data-series="textiles"] {
   --series-line: rgba(250,248,245,0.22);
   --series-body: rgba(250,248,245,0.88);
 }
+html[data-series="textiles"][data-tone="chosen"] {
+  --series-bg: rgb(47,57,88);
+  --series-bg-alt: rgb(21,29,55);
+}
+html[data-series="textiles"][data-tone="contrast"] {
+  --series-bg: rgb(70,57,20);
+  --series-bg-alt: rgb(40,29,0);
+}
+html[data-series="textiles"][data-tone="night"] {
+  --series-bg: rgb(20,17,15);
+  --series-bg-alt: rgb(29,25,22);
+}
 html[data-series="all"] {
   --series-bg: rgb(81,51,23);
   --series-bg-alt: rgb(49,24,0);
@@ -54,4 +126,16 @@ html[data-series="all"] {
   --series-muted: rgba(250,248,245,0.78);
   --series-line: rgba(250,248,245,0.22);
   --series-body: rgba(250,248,245,0.88);
+}
+html[data-series="all"][data-tone="chosen"] {
+  --series-bg: rgb(81,51,23);
+  --series-bg-alt: rgb(49,24,0);
+}
+html[data-series="all"][data-tone="contrast"] {
+  --series-bg: rgb(26,62,87);
+  --series-bg-alt: rgb(0,33,54);
+}
+html[data-series="all"][data-tone="night"] {
+  --series-bg: rgb(20,17,15);
+  --series-bg-alt: rgb(29,25,22);
 }

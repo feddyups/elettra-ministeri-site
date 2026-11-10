@@ -2,7 +2,7 @@ import { loadImage, sampleImage } from '../lib/image.js';
 import { extractPalette, backgroundTone, renderSwatches } from '../lib/color.js';
 import { onFirstVisible } from '../lib/dom.js';
 import { updateTone } from './page-tone.js';
-import { TONES } from '../themes/tones.generated.js';
+import { toneOf } from '../themes/tone-choice.js';
 import { h } from '../lib/elements.js';
 import { renderSwatch } from '../color/swatch.js';
 import { createColorFocus } from '../color/color-focus.js';
@@ -39,7 +39,7 @@ export const initChapter = (chapter) => {
 
   loadImage(img, chapter.getAttribute('data-img')).then(() => {
     const palette = extractPalette(sampleImage(img));
-    const tone = TONES[seriesOf(chapter)];
+    const tone = toneOf(seriesOf(chapter));
     chapter.setAttribute('data-bg', tone ? tone.bg : `rgb(${backgroundTone(palette).map(Math.round).join(',')})`);
     chapter.setAttribute('data-fg', tone ? tone.fg : '#faf8f5');
     updateTone();

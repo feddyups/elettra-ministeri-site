@@ -3,7 +3,7 @@ import { nextWorks, seenWorks, markSeen } from './walk.js';
 import { seriesInfo } from '../color/scope.js';
 import { CATALOGUE } from './catalogue.js';
 import { nextBandColor } from './next-tone.js';
-import { TONES } from '../themes/tones.generated.js';
+import { toneOf } from '../themes/tone-choice.js';
 
 const KIND_TITLE = { nearest: 'Nearest in color', counterpart: 'Turned the other way', step: 'A step along' };
 
@@ -18,9 +18,12 @@ export const renderWorkNext = ({ work, scope, intro }) => {
   markSeen(work.slug);
   const suggestions = nextWorks(work, scope.universe, seen);
   if (!suggestions.length && !intro) return null;
-  const tone = TONES[work.series];
-  const bg = suggestions.length ? nextBandColor(suggestions.map((s) => s.work), tone && tone.bg) : (tone && tone.bg);
-  return h('div', { class: 'wp-next', style: bg ? { '--next-bg': bg } : null },
+  const bandFor = () => {
+    const tone = toneOf(work.series);
+    return suggestions.length ? nextBandColor(suggestions.map((s) => s.work), tone && tone.bg) : (tone && tone.bg);
+  };
+  const bg = bandFor();
+  const band = h('div', { class: 'wp-next', style: bg ? { '--next-bg': bg } : null },
     intro,
     suggestions.length > 0 && h('div', { class: 'wp-next-suggestions' },
     h('p', { class: 'ca-label' }, 'Where to look next'),
@@ -34,4 +37,7 @@ export const renderWorkNext = ({ work, scope, intro }) => {
         h('b', null, other.title),
         h('span', { class: 'wp-next-reason' }, reason, crossSeries && series ? ` From ${series.label}.` : ''));
     }))));
+  // the band follows the background the visitor picks in the header (theme/tone-control.js)
+  addEventListener('em-tone-change', () => { const next = bandFor(); if (next) band.style.setProperty('--next-bg', next); });
+  return band;
 };

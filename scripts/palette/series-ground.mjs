@@ -15,6 +15,7 @@ import { oklabToRgb } from '../../src/lib/color-science.js';
  * taken from how colorful the colors are: the same share of their mean chroma for every group, within one range.
  *
  * @param {Record<string, { cast: number[], meanChroma: number }>} groups  slug to the cast `[L, a, b]` and mean chroma of its colors
+ * @param {number} turn  degrees the hue is turned from the cast (0 for the hue of the cast, 180 for its opposite)
  * @param {{ ink: number[], lightness: number, minChroma: number, maxChroma: number, chromaShare: number, minContrast: number }} settings
  * @returns {Record<string, { rgb: number[], hue: number, why: string }>}
  */
@@ -25,9 +26,9 @@ export const contrastOf = (a, b) => { const [hi, lo] = [luminance(a), luminance(
 
 const degrees = (radians) => (radians * 180 / Math.PI + 360) % 360;
 
-export const deriveGrounds = (groups, settings) => Object.fromEntries(Object.entries(groups).map(([slug, { cast, meanChroma }]) => {
+export const deriveGrounds = (groups, settings, turn = 0) => Object.fromEntries(Object.entries(groups).map(([slug, { cast, meanChroma }]) => {
   const castHue = degrees(Math.atan2(cast[2], cast[1]));
-  const hue = castHue;
+  const hue = (castHue + turn) % 360;
   const chroma = Math.min(settings.maxChroma, Math.max(settings.minChroma, meanChroma * settings.chromaShare));
   let lightness = settings.lightness;
   let rgb;
@@ -37,5 +38,5 @@ export const deriveGrounds = (groups, settings) => Object.fromEntries(Object.ent
     lightness -= 0.01;
   } while (contrastOf(rgb, settings.ink) < settings.minContrast && lightness > 0.1);
   const lean = Math.hypot(cast[1], cast[2]);
-  return [slug, { rgb, hue: Math.round(hue), why: `the hue of a cast of ${lean.toFixed(3)} toward ${Math.round(castHue)} degrees` }];
+  return [slug, { rgb, hue: Math.round(hue), why: `${turn ? `the hue of a cast of ${lean.toFixed(3)} toward ${Math.round(castHue)} degrees, turned ${turn} degrees` : `the hue of a cast of ${lean.toFixed(3)} toward ${Math.round(castHue)} degrees`}` }];
 }));
