@@ -672,8 +672,8 @@ export const CATALOGUE = {
       "Five tassels hang below, each in its own color and each topped with a wooden bead."
     ]
   },
-  'seated-figure': {
-    title: "Seated figure",
+  'by-the-window': {
+    title: "By the window",
     series: "textiles",
     medium: "Felt, fabric, silk and thread",
     size: "61 × 78 cm",
@@ -683,10 +683,10 @@ export const CATALOGUE = {
       width: 1000,
       height: 1347
     },
-    alt: "Seated figure: a white felt figure seen from behind, outlined in colored stitches, on a gray-green woven ground with a blue and cream damask panel, two blue patches and a length of bright blue silk hanging at the right",
+    alt: "By the window: a white felt woman seen from behind, outlined in colored stitches, sitting near a window with a bright blue silk curtain beside her, against a patterned blue and cream wall",
     story: [
-      "A faceless figure seen from behind, cut from white felt, sits on a ground of gray-green weave. Behind her is a panel of blue and cream damask; beside her a length of bright blue silk falls over the edge.",
-      "Color enters only at the outline: thread in pink, blue, green and red traces the back, the arm and the knee, so the body is white and the drawing is color."
+      "A woman sits with her back to us, close to a window. The blue silk beside her is the curtain, and behind her the old patterned cloth is the wall and the light on it.",
+      "I cut her from white felt and left her face out, so she can be anyone who has stopped for a moment to look outside. The color is only in the stitches that draw her."
     ]
   }
 };
