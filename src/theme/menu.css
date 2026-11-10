@@ -96,6 +96,8 @@ html .header-nav-list > .header-nav-item .header-nav-folder-title-text {
   border-bottom: var(--em-stroke) solid transparent;
   padding-bottom: var(--em-space-2xs);
 }
+/* the Paintings item is a button holding that label: it must add no height of its own, or its label rides lower than the links */
+html .header-nav-list > .header-nav-item--folder > .header-nav-folder-title { display: flex !important; padding-bottom: 0 !important; }
 html .header-nav-list > .header-nav-item.is-current > a,
 html .header-nav-list > .header-nav-item.is-current .header-nav-folder-title-text {
   border-bottom-color: currentColor;
