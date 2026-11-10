@@ -30,7 +30,7 @@ html .wp .wp-hero {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(var(--em-space-xl), 6vw, var(--em-space-4xl));
-  align-items: start;
+  align-items: end;
 }
 
 .wp-figure { margin: 0; }
