@@ -8,7 +8,8 @@
     "build:atlas": "node --use-system-ca scripts/build-atlas.mjs",
     "analyze:palette": "node --use-system-ca scripts/analyze-palette.mjs",
     "sync": "node --use-system-ca scripts/sync.mjs",
-    "check:site": "node --use-system-ca scripts/check-site.mjs"
+    "check:site": "node --use-system-ca scripts/check-site.mjs",
+    "pins": "node scripts/pins.mjs"
   },
   "devDependencies": {
     "jpeg-js": "^0.4.4",

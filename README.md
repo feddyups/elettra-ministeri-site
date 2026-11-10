@@ -166,6 +166,7 @@ src/
     build-tones.mjs           generates the two tones.generated files
     build-atlas.mjs           generates atlas.generated.js from the catalogue images
     sync.mjs                  rebuilds every generated file (colors, atlas, series attributes) in one command
+    pins.mjs                  prints the lines to paste into the three Squarespace places after a release
     check-site.mjs            compares the live site with the catalogue and lists what is out of date
     analyze-palette.mjs       prints and saves the full color analysis
     rectify.mjs               straightens a photo of a painting: its four corners become a flat rectangle cropped at the frame
@@ -292,6 +293,6 @@ Edit `src/features/hero/works.js`, commit, tag a new version and update the vers
 1. **Photograph to picture.** `scripts/rectify.mjs` (flatten and crop a phone photo to the frame), `scripts/trim-border.mjs` (cut a pale border off a scan or an export), `scripts/tone-photo.mjs` (white balance from the bed sheet, levels, vibrance). Keep the finished file in the catalogue folder under `rectified/`.
 2. **Upload** it in Squarespace (Assets → Upload) and copy its address into `src/works/catalogue.js` (a new work also needs its entry there: title, series, medium, size, year, image, alt) and into `scripts/palette/works.config.mjs`.
 3. **Rebuild the data**: `npm run sync -- --catalogue "<catalogue folder>"`. This recomputes every work's colors, the series fingerprints, the overall statistics, the warm/cool map, the pairing and the series colors. Every infographic, the hero and the painting pages read this one result.
-4. **Release**: commit, tag `vX.Y.Z`, push, wait until jsDelivr serves every changed file, then change the version in the header injection, the footer injection and the home code block.
+4. **Release**: commit, tag `vX.Y.Z`, push, wait until jsDelivr serves every changed file, then run `npm run pins` and paste the version into the header injection, the footer injection and the home code block.
 5. **Squarespace pieces**: a new work needs its painting page (duplicate the template item in the Paintings collection, set title, slug, Published), a thumbnail in its series page's code block, and the "N works" counts on `/paintings` and the home chapter.
 6. **Check**: `npm run check:site` compares the live site with the catalogue (release in use, painting pages, series pages, counts) and lists what is left.
