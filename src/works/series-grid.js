@@ -1,11 +1,10 @@
 import { h } from '../lib/elements.js';
 import { worksOfSeries, pictureAt } from './series-notes.js';
 import { seriesInfo } from '../color/scope.js';
+import { factsLine } from './facts.js';
 
 const WIDTHS = [500, 1000, 1500];
 const SIZES = '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw';
-
-const facts = (work) => [work.medium, work.size, work.year, work.frame && 'hand-painted frame'].filter(Boolean).join(' · ');
 
 /** One entry of a series page: the picture, its title and facts, and the way to enquire. */
 const renderEntry = (slug, work, seriesLabel) => {
@@ -18,7 +17,7 @@ const renderEntry = (slug, work, seriesLabel) => {
         alt: work.alt, width: 1000, height: Math.round(1000 * height / width), loading: 'lazy',
       })),
     h('div', { class: 'th-cap' },
-      h('div', null, h('b', null, h('a', { href: page }, work.title)), h('small', null, facts(work))),
+      h('div', null, h('b', null, h('a', { href: page }, work.title)), h('small', null, factsLine(work))),
       h('a', { href: `/enquire?SQF_WORK=${encodeURIComponent(`${seriesLabel}: ${work.title}`)}` }, 'Enquire')));
 };
 

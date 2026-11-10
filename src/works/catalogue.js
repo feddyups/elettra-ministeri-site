@@ -89,8 +89,8 @@ export const CATALOGUE = {
   'maternity-i': {
     title: "Maternity I",
     series: "maternity",
-    medium: "Acrylic on canvas",
-    size: "50 × 70 cm",
+    medium: "Acrylic on watercolor canvas",
+    size: "18 × 25.5 cm",
     image: {
       src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1706395437954-VXOD34RJGX8YZ2L05HR3/maternity+I.jpg",
       width: 1000,
@@ -105,8 +105,8 @@ export const CATALOGUE = {
   'maternity-ii': {
     title: "Maternity II",
     series: "maternity",
-    medium: "Acrylic on canvas",
-    size: "50 × 70 cm",
+    medium: "Acrylic on watercolor canvas",
+    size: "18 × 25.5 cm",
     image: {
       src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1706395438108-49N60VM3SQ8D7HBOKEWW/maternity+II.jpg",
       width: 1000,

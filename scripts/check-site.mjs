@@ -6,12 +6,13 @@
  * It looks at the public pages only (nothing is changed) and reports:
  *   - the release each Squarespace injection points to (header, footer, home) against the newest git tag,
  *   - every work in the catalogue: does its page exist, is it on its series page, does its thumbnail there match
- *     the catalogue image, and how many "N works" labels disagree with the real count,
+ *     the catalogue image and its facts line the catalogue's, and how many "N works" labels disagree with the real count,
  *   - catalogue images that still carry a pale border (a quick check of each image's outer pixels).
  */
 import { execSync } from 'node:child_process';
 import { CATALOGUE } from '../src/works/catalogue.js';
 import { SERIES } from '../src/themes/tones.config.js';
+import { factsLine } from '../src/works/facts.js';
 
 const SITE = 'https://www.elettraministeri.com';
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -49,6 +50,8 @@ for (const [series, works] of Object.entries(bySeries)) {
     if (!listed.includes(slug)) return;
     const id = work.image.src.match(/\/([0-9a-f-]{36}|\d{13}-[A-Z0-9]{20})\//)?.[1];
     if (id && !html.includes(id)) note(`${path}: the thumbnail of ${slug} is not the catalogue image`);
+    const stored = (html.match(new RegExp(`<li class="th-work" id="${slug}"[\\s\\S]*?<small>([^<]*)</small>`)) || [])[1];
+    if (stored !== undefined && stored.replace(/&middot;/g, '·').trim() !== factsLine(work)) note(`${path}: the facts line of ${slug} says "${stored.trim()}"; the catalogue says "${factsLine(work)}"`);
   });
   if (!missing.length && !extra.length) ok(`${path} lists all ${works.length} works`);
   const label = tiles.match(new RegExp(`<b>${SERIES[series]?.label}</b>[\\s\\S]{0,300}?<small>(\\d+) works?</small>`));
