@@ -41,6 +41,6 @@ export const initPaintingsOverview = (host) => {
       section('The whole body of work', 'The colors I use, measured', `All ${works.length} works together${range.length ? `, from ${Math.min(...range)} to ${Math.max(...range)} where the year is known` : ''}.`, atlas, renderMap(series, filter)),
       section('Subjects and materials', 'What I paint, and what on', 'Choose a bar to narrow everything on this page to those works.',
         h('div', { class: 'ov-bars-pair' }, renderSubjectBars(works, filter), renderMediumBars(works, filter))),
-      section('Every work', 'The index', 'Sort it, or narrow it by series, subject, material, the color that covers most of the picture, or how its colors are built: in neighboring hues, with a small opposite accent, or carried by one color.',
+      section('Every work', 'The index', 'Sort it, or narrow it by series, subject, material, price, the color that covers most of the picture, or how its colors are built: in neighboring hues, with a small opposite accent, or carried by one color.',
         renderWorkIndex(works, series, filter))));
 };

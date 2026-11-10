@@ -2,7 +2,7 @@
  * What is known about each painting, written by hand (everything about its colors is generated; see src/color/).
  * Keyed by the work's page name: its page is /paintings/<key> and its entry on the series page has the same id.
  * Every field but title, series, medium, image and alt is optional ('colorNote' adds paragraphs to the reading of the painting's colors; a 'context' adds a section about where a work comes from: intro, echoes with sources, closing), and a section of the page appears only when
- * its field exists: add 'story' (one string per paragraph), 'year', 'size', 'frame' or 'price' (whole US dollars; a work without one shows no price) as they become known.
+ * its field exists: add 'story' (one string per paragraph), 'year', 'size', 'frame' or 'price' (whole US dollars for the work itself; the hand-painted frame is added on top of it automatically, see works/price.js; a work without one shows no price) as they become known.
  */
 export const CATALOGUE = {
   'lighthouses': {

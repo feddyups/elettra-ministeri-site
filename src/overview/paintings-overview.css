@@ -118,12 +118,13 @@ button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; t
 .ov-bar-row select { font: inherit; color: inherit; background: transparent; border: var(--em-hairline) solid var(--ov-line); border-radius: var(--em-radius-sm); padding: var(--em-space-2xs) var(--em-space-s); }
 .ov-bar-row select option { color: var(--em-ink-strong); }
 .ov-works { display: grid; margin: 0; padding: 0; list-style: none; }
-.ov-work a { display: grid; grid-template-columns: 3.75rem minmax(0, 1.2fr) minmax(0, 0.8fr) minmax(0, 1.4fr) minmax(0, 6rem); align-items: center; gap: var(--em-space-ml); padding-block: var(--em-space-s); border-top: var(--em-hairline) solid var(--ov-line); transition: background var(--em-duration-quick) var(--em-ease); }
+.ov-work a { display: grid; grid-template-columns: 3.75rem minmax(0, 1.2fr) minmax(0, 0.8fr) minmax(0, 1.4fr) 4.5rem minmax(0, 6rem); align-items: center; gap: var(--em-space-ml); padding-block: var(--em-space-s); border-top: var(--em-hairline) solid var(--ov-line); transition: background var(--em-duration-quick) var(--em-ease); }
 .ov-work a:hover, .ov-work a:focus-visible { background: color-mix(in srgb, var(--em-paper) 7%, transparent); }
 .ov-work-picture { display: block; width: 3.75rem; height: 3.75rem; overflow: hidden; background: var(--ov-line); }
 .ov-work-picture img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ov-work-title { font-family: var(--em-font-serif); font-size: var(--em-text-xl); line-height: var(--em-leading-tight); }
 .ov-work-series, .ov-work-facts { font-size: var(--em-text-xs); color: var(--ov-muted); }
+.ov-work-price { font-size: var(--em-text-md); text-align: right; font-variant-numeric: tabular-nums; }
 .ov-work-series { letter-spacing: var(--em-tracking-caps); text-transform: uppercase; }
 .ov-work-colors { display: flex; height: var(--em-space-s); }
 .ov-work-colors i { display: block; flex: var(--share) 1 0; background: var(--color); }
@@ -131,7 +132,7 @@ button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; t
 @media (max-width: 56.25em) {
   .ov-row { grid-template-columns: minmax(0, 1fr); row-gap: var(--em-space-s); }
   .ov-row-head { display: none; }
-  .ov-work a { grid-template-columns: 3.25rem minmax(0, 1fr) minmax(0, 6rem); }
+  .ov-work a { grid-template-columns: 3.25rem minmax(0, 1fr) auto minmax(0, 5rem); }
   .ov-work-picture { width: 3.25rem; height: 3.25rem; }
   .ov-work-series, .ov-work-facts { display: none; }
   .ov-group { grid-template-columns: minmax(0, 1fr); gap: var(--em-space-xs); }
