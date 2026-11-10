@@ -1,4 +1,5 @@
 @import url('./tokens.css');
+@import url('../features/paint-portrait.css');
 
 /*
  * The About me page (collection 598080d015d5db77a628d2b4): the biography is the page's main text, so it takes the
@@ -18,4 +19,22 @@ body.collection-598080d015d5db77a628d2b4 .sqs-block-image figure.sqs-block-image
   body.collection-598080d015d5db77a628d2b4 .sqs-row:has(> .sqs-col-7 .sqs-block-image) { display: flex; align-items: flex-start; }
   body.collection-598080d015d5db77a628d2b4 .sqs-row:has(> .sqs-col-7 .sqs-block-image) > .sqs-col-7 { float: none; flex: none; width: min(58.333%, calc((100svh - 15rem) / 1.1326)); }
   body.collection-598080d015d5db77a628d2b4 .sqs-row:has(> .sqs-col-7 .sqs-block-image) > .sqs-col-5 { float: none; flex: 1 1 0; width: auto; min-width: 0; padding-left: var(--em-space-xl); }
+}
+
+/*
+ * The first paint already has the final layout. Until Squarespace has made its components ready, its own styles give the section a 73px padding and the
+ * photo block a 128px bottom margin, and then take both away, which shows as the page jumping. Both are 0 once the page is ready, at every width.
+ */
+body.collection-598080d015d5db77a628d2b4 .page-section:has(.sqs-block-image) .content-wrapper { padding-block: 0 !important; }
+body.collection-598080d015d5db77a628d2b4 .sqs-block-image .image-block-outer-wrapper { margin-bottom: 0 !important; }
+
+/*
+ * The portrait is painted by brush the first time it is seen (features/paint-portrait.js, whose styles are imported above so the canvas is placed from the first paint).
+ * Until that takes over (it marks the picture's container with em-portrait-host) the photograph stays hidden, so it is not shown and then painted over; if the script
+ * never runs the photograph shows after four seconds, and at once for a visitor who prefers reduced motion (the painting is skipped for them).
+ */
+body.collection-598080d015d5db77a628d2b4 .sqs-image-shape-container-element:not(.em-portrait-host) img { opacity: 0; animation: em-portrait-reveal 0s 4s forwards; }
+@keyframes em-portrait-reveal { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  body.collection-598080d015d5db77a628d2b4 .sqs-image-shape-container-element:not(.em-portrait-host) img { opacity: 1; animation: none; }
 }

@@ -1,7 +1,6 @@
 import { paintImage } from '../paint/paint-image.js';
 import { loadImage } from '../lib/image.js';
 import { initOnceFor, onFirstVisible } from '../lib/dom.js';
-import { loadStylesheet } from '../lib/stylesheet.js';
 import { prefersReducedMotion } from '../lib/motion.js';
 import { h } from '../lib/elements.js';
 
@@ -12,7 +11,7 @@ const GIVE_UP_MS = 9000;
 /**
  * On the pages listed above, the picture in each Squarespace image block is painted stroke by stroke the first time
  * it scrolls into view (the effect of the home hero and the painting pages), then the real photograph shows.
- * The portrait is not a link either. Visitors who prefer reduced motion, or whose browser cannot read the image, simply see the photograph.
+ * Its styles come with the page's stylesheets (theme/about.css imports paint-portrait.css), and the photograph stays hidden until this takes over. The portrait is not a link either. Visitors who prefer reduced motion, or whose browser cannot read the image, simply see the photograph.
  */
 const paintBlockImage = (img) => {
   const host = img.parentElement;
@@ -41,6 +40,5 @@ const paintBlockImage = (img) => {
 };
 
 if (PAGES.includes(location.pathname.replace(/\/$/, '')) && !prefersReducedMotion) {
-  loadStylesheet(new URL('./paint-portrait.css', import.meta.url).href);
   initOnceFor('.sqs-block-image .sqs-image-shape-container-element img', 'portrait-paint', paintBlockImage);
 }
