@@ -199,16 +199,16 @@ html.wp-lightbox-open { overflow: hidden; }
 html .wp .wp-pick { margin-left: var(--em-space-m); }
 html .wp .wp-pick svg { width: 1.1em; height: 1.1em; margin-right: var(--em-space-2xs); vertical-align: -0.2em; fill: currentColor; }
 
-/* moving through a series: the picture slides out the way it is going and the next one slides in from the other side (work-slideshow.js) */
+/* moving through a series: the page slides out the way it is going and the next one slides in from the other side (work-slideshow.js) */
 html.wp-sliding { overflow-x: clip; }
-html .wp .wp-hero.wp-leave-to-left,
-html .wp .wp-hero.wp-leave-to-right { opacity: 0; transition: opacity var(--em-duration-quick) var(--em-ease), transform var(--em-duration-quick) var(--em-ease); }
-html .wp .wp-hero.wp-leave-to-left { transform: translateX(calc(-1 * var(--em-space-3xl))); }
-html .wp .wp-hero.wp-leave-to-right { transform: translateX(var(--em-space-3xl)); }
+html .wp.wp-leave-to-left,
+html .wp.wp-leave-to-right { opacity: 0; transition: opacity var(--em-duration-quick) var(--em-ease), transform var(--em-duration-quick) var(--em-ease); }
+html .wp.wp-leave-to-left { transform: translateX(calc(-1 * var(--em-space-3xl))); }
+html .wp.wp-leave-to-right { transform: translateX(var(--em-space-3xl)); }
 @keyframes wp-enter-from-right { from { opacity: 0; transform: translateX(var(--em-space-3xl)); } to { opacity: 1; transform: none; } }
 @keyframes wp-enter-from-left { from { opacity: 0; transform: translateX(calc(-1 * var(--em-space-3xl))); } to { opacity: 1; transform: none; } }
-html .wp .wp-hero.wp-enter-from-right { animation: wp-enter-from-right var(--em-duration-base) var(--em-ease) both; }
-html .wp .wp-hero.wp-enter-from-left { animation: wp-enter-from-left var(--em-duration-base) var(--em-ease) both; }
+html .wp.wp-enter-from-right { animation: wp-enter-from-right var(--em-duration-base) var(--em-ease) both; }
+html .wp.wp-enter-from-left { animation: wp-enter-from-left var(--em-duration-base) var(--em-ease) both; }
 .wp-keys { display: none; margin: var(--em-space-s) 0 0; font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
 @media (hover: hover) and (pointer: fine) { .wp-keys--keys { display: block; } }
 @media (pointer: coarse) { .wp-keys--swipe { display: block; } }

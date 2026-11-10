@@ -14,7 +14,7 @@ const samePath = (href, other) => new URL(href, location.origin).pathname === ne
 
 /**
  * Moves through the paintings of a series like a slideshow: the arrow keys, and the previous and next links and the strips under
- * "More in <series>", go to the neighboring painting in the order of the series page, and so does a swipe left or right on a touch screen. The picture slides out the way it is going and
+ * "More in <series>", go to the neighboring painting in the order of the series page, and so does a swipe left or right anywhere on the page of a touch screen. The page slides out the way it is going and
  * the next one slides in from the other side (not when the visitor prefers reduced motion). The neighbors are fetched ahead so the next
  * page is ready when asked for.
  */
@@ -22,9 +22,8 @@ export const initWorkSlideshow = ({ host, work, series }) => {
   const ordered = inSeriesOrder(series.slug, series.works, (w) => w.slug);
   if (ordered.length < 2) return;
   const { previous, next } = around(ordered, work.slug);
-  const hero = host.querySelector('.wp-hero');
   const root = document.documentElement;
-  const animated = () => Boolean(hero) && matchMedia(MOTION).matches;
+  const animated = () => matchMedia(MOTION).matches;
   let leaving = false;
 
   const arrive = () => {
@@ -33,8 +32,8 @@ export const initWorkSlideshow = ({ host, work, series }) => {
     if (!flag || Date.now() - flag.at > RECENT_MS || !animated()) return;
     const enter = flag.direction === 'next' ? 'wp-enter-from-right' : 'wp-enter-from-left';
     root.classList.add('wp-sliding');
-    hero.classList.add(enter);
-    hero.addEventListener('animationend', () => { hero.classList.remove(enter); root.classList.remove('wp-sliding'); }, { once: true });
+    host.classList.add(enter);
+    host.addEventListener('animationend', () => { host.classList.remove(enter); root.classList.remove('wp-sliding'); }, { once: true });
   };
 
   const go = (target, direction) => {
@@ -46,7 +45,7 @@ export const initWorkSlideshow = ({ host, work, series }) => {
     };
     if (!animated()) { leave(); return; }
     root.classList.add('wp-sliding');
-    hero.classList.add(direction === 'next' ? 'wp-leave-to-left' : 'wp-leave-to-right');
+    host.classList.add(direction === 'next' ? 'wp-leave-to-left' : 'wp-leave-to-right');
     setTimeout(leave, LEAVE_MS);
   };
 
@@ -61,44 +60,44 @@ export const initWorkSlideshow = ({ host, work, series }) => {
   // swiping sideways on a touch screen does what the arrow keys do; the picture follows the finger and slides on when released
   const swipe = { x: 0, y: 0, at: 0, active: false };
   const scrollsSideways = (element) => {
-    for (let e = element; e && e !== host; e = e.parentElement) {
+    for (let e = element; e && e !== root; e = e.parentElement) {
       if (e.scrollWidth > e.clientWidth + 1 && /(auto|scroll)/.test(getComputedStyle(e).overflowX)) return true;
     }
     return false;
   };
   const settle = () => {
-    if (!hero) return;
-    hero.style.transition = 'transform var(--em-duration-base) var(--em-ease)';
-    hero.style.transform = '';
-    setTimeout(() => { hero.style.transition = ''; }, 320);
+    host.style.transition = 'transform var(--em-duration-base) var(--em-ease)';
+    host.style.transform = '';
+    setTimeout(() => { host.style.transition = ''; }, 320);
   };
-  host.addEventListener('touchstart', (event) => {
+  document.addEventListener('touchstart', (event) => {
     swipe.active = false;
     if (leaving || event.touches.length !== 1) return;
     const touch = event.touches[0];
     const target = event.target instanceof Element ? event.target : null;
     if (!target || touch.clientX < EDGE || touch.clientX > innerWidth - EDGE) return;
-    if (typing(target) || scrollsSideways(target) || root.classList.contains('wp-lightbox-open')) return;
+    if (typing(target) || target.closest('header, [role="dialog"]') || scrollsSideways(target) || root.classList.contains('wp-lightbox-open')) return;
     Object.assign(swipe, { x: touch.clientX, y: touch.clientY, at: Date.now(), active: true });
   }, { passive: true });
-  host.addEventListener('touchmove', (event) => {
-    if (!swipe.active || !hero) return;
+  document.addEventListener('touchmove', (event) => {
+    if (!swipe.active) return;
     const dx = event.touches[0].clientX - swipe.x;
     const dy = event.touches[0].clientY - swipe.y;
     if (Math.abs(dy) > Math.abs(dx)) { swipe.active = false; settle(); return; }
-    if (animated() && Math.abs(dx) > 10) { hero.style.transition = 'none'; hero.style.transform = `translateX(${dx * 0.4}px)`; }
+    if (animated() && Math.abs(dx) > 10) { host.style.transition = 'none'; host.style.transform = `translateX(${dx * 0.4}px)`; }
   }, { passive: true });
-  host.addEventListener('touchend', (event) => {
+  document.addEventListener('touchend', (event) => {
     if (!swipe.active) return;
     swipe.active = false;
     const dx = event.changedTouches[0].clientX - swipe.x;
     const dy = event.changedTouches[0].clientY - swipe.y;
     const swiped = Math.abs(dx) >= SWIPE_MIN && Math.abs(dx) > Math.abs(dy) * 1.5 && Date.now() - swipe.at < SWIPE_MS;
     if (!swiped) { settle(); return; }
-    if (hero) { hero.style.transition = ''; hero.style.transform = ''; }
+    host.style.transition = '';
+    host.style.transform = '';
     if (dx < 0) go(next, 'next'); else go(previous, 'previous');
   });
-  host.addEventListener('touchcancel', () => { swipe.active = false; settle(); });
+  document.addEventListener('touchcancel', () => { swipe.active = false; settle(); });
 
   host.addEventListener('click', (event) => {
     const link = event.target instanceof Element ? event.target.closest('.wp-pager a, .ca-strips a') : null;
@@ -115,7 +114,7 @@ export const initWorkSlideshow = ({ host, work, series }) => {
     if (!event.persisted) return;
     leaving = false;
     root.classList.remove('wp-sliding');
-    hero.classList.remove('wp-leave-to-left', 'wp-leave-to-right');
+    host.classList.remove('wp-leave-to-left', 'wp-leave-to-right');
   });
 
   arrive();
