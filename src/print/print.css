@@ -8,7 +8,8 @@ html .th-grid[data-print] {
 }
 
 /* The page of a postcard */
-.pr-actions { display: flex; flex-wrap: wrap; gap: var(--em-space-s); margin: var(--em-space-l) 0 0; }
+html .wp .pr-actions { display: flex; flex-wrap: wrap; gap: var(--em-space-s); margin: var(--em-space-l) 0 0; }
+html .wp .wp-pager + .wp-keys { margin-top: var(--em-space-m); }
 html .wp .pr-actions .wp-cta { cursor: pointer; }
 html .wp .pr-prompt { margin: var(--em-space-xl) 0 0; padding-top: var(--em-space-l); border-top: var(--em-hairline) solid var(--ca-line, currentColor); }
 html .wp .pr-prompt p:not(.ca-label) { margin: 0; font-style: italic; }
