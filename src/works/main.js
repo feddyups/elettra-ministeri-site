@@ -11,13 +11,8 @@ import './pager.js';
  * strips of color under each painting on a series page (.th-work) and the bar at the bottom of both (pager.js). It does nothing on a page without either,
  * and loads its stylesheets only when it finds one.
  */
-const loaded = new Set();
 const withStyles = (names, init) => (element) => {
-  names.filter((name) => !loaded.has(name)).forEach((name) => {
-    loadStylesheet(new URL(name, import.meta.url).href);
-    loaded.add(name);
-  });
-  init(element);
+  Promise.all(names.map((name) => loadStylesheet(new URL(name, import.meta.url).href))).then(() => init(element));
 };
 
 initOnceFor('[data-work-page]', 'work-page', withStyles(['../color/swatch.css', '../color/color-strip.css', '../color/color-atlas.css', './work-page.css'], initWorkPage));
