@@ -17,10 +17,10 @@ html .wp {
   padding-top: 0;
 }
 
-/* A Squarespace code block that holds only the page spans the whole content grid, however it was sized in the editor. */
 /* the page starts just under the header: the template's section padding is trimmed so the picture and its title sit high on the screen. */
 html .content-wrapper:has([data-work-page]) { padding-top: clamp(1rem, 2vw, 2rem); }
 
+/* A Squarespace code block that holds only the page spans the whole content grid, however it was sized in the editor. */
 html .fe-block:has(.sqs-code-container > [data-work-page]) {
   grid-column: 2 / -2 !important;
   grid-row: 1 / -1 !important;
