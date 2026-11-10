@@ -593,7 +593,7 @@ export const CATALOGUE = {
     },
     alt: "Sciò: a red horn wearing a golden crown among stars on a green ground, with the word Sciò in white, acrylic on canvas",
     story: [
-      "A red horn wearing a golden crown, under stars on a green night. It is the lucky charm of southern Italy, made king.",
+      "A red horn wearing a golden crown, under stars on a green night. It is the lucky charm of southern Italy.",
       "I wrote “Sciò” beside it, to send the bad luck out."
     ],
     context: {
@@ -606,21 +606,6 @@ export const CATALOGUE = {
           name: "The cornicello",
           place: "Naples and the south of Italy",
           text: "A small twisted horn, worn or hung against the evil eye and bad luck. In Neapolitan it is the curniciello; elsewhere it is called cornetto or corno. It is made of red coral, gold, silver, bone or terracotta, and it is found across the south, in Campania, Sicily, Calabria and Apulia. In Naples it is still made by hand in the shops of San Gregorio Armeno, and people buy it there to give as a present.",
-          sources: [
-            {
-              label: "Cornicello (Wikipedia)",
-              url: "https://en.wikipedia.org/wiki/Cornicello"
-            },
-            {
-              label: "Visit Naples",
-              url: "https://visitnaples.eu/en/neapolitanity/tales-of-naples/what-is-the-curniciello-how-did-it-come-about-history-and-meaning"
-            }
-          ]
-        },
-        {
-          name: "A shape older than its red",
-          place: "Mediterranean folk belief",
-          text: "The red makes people think of a chili pepper, but chili peppers only reached Europe after the voyages of Columbus, so the shape is much older than that likeness. Some accounts trace the horn back to prehistoric times, as a sign of strength and fertility, and link it to the horn of plenty of Greek myth. Those older origins are not firmly documented.",
           sources: [
             {
               label: "Cornicello (Wikipedia)",
