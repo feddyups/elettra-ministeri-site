@@ -1,3 +1,10 @@
+/* The postcards run left to right by month, in three columns on a wide screen, two on a tablet and one on a phone */
+html .th-grid[data-print] {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, max(18rem, calc((100% - 112px) / 3))), 1fr));
+  columns: auto;
+}
+
 /* Printing one postcard: only its sheet is shown, the picture as large as the page allows (print/print-page.js) */
 .pr-sheet { display: none; }
 @media print {
