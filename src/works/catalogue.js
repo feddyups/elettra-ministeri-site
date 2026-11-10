@@ -222,10 +222,10 @@ export const CATALOGUE = {
       width: 2400,
       height: 1833
     },
-    alt: "Pistacchi: three pistachios on a blue disc surrounded by a mandala, inside a hand-painted yellow and blue frame",
+    alt: "Pistacchi: three pistachios on a blue Sicilian ceramic disc, inside a hand-painted frame",
     story: [
-      "Three pistachios rest on a blue disc, and a mandala opens around them as if the nut were a flower. Pistachios are one of the island’s treasures, and I wanted to treat them like jewels.",
-      "The yellow and blue frame, painted by hand, carries the pattern outward, so the picture has no clear edge."
+      "Three pistachios rest on a blue Sicilian ceramic disc, and its pattern opens around them as if the nut were a flower. Pistachios are one of the island’s treasures, and I wanted to treat them like jewels.",
+      "The hand-painted frame carries the pattern outward, so the picture has no clear edge."
     ]
   },
   'sole': {
