@@ -116,13 +116,38 @@ html .ca .ca-lede {
 /* hue wheel */
 .ca-wheel { position: relative; width: 100%; max-width: var(--ca-wheel-max); margin: 0; }
 .ca-wheel svg { display: block; width: 100%; height: auto; color: var(--ca-ink); }
+.ca-wheel.is-interactive { container-type: inline-size; }
+.ca-wheel.is-interactive .ca-wedge { cursor: pointer; transition: opacity var(--em-duration-quick) var(--em-ease), transform var(--em-duration-quick) var(--em-ease); transform-origin: 0 0; }
+.ca-wheel.is-interactive.has-choice .ca-wedge { opacity: 0.32; }
+.ca-wheel.is-interactive.has-choice .ca-wedge.is-chosen { opacity: 1; }
+.ca-wheel.is-interactive .ca-wedge:focus-visible { outline: none; stroke: currentColor; stroke-width: 3; }
+.ca-wheel-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 0.15em;
+  padding: 0 31%;
+  text-align: center;
+  pointer-events: none;
+}
+.ca-wheel-center b { font-family: var(--em-font-serif); font-size: clamp(0.8rem, 6.4cqi, 1.5rem); font-weight: var(--em-weight-medium); line-height: var(--em-leading-tight); }
+.ca-wheel-center span { font-size: clamp(0.55rem, 2.6cqi, 0.7rem); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
+.ca-hue-panel { margin: var(--em-space-m) 0 0; max-width: var(--em-measure); min-height: 6.5em; font-size: var(--em-text-md); line-height: var(--em-leading-body); color: var(--ca-ink); }
+html .ca-strip { transition: opacity var(--em-duration-base) var(--em-ease), transform var(--em-duration-quick) var(--em-ease); }
+html .ca-strip.is-dim { opacity: 0.22; }
 
 /* palette bar */
 .ca-bar { display: flex; height: var(--ca-bar-height); overflow: hidden; box-shadow: var(--em-shadow-plate); }
 html .ca-swatch {
   display: block;
   flex: var(--share);
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
   background: var(--color);
+  cursor: pointer;
   transition: transform var(--em-duration-quick) var(--em-ease);
 }
 html .ca-swatch:hover,
@@ -195,5 +220,5 @@ html .ca-more a { padding-bottom: var(--em-space-2xs); border-bottom: var(--em-h
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html .ca-swatch, html .ca-strip, .ca-dot { transition: none; }
+  html .ca-swatch, html .ca-strip, .ca-dot, .ca-wheel .ca-wedge { transition: none; }
 }

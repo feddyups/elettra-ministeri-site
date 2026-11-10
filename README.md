@@ -30,13 +30,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.44/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.45/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.44/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.45/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -50,7 +50,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.44/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.45/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -136,7 +136,9 @@ src/
     focus-config.js           how far the color focus reaches and how softly it fades, and how close two colors may be before they show as one swatch (reach, core, smoothing, gray level, merge)
     color-focus.js            turns a picture black and white except one palette color's cluster
     scope.js                  resolves `all` or `series:<slug>` to the data a block shows
-    nearest-work.js           which painting shows a given color most (where a color links to)
+    carriers.js               which paintings carry a given color (how widely a pooled color is shared)
+    hue-slices.js             what a slice of the hue wheel means for a set of paintings, in words
+    hue-explorer.js           makes a series' wheel explain itself: two lines in its middle, a panel, and the paintings lit among the strips
     swatch.js                 a clickable color: name, hex copy, data attributes and events
     swatch.css                its base styles
     copy-color.js             copies a hex code and announces it

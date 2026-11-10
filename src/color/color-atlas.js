@@ -4,6 +4,7 @@ import { joinNames } from './text.js';
 import { renderHueWheel } from './blocks/hue-wheel.js';
 import { renderPaletteBar } from './blocks/palette-bar.js';
 import { renderReadings } from './blocks/readings.js';
+import { createHueExplorer } from './hue-explorer.js';
 import { gistOf } from './readings.js';
 import { renderWarmthMap } from './blocks/warmth-map.js';
 import { renderWorkStrips } from './blocks/work-strips.js';
@@ -42,10 +43,13 @@ export const initAtlas = (host) => {
 
   const { kicker, title, lede } = heading(scope);
   const more = host.dataset.moreHref && h('p', { class: 'ca-more' }, h('a', { href: host.dataset.moreHref }, host.dataset.moreLabel || 'Explore all of my colors'));
+  const interactive = scope.id !== 'all' && wanted.has('wheel');
+  const wheel = wanted.has('wheel') && renderHueWheel(scope, { interactive });
+  const explorer = interactive && createHueExplorer(scope, wheel);
   const top = [
-    wanted.has('wheel') && renderHueWheel(scope),
+    wheel,
     TOP_BLOCKS.slice(1).some((name) => wanted.has(name)) && h('div', { class: 'ca-side' },
-      wanted.has('palette') && section(scope.id === 'all' ? 'The colors that stand out' : `What ${scope.label} is made of`, renderPaletteBar(scope))),
+      wanted.has('palette') && section(scope.id === 'all' ? 'The colors that stand out' : `What ${scope.label} is made of`, renderPaletteBar(scope)), explorer && explorer.panel),
   ].filter(Boolean);
 
   host.replaceChildren(...[
@@ -56,4 +60,10 @@ export const initAtlas = (host) => {
     wanted.has('strips') && section(scope.id === 'all' ? 'Every work, as a strip of its colors' : 'Each work, as a strip of its colors', renderWorkStrips(scope)),
     more,
   ].filter(Boolean));
+  // pointing at a color or a hue lights the paintings that carry it among the strips, and dims the rest
+  const strips = [...host.querySelectorAll('.ca-strip[data-work]')];
+  host.addEventListener('ca:light', (event) => {
+    const lit = event.detail.ids && new Set(event.detail.ids);
+    strips.forEach((strip) => strip.classList.toggle('is-dim', Boolean(lit) && !lit.has(strip.dataset.work)));
+  });
 };
