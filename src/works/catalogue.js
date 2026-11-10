@@ -171,7 +171,7 @@ export const CATALOGUE = {
     },
     alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, acrylic on watercolor paper",
     story: [
-      "A figure sits, orange against pink and crimson, and takes up the space she needs. Her posture says what the whole series says: this body has agency.",
+      "A figure sits, orange against pink and crimson, and takes up the space she needs. Her posture says what the whole series says: this body is her own.",
       "Maternity III is the third of the paintings from my pregnancy."
     ]
   },
