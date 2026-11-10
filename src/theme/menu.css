@@ -24,7 +24,7 @@
 .header-nav-list > .header-nav-item--folder:has(> .header-nav-folder-title[data-href^="/paintings"]) { order: var(--em-menu-paintings); }
 .header-nav-list > .header-nav-item:has(> a[href="/textiles"]) { order: var(--em-menu-textiles); }
 .header-nav-list > .header-nav-item:has(> a[href="/about-me"]) { order: var(--em-menu-about); }
-.header-nav-list > .header-nav-item:has(> a[href="/scrivo-una-cartolina"]) { order: var(--em-menu-downloads); }
+.header-nav-list > .header-nav-item:has(> a[href="/print"]) { order: var(--em-menu-downloads); }
 .header-nav-list > .header-nav-item:has(> a[href="/blog"]) { order: var(--em-menu-blog); }
 
 .header-menu-nav-wrapper { display: flex; flex-direction: column; }
@@ -32,7 +32,7 @@
 .header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href^="/paintings"]) { order: var(--em-menu-paintings); }
 .header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/textiles"]) { order: var(--em-menu-textiles); }
 .header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/about-me"]) { order: var(--em-menu-about); }
-.header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/scrivo-una-cartolina"]) { order: var(--em-menu-downloads); }
+.header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/print"]) { order: var(--em-menu-downloads); }
 .header-menu-nav-wrapper > .header-menu-nav-item:has(> a[href="/blog"]) { order: var(--em-menu-blog); }
 
 /* the header's pill takes the panel radius, so the bar and the dropdown under it match */

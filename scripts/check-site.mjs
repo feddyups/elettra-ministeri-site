@@ -67,5 +67,13 @@ for (const slug of Object.keys(CATALOGUE)) {
 }
 if (!missingPages) ok(`all ${Object.keys(CATALOGUE).length} painting pages answer`);
 
+console.log('Print page');
+const printPage = await page('/print');
+if (printPage.status !== 200) note(`/print answers ${printPage.status}`);
+else if (!/data-print/.test(printPage.html)) note('/print does not hold the postcard grid');
+else ok('/print holds the postcard grid');
+const old = await page('/scrivo-una-cartolina');
+if (old.status !== 200 || !/data-print/.test(old.html)) note('/scrivo-una-cartolina does not lead to /print');
+
 console.log(problems.length ? `\n${problems.length} thing(s) to fix.` : '\nThe site matches the catalogue.');
 process.exit(problems.length ? 1 : 0);

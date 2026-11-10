@@ -13,4 +13,5 @@ import './color/main.js';
 import './color/strip-label.js';
 import './works/main.js';
 import './overview/main.js';
+import './print/main.js';
 import './features/paint-portrait.js';

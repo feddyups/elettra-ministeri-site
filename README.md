@@ -20,7 +20,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Glass** – floating surfaces and buttons (the Paintings dropdown, the rail's labels, every "View ..." and enquire button) share one material in the theme: a blurred, saturated view of what is behind, a faint gradient, a bright thin edge and a soft drop, with a tint and text color that adapt to a light or dark surface, so it looks right on any background. A home section sets `data-glass` from its own text color, so glass in a cream section is light and in a dark one is dark.
 - **Section rail** – a slim vertical rail on the home page (never over the hero slideshow: it fades out while the hero is behind it), one tick per section: pointing at it names the sections, the current one is highlighted and choosing one scrolls to it smoothly (`data-rail="Name"` on a section names or includes it).
 - **Artist video** – the video in the home page's artist section shows a cover image with a play button; the YouTube player loads only when the visitor presses play.
-- **Postcards page** – the standalone "Scrivo una cartolina" landing page gets a link back to the home page and a centered text card.
+- **Print page** – `/print` (formerly the Downloads page, `/scrivo-una-cartolina` redirects to it) lists the postcards of the monthly project "Scrivo una cartolina" (`src/print/cards.js`): each card can be printed on its own or opened at full size, and links to its story on the blog. The page is a code block holding a `.th` header and `<ul class="th-grid" data-print>`, which `src/print/main.js` fills.
 - **Enquiry drawer** – on every page, links to `/enquire` open the enquiry form in a side drawer so visitors keep their place. The form can arrive with `?SQF_WORK=<title>` and then says which work the enquiry is about.
 
 ## Loading it on the site
@@ -51,12 +51,6 @@ Site-wide Code Injection, Footer (the color infographic and the painting pages; 
 
 ```html
 <script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.82/src/blocks.js"></script>
-```
-
-Postcards page, Page Settings → Advanced → Page Header Code Injection:
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.2/src/pages/scrivo.css">
 ```
 
 Always pin a release tag (for example `@v1.9.3`). `@main` is cached by jsDelivr for hours, so a tag is the only way to know which code the site runs. To roll out a change: commit, tag a new version, and change the version in that line. To roll back, put the old version back.
@@ -174,8 +168,11 @@ src/
     trim-border.mjs           cuts the pale border (white mat, scanner margin) off a picture of a painting
     tone-photo.mjs            tonal correction for a phone photo of a painting: white balance from the bed sheet, levels, midtones, vibrance, sharpening
     palette/                  the analysis: works.config.mjs, k-means clustering, image decoding
-  pages/
-    scrivo.css                the standalone postcards page: a centered card (the page shows the site header)
+  print/
+    cards.js                  the postcards of "Scrivo una cartolina": month, picture, the blog post of its story
+    print-page.js             fills the Print page's grid; prints one card on its own sheet
+    print.css                 the print layout of that sheet
+    main.js                   loads the stylesheet and fills the grid on the Print page
   enquiry/
     main.js                   entry point for every page: drawer links, embedded form, work note
     drawer.js                 the side drawer

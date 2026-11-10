@@ -80,8 +80,9 @@ html[data-series] .item-pagination .item-pagination-icon svg * {
   stroke: var(--em-ink) !important;
 }
 
-/* The Artist picks page (/paintings/artist-picks) is not a series: it takes the site's night color. */
-html[data-series="artist-picks"] {
+/* The Artist picks page (/paintings/artist-picks) and the Print page (/print) are not series: they take the site's night color. */
+html[data-series="artist-picks"],
+html[data-series="print"] {
   --series-bg: #14110f;
   --series-bg-alt: #1d1916;
   --series-fg: #faf8f5;

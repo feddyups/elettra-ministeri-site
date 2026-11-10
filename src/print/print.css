@@ -1,0 +1,8 @@
+/* Printing one postcard: only its sheet is shown, the picture as large as the page allows (print/print-page.js) */
+.pr-sheet { display: none; }
+@media print {
+  @page { margin: 8mm; }
+  html.pr-printing body > *:not(.pr-sheet) { display: none !important; }
+  html.pr-printing .pr-sheet { display: grid; place-items: center; }
+  html.pr-printing .pr-sheet img { display: block; width: auto; height: auto; max-width: 100%; max-height: 270mm; }
+}
