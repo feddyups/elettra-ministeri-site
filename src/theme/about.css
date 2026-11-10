@@ -6,3 +6,9 @@
  */
 body.collection-598080d015d5db77a628d2b4 .sqs-block-html p { font-size: var(--em-text-lg); }
 body.collection-598080d015d5db77a628d2b4 .image-caption p { font-size: var(--em-text-sm); }
+
+/*
+ * The portrait stays above the fold: its width is capped so that the photo (a portrait of 1.1326 times its width) and its credit line fit in the first
+ * screen below the header (15rem), whatever the window's height. On a narrow screen the width is the page's, which is already shorter than that.
+ */
+body.collection-598080d015d5db77a628d2b4 .sqs-block-image figure.sqs-block-image-figure { max-width: min(100%, calc((100svh - 15rem) / 1.1326)) !important; }
