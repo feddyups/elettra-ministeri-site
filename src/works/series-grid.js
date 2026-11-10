@@ -1,7 +1,6 @@
 import { h } from '../lib/elements.js';
 import { worksOfSeries, pictureAt } from './series-notes.js';
-import { allPaintings } from '../color/scope.js';
-import { harmonicOrder } from './harmony-order.js';
+import { inSeriesOrder } from './series-order.js';
 import { markPicks } from './pick-star.js';
 import { factsLine } from './facts.js';
 import { enquiryTopic, priceOf } from './price.js';
@@ -34,9 +33,7 @@ export const renderEntry = (slug, work) => {
 export const initSeriesGrid = (list) => {
   if (list.hasAttribute('data-picks')) return;
   const series = list.dataset.seriesGrid || document.documentElement.dataset.series;
-  const order = harmonicOrder(allPaintings().filter((work) => work.series === series)).map((work) => work.slug);
-  const rank = (slug) => (order.includes(slug) ? order.indexOf(slug) : order.length);
-  const works = worksOfSeries(series).sort((a, b) => rank(a[0]) - rank(b[0]));
+  const works = inSeriesOrder(series, worksOfSeries(series), ([slug]) => slug);
   if (!works.length) return;
   list.replaceChildren(...works.map(([slug, work]) => renderEntry(slug, work)));
   markPicks(list);

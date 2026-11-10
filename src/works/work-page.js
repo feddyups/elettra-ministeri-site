@@ -7,13 +7,14 @@ import { renderWorkDetails } from './work-details.js';
 import { renderWorkColors } from './work-colors.js';
 import { renderWorkSeriesNav } from './work-series-nav.js';
 import { renderWorkNext } from './work-next.js';
+import { initWorkSlideshow } from './work-slideshow.js';
 import { renderWorkEnquiry } from './work-enquiry.js';
 
 /**
  * Renders a painting's page into `<div data-work-page></div>`: the painting is the page's own address
  * (/paintings/<name>), or the page name given as the attribute's value. The content comes from
  * src/works/catalogue.js and the colors from src/color/atlas.generated.js; a section appears only when
- * there is something to show in it.
+ * there is something to show in it. The arrow keys move through the series (work-slideshow.js).
  */
 export const initWorkPage = (host) => {
   const fromAddress = location.pathname.split('/').filter(Boolean).pop();
@@ -40,4 +41,5 @@ export const initWorkPage = (host) => {
     renderWorkNext({ work, scope }),
     renderWorkEnquiry(info),
   ].filter(Boolean));
+  initWorkSlideshow({ host, work, series });
 };
