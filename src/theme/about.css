@@ -1,0 +1,8 @@
+@import url('./tokens.css');
+
+/*
+ * The About me page (collection 598080d015d5db77a628d2b4): the biography is the page's main text, so it takes the
+ * lede size used by the color atlas below it, and the photo credit is a caption, so it takes the small text size.
+ */
+body.collection-598080d015d5db77a628d2b4 .sqs-block-html p { font-size: var(--em-text-lg); }
+body.collection-598080d015d5db77a628d2b4 .image-caption p { font-size: var(--em-text-sm); }
