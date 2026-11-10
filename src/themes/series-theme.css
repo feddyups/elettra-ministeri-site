@@ -92,3 +92,7 @@ html[data-series="favorites"] {
 /* and it has no navigation at its foot: neither the links of a series page nor the collection's Previous / Next bar */
 html[data-series="favorites"] .item-pagination { display: none !important; }
 html .th-grid .th-empty { grid-column: 1 / -1; padding-block: var(--em-space-xl); color: var(--em-muted); font-size: var(--em-text-lg); list-style: none; }
+
+/* the small star on a painting the artist has marked as a favorite */
+html .th-work .th-star { position: absolute; top: var(--em-space-s); right: var(--em-space-s); display: grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: color-mix(in srgb, var(--em-bg) 70%, transparent); color: var(--em-ink); }
+html .th-work .th-star svg { width: 62%; height: 62%; fill: currentColor; }

@@ -2,6 +2,7 @@ import { h } from '../lib/elements.js';
 import { worksOfSeries, pictureAt } from './series-notes.js';
 import { allPaintings } from '../color/scope.js';
 import { harmonicOrder } from './harmony-order.js';
+import { markFavorites } from './favorite-star.js';
 import { factsLine } from './facts.js';
 import { enquiryTopic, priceOf } from './price.js';
 
@@ -28,7 +29,7 @@ export const renderEntry = (slug, work) => {
 /**
  * Fills a series page's grid of works from the catalogue, so adding a work to the catalogue is enough to put it on its series' page:
  * every `<ul class="th-grid">` is filled for the series the page belongs to (the page's `data-series`, or its own `data-series-grid="archive"`). The strips of color and the hover labels are added to each entry afterwards
- * (works/series-strip.js). The entries follow the series' smooth path through color (works/harmony-order.js). Whatever the page already held in the list stays as it was if the series is unknown.
+ * (works/series-strip.js). The entries follow the series' smooth path through color (works/harmony-order.js), and a small star marks the artist's favorites (works/favorite-star.js). Whatever the page already held in the list stays as it was if the series is unknown.
  */
 export const initSeriesGrid = (list) => {
   if (list.hasAttribute('data-favorites')) return;
@@ -38,4 +39,5 @@ export const initSeriesGrid = (list) => {
   const works = worksOfSeries(series).sort((a, b) => rank(a[0]) - rank(b[0]));
   if (!works.length) return;
   list.replaceChildren(...works.map(([slug, work]) => renderEntry(slug, work)));
+  markFavorites(list);
 };

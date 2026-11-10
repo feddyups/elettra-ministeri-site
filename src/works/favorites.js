@@ -24,7 +24,10 @@ const parseCsv = (text) => {
  * The page addresses (slugs) of the paintings the artist has marked, from the sheet's "Page address" and "Favorite" columns
  * (a cell of yes, y, x, 1, true or a star marks it). Resolves to `null` when there is no sheet or it cannot be read.
  */
-export const readFavoriteSlugs = async () => {
+let reading;
+export const readFavoriteSlugs = () => { reading ||= readSheet(); return reading; };
+
+const readSheet = async () => {
   if (!FAVORITES_SHEET_CSV) return null;
   try {
     const response = await fetch(FAVORITES_SHEET_CSV, { cache: 'no-cache' });
