@@ -80,8 +80,8 @@ html[data-series] .item-pagination .item-pagination-icon svg * {
   stroke: var(--em-ink) !important;
 }
 
-/* The Favorites page (/paintings/favorites) is not a series: it takes the site's night color. */
-html[data-series="favorites"] {
+/* The Artist picks page (/paintings/artist-picks) is not a series: it takes the site's night color. */
+html[data-series="artist-picks"] {
   --series-bg: #14110f;
   --series-bg-alt: #1d1916;
   --series-fg: #faf8f5;
@@ -90,10 +90,10 @@ html[data-series="favorites"] {
   --series-body: rgba(250, 248, 245, 0.88);
 }
 /* and it has no navigation at its foot: neither the links of a series page nor the collection's Previous / Next bar */
-html[data-series="favorites"] .item-pagination { display: none !important; }
+html[data-series="artist-picks"] .item-pagination { display: none !important; }
 html .th-grid .th-empty { grid-column: 1 / -1; padding-block: var(--em-space-xl); color: var(--em-muted); font-size: var(--em-text-lg); list-style: none; }
 
-/* the star on a painting the artist has marked as a favorite hangs off the picture's right edge, near the top: a quarter of it over the painting,
+/* the star on a painting the artist has marked as a pick hangs off the picture's right edge, near the top: a quarter of it over the painting,
    the rest in the gap beside it (the grid is laid out in columns, which clip anything above the picture) */
 html .th-work { --star: 2.25rem; }
 html .th-work .th-star { position: absolute; top: var(--em-space-s); right: calc(var(--star) * -0.75); z-index: 1; display: grid; place-items: center; width: var(--star); height: var(--star); border-radius: 50%; background: var(--em-paper); color: var(--em-night); box-shadow: var(--em-shadow-lift); }

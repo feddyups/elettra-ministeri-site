@@ -2,21 +2,21 @@ import { h } from '../lib/elements.js';
 import { CATALOGUE } from './catalogue.js';
 import { allPaintings } from '../color/scope.js';
 import { harmonicOrder } from './harmony-order.js';
-import { readFavoriteSlugs } from './favorites.js';
+import { readPickSlugs } from './picks.js';
 import { renderEntry } from './series-grid.js';
 
 const MESSAGES = {
-  unreadable: 'The artist’s favorites will appear here soon.',
-  none: 'The artist has not marked any favorites yet.',
+  unreadable: 'The artist’s picks will appear here soon.',
+  none: 'The artist has not marked any picks yet.',
 };
 
 /**
- * Fills the Favorites page's grid (`<ul class="th-grid" data-favorites>`) with the paintings the artist has marked in her sheet
- * (see favorites.js), in the same layout as a series page and in its smooth path through color (harmony-order.js).
+ * Fills the Artist picks page's grid (`<ul class="th-grid" data-picks>`) with the paintings the artist has marked in her sheet
+ * (see picks.js), in the same layout as a series page and in its smooth path through color (harmony-order.js).
  * Changing a tick in the sheet changes the page; nothing here is typed by hand.
  */
-export const initFavoritesGrid = async (list) => {
-  const slugs = await readFavoriteSlugs();
+export const initPicksGrid = async (list) => {
+  const slugs = await readPickSlugs();
   const marked = new Set(slugs || []);
   const works = harmonicOrder(allPaintings().filter((work) => marked.has(work.slug) && CATALOGUE[work.slug])).map((work) => work.slug);
   // a work without a color analysis (a textile) still belongs on the page, after the others

@@ -1,4 +1,4 @@
-import { FAVORITES_SHEET_CSV } from './favorites-source.js';
+import { PICKS_SHEET_CSV } from './picks-source.js';
 
 const YES = /^(yes|y|x|1|true|✓|✔|★|☆)$/i;
 
@@ -21,23 +21,23 @@ const parseCsv = (text) => {
 };
 
 /**
- * The page addresses (slugs) of the paintings the artist has marked, from the sheet's "Page address" and "Favorite" columns
+ * The page addresses (slugs) of the paintings the artist has marked, from the sheet's "Page address" and "Artist pick" columns
  * (a cell of yes, y, x, 1, true or a star marks it). Resolves to `null` when there is no sheet or it cannot be read.
  */
 let reading;
-export const readFavoriteSlugs = () => { reading ||= readSheet(); return reading; };
+export const readPickSlugs = () => { reading ||= readSheet(); return reading; };
 
 const readSheet = async () => {
-  if (!FAVORITES_SHEET_CSV) return null;
+  if (!PICKS_SHEET_CSV) return null;
   try {
-    const response = await fetch(FAVORITES_SHEET_CSV, { cache: 'no-cache' });
+    const response = await fetch(PICKS_SHEET_CSV, { cache: 'no-cache' });
     if (!response.ok) return null;
     const [header = [], ...rows] = parseCsv(await response.text());
-    const column = (name) => header.findIndex((cell) => cell.trim().toLowerCase() === name);
+    const column = (...names) => header.findIndex((cell) => names.includes(cell.trim().toLowerCase()));
     const address = column('page address');
-    const favorite = column('favorite');
-    if (address < 0 || favorite < 0) return null;
-    return rows.filter((cells) => YES.test((cells[favorite] || '').trim())).map((cells) => (cells[address] || '').trim().replace(/^\/?(paintings\/)?/, ''));
+    const pick = column('artist pick', 'artist picks');
+    if (address < 0 || pick < 0) return null;
+    return rows.filter((cells) => YES.test((cells[pick] || '').trim())).map((cells) => (cells[address] || '').trim().replace(/^\/?(paintings\/)?/, ''));
   } catch (error) {
     return null;
   }

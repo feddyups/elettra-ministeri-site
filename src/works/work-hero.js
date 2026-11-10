@@ -4,8 +4,8 @@ import { renderColorStrip } from '../color/color-strip.js';
 import { openLightbox } from './lightbox.js';
 import { createWorkPaint } from './work-paint.js';
 import { priceOf } from './price.js';
-import { readFavoriteSlugs } from './favorites.js';
-import { starIcon } from './favorite-star.js';
+import { readPickSlugs } from './picks.js';
+import { starIcon } from './pick-star.js';
 
 const WIDTHS = [500, 1000, 1500, 2500];
 
@@ -38,9 +38,9 @@ export const renderWorkHero = (info, work, series) => {
   const focus = createColorFocus({ canvas: focusCanvas, source: `${src}?format=500w`, hexes: work.palette.map(([hex]) => hex) });
   figure.append(renderColorStrip(work, { onEnter: (index) => focus.show(index), onLeave: () => focus.hide() }));
   const kicker = h('a', { class: 'wp-kicker', href: series.path }, `${series.label} ›`);
-  // a painting the artist has marked as a favorite says so, beside its series, and leads to the page of her favorites
-  readFavoriteSlugs().then((slugs) => {
-    if (slugs && slugs.includes(work.slug)) kicker.after(h('a', { class: 'wp-kicker wp-pick', href: '/paintings/favorites' }, starIcon(), 'Artist pick ›'));
+  // a painting the artist has marked as a pick says so, beside its series, and leads to the page of her picks
+  readPickSlugs().then((slugs) => {
+    if (slugs && slugs.includes(work.slug)) kicker.after(h('a', { class: 'wp-kicker wp-pick', href: '/paintings/artist-picks' }, starIcon(), 'Artist pick ›'));
   });
   const element = h('section', { class: 'wp-hero' },
     figure,
