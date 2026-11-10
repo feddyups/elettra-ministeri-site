@@ -177,7 +177,7 @@ export const CATALOGUE = {
   },
   'the-shape-of-beauty': {
     title: "The Shape of Beauty",
-    series: "maternity",
+    series: "human-figure",
     medium: "Acrylic on canvas pad",
     size: "21 × 29.7 cm (A4)",
     price: 50,
