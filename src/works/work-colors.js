@@ -4,6 +4,7 @@ import { renderWarmthMap } from '../color/blocks/warmth-map.js';
 import { describeWork } from './describe-work.js';
 import { similarWorks } from './similar-works.js';
 import { renderSwatch } from '../color/swatch.js';
+import { CATALOGUE } from './catalogue.js';
 
 const swatches = (work, host) => {
   const point = (index) => host.dispatchEvent(new CustomEvent('wp:color', { detail: { index } }));
@@ -18,6 +19,7 @@ export const renderWorkColors = ({ host, work, scope, series }) => {
   return h('section', { class: 'wp-section wp-colors' },
     h('p', { class: 'ca-label' }, 'The colors of this painting'),
     h('p', { class: 'wp-reading' }, sentence, standout && ` ${standout}`, build && ` ${build}`),
+    (CATALOGUE[work.slug].colorNote || []).map((paragraph) => h('p', { class: 'wp-reading wp-note' }, paragraph)),
     swatches(work, host),
     renderStatRow(scope),
     h('div', { class: 'wp-where' },

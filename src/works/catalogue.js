@@ -1,7 +1,7 @@
 /**
  * What is known about each painting, written by hand (everything about its colors is generated; see src/color/).
  * Keyed by the work's page name: its page is /paintings/<key> and its entry on the series page has the same id.
- * Every field but title, series, medium, image and alt is optional (a 'context' adds a section about where a work comes from: intro, echoes with sources, closing), and a section of the page appears only when
+ * Every field but title, series, medium, image and alt is optional ('colorNote' adds paragraphs to the reading of the painting's colors; a 'context' adds a section about where a work comes from: intro, echoes with sources, closing), and a section of the page appears only when
  * its field exists: add 'story' (one string per paragraph), 'year', 'size' or 'frame' as the artist provides them.
  */
 export const CATALOGUE = {
@@ -271,6 +271,10 @@ export const CATALOGUE = {
       height: 1364
     },
     alt: "Amore e Pandemia I: a red figure and a green figure in an embrace against a blue and black ground, acrylic on canvas",
+    colorNote: [
+      "Red and green sit exactly opposite each other on the color wheel, and here they are pressed together. The green figure is the larger mass and the red one holds on from behind, so the opposite is the smaller color, as in most of this body of work, but in contact with the main color, not set apart from it.",
+      "Neither figure has a face. The blue behind them runs from light on the left to near black on the right, and the only warm color in the picture is the one inside the embrace."
+    ],
     story: [
       "At the end of August 2021, my three-year-old son and I had a bad accident. Luckily we got out alive, but the wounds left on the soul were deep.",
       "After a month of physical and mental inability, and with the guilt of a mother who was unable to protect her own child, I finally managed to forgive myself by mixing colors, and I transformed my anguish into an embrace.",
@@ -289,6 +293,10 @@ export const CATALOGUE = {
       height: 1395
     },
     alt: "Amore e Pandemia II: a red figure and a green figure embracing in deep blue light, acrylic on canvas",
+    colorNote: [
+      "The roles of the first painting are reversed: the red figure is now the larger one and the green figure holds on. The two colors cover almost equal amounts, the nearest this body of work comes to treating two opposite hues as equal partners.",
+      "The blue behind them is reversed too, near black at the left and a clear blue at the right, so the light falls on the other side of the embrace."
+    ],
     story: [
       "At the end of August 2021, my three-year-old son and I had a bad accident. Luckily we got out alive, but the wounds left on the soul were deep.",
       "After a month of physical and mental inability, and with the guilt of a mother who was unable to protect her own child, I finally managed to forgive myself by mixing colors, and I transformed my anguish into an embrace.",
