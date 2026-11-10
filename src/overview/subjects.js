@@ -8,7 +8,7 @@ export const SUBJECTS = [
   { key: 'sea', label: 'The sea and its shells', test: (text) => /\b(sea|waves?|fish|shells?|seahorse|jellyfish|coral|lighthouses?|swan)\b/i.test(text) },
   { key: 'figures', label: 'Figures and bodies', test: (text, work) => work.series === 'maternity' || work.series === 'human-figure' || /\b(figures?|woman|man|body|bodies|hug|bonding|hands?|face|santa|rosalia|head)\b/i.test(text) },
   { key: 'plants', label: 'Plants and fruit', test: (text) => /\b(flowers?|lil(?:y|ies)|lemons?|pomegranates?|pistachios?|cactus|cacti|leaf|leaves|jungle|garden|fruit|roses?)\b/i.test(text) },
-  { key: 'animals', label: 'Animals', test: (text) => /\b(horse|seahorse|fish|swan|doves?|birds?|scarab|beetle)\b/i.test(text) },
+  { key: 'animals', label: 'Animals', test: (text) => /\b(horse|seahorse|fish|swan|doves?|birds?|scarab|beetle|donkey)\b/i.test(text) },
   { key: 'sun', label: 'Sun, sky and rainbows', test: (text) => /\b(sun|sole|rainbow|clouds?|sky|stars?)\b/i.test(text) },
   { key: 'folk', label: 'Sicilian folk art', test: (text, work) => work.series === 'sicily' || /\b(sicil\w*|carretto|cart)\b/i.test(text) },
 ];

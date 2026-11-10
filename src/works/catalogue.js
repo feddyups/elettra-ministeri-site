@@ -91,6 +91,40 @@ export const CATALOGUE = {
       "I like how a shoal can be many and one at the same time. The patterns repeat, but no two fish are alike."
     ]
   },
+  'medusa': {
+    title: "Medusa",
+    series: "mediterranean",
+    medium: "Acrylic on canvas",
+    size: "18 × 24 cm",
+    price: 150,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0d5fc474-fa9a-43b1-b832-9d3bd62a02a0/mediterranean-medusa.jpg",
+      width: 2400,
+      height: 3202
+    },
+    alt: "Medusa: a calm, pale blue face with snakes coiled in her hair, painted entirely in blues, acrylic on canvas",
+    story: [
+      "Medusa with no face to read, only a calm, pale blue one, and snakes knotted into her hair.",
+      "I painted her entirely in blues, so the one who turned people to stone looks quiet, almost serene."
+    ]
+  },
+  'evil-eye': {
+    title: "Evil eye",
+    series: "mediterranean",
+    medium: "Acrylic on canvas",
+    size: "20 × 20 cm",
+    price: 150,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/a0722e26-7597-4066-bb25-e479e75a6003/mediterranean-evil-eye.jpg",
+      width: 2400,
+      height: 2408
+    },
+    alt: "Evil eye: concentric rings of blue and teal around a black pupil circled by small gems, on a gold ground, acrylic on canvas",
+    story: [
+      "The evil eye, worn in the Mediterranean against envy, painted in rings of blue and teal on gold.",
+      "Tiny gems circle the pupil like a ring of lights. It is an eye that looks back."
+    ]
+  },
   'maternity-i': {
     title: "Maternity I",
     series: "maternity",
@@ -266,6 +300,26 @@ export const CATALOGUE = {
     story: [
       "A Sicilian cart is painted all over, and its wheels are some of the most carefully painted parts: spokes in red and yellow, a flower at the hub, small arches of color around the rim. This one is a wheel on its own.",
       "It is wood, not canvas, and I painted it the same way as the paintings in this series: flat color, no shading, every part given its own bright patch."
+    ]
+  },
+  'sunburst': {
+    title: "Sunburst",
+    series: "sicily",
+    medium: "Acrylic on canvas",
+    size: "30 × 30 cm without frame",
+    frame: "Yellow painted frame",
+    frameNote: "yellow painted frame",
+    framePrice: 50,
+    price: 250,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/f06bd180-1605-4cf7-8253-1877952765aa/sicily-sunburst.jpg",
+      width: 2400,
+      height: 2400
+    },
+    alt: "Sunburst: a golden sun at the center of rays in rust, gold, violet and sky blue, acrylic on canvas in a yellow frame",
+    story: [
+      "A sun at the center and its rays running out to the edges, in rust, gold, violet and a cool sky blue.",
+      "The frame is painted the yellow of the sun, so the light carries on past the canvas."
     ]
   },
   'the-bonding': {
@@ -518,6 +572,106 @@ export const CATALOGUE = {
       height: 1400
     },
     alt: "Rainbow shell: a spiral shell with wide bands of red, ochre, blue, violet and yellow, outlined in black, on handmade grey-brown paper"
+  },
+  'heart-in-hand': {
+    title: "Heart in hand",
+    series: "archive",
+    medium: "Acrylic on canvas",
+    size: "18 × 24 cm",
+    price: 150,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/e3df0049-fb04-4803-bbe1-4c06b076ba16/archive-heart-in-hand.jpg",
+      width: 2400,
+      height: 3204
+    },
+    alt: "Heart in hand: a pink open hand with a red heart in its palm on a deep green ground, with small gems and gold and red stars, acrylic on canvas",
+    story: [
+      "An open hand with a heart in its palm, pink on a deep green, with small gems and gold and red stars around it.",
+      "Each finger carries a small symbol: an arrow, diamonds, circles. A hand that offers."
+    ]
+  },
+  'scio': {
+    title: "Sciò",
+    series: "archive",
+    medium: "Acrylic on canvas",
+    size: "18 × 24 cm",
+    price: 150,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/46420d68-f5b4-4955-a6ae-d8415dbb7186/archive-scio.jpg",
+      width: 2400,
+      height: 3190
+    },
+    alt: "Sciò: a red horn wearing a golden crown among stars on a green ground, with the word Sciò in white, acrylic on canvas",
+    story: [
+      "A red horn wearing a golden crown, under stars on a green night. It is the lucky charm of southern Italy, made king.",
+      "I wrote “Sciò” beside it, to send the bad luck out."
+    ],
+    context: {
+      heading: "Where this horn comes from",
+      intro: [
+        "The red horn is a charm you see all over the south of Italy, hung in houses and cars and worn on a chain, always against the evil eye and bad luck. I crowned mine and let it stand among the stars."
+      ],
+      echoes: [
+        {
+          name: "The cornicello",
+          place: "Naples and the south of Italy",
+          text: "A small twisted horn, worn or hung against the evil eye and bad luck. In Neapolitan it is the curniciello; elsewhere it is called cornetto or corno. It is made of red coral, gold, silver, bone or terracotta, and it is found across the south, in Campania, Sicily, Calabria and Apulia. In Naples it is still made by hand in the shops of San Gregorio Armeno, and people buy it there to give as a present.",
+          sources: [
+            {
+              label: "Cornicello (Wikipedia)",
+              url: "https://en.wikipedia.org/wiki/Cornicello"
+            },
+            {
+              label: "Visit Naples",
+              url: "https://visitnaples.eu/en/neapolitanity/tales-of-naples/what-is-the-curniciello-how-did-it-come-about-history-and-meaning"
+            }
+          ]
+        },
+        {
+          name: "A shape older than its red",
+          place: "Mediterranean folk belief",
+          text: "The red makes people think of a chili pepper, but chili peppers only reached Europe after the voyages of Columbus, so the shape is much older than that likeness. Some accounts trace the horn back to prehistoric times, as a sign of strength and fertility, and link it to the horn of plenty of Greek myth. Those older origins are not firmly documented.",
+          sources: [
+            {
+              label: "Cornicello (Wikipedia)",
+              url: "https://en.wikipedia.org/wiki/Cornicello"
+            },
+            {
+              label: "Visit Naples",
+              url: "https://visitnaples.eu/en/neapolitanity/tales-of-naples/what-is-the-curniciello-how-did-it-come-about-history-and-meaning"
+            }
+          ]
+        },
+        {
+          name: "The word",
+          place: "Italian",
+          text: "“Sciò” is an Italian call, usually said twice, used to chase something away.",
+          sources: [
+            {
+              label: "Treccani, Vocabolario",
+              url: "https://www.treccani.it/vocabolario/scio/"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  'donkey-in-santorini': {
+    title: "Donkey in Santorini",
+    series: "archive",
+    medium: "Acrylic on canvas",
+    size: "50 × 60 cm",
+    price: 550,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/c3ce4efb-0589-432c-b0b3-4a35a85f7154/archive-donkey-in-santorini.jpg",
+      width: 2400,
+      height: 2898
+    },
+    alt: "Donkey in Santorini: a brown donkey with roses and an evil eye on its saddle climbing white stone steps below a blue dome and the sea, acrylic",
+    story: [
+      "A little donkey climbing the white stone steps of Santorini under a blue dome, with roses and an evil eye on its saddle.",
+      "Dome, whitewashed walls, steps and sea are flat shapes held together by black outlines."
+    ]
   },
   'mask-divine': {
     title: "Mask Divine",
