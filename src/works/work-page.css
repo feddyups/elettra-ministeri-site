@@ -134,7 +134,16 @@ html .wp .wp-swatch {
 .wp-swatch span { font-size: var(--em-text-xs); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; }
 .wp-swatch small { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-caps); color: var(--ca-muted); }
 
-.wp-next { margin-top: var(--em-section-gap); }
+.wp-next {
+  --ca-ink: var(--em-paper);
+  --ca-muted: color-mix(in srgb, var(--em-paper) 68%, transparent);
+  margin-top: var(--em-section-gap);
+  padding-block: var(--em-section-gap);
+  background: var(--next-bg, var(--em-night));
+  color: var(--em-paper);
+  box-shadow: 0 0 0 100vmax var(--next-bg, var(--em-night));
+  clip-path: inset(0 -100vmax);
+}
 .wp-next-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--em-block-gap); max-width: 64rem; }
 html .wp a.wp-next-item { display: grid; align-content: start; gap: var(--em-space-s); color: var(--ca-ink); text-decoration: none; }
 .wp-next-kind { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }

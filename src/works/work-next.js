@@ -2,12 +2,15 @@ import { h } from '../lib/elements.js';
 import { nextWorks, seenWorks, markSeen } from './walk.js';
 import { seriesInfo } from '../color/scope.js';
 import { CATALOGUE } from './catalogue.js';
+import { nextBandColor } from './next-tone.js';
+import { TONES } from '../themes/tones.generated.js';
 
 const KIND_TITLE = { nearest: 'Nearest in color', counterpart: 'Turned the other way', step: 'A step along' };
 
 /**
  * "Where to look next": up to three paintings suggested by color (see walk.js). Each is its picture, its strip of colors and a
- * reason in a line; a painting from another series says which. The painting being looked at is remembered for the visit, so the
+ * reason in a line; a painting from another series says which. The band behind them is a color worked out from the three
+ * paintings (next-tone.js). The painting being looked at is remembered for the visit, so the
  * next suggestions lead somewhere new.
  */
 export const renderWorkNext = ({ work, scope }) => {
@@ -15,7 +18,8 @@ export const renderWorkNext = ({ work, scope }) => {
   markSeen(work.slug);
   const suggestions = nextWorks(work, scope.universe, seen);
   if (!suggestions.length) return null;
-  return h('div', { class: 'wp-next' },
+  const tone = TONES[work.series];
+  return h('div', { class: 'wp-next', style: { '--next-bg': nextBandColor(suggestions.map((s) => s.work), tone && tone.bg) } },
     h('p', { class: 'ca-label' }, 'Where to look next'),
     h('div', { class: 'wp-next-list' }, suggestions.map(({ work: other, kind, reason, crossSeries }) => {
       const entry = CATALOGUE[other.slug];
