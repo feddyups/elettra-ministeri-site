@@ -2,7 +2,7 @@
  * What is known about each painting, written by hand (everything about its colors is generated; see src/color/).
  * Keyed by the work's page name: its page is /paintings/<key> and its entry on the series page has the same id.
  * Every field but title, series, medium, image and alt is optional ('colorNote' adds paragraphs to the reading of the painting's colors; a 'context' adds a section about where a work comes from: intro, echoes with sources, closing), and a section of the page appears only when
- * its field exists: add 'story' (one string per paragraph), 'year', 'size', 'frame' or 'price' (whole euros for the work itself; the hand-painted frame is added on top of it automatically, see works/price.js; a work without one shows no price) as they become known.
+ * its field exists: add 'story' (one string per paragraph), 'year', 'size', 'frame' or 'price' (whole euros for the work itself; a frame is added on top of it automatically (200 by default, or the work's own `framePrice`; `frameNote` is the short label for the facts line), see works/price.js; a work without one shows no price) as they become known.
  */
 export const CATALOGUE = {
   'lighthouses': {
@@ -217,7 +217,10 @@ export const CATALOGUE = {
     title: "Testa di moro",
     series: "sicily",
     medium: "Acrylic on canvas",
-    size: "60 × 60 cm",
+    size: "60 × 60 cm without frame",
+    frame: "Red painted frame, part of the work",
+    frameNote: "red painted frame",
+    framePrice: 50,
     price: 600,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cd277713-b540-46f1-9c76-14f249705704/sicily-moor-head-v2.jpg",

@@ -1,10 +1,12 @@
 const EUR = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 
-/** What a hand-painted frame adds to a work's price, in euros. */
+/** What a frame adds to a work's price, in euros, unless the work sets its own `framePrice`. */
 export const FRAME_PRICE = 200;
 
+export const frameCost = (work) => work.framePrice ?? FRAME_PRICE;
+
 /** The price a visitor pays for the work as shown: its own price, plus the frame when the frame is part of it. Zero when the work has no price. */
-export const priceValue = (work) => (work.price ? work.price + (work.frame ? FRAME_PRICE : 0) : 0);
+export const priceValue = (work) => (work.price ? work.price + (work.frame ? frameCost(work) : 0) : 0);
 
 /** A work's price as "$600", or an empty string when it has none. */
 export const priceOf = (work) => (priceValue(work) ? EUR.format(priceValue(work)) : '');
