@@ -26,3 +26,9 @@ export const coverOf = (series, width) => {
   const work = chosen && chosen.series === series ? chosen : (worksOfSeries(series)[0] || [])[1];
   return work ? pictureAt(work, width) : null;
 };
+
+/** A work of the series chosen at random, as `[slug, work]` (or null for a series without works): a different one on each visit. */
+export const randomWorkOf = (series) => {
+  const works = worksOfSeries(series);
+  return works.length ? works[Math.floor(Math.random() * works.length)] : null;
+};

@@ -7,7 +7,7 @@ import { h } from '../lib/elements.js';
 import { renderSwatch } from '../color/swatch.js';
 import { createColorFocus } from '../color/color-focus.js';
 import { seriesColors } from '../color/scope.js';
-import { coverOf, worksOfSeries } from '../works/series-notes.js';
+import { pictureAt, randomWorkOf, worksOfSeries } from '../works/series-notes.js';
 
 /** The series a chapter belongs to, from the link to its page (/paintings/<series>). */
 const seriesOf = (chapter) => {
@@ -19,17 +19,18 @@ const seriesOf = (chapter) => {
  * A series chapter: takes its section tone from the site's color map (the same
  * tone its series page uses) and its swatches from the series' analysed palette (the
  * one its page and the infographic show; clicking one copies its code), falling back to the painting's own colors for a
- * series that is not in the map, and reveals the image the first time the
+ * series that is not in the map, shows a work of the series picked at random on each visit, and reveals the image the first time the
  * chapter scrolls into view.
  */
 export const initChapter = (chapter) => {
   const series = seriesOf(chapter);
-  const cover = series && coverOf(series, 1500);
-  if (cover) chapter.setAttribute('data-img', cover); // the series' picture and its number of works come from the catalogue
+  const pick = series && randomWorkOf(series);
+  if (pick) chapter.setAttribute('data-img', pictureAt(pick[1], 1500)); // a different work of the series on each visit; its number of works comes from the catalogue
   const meta = chapter.querySelector('.meta');
   if (meta && series) meta.textContent = meta.textContent.replace(/^\d+ works?/, `${worksOfSeries(series).length} works`);
   const frame = chapter.querySelector('.frame');
   const img = frame.querySelector('img');
+  if (pick) img.alt = pick[1].alt;
 
   loadImage(img, chapter.getAttribute('data-img')).then(() => {
     const palette = extractPalette(sampleImage(img));
