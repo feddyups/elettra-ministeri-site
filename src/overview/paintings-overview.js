@@ -35,7 +35,7 @@ export const initPaintingsOverview = (host) => {
       'Choose a series to see its works. The strip under each name is the series’ main colors, as wide as the share they cover.',
       renderSeriesTiles(series, worksBySeries)),
     h('div', { class: 'ov-plate' },
-      section('How she paints', 'The key to the pictures', 'Four things the colors show about how these paintings are put together. Point at a painting for its title and series.', renderReadings(resolveScope('all'))),
+      section('How she paints', 'The key to the pictures', 'Four things the colors show about how these paintings are put together. Point at a painting for its title and series.', h('div', { class: 'ca', 'data-surface': 'inherit' }, renderReadings(resolveScope('all')))),
       section('Compare', 'The series side by side', 'Warmest first. Every series is read the same way: the colors that cover most of it, how its hues divide, and what its colors do in a line.',
         renderSeriesRows(series, worksBySeries), renderWheels(series)),
       section('The whole body of work', 'The colors I use, measured', `All ${works.length} works together${range.length ? `, from ${Math.min(...range)} to ${Math.max(...range)} where the year is known` : ''}.`, atlas, renderMap(series, filter)),

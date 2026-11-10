@@ -139,3 +139,7 @@ button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; t
 @media (prefers-reduced-motion: reduce) {
   .ov-tile, .ov-strip i, .ov-hues i, .ov-bar i, .ov-map .ca-dot, button.ov-chip { transition: none; }
 }
+
+/* the readings reuse the atlas's own styles; on this page they sit directly in the section */
+.ov-section > .ca { margin: 0; }
+.ov-section .ca-readings > .ca-label { display: none; }
