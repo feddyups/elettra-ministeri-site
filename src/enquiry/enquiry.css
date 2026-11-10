@@ -81,7 +81,7 @@ html.em-open { overflow: hidden; }
 .em-ask small { display: block; margin-top: var(--em-space-xs); font-size: var(--em-text-sm); color: var(--em-muted); }
 
 /* Smart form: the budget is asked only for a commission, which also gets a short explanation. */
-fieldset[data-em-off] { display: none; }
+form fieldset.field[data-em-off] { display: none !important; }
 .em-commission {
   margin: 0 0 var(--em-space-l);
   padding: var(--em-space-s) var(--em-space-m);
