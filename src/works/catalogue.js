@@ -108,7 +108,7 @@ export const CATALOGUE = {
     ]
   },
   'vacanze-in-santorini': {
-    title: "Vacanze in Santorini",
+    title: "Vacanze a Santorini",
     series: "mediterranean",
     medium: "Acrylic on canvas",
     size: "50 × 60 cm",
@@ -118,7 +118,7 @@ export const CATALOGUE = {
       width: 2400,
       height: 2898
     },
-    alt: "Vacanze in Santorini: a brown donkey with roses and an evil eye on its saddle climbing white stone steps below a blue dome and the sea, acrylic",
+    alt: "Vacanze a Santorini: a brown donkey with roses and an evil eye on its saddle climbing white stone steps below a blue dome and the sea, acrylic",
     story: [
       "A little donkey climbing the white stone steps of Santorini under a blue dome, with roses and an evil eye on its saddle.",
       "Dome, whitewashed walls, steps and sea are flat shapes held together by black outlines."

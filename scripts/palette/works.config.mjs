@@ -23,7 +23,7 @@ export const WORKS = [
   { id: 'pomegranates', anchor: 'pomegranates', title: 'Pomegranates', series: 'mediterranean', onSite: true, catalogue: sent('04 Pomenegrates.png') },
   { id: 'fishfit', anchor: 'fishfit', title: 'FishFit', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-fishfit.jpg' },
   { id: 'medusa', anchor: 'medusa', title: 'Medusa', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-medusa.jpg' },
-  { id: 'vacanze-in-santorini', anchor: 'vacanze-in-santorini', title: 'Vacanze in Santorini', series: 'mediterranean', onSite: true, catalogue: 'rectified/archive-donkey-in-santorini.jpg' },
+  { id: 'vacanze-in-santorini', anchor: 'vacanze-in-santorini', title: 'Vacanze a Santorini', series: 'mediterranean', onSite: true, catalogue: 'rectified/archive-donkey-in-santorini.jpg' },
 
   { id: 'maternity-1', anchor: 'maternity-i', title: 'Maternity I', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-i-v2.jpg' },
   { id: 'maternity-2', anchor: 'maternity-ii', title: 'Maternity II', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-ii-v2.jpg' },
