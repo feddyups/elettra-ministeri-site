@@ -683,10 +683,10 @@ export const CATALOGUE = {
       width: 1000,
       height: 1347
     },
-    alt: "By the window: a white felt woman seen from behind, outlined in colored stitches, sitting near a window with a bright blue silk curtain beside her, against a patterned blue and cream wall",
+    alt: "By the window: a white felt woman seen from behind, outlined in colored stitches, sitting near a window and half hidden by a bright blue silk curtain, against a patterned blue and cream wall",
     story: [
-      "A woman sits with her back to us, close to a window. The blue silk beside her is the curtain, and behind her the old patterned cloth is the wall and the light on it.",
-      "I cut her from white felt and left her face out, so she can be anyone who has stopped for a moment to look outside. The color is only in the stitches that draw her."
+      "A woman sits close to a window with her back to us, half hidden by a long blue silk curtain. The old patterned cloth behind her is the wall and the light on it.",
+      "What I wanted to paint is her privacy: the moment when nobody is looking and a person is entirely herself. I cut her from white felt, left her face out, and let the color live only in the stitches that draw her."
     ]
   }
 };
