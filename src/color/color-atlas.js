@@ -9,6 +9,7 @@ import { renderWarmthMap } from './blocks/warmth-map.js';
 import { renderWorkStrips } from './blocks/work-strips.js';
 
 const ALL_BLOCKS = 'reading,wheel,palette,map,strips';
+const SERIES_BLOCKS = 'wheel,palette,strips';
 const TOP_BLOCKS = ['wheel', 'palette'];
 const MAIN_COLORS_SHOWN = 3;
 
@@ -27,7 +28,7 @@ const section = (label, ...children) => h('section', { class: 'ca-section' }, h(
  *   <div data-color-atlas data-scope="all"></div>
  *   <div data-color-atlas data-scope="series:archive" data-blocks="wheel,palette,strips"></div>
  * `data-scope` is `all` or `series:<slug>`. `data-blocks` lists which blocks appear (reading, wheel, palette,
- * map, strips); without it every block does. They always appear in that order.
+ * map, strips); without it the whole body of work shows every block and a series shows the wheel, the palette and the strips. They always appear in that order.
  * Optional: `data-heading="none"` drops the heading; `data-surface` is `plate` (own dark ground),
  * `theme` (the series colors) or `inherit` (the surrounding section's text color); `data-more-href`
  * and `data-more-label` add a link below.
@@ -35,7 +36,7 @@ const section = (label, ...children) => h('section', { class: 'ca-section' }, h(
 export const initAtlas = (host) => {
   const scope = resolveScope(host.dataset.scope || 'all');
   if (!scope) return;
-  const wanted = new Set((host.dataset.blocks || ALL_BLOCKS).split(',').map((name) => name.trim()));
+  const wanted = new Set((host.dataset.blocks || (scope.id === 'all' ? ALL_BLOCKS : SERIES_BLOCKS)).split(',').map((name) => name.trim()));
   host.classList.add('ca');
   host.dataset.surface = host.dataset.surface || (scope.id === 'all' ? 'plate' : 'theme');
 
