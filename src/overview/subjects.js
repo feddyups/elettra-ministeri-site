@@ -25,7 +25,7 @@ export const subjectsOf = (slug) => {
 
 /** The way a work was made, in a few plain groups. */
 export const MEDIA = [
-  { key: 'canvas', label: 'Acrylic on canvas', test: (m) => /canvas/i.test(m) },
+  { key: 'canvas', label: 'Acrylic on canvas', test: (m) => /canvas/i.test(m) && !/paper/i.test(m) },
   { key: 'paper', label: 'Acrylic on paper', test: (m) => /acrylic/i.test(m) && /paper/i.test(m) },
   { key: 'watercolor', label: 'Watercolor on vintage paper', test: (m) => /watercolor/i.test(m) },
   { key: 'pastel', label: 'Oil pastel on handmade paper', test: (m) => /pastel/i.test(m) },
