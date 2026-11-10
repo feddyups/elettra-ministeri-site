@@ -45,11 +45,9 @@ html .em-home .chapter .frame {
 
 /* the infographic inside the home page is the compact version */
 html .em-home .ca {
-  --ca-wheel-max: 17rem;
   --ca-bar-height: 3.5rem;
   margin-top: 0;
 }
-html .em-home .ca .ca-top { grid-template-columns: minmax(0, auto) minmax(0, 1fr); gap: var(--em-space-l); }
 
 @media (min-width: 56.25em) {
   html .em-home .intro {
@@ -66,6 +64,5 @@ html .em-home .ca .ca-top { grid-template-columns: minmax(0, auto) minmax(0, 1fr
 
 @media (max-width: 56.25em) {
   :root { --em-chapter-pad: 4rem; --em-frame-max: 45svh; }
-  html .em-home .ca { --ca-wheel-max: 13rem; }
   html .em-home .ca .ca-names,
 }

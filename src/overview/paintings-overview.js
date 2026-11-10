@@ -3,7 +3,7 @@ import { seriesList } from '../color/scope.js';
 import { createFilter } from './filter-state.js';
 import { overviewWorks } from './works.js';
 import { renderSeriesTiles } from './series-tiles.js';
-import { renderSeriesRows, renderWheels, renderMap } from './series-compare.js';
+import { renderSeriesRows } from './series-compare.js';
 import { renderReadings } from '../color/blocks/readings.js';
 import { resolveScope } from '../color/scope.js';
 import { renderSubjectBars, renderMediumBars } from './bars.js';
@@ -28,7 +28,7 @@ export const initPaintingsOverview = (host) => {
   const worksBySeries = Object.fromEntries(series.map((s) => [s.slug, works.filter((w) => w.series === s.slug)]));
   const filter = createFilter();
 
-  const atlas = h('div', { 'data-color-atlas': '', 'data-scope': 'all', 'data-blocks': 'wheel,palette', 'data-heading': 'none', 'data-surface': 'inherit' });
+  const atlas = h('div', { 'data-color-atlas': '', 'data-scope': 'all', 'data-blocks': 'palette', 'data-heading': 'none', 'data-surface': 'inherit' });
 
   host.replaceChildren(
     section('series', 'Series', `${count(works.length, 'work', 'works')} in ${count(series.length, 'series', 'series')}`,
@@ -37,8 +37,8 @@ export const initPaintingsOverview = (host) => {
     h('div', { class: 'ov-plate' },
       section('reading', 'How she paints', 'The key to the pictures', 'Four things the colors show about how these paintings are put together. Point at a painting for its title and series.', h('div', { class: 'ca', 'data-surface': 'inherit' }, renderReadings(resolveScope('all')))),
       section('compare', 'Compare', 'The series side by side', 'Warmest first. Every series is read the same way: the colors that cover most of it, how its hues divide, and what its colors do in a line.',
-        renderSeriesRows(series, worksBySeries), renderWheels(series)),
-      section('colors', 'The whole body of work', 'The colors I use, measured', `All ${works.length} works together.`, atlas, renderMap(series, filter)),
+        renderSeriesRows(series, worksBySeries)),
+      section('colors', 'The whole body of work', 'The colors I use, measured', `All ${works.length} works together.`, atlas),
       section('mosaic', 'Every main color', 'The mosaic', 'Each tile is one of the main colors of one painting, gathered by hue from red round to violet, light to dark, with the greys and paper at the end. A larger tile is a color that covers a large part of its picture. Point at a tile for its painting; choose a series, a subject or a material below and only those works stay lit.', renderColorMosaic(works, filter)),
       section('subjects', 'Subjects and materials', 'What I paint, and what on', 'Choose a bar to narrow everything on this page to those works.',
         h('div', { class: 'ov-bars-pair' }, renderSubjectBars(works, filter), renderMediumBars(works, filter))),

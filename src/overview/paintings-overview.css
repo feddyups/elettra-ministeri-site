@@ -65,18 +65,7 @@
 .ov-key li { display: flex; align-items: center; gap: var(--em-space-xs); }
 .ov-key li::before { content: ""; width: var(--em-space-s); height: var(--em-space-s); border-radius: 50%; background: var(--color); }
 
-.ov-wheels { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--em-block-gap) var(--em-space-l); }
-.ov-wheel { margin: 0; display: grid; gap: var(--em-space-s); justify-items: center; text-align: center; }
-.ov-wheel .ca-wheel { width: 100%; max-width: 13rem; }
-.ov-wheel .ca-wheel-center b { font-size: var(--em-text-xl); }
-.ov-wheel .ca-wheel-center span { display: none; }
-.ov-wheel figcaption { display: grid; gap: var(--em-space-3xs); font-family: var(--em-font-serif); font-size: var(--em-text-xl); }
-.ov-wheel figcaption small { font-family: var(--em-font-sans); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ov-muted); }
-
-.ov-map { --ca-ink: var(--em-paper); --ca-muted: color-mix(in srgb, var(--em-paper) 68%, transparent); --ca-line: color-mix(in srgb, var(--em-paper) 16%, transparent); display: grid; gap: var(--em-space-m); min-width: 0; }
 .ov-section .ca { margin-top: 0; }
-.ov-map .ca-dot.is-away { opacity: 0.14; }
-.ov-map .ca-dot { transition: opacity var(--em-duration-base) var(--em-ease), transform var(--em-duration-quick) var(--em-ease); }
 
 /* choices */
 .ov-chips { display: flex; flex-wrap: wrap; gap: var(--em-space-xs); }
@@ -138,7 +127,7 @@ button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; t
   .ov-group { grid-template-columns: minmax(0, 1fr); gap: var(--em-space-xs); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ov-tile, .ov-strip i, .ov-hues i, .ov-bar i, .ov-map .ca-dot, button.ov-chip { transition: none; }
+  .ov-tile, .ov-strip i, .ov-hues i, .ov-bar i, button.ov-chip { transition: none; }
 }
 
 /* the readings reuse the atlas's own styles; on this page they sit directly in the section */
