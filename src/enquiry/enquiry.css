@@ -78,3 +78,4 @@ html.em-open { overflow: hidden; }
   .em-drawer,
   .em-drawer-shade { transition: none; }
 }
+.em-ask small { display: block; margin-top: var(--em-space-xs); font-size: var(--em-text-sm); color: var(--em-muted); }

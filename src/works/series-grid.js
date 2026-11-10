@@ -1,6 +1,5 @@
 import { h } from '../lib/elements.js';
 import { worksOfSeries, pictureAt } from './series-notes.js';
-import { seriesInfo } from '../color/scope.js';
 import { factsLine } from './facts.js';
 import { enquiryTopic } from './price.js';
 
@@ -8,7 +7,7 @@ const WIDTHS = [500, 1000, 1500];
 const SIZES = '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw';
 
 /** One entry of a series page: the picture, its title and facts, and the way to enquire. */
-const renderEntry = (slug, work, seriesLabel) => {
+const renderEntry = (slug, work) => {
   const page = `/paintings/${slug}`;
   const { width, height } = work.image;
   return h('li', { class: 'th-work', id: slug },
@@ -19,7 +18,7 @@ const renderEntry = (slug, work, seriesLabel) => {
       })),
     h('div', { class: 'th-cap' },
       h('div', null, h('b', null, h('a', { href: page }, work.title)), h('small', null, factsLine(work))),
-      h('a', { href: `/enquire?SQF_WORK=${encodeURIComponent(enquiryTopic(`${seriesLabel}: ${work.title}`, work))}` }, 'Enquire')));
+      h('a', { href: `/enquire?SQF_WORK=${encodeURIComponent(enquiryTopic(work.title, work))}` }, 'Enquire')));
 };
 
 /**
@@ -30,7 +29,6 @@ const renderEntry = (slug, work, seriesLabel) => {
 export const initSeriesGrid = (list) => {
   const series = list.dataset.seriesGrid || document.documentElement.dataset.series;
   const works = worksOfSeries(series);
-  const info = seriesInfo(series);
   if (!works.length) return;
-  list.replaceChildren(...works.map(([slug, work]) => renderEntry(slug, work, info ? info.label : series)));
+  list.replaceChildren(...works.map(([slug, work]) => renderEntry(slug, work)));
 };
