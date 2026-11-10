@@ -1,5 +1,6 @@
 import { createDrawer } from './drawer.js';
 import { showEnquiringAbout } from './work-note.js';
+import { initSmartForm } from './smart-form.js';
 
 const ENQUIRY_PATH = '/enquire';
 const trimSlash = (path) => path.replace(/\/$/, '');
@@ -15,6 +16,7 @@ const loadStylesheet = () => {
 const initEmbeddedForm = () => {
   document.documentElement.classList.add('em-embed');
   showEnquiringAbout();
+  initSmartForm();
   const reportHeight = () => window.parent.postMessage({ type: 'em-height', height: document.documentElement.scrollHeight }, location.origin);
   new ResizeObserver(reportHeight).observe(document.documentElement);
   document.addEventListener('keydown', (e) => {
@@ -41,5 +43,5 @@ loadStylesheet();
 
 const embedded = window.self !== window.top && /[?&]modal=1/.test(location.search);
 if (embedded) initEmbeddedForm();
-else if (trimSlash(location.pathname) === ENQUIRY_PATH) showEnquiringAbout();
+else if (trimSlash(location.pathname) === ENQUIRY_PATH) { showEnquiringAbout(); initSmartForm(); }
 else initDrawerLinks();

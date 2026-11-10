@@ -79,3 +79,17 @@ html.em-open { overflow: hidden; }
   .em-drawer-shade { transition: none; }
 }
 .em-ask small { display: block; margin-top: var(--em-space-xs); font-size: var(--em-text-sm); color: var(--em-muted); }
+
+/* Smart form: the budget is asked only for a commission, which also gets a short explanation. */
+fieldset[data-em-off] { display: none; }
+.em-commission {
+  margin: 0 0 var(--em-space-l);
+  padding: var(--em-space-s) var(--em-space-m);
+  background: var(--em-paper);
+  border-left: var(--em-stroke-heavy) solid var(--em-accent);
+  font: var(--em-weight-regular) var(--em-text-md) / var(--em-leading-snug) var(--em-font-sans);
+  color: var(--em-ink-strong);
+}
+.em-commission[hidden] { display: none; }
+.em-commission b { font-weight: var(--em-weight-medium); }
+.em-commission p { margin: var(--em-space-xs) 0 0; }
