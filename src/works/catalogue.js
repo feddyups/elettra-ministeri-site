@@ -402,15 +402,15 @@ export const CATALOGUE = {
   'hes-raining-flowers': {
     title: "He’s raining Flowers",
     series: "human-figure",
-    medium: "Acrylic on paper on canvas",
+    medium: "Acrylic on canvas pad",
     size: "21 × 29.7 cm (A4)",
-    price: 15,
+    price: 50,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/93237161-ce98-4d7b-9495-8083840f045c/hes-raining-flowers.jpg",
       width: 1000,
       height: 1393
     },
-    alt: "He’s raining Flowers: a green torso with raised arms, with small red flowers and clovers falling on either side against a pale yellow and pink ground, acrylic on paper on canvas",
+    alt: "He’s raining Flowers: a green torso with raised arms, with small red flowers and clovers falling on either side against a pale yellow and pink ground, acrylic on canvas pad",
     story: [
       "A green torso with raised arms, strong and without a face, and small red flowers and clovers falling down both sides of it. The body could be a plant, or a tree, or a person standing in a shower of petals.",
       "I like that it is not clear whether the flowers are falling or growing. Gentleness and strength share the same body."
