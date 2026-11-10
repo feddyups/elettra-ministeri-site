@@ -2,7 +2,7 @@
  * What is known about each painting, written by hand (everything about its colors is generated; see src/color/).
  * Keyed by the work's page name: its page is /paintings/<key> and its entry on the series page has the same id.
  * Every field but title, series, medium, image and alt is optional ('colorNote' adds paragraphs to the reading of the painting's colors; a 'context' adds a section about where a work comes from: intro, echoes with sources, closing), and a section of the page appears only when
- * its field exists: add 'story' (one string per paragraph), 'year', 'size' or 'frame' as the artist provides them.
+ * its field exists: add 'story' (one string per paragraph), 'year', 'size', 'frame' or 'price' (whole US dollars; a work without one shows no price) as they become known.
  */
 export const CATALOGUE = {
   'lighthouses': {
@@ -10,6 +10,7 @@ export const CATALOGUE = {
     series: "mediterranean",
     medium: "Acrylic on canvas",
     size: "100 × 50 cm",
+    price: 750,
     year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/80fe7bd2-f0e7-4ff0-b22b-bd5f5e4a1750/mediterranean-lighthouses.jpg",
@@ -27,6 +28,7 @@ export const CATALOGUE = {
     series: "mediterranean",
     medium: "Acrylic on canvas",
     size: "60 × 60 cm",
+    price: 600,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0b1d1e51-8576-4b9e-a2c5-99787967a690/mediterranean-wave.jpg",
       width: 2404,
@@ -43,6 +45,7 @@ export const CATALOGUE = {
     series: "mediterranean",
     medium: "Acrylic on canvas",
     size: "80 × 80 cm",
+    price: 875,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0d0224e8-438d-487a-8a13-f381c7c6a4d7/mediterranean-flow.jpg",
       width: 2474,
@@ -59,6 +62,7 @@ export const CATALOGUE = {
     series: "mediterranean",
     medium: "Acrylic on canvas",
     size: "40 × 60 cm",
+    price: 475,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/ee822018-8643-4294-bfc5-2e4d34ec1c35/mediterranean-pomegranates.jpg",
       width: 2476,
@@ -75,6 +79,7 @@ export const CATALOGUE = {
     series: "mediterranean",
     medium: "Acrylic on canvas",
     size: "40 × 30 cm",
+    price: 300,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/54bf4da4-8e49-48d0-8b7c-312a76934e89/mediterranean-fishfit.jpg",
       width: 2424,
@@ -91,6 +96,7 @@ export const CATALOGUE = {
     series: "maternity",
     medium: "Acrylic on watercolor canvas",
     size: "18 × 25.5 cm",
+    price: 125,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/2db645de-d443-4619-b04d-50616c099d4f/maternity-i-v2.jpg",
       width: 1000,
@@ -107,6 +113,7 @@ export const CATALOGUE = {
     series: "maternity",
     medium: "Acrylic on watercolor canvas",
     size: "18 × 25.5 cm",
+    price: 125,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/219f0475-e346-4f9a-ba1e-fa51b336d487/maternity-ii-v2.jpg",
       width: 1000,
@@ -123,6 +130,7 @@ export const CATALOGUE = {
     series: "maternity",
     medium: "Acrylic on canvas",
     size: "50 × 70 cm",
+    price: 600,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0b1d79c4-2ded-4f2e-87a6-509427c4da84/maternity-iii-v3.jpg",
       width: 2400,
@@ -248,6 +256,7 @@ export const CATALOGUE = {
     series: "human-figure",
     medium: "Acrylic on canvas",
     size: "116 × 73 cm",
+    price: 1075,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/b12f2950-9731-48af-b9ca-cf07dbab8a3d/the-bonding-clean.jpg",
       width: 1551,
@@ -264,6 +273,7 @@ export const CATALOGUE = {
     series: "human-figure",
     medium: "Acrylic on canvas",
     size: "50 × 70 cm",
+    price: 600,
     year: 2021,
     image: {
       src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1661723960416-YL4284WHMOEKYM77FYZR/01+The+Hug.jpg",
@@ -286,6 +296,7 @@ export const CATALOGUE = {
     series: "human-figure",
     medium: "Acrylic on canvas",
     size: "50 × 70 cm",
+    price: 600,
     year: 2021,
     image: {
       src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1661723893566-A50LFYP3717C8TB31ZGH/02+The+Hug.png",
@@ -308,6 +319,7 @@ export const CATALOGUE = {
     series: "human-figure",
     medium: "Acrylic on canvas pad",
     size: "22.9 × 30.5 cm",
+    price: 175,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/fe245f61-06bf-4313-b829-fff12b517468/keep-looking-up.jpg",
       width: 1000,
@@ -339,6 +351,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on textured paper",
     size: "32 × 25 cm",
+    price: 150,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/50112205-332a-418a-a6ca-d360f2b04d91/archive-help-v2.jpg",
       width: 2430,
@@ -355,6 +368,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on canvas",
     size: "80 × 100 cm",
+    price: 1025,
     year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0979d960-fe28-469a-858d-36d96a14375b/archive-messengers-of-love-v2.jpg",
@@ -403,6 +417,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Watercolor on vintage paper",
     size: "26 × 20 cm",
+    price: 100,
     year: 2013,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/8573e1e8-5e8e-4ebb-89d6-4bfaaf1f7675/archive-lilies-v3.jpg",
@@ -416,6 +431,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Watercolor on vintage paper",
     size: "26 × 20 cm",
+    price: 100,
     year: 2013,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/8deedb6b-8664-4834-9b9e-d7b41429aec0/archive-lemons-v3.jpg",
@@ -429,6 +445,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on paper",
     size: "30 × 20.5 cm",
+    price: 125,
     year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/fbefe225-5643-4268-bd12-008e6da26dba/archive-cactus-in-the-desert-v3.jpg",
@@ -442,6 +459,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on paper",
     size: "18 × 26.5 cm",
+    price: 100,
     year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cada1a4c-bf8b-4b4d-b405-d5f1cf5b6d65/archive-seahorse-v3.jpg",
@@ -455,6 +473,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Oil pastels on handmade recycled cotton paper",
     size: "30 × 21 cm",
+    price: 125,
     year: 2026,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/800f31e7-f56e-452f-af89-3c0d58745e19/archive-swan-in-a-shell-v3.jpg",
@@ -468,6 +487,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Oil pastels on handmade recycled cotton paper",
     size: "30 × 21 cm",
+    price: 125,
     year: 2026,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cadea2a3-13ce-41ac-a2bd-16c4e227f367/archive-rainbow-shell-v3.jpg",
@@ -481,6 +501,7 @@ export const CATALOGUE = {
     series: "textiles",
     medium: "Felt, buttons and linen",
     size: "41 × 50 cm",
+    price: 375,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/7dca847c-fdb9-4619-8b03-e8f6fcb84afa/textile-mask.jpg",
       width: 1000,

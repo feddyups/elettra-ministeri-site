@@ -2,6 +2,7 @@ import { h } from '../lib/elements.js';
 import { worksOfSeries, pictureAt } from './series-notes.js';
 import { seriesInfo } from '../color/scope.js';
 import { factsLine } from './facts.js';
+import { enquiryTopic } from './price.js';
 
 const WIDTHS = [500, 1000, 1500];
 const SIZES = '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw';
@@ -18,7 +19,7 @@ const renderEntry = (slug, work, seriesLabel) => {
       })),
     h('div', { class: 'th-cap' },
       h('div', null, h('b', null, h('a', { href: page }, work.title)), h('small', null, factsLine(work))),
-      h('a', { href: `/enquire?SQF_WORK=${encodeURIComponent(`${seriesLabel}: ${work.title}`)}` }, 'Enquire')));
+      h('a', { href: `/enquire?SQF_WORK=${encodeURIComponent(enquiryTopic(`${seriesLabel}: ${work.title}`, work))}` }, 'Enquire')));
 };
 
 /**

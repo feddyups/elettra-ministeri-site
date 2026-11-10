@@ -77,7 +77,9 @@ html .wp .wp-info h1 {
   letter-spacing: var(--em-tracking-tight);
   color: var(--ca-ink);
 }
-html .wp .wp-facts { margin: 0 0 var(--em-space-xl); font-size: var(--em-text-sm); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; color: var(--ca-muted); }
+html .wp .wp-facts { margin: 0 0 var(--em-space-xs); font-size: var(--em-text-sm); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; color: var(--ca-muted); }
+html .wp .wp-price { margin: 0 0 var(--em-space-xl); font: var(--em-weight-regular) var(--em-text-xl) / var(--em-leading-none) var(--em-font-serif); color: var(--ca-ink); }
+html .wp .wp-facts:last-of-type { margin-bottom: var(--em-space-xl); }
 html .wp .wp-cta {
   display: inline-block;
   padding: var(--em-space-m) var(--em-space-l);
