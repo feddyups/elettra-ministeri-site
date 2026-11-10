@@ -5,13 +5,16 @@ const KEY = 'em-slide';
 const MOTION = '(prefers-reduced-motion: no-preference)';
 const LEAVE_MS = 220;
 const RECENT_MS = 5000;
+const EDGE = 24;
+const SWIPE_MIN = 60;
+const SWIPE_MS = 900;
 
 const typing = (target) => target instanceof Element && Boolean(target.closest('input, textarea, select, [contenteditable="true"]'));
 const samePath = (href, other) => new URL(href, location.origin).pathname === new URL(other, location.origin).pathname;
 
 /**
  * Moves through the paintings of a series like a slideshow: the arrow keys, and the previous and next links and the strips under
- * "More in <series>", go to the neighboring painting in the order of the series page. The picture slides out the way it is going and
+ * "More in <series>", go to the neighboring painting in the order of the series page, and so does a swipe left or right on a touch screen. The picture slides out the way it is going and
  * the next one slides in from the other side (not when the visitor prefers reduced motion). The neighbors are fetched ahead so the next
  * page is ready when asked for.
  */
@@ -54,6 +57,48 @@ export const initWorkSlideshow = ({ host, work, series }) => {
     event.preventDefault();
     if (event.key === 'ArrowRight') go(next, 'next'); else go(previous, 'previous');
   });
+
+  // swiping sideways on a touch screen does what the arrow keys do; the picture follows the finger and slides on when released
+  const swipe = { x: 0, y: 0, at: 0, active: false };
+  const scrollsSideways = (element) => {
+    for (let e = element; e && e !== host; e = e.parentElement) {
+      if (e.scrollWidth > e.clientWidth + 1 && /(auto|scroll)/.test(getComputedStyle(e).overflowX)) return true;
+    }
+    return false;
+  };
+  const settle = () => {
+    if (!hero) return;
+    hero.style.transition = 'transform var(--em-duration-base) var(--em-ease)';
+    hero.style.transform = '';
+    setTimeout(() => { hero.style.transition = ''; }, 320);
+  };
+  host.addEventListener('touchstart', (event) => {
+    swipe.active = false;
+    if (leaving || event.touches.length !== 1) return;
+    const touch = event.touches[0];
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target || touch.clientX < EDGE || touch.clientX > innerWidth - EDGE) return;
+    if (typing(target) || scrollsSideways(target) || root.classList.contains('wp-lightbox-open')) return;
+    Object.assign(swipe, { x: touch.clientX, y: touch.clientY, at: Date.now(), active: true });
+  }, { passive: true });
+  host.addEventListener('touchmove', (event) => {
+    if (!swipe.active || !hero) return;
+    const dx = event.touches[0].clientX - swipe.x;
+    const dy = event.touches[0].clientY - swipe.y;
+    if (Math.abs(dy) > Math.abs(dx)) { swipe.active = false; settle(); return; }
+    if (animated() && Math.abs(dx) > 10) { hero.style.transition = 'none'; hero.style.transform = `translateX(${dx * 0.4}px)`; }
+  }, { passive: true });
+  host.addEventListener('touchend', (event) => {
+    if (!swipe.active) return;
+    swipe.active = false;
+    const dx = event.changedTouches[0].clientX - swipe.x;
+    const dy = event.changedTouches[0].clientY - swipe.y;
+    const swiped = Math.abs(dx) >= SWIPE_MIN && Math.abs(dx) > Math.abs(dy) * 1.5 && Date.now() - swipe.at < SWIPE_MS;
+    if (!swiped) { settle(); return; }
+    if (hero) { hero.style.transition = ''; hero.style.transform = ''; }
+    if (dx < 0) go(next, 'next'); else go(previous, 'previous');
+  });
+  host.addEventListener('touchcancel', () => { swipe.active = false; settle(); });
 
   host.addEventListener('click', (event) => {
     const link = event.target instanceof Element ? event.target.closest('.wp-pager a, .ca-strips a') : null;

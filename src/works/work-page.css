@@ -210,4 +210,5 @@ html .wp .wp-hero.wp-leave-to-right { transform: translateX(var(--em-space-3xl))
 html .wp .wp-hero.wp-enter-from-right { animation: wp-enter-from-right var(--em-duration-base) var(--em-ease) both; }
 html .wp .wp-hero.wp-enter-from-left { animation: wp-enter-from-left var(--em-duration-base) var(--em-ease) both; }
 .wp-keys { display: none; margin: var(--em-space-s) 0 0; font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
-@media (hover: hover) and (pointer: fine) { .wp-keys { display: block; } }
+@media (hover: hover) and (pointer: fine) { .wp-keys--keys { display: block; } }
+@media (pointer: coarse) { .wp-keys--swipe { display: block; } }

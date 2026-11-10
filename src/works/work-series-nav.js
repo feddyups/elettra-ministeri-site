@@ -15,5 +15,6 @@ export const renderWorkSeriesNav = (work, series) => {
       h('a', { href: previous.href }, `‹ ${previous.title}`),
       h('a', { href: series.path }, `All of ${series.label}`),
       h('a', { href: next.href }, `${next.title} ›`)),
-    ordered.length > 1 && h('p', { class: 'wp-keys' }, 'Use the ← and → keys to move through the series.'));
+    ordered.length > 1 && h('p', { class: 'wp-keys wp-keys--keys' }, 'Use the ← and → keys to move through the series.'),
+    ordered.length > 1 && h('p', { class: 'wp-keys wp-keys--swipe' }, 'Swipe left or right to move through the series.'));
 };
