@@ -1,5 +1,4 @@
 import { h } from '../lib/elements.js';
-import { renderStatRow } from '../color/blocks/stat-row.js';
 import { renderWarmthMap } from '../color/blocks/warmth-map.js';
 import { describeWork } from './describe-work.js';
 import { similarWorks } from './similar-works.js';
@@ -21,7 +20,6 @@ export const renderWorkColors = ({ host, work, scope, series }) => {
     h('p', { class: 'wp-reading' }, sentence, standout && ` ${standout}`, build && ` ${build}`, figures && ` ${figures}`),
     (CATALOGUE[work.slug].colorNote || []).map((paragraph) => h('p', { class: 'wp-reading wp-note' }, paragraph)),
     swatches(work, host),
-    renderStatRow(scope),
     h('div', { class: 'wp-where' },
       h('p', { class: 'ca-label' }, 'Where it sits among all of my work'),
       renderWarmthMap(scope)),

@@ -25,19 +25,6 @@ export const hasSkinColor = (reading) => {
   return reading.colors.filter(isSkin).reduce((sum, c) => sum + c.share, 0) / total >= SKIN_COVERAGE;
 };
 
-/** A share in the words a person would use. */
-export const quantity = (share) => {
-  if (share < 0.03) return 'hardly any';
-  if (share < 0.08) return 'a little';
-  if (share < 0.15) return 'about a tenth';
-  if (share < 0.23) return 'about a fifth';
-  if (share < 0.3) return 'about a quarter';
-  if (share < 0.4) return 'about a third';
-  if (share < 0.6) return 'about half';
-  if (share < 0.8) return 'most';
-  return 'nearly all';
-};
-
 /** How vivid a painting or a series is, in a word (the numbers are the share of strongly saturated color). */
 export const vividWord = (vivid) => (vivid >= 25 ? 'vivid' : vivid >= 12 ? 'lively' : 'quiet');
 

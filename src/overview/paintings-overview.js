@@ -27,7 +27,7 @@ export const initPaintingsOverview = (host) => {
   const worksBySeries = Object.fromEntries(series.map((s) => [s.slug, works.filter((w) => w.series === s.slug)]));
   const filter = createFilter();
 
-  const atlas = h('div', { 'data-color-atlas': '', 'data-scope': 'all', 'data-blocks': 'wheel,palette,stats', 'data-heading': 'none', 'data-surface': 'inherit' });
+  const atlas = h('div', { 'data-color-atlas': '', 'data-scope': 'all', 'data-blocks': 'wheel,palette', 'data-heading': 'none', 'data-surface': 'inherit' });
   const range = works.map((w) => w.year).filter(Boolean);
 
   host.replaceChildren(

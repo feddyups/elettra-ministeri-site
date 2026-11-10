@@ -134,7 +134,6 @@ html .wp .wp-swatch {
 .wp-swatch span { font-size: var(--em-text-xs); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; }
 .wp-swatch small { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-caps); color: var(--ca-muted); }
 
-html .wp .wp-colors .ca-stats { margin-top: var(--em-space-xl); }
 .wp-where, .wp-similar { margin-top: var(--em-block-gap); }
 .ca-strip.is-current { outline: var(--em-stroke) solid var(--ca-ink); outline-offset: var(--em-space-2xs); }
 

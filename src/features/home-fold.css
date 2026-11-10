@@ -50,8 +50,6 @@ html .em-home .ca {
   margin-top: 0;
 }
 html .em-home .ca .ca-top { grid-template-columns: minmax(0, auto) minmax(0, 1fr); gap: var(--em-space-l); }
-html .em-home .ca .ca-stats { margin-top: var(--em-space-l); }
-html .em-home .ca .ca-stats dd { font-size: var(--em-text-xl); }
 
 @media (min-width: 56.25em) {
   html .em-home .intro {
@@ -70,5 +68,4 @@ html .em-home .ca .ca-stats dd { font-size: var(--em-text-xl); }
   :root { --em-chapter-pad: 4rem; --em-frame-max: 45svh; }
   html .em-home .ca { --ca-wheel-max: 13rem; }
   html .em-home .ca .ca-names,
-  html .em-home .ca .ca-stats { display: none; }
 }

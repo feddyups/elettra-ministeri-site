@@ -1,5 +1,4 @@
 import { h, svg } from '../../lib/elements.js';
-import { quantity } from '../readings.js';
 
 const INNER = 96;
 const MIN_BAR = 16;
@@ -34,7 +33,5 @@ export const renderHueWheel = (scope) => {
   const rings = [1, 2, 3].map((n) => svg('circle', { r: INNER + n * 46, fill: 'none', stroke: 'currentColor', 'stroke-opacity': 0.1 }));
   return h('figure', { class: 'ca-wheel' },
     svg('svg', { viewBox: '-300 -300 600 600', role: 'img', 'aria-label': `How much of each hue appears in ${scope.id === 'all' ? 'the whole body of work' : scope.label}` }, rings, wedges),
-    h('figcaption', { class: 'ca-wheel-center' },
-      h('b', { title: `${scope.stats.warm}%` }, quantity(scope.stats.warm / 100)),
-      h('span', null, 'reds & yellows')));
+    h('figcaption', { class: 'ca-sr' }, `${scope.id === 'all' ? 'The whole body of work' : scope.label}: how much of each hue it contains.`));
 };

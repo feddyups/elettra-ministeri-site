@@ -5,12 +5,11 @@ import { renderHueWheel } from './blocks/hue-wheel.js';
 import { renderPaletteBar } from './blocks/palette-bar.js';
 import { renderReadings } from './blocks/readings.js';
 import { gistOf } from './readings.js';
-import { renderStatRow } from './blocks/stat-row.js';
 import { renderWarmthMap } from './blocks/warmth-map.js';
 import { renderWorkStrips } from './blocks/work-strips.js';
 
-const ALL_BLOCKS = 'reading,wheel,palette,stats,map,strips';
-const TOP_BLOCKS = ['wheel', 'palette', 'stats'];
+const ALL_BLOCKS = 'reading,wheel,palette,map,strips';
+const TOP_BLOCKS = ['wheel', 'palette'];
 const MAIN_COLORS_SHOWN = 3;
 
 const heading = (scope) => (scope.id === 'all'
@@ -28,7 +27,7 @@ const section = (label, ...children) => h('section', { class: 'ca-section' }, h(
  *   <div data-color-atlas data-scope="all"></div>
  *   <div data-color-atlas data-scope="series:archive" data-blocks="wheel,palette,strips"></div>
  * `data-scope` is `all` or `series:<slug>`. `data-blocks` lists which blocks appear (reading, wheel, palette,
- * stats, map, strips); without it every block does. They always appear in that order.
+ * map, strips); without it every block does. They always appear in that order.
  * Optional: `data-heading="none"` drops the heading; `data-surface` is `plate` (own dark ground),
  * `theme` (the series colors) or `inherit` (the surrounding section's text color); `data-more-href`
  * and `data-more-label` add a link below.
@@ -45,8 +44,7 @@ export const initAtlas = (host) => {
   const top = [
     wanted.has('wheel') && renderHueWheel(scope),
     TOP_BLOCKS.slice(1).some((name) => wanted.has(name)) && h('div', { class: 'ca-side' },
-      wanted.has('palette') && section(scope.id === 'all' ? 'The colors that stand out' : `What ${scope.label} is made of`, renderPaletteBar(scope)),
-      wanted.has('stats') && renderStatRow(scope)),
+      wanted.has('palette') && section(scope.id === 'all' ? 'The colors that stand out' : `What ${scope.label} is made of`, renderPaletteBar(scope))),
   ].filter(Boolean);
 
   host.replaceChildren(...[

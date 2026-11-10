@@ -116,28 +116,6 @@ html .ca .ca-lede {
 /* hue wheel */
 .ca-wheel { position: relative; width: 100%; max-width: var(--ca-wheel-max); margin: 0; }
 .ca-wheel svg { display: block; width: 100%; height: auto; color: var(--ca-ink); }
-.ca-wheel-center {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-.ca-wheel-center b {
-  font-family: var(--em-font-serif);
-  font-size: clamp(var(--em-space-xl), 7vw, var(--em-space-3xl));
-  font-weight: var(--em-weight-medium);
-  line-height: var(--em-leading-none);
-}
-.ca-wheel-center span {
-  margin-top: var(--em-space-2xs);
-  font-size: var(--em-text-2xs);
-  letter-spacing: var(--em-tracking-wide);
-  text-transform: uppercase;
-  color: var(--ca-muted);
-}
 
 /* palette bar */
 .ca-bar { display: flex; height: var(--ca-bar-height); overflow: hidden; box-shadow: var(--em-shadow-plate); }
@@ -171,13 +149,6 @@ html .ca .ca-pair b { font-weight: var(--em-weight-medium); color: var(--ca-ink)
 html .ca .ca-reading h3 { margin: 0; font-family: var(--em-font-serif); font-size: var(--em-display-sm); font-weight: var(--em-weight-medium); line-height: var(--em-leading-none); color: var(--ca-ink); }
 html .ca .ca-reading-text { margin: 0; max-width: var(--em-measure); font-size: var(--em-text-lg); line-height: var(--em-leading-body); color: var(--ca-ink); }
 .ca-reading small { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; color: var(--ca-muted); }
-
-/* stats */
-.ca-stats { display: flex; flex-wrap: wrap; gap: var(--em-space-ml) var(--em-space-l); margin: var(--em-space-xl) 0 0; }
-.ca-stats div { min-width: 0; }
-.ca-stats .ca-stat--apart { padding-left: var(--em-space-l); border-left: var(--em-hairline) solid var(--ca-line); }
-.ca-stats dt { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
-.ca-stats dd { margin: var(--em-space-2xs) 0 0; font-family: var(--em-font-serif); font-size: var(--em-display-sm); line-height: var(--em-leading-none); }
 
 /* warm-to-cool map */
 .ca-map { margin: 0; }
