@@ -1,5 +1,7 @@
 import { joinNames } from '../color/text.js';
 import { readPalette } from '../lib/color-harmony.js';
+import { subjectsOf } from '../overview/subjects.js';
+import { vividWord, hasSkinColor } from '../color/readings.js';
 
 const lean = (work) => work.warm - work.cool - work.violet;
 
@@ -19,7 +21,6 @@ const standouts = (work, peers, seriesLabel) => {
 export const describeWork = (work, peers, seriesLabel) => {
   const names = joinNames(work.palette.slice(0, 3).map(([, name]) => name));
   const temperature = lean(work) >= 40 ? 'warm' : lean(work) <= -25 ? 'cool' : 'balanced';
-  const intensity = work.vivid >= 40 ? 'vivid' : work.vivid >= 15 ? 'lively' : 'muted';
   const extra = standouts(work, peers, seriesLabel);
   const reading = readPalette(work.palette);
   const percent = Math.round(reading.dominantShare * 100);
@@ -31,7 +32,8 @@ export const describeWork = (work, peers, seriesLabel) => {
   ].filter(Boolean);
   return {
     build: build.length ? `In how it is built: ${build.join('; ')}.` : null,
-    sentence: `Built mostly from ${names}. A ${intensity}, ${temperature} painting: ${work.warm}% warm, ${work.cool + work.violet}% cool, ${work.vivid}% vivid.`,
+    sentence: `Built mostly from ${names}. A ${vividWord(work.vivid)}, ${temperature} painting.`,
+    figures: subjectsOf(work.slug).includes('figures') && !hasSkinColor(reading) ? `No skin color is among its main colors: it is built from ${joinNames([...new Set(reading.chromatic.slice(0, 3).map((c) => c.name.replace(/^(light|deep|dark) /, '')))])}. The colors hold the picture together; they do not describe the people.` : null,
     standout: extra.length ? `It is ${extra.join(' and ')}.` : null,
   };
 };

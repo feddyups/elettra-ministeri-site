@@ -4,6 +4,8 @@ import { createFilter } from './filter-state.js';
 import { overviewWorks } from './works.js';
 import { renderSeriesTiles } from './series-tiles.js';
 import { renderSeriesRows, renderWheels, renderMap } from './series-compare.js';
+import { renderReadings } from '../color/blocks/readings.js';
+import { resolveScope } from '../color/scope.js';
 import { renderSubjectBars, renderMediumBars } from './bars.js';
 import { renderWorkIndex } from './work-index.js';
 
@@ -25,7 +27,7 @@ export const initPaintingsOverview = (host) => {
   const worksBySeries = Object.fromEntries(series.map((s) => [s.slug, works.filter((w) => w.series === s.slug)]));
   const filter = createFilter();
 
-  const atlas = h('div', { 'data-color-atlas': '', 'data-scope': 'all', 'data-blocks': 'wheel,palette,pair,stats', 'data-heading': 'none', 'data-surface': 'inherit' });
+  const atlas = h('div', { 'data-color-atlas': '', 'data-scope': 'all', 'data-blocks': 'wheel,palette,stats', 'data-heading': 'none', 'data-surface': 'inherit' });
   const range = works.map((w) => w.year).filter(Boolean);
 
   host.replaceChildren(
@@ -33,7 +35,8 @@ export const initPaintingsOverview = (host) => {
       'Choose a series to see its works. The strip under each name is the series’ main colors, as wide as the share they cover.',
       renderSeriesTiles(series, worksBySeries)),
     h('div', { class: 'ov-plate' },
-      section('Compare', 'The series side by side', 'Warmest first. Every series is measured the same way: the colors that cover most of it, how its hues divide, how many of its paintings set a small opposite accent against the main color, how far apart its lights and darks are, and how vivid it is.',
+      section('How she paints', 'The key to the pictures', 'Four things the colors show about how these paintings are put together. Point at a painting for its title and series.', renderReadings(resolveScope('all'))),
+      section('Compare', 'The series side by side', 'Warmest first. Every series is read the same way: the colors that cover most of it, how its hues divide, and what its colors do in a line.',
         renderSeriesRows(series, worksBySeries), renderWheels(series)),
       section('The whole body of work', 'The colors I use, measured', `All ${works.length} works together${range.length ? `, from ${Math.min(...range)} to ${Math.max(...range)} where the year is known` : ''}.`, atlas, renderMap(series, filter)),
       section('Subjects and materials', 'What I paint, and what on', 'Choose a bar to narrow everything on this page to those works.',

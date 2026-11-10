@@ -3,21 +3,22 @@ import { resolveScope } from './scope.js';
 import { joinNames } from './text.js';
 import { renderHueWheel } from './blocks/hue-wheel.js';
 import { renderPaletteBar } from './blocks/palette-bar.js';
-import { renderColorPair } from './blocks/color-pair.js';
+import { renderReadings } from './blocks/readings.js';
+import { gistOf } from './readings.js';
 import { renderStatRow } from './blocks/stat-row.js';
 import { renderWarmthMap } from './blocks/warmth-map.js';
 import { renderWorkStrips } from './blocks/work-strips.js';
 
-const ALL_BLOCKS = 'wheel,palette,pair,stats,map,strips';
-const TOP_BLOCKS = ['wheel', 'palette', 'pair', 'stats'];
+const ALL_BLOCKS = 'reading,wheel,palette,stats,map,strips';
+const TOP_BLOCKS = ['wheel', 'palette', 'stats'];
 const MAIN_COLORS_SHOWN = 3;
 
 const heading = (scope) => (scope.id === 'all'
-  ? { kicker: 'The colors I speak in', title: 'My colors, measured.', lede: `I measured the colors of ${scope.count} works. This is what they are made of, and which colors stand out.` }
+  ? { kicker: 'The colors I speak in', title: 'My colors, measured.', lede: `I looked closely at the colors of ${scope.count} paintings. This is what they are made of, how they sit together, and what it says about how I paint.` }
   : {
     kicker: `Color in ${scope.label}`,
     title: null,
-    lede: `Built mostly from ${joinNames(scope.palette.slice(0, MAIN_COLORS_SHOWN).map(([, name]) => name))}. ${scope.stats.warm}% warm, ${scope.stats.vivid}% vivid.`,
+    lede: `Built mostly from ${joinNames(scope.palette.slice(0, MAIN_COLORS_SHOWN).map(([, name]) => name))}. ${gistOf(scope.works)}`,
   });
 
 const section = (label, ...children) => h('section', { class: 'ca-section' }, h('p', { class: 'ca-label' }, label), children);
@@ -26,7 +27,7 @@ const section = (label, ...children) => h('section', { class: 'ca-section' }, h(
  * Renders the color infographic into an element:
  *   <div data-color-atlas data-scope="all"></div>
  *   <div data-color-atlas data-scope="series:archive" data-blocks="wheel,palette,strips"></div>
- * `data-scope` is `all` or `series:<slug>`. `data-blocks` lists which blocks appear (wheel, palette, pair,
+ * `data-scope` is `all` or `series:<slug>`. `data-blocks` lists which blocks appear (reading, wheel, palette,
  * stats, map, strips); without it every block does. They always appear in that order.
  * Optional: `data-heading="none"` drops the heading; `data-surface` is `plate` (own dark ground),
  * `theme` (the series colors) or `inherit` (the surrounding section's text color); `data-more-href`
@@ -45,12 +46,12 @@ export const initAtlas = (host) => {
     wanted.has('wheel') && renderHueWheel(scope),
     TOP_BLOCKS.slice(1).some((name) => wanted.has(name)) && h('div', { class: 'ca-side' },
       wanted.has('palette') && section(scope.id === 'all' ? 'The colors that stand out' : `What ${scope.label} is made of`, renderPaletteBar(scope)),
-      wanted.has('pair') && renderColorPair(scope),
       wanted.has('stats') && renderStatRow(scope)),
   ].filter(Boolean);
 
   host.replaceChildren(...[
     host.dataset.heading !== 'none' && h('header', { class: 'ca-head' }, h('p', { class: 'ca-label' }, kicker), title && h('h2', null, title), h('p', { class: 'ca-lede' }, lede)),
+    wanted.has('reading') && renderReadings(scope),
     top.length > 0 && h('div', { class: 'ca-top' }, top),
     wanted.has('map') && section('Warm to cool, muted to saturated', renderWarmthMap(scope), h('p', { class: 'ca-note' }, 'Each dot is one work, ringed in its series color. The further right, the warmer; the higher, the more saturated.')),
     wanted.has('strips') && section(scope.id === 'all' ? 'Every work, as a strip of its colors' : 'Each work, as a strip of its colors', renderWorkStrips(scope)),

@@ -4,7 +4,7 @@ import { renderHueWheel } from '../color/blocks/hue-wheel.js';
 import { renderWarmthMap } from '../color/blocks/warmth-map.js';
 import { renderPaletteStrip } from './series-tiles.js';
 import { FAMILY_LABELS } from './works.js';
-import { harmonyOf } from '../lib/color-harmony.js';
+import { gistOf } from '../color/readings.js';
 
 const FAMILY_COLORS = { warm: '#e2674a', green: '#4f9a56', cool: '#3f7fc4', violet: '#8b5cc4' };
 
@@ -15,22 +15,17 @@ const hueBar = (series) => h('div', { class: 'ov-hues', role: 'img', 'aria-label
   })));
 
 /**
- * The series side by side, warmest first: its main colors, the share of each hue family, how many of its paintings hold a small
- * opposite accent, how far apart its lights and darks are (OKLab lightness, 0 to 1) and how vivid it is.
+ * The series side by side, warmest first: its main colors, how its hues divide, and in a line what its colors do.
  */
 export const renderSeriesRows = (seriesData, worksBySeries) => {
-  const harmony = Object.fromEntries(seriesData.map((series) => [series.slug, harmonyOf(worksBySeries[series.slug] || [], 120)]));
-  const share = (n, of) => (of ? `${Math.round(100 * n / of)}%` : '–');
   const warmest = [...seriesData].sort((a, b) => b.stats.warm - a.stats.warm);
   return h('div', { class: 'ov-rows' },
-    h('div', { class: 'ov-row ov-row-head', 'aria-hidden': 'true' }, h('span'), h('span', null, 'Main colors'), h('span', null, 'Hue families'), h('span', null, 'Opposite accent'), h('span', null, 'Light to dark'), h('span', null, 'Vivid')),
+    h('div', { class: 'ov-row ov-row-head', 'aria-hidden': 'true' }, h('span'), h('span', null, 'Main colors'), h('span', null, 'Hue families'), h('span', null, 'What the colors do')),
     warmest.map((series) => h('div', { class: 'ov-row' },
       h('a', { href: series.path }, series.label),
       renderPaletteStrip(series),
       hueBar(series),
-      h('span', { class: 'ov-num', 'data-label': 'Opposite accent' }, h('b', null, share(harmony[series.slug].accented, harmony[series.slug].works))),
-      h('span', { class: 'ov-num', 'data-label': 'Light to dark' }, h('b', null, harmony[series.slug].meanLightRange.toFixed(2))),
-      h('span', { class: 'ov-vivid' }, h('b', null, `${series.stats.vivid}%`)))),
+      h('span', { class: 'ov-gist' }, gistOf(worksBySeries[series.slug] || [])))),
     h('ul', { class: 'ov-key' }, Object.keys(FAMILY_COLORS).map((key) => h('li', { style: { '--color': FAMILY_COLORS[key] } }, FAMILY_LABELS[key]))));
 };
 
