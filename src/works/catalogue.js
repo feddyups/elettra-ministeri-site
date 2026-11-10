@@ -146,6 +146,8 @@ export const CATALOGUE = {
     title: "The Shape of Beauty",
     series: "maternity",
     medium: "Acrylic on canvas",
+    size: "21 × 29.7 cm (A4)",
+    price: 200,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/9463b35a-6c44-4768-89cb-d2a74a3f0d32/the-shape-of-beauty.jpg",
       width: 1000,
@@ -232,7 +234,7 @@ export const CATALOGUE = {
     title: "Santa Rosalia",
     series: "sicily",
     medium: "Acrylic on canvas",
-    size: "33 × 42 cm with frame",
+    size: "42 × 33 cm with frame",
     price: 325,
     frame: "Hand-painted frame, part of the work",
     image: {
