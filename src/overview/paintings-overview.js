@@ -33,11 +33,11 @@ export const initPaintingsOverview = (host) => {
       'Choose a series to see its works. The strip under each name is the series’ main colors, as wide as the share they cover.',
       renderSeriesTiles(series, worksBySeries)),
     h('div', { class: 'ov-plate' },
-      section('Compare', 'The series side by side', 'Warmest first. Every series is measured the same way: the colors that cover most of it, how its hues divide, and how vivid it is.',
-        renderSeriesRows(series), renderWheels(series)),
+      section('Compare', 'The series side by side', 'Warmest first. Every series is measured the same way: the colors that cover most of it, how its hues divide, how many of its paintings set a small opposite accent against the main color, how far apart its lights and darks are, and how vivid it is.',
+        renderSeriesRows(series, worksBySeries), renderWheels(series)),
       section('The whole body of work', 'The colors I use, measured', `All ${works.length} works together${range.length ? `, from ${Math.min(...range)} to ${Math.max(...range)} where the year is known` : ''}.`, atlas, renderMap(series, filter)),
       section('Subjects and materials', 'What I paint, and what on', 'Choose a bar to narrow everything on this page to those works.',
         h('div', { class: 'ov-bars-pair' }, renderSubjectBars(works, filter), renderMediumBars(works, filter))),
-      section('Every work', 'The index', 'Sort it, or narrow it by series, subject, material or the color that covers most of the picture.',
+      section('Every work', 'The index', 'Sort it, or narrow it by series, subject, material, the color that covers most of the picture, or how its colors are built: in neighboring hues, with a small opposite accent, or carried by one color.',
         renderWorkIndex(works, series, filter))));
 };

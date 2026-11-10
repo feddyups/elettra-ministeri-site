@@ -13,11 +13,11 @@ const swatches = (work, host) => {
 
 /** The colorimetric reading of one painting: its colors (point at one to see where it lives), the numbers, where it sits among all works, and the works closest to it in color. */
 export const renderWorkColors = ({ host, work, scope, series }) => {
-  const { sentence, standout } = describeWork(work, series.works, series.label);
+  const { sentence, standout, build } = describeWork(work, series.works, series.label);
   const similar = similarWorks(work, scope.universe);
   return h('section', { class: 'wp-section wp-colors' },
     h('p', { class: 'ca-label' }, 'The colors of this painting'),
-    h('p', { class: 'wp-reading' }, sentence, standout && ` ${standout}`),
+    h('p', { class: 'wp-reading' }, sentence, standout && ` ${standout}`, build && ` ${build}`),
     swatches(work, host),
     renderStatRow(scope),
     h('div', { class: 'wp-where' },

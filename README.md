@@ -16,6 +16,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Color focus** – pointing at a color (with a soft, configurable reach: neighboring shades keep part of their color and the edge fades; see `src/color/focus-config.js`) (a hero tile, a chip on a home section, or a color on a painting page) turns the rest of the picture black and white, leaving only that color's cluster in color, so you can see where a color lives.
 - **Copyable colors** – every swatch (the hero's tiles, the chips on each home chapter, a painting page's colors) is one reusable component: it shows the color's name, copies its hex code when clicked, and uses the same analysed palette as the infographic. It carries its data in the page and announces what people look at and take, so colors can be gathered for further analysis (see "Gathering colors").
 - **Color names** – colors are named the way a painter would (vermilion, ochre, bottle green) everywhere they are shown, from one list in `src/lib/color-science.js`.
+    color-harmony.js          how a painting's colors relate (gathered hues, opposite accent, one color carrying it), and the same measured against chance
 - **Glass** – floating surfaces and buttons (the Paintings dropdown, the rail's labels, every "View ..." and enquire button) share one material in the theme: a blurred, saturated view of what is behind, a faint gradient, a bright thin edge and a soft drop, with a tint and text color that adapt to a light or dark surface, so it looks right on any background. A home section sets `data-glass` from its own text color, so glass in a cream section is light and in a dark one is dark.
 - **Section rail** – a slim vertical rail on the home page (never over the hero slideshow: it fades out while the hero is behind it), one tick per section: pointing at it names the sections, the current one is highlighted and choosing one scrolls to it smoothly (`data-rail="Name"` on a section names or includes it).
 - **Artist video** – the video in the home page's artist section shows a cover image with a play button; the YouTube player loads only when the visitor presses play.
@@ -29,13 +30,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.35/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.36/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.35/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.36/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -49,7 +50,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.35/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.36/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -142,8 +143,8 @@ src/
     blocks/
       hue-wheel.js            how much of each hue appears
       palette-bar.js          the main colors, sized by coverage, each linking to a painting
-      color-pair.js           the pairing of opposite color families that meets in most paintings, with every painting that holds it
-      pairing.js              finds that pairing from the paintings' own palettes
+      color-pair.js           how hues relate across the work, against chance, and every painting with an opposite accent
+      accent-pattern.js       finds the most common way an opposite accent sits on a main color
       stat-row.js             warm, green, cool, violet and vivid shares
       warmth-map.js           every work as a dot, warm to cool and muted to saturated
       work-strips.js          each work as a strip of its colors, linking to the work
@@ -292,7 +293,7 @@ Edit `src/features/hero/works.js`, commit, tag a new version and update the vers
 
 1. **Photograph to picture.** `scripts/rectify.mjs` (flatten and crop a phone photo to the frame), `scripts/trim-border.mjs` (cut a pale border off a scan or an export), `scripts/tone-photo.mjs` (white balance from the bed sheet, levels, vibrance). Keep the finished file in the catalogue folder under `rectified/`.
 2. **Upload** it in Squarespace (Assets → Upload) and copy its address into `src/works/catalogue.js` (a new work also needs its entry there: title, series, medium, size, year, image, alt) and into `scripts/palette/works.config.mjs`.
-3. **Rebuild the data**: `npm run sync -- --catalogue "<catalogue folder>"`. This recomputes every work's colors, the series fingerprints, the overall statistics, the warm/cool map, the pairing and the series colors. Every infographic, the hero and the painting pages read this one result.
+3. **Rebuild the data**: `npm run sync -- --catalogue "<catalogue folder>"`. This recomputes every work's colors, the series fingerprints, the overall statistics, the warm/cool map and the series colors (the harmony readings are worked out in the browser from each work's palette, `src/lib/color-harmony.js`). Every infographic, the hero and the painting pages read this one result.
 4. **Release**: commit, tag `vX.Y.Z`, push, wait until jsDelivr serves every changed file, then run `npm run pins` and paste the version into the header injection, the footer injection and the home code block.
 5. **Squarespace pieces**: a new work needs its painting page (duplicate the template item in the Paintings collection, set title, slug, Published), a thumbnail in its series page's code block, and the "N works" counts on `/paintings` and the home chapter.
 6. **Check**: `npm run check:site` compares the live site with the catalogue (release in use, painting pages, series pages, counts) and lists what is left.

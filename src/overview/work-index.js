@@ -2,6 +2,7 @@ import { h } from '../lib/elements.js';
 import { passes } from './filter-state.js';
 import { FAMILY_LABELS } from './works.js';
 import { SUBJECTS, MEDIA } from './subjects.js';
+import { BUILDS } from '../lib/color-harmony.js';
 
 const SORTS = {
   title: ['A to Z', (a, b) => a.title.localeCompare(b.title)],
@@ -58,7 +59,8 @@ export const renderWorkIndex = (works, seriesData, filter) => {
       group('Series', seriesData.map((s) => choice('series', s.slug, s.label))),
       group('Subject', SUBJECTS.map((s) => choice('subject', s.key, s.label))),
       group('Made on', MEDIA.filter((m) => works.some((w) => w.medium === m.key)).map((m) => choice('medium', m.key, m.label))),
-      group('Mostly', Object.entries(FAMILY_LABELS).map(([key, label]) => choice('family', key, label)))),
+      group('Mostly', Object.entries(FAMILY_LABELS).map(([key, label]) => choice('family', key, label))),
+      group('Colors built as', BUILDS.map((b) => choice('build', b.key, b.label)))),
     h('div', { class: 'ov-bar-row' }, count, h('label', { for: 'ov-sort' }, 'Sort ', select), clear),
     list);
 };

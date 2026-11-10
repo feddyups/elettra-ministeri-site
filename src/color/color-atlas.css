@@ -159,6 +159,7 @@ html .ca-swatch:focus-visible { transform: translateY(var(--ca-lift)); }
 .ca-dots i { display: block; width: var(--ca-pair-dot); height: var(--ca-pair-dot); border-radius: 50%; }
 .ca-dots i + i { margin-left: var(--ca-pair-overlap); box-shadow: calc(var(--em-space-2xs) * -1) 0 0 var(--em-bg, var(--em-night)); }
 html .ca .ca-pair-works { margin-top: var(--em-space-m); }
+html .ca .ca-pair .ca-pair-proof { margin-top: var(--em-space-s); font-size: var(--em-text-sm); }
 .ca-pair-body { min-width: 0; }
 html .ca .ca-pair p { margin: 0; color: var(--ca-muted); }
 html .ca .ca-pair b { font-weight: var(--em-weight-medium); color: var(--ca-ink); }

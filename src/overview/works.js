@@ -1,6 +1,7 @@
 import { CATALOGUE } from '../works/catalogue.js';
 import { allPaintings, seriesInfo } from '../color/scope.js';
 import { subjectsOf, mediumOf } from './subjects.js';
+import { readPalette, buildsOf } from '../lib/color-harmony.js';
 
 const FAMILIES = [['warm', 'reds and yellows'], ['green', 'greens'], ['cool', 'blues'], ['violet', 'violets']];
 export const FAMILY_LABELS = Object.fromEntries(FAMILIES);
@@ -18,6 +19,7 @@ export const overviewWorks = () => allPaintings().filter((work) => CATALOGUE[wor
     subjects: subjectsOf(work.slug),
     medium: mediumOf(work.slug),
     family: dominantFamily(work),
+    builds: buildsOf(readPalette(work.palette)),
     year: entry.year || null,
   };
 });
