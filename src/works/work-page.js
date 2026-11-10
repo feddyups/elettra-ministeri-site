@@ -29,7 +29,6 @@ export const initWorkPage = (host) => {
   host.dataset.surface = 'theme';
 
   const hero = renderWorkHero(info, work, series);
-  host.addEventListener('wp:color', (event) => hero.showColor(event.detail.index));
 
   host.replaceChildren(...[
     hero.element,
@@ -37,8 +36,8 @@ export const initWorkPage = (host) => {
     renderWorkContext(info),
     renderWorkDetails(info, series),
     renderWorkSeriesNav(work, series),
+    renderWorkColors({ work, series }),
     renderWorkNext({ work, scope }),
-    renderWorkColors({ host, work, series }),
     renderWorkEnquiry(info),
   ].filter(Boolean));
   initWorkSlideshow({ host, work, series });

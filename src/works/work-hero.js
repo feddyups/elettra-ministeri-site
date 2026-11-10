@@ -14,7 +14,7 @@ const WIDTHS = [500, 1000, 1500, 2500];
  * pointing at a color, in the strip beneath it or below, turns the rest of it black and white),
  * its series, title, one line of facts and the way to enquire.
  *
- * @returns {{ element: HTMLElement, showColor: (index: number|null) => void }}
+ * @returns {{ element: HTMLElement }}
  */
 export const renderWorkHero = (info, work, series) => {
   const { src, width, height } = info.image;
@@ -51,5 +51,5 @@ export const renderWorkHero = (info, work, series) => {
       priceOf(info) && h('p', { class: 'wp-price' }, priceOf(info)),
       h('a', { class: 'wp-cta', href: '#enquire' }, 'Enquire about this work')));
 
-  return { element, showColor: (index) => (index == null ? focus.hide() : focus.show(index)) };
+  return { element };
 };

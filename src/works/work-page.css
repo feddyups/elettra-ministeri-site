@@ -132,10 +132,8 @@ html .wp .wp-swatch {
   color: inherit;
   font: inherit;
   text-align: left;
-  cursor: pointer;
 }
-.wp-swatch i { display: block; height: var(--wp-swatch-height); box-shadow: var(--em-shadow-lift); transition: transform var(--em-duration-quick) var(--em-ease); }
-.wp-swatch:hover i, .wp-swatch:focus-visible i { transform: translateY(var(--ca-lift)); }
+.wp-swatch i { display: block; height: var(--wp-swatch-height); box-shadow: var(--em-shadow-lift); }
 .wp-swatch span { font-size: var(--em-text-xs); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; }
 .wp-swatch small { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-caps); color: var(--ca-muted); }
 
