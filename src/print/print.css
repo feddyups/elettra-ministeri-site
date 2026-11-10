@@ -10,26 +10,18 @@ html .th-grid[data-print] {
 /* The page of a postcard */
 .pr-actions { display: flex; flex-wrap: wrap; gap: var(--em-space-s); margin: var(--em-space-l) 0 0; }
 html .wp .pr-actions .wp-cta { cursor: pointer; }
-html .wp .pr-original { margin: var(--em-space-l) 0 0; font: var(--em-weight-regular) var(--em-text-sm) / var(--em-leading-body) var(--em-font-sans); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; }
-html .wp .pr-original a { color: var(--ca-muted); text-decoration: underline; text-underline-offset: var(--em-space-2xs); }
+html .wp .pr-prompt { margin: var(--em-space-xl) 0 0; padding-top: var(--em-space-l); border-top: var(--em-hairline) solid var(--ca-line, currentColor); }
+html .wp .pr-prompt p:not(.ca-label) { margin: 0; font-style: italic; }
 .pr-back-section .pr-back { max-width: 26rem; margin-top: var(--em-space-l); }
 
-/* The back of a postcard: a space to write, a box for the stamp and lines for the address. It is sized from the card's own width, so it looks the same on the page and on paper. */
-.pr-back { container-type: inline-size; width: 100%; aspect-ratio: var(--ratio, 0.77); background: #fff; color: #2b2622; box-shadow: var(--em-shadow-lift); }
-.pr-back-card { box-sizing: border-box; height: 100%; padding: 6cqw 7cqw; display: grid; grid-template-rows: auto 1fr auto auto; gap: 4cqw; font-family: var(--em-font-sans); }
-.pr-back header { display: flex; justify-content: space-between; align-items: start; }
-.pr-back-name { margin: 0; font: italic 500 6.2cqw / 1 var(--em-font-serif); }
-.pr-back-month, .pr-back-label { margin: 1.4cqw 0 0; font-size: 2.6cqw; letter-spacing: 0.22em; text-transform: uppercase; color: #8a7f75; }
-.pr-back-label { margin-top: 0; }
-.pr-back-stamp { display: grid; place-items: center; width: 15cqw; height: 18cqw; border: 0.35cqw dashed #a39a91; font-size: 2.2cqw; letter-spacing: 0.2em; text-transform: uppercase; color: #a39a91; }
-.pr-back-write { display: flex; flex-direction: column; min-height: 0; }
-.pr-back-prompt { margin: 1.6cqw 0 3cqw; font: italic 500 5.4cqw / 1.2 var(--em-font-serif); }
-.pr-back-lines { flex: 1; background: repeating-linear-gradient(to bottom, transparent 0, transparent calc(7.4cqw - 0.3cqw), #cfc7bd calc(7.4cqw - 0.3cqw), #cfc7bd 7.4cqw); }
-.pr-back footer { display: grid; grid-template-columns: 1fr 1fr; gap: 5cqw; align-items: end; }
-.pr-back-hint { margin: 0; font-size: 2.5cqw; line-height: 1.5; color: #6f655c; }
-.pr-back-address { display: grid; gap: 6.4cqw; }
-.pr-back-address span { display: block; height: 0; border-bottom: 0.3cqw solid #cfc7bd; }
-.pr-back-credit { margin: 0; font-size: 2.1cqw; letter-spacing: 0.14em; text-transform: uppercase; color: #a39a91; text-align: center; }
+/* The back of a postcard: plain and ready to use. Ruled space for a message, a box for the stamp and lines for the address, sized from the card's own width. */
+.pr-back { container-type: inline-size; width: 100%; aspect-ratio: var(--ratio, 0.77); background: #fff; color: #222; box-shadow: var(--em-shadow-lift); }
+.pr-back-card { box-sizing: border-box; height: 100%; padding: 7cqw; display: grid; grid-template-columns: 1.5fr 1fr; gap: 6cqw; }
+.pr-back-message { background: repeating-linear-gradient(to bottom, transparent 0, transparent calc(7.6cqw - 0.25cqw), #b9b9b9 calc(7.6cqw - 0.25cqw), #b9b9b9 7.6cqw); margin-top: 7.6cqw; }
+.pr-back-side { box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; padding-left: 6cqw; border-left: 0.3cqw solid #8c8c8c; }
+.pr-back-stamp { align-self: end; width: 17cqw; height: 20.5cqw; border: 0.3cqw solid #8c8c8c; }
+.pr-back-address { display: grid; gap: 8cqw; margin-bottom: 4cqw; }
+.pr-back-address span { display: block; height: 0; border-bottom: 0.25cqw solid #b9b9b9; }
 
 /* Printing: only the sheets are shown, one card side to a page, each as large as the page allows (print/print-actions.js) */
 .pr-sheet { display: none; }
@@ -40,5 +32,5 @@ html .wp .pr-original a { color: var(--ca-muted); text-decoration: underline; te
   html.pr-printing .pr-page { display: grid; place-items: center; height: 100vh; break-after: page; page-break-after: always; }
   html.pr-printing .pr-page:last-child { break-after: auto; page-break-after: auto; }
   html.pr-printing .pr-page > img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100vh; }
-  html.pr-printing .pr-page > .pr-back { width: min(100%, calc(100vh * var(--ratio, 0.77))); box-shadow: none; border: 0.2mm solid #cfc7bd; }
+  html.pr-printing .pr-page > .pr-back { width: min(100%, calc(100vh * var(--ratio, 0.77))); box-shadow: none; border: 0.2mm solid #b9b9b9; }
 }

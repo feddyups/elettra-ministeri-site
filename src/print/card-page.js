@@ -15,7 +15,7 @@ const action = (label, onClick) => {
 
 /**
  * The page of one postcard, in the layout of a painting's page: the card, its month and title and the ways to print it, the article that goes
- * with it, the back to write on, and the way to the other cards (the arrow keys and a swipe go there too).
+ * with it and a question to start the message with, the plain back to write on, and the way to the other cards (the arrow keys and a swipe go there too).
  */
 export const initCardPage = (host, card) => {
   loadStylesheet(new URL('./print.css', import.meta.url).href).then(() => {
@@ -39,11 +39,11 @@ export const initCardPage = (host, card) => {
       h('p', { class: 'ca-label' }, 'The story'),
       h('p', { class: 'wp-lede' }, card.dek),
       card.article.map((paragraph) => h('p', null, paragraph)),
-      h('p', { class: 'pr-original' }, h('a', { href: card.post.href }, 'Read the original article, in Italian')));
+      h('div', { class: 'pr-prompt' }, h('p', { class: 'ca-label' }, 'To write on the back'), h('p', null, card.prompt)));
 
     const back = h('section', { class: 'wp-section pr-back-section' },
       h('p', { class: 'ca-label' }, 'The back of the card'),
-      h('p', { class: 'wp-reading' }, 'Print it behind the card, or on its own, and write to yourself: what you expect, feel, doubt or wish for in the month that begins. Or a poem, a verse of a song, a quote.'),
+      h('p', { class: 'wp-reading' }, 'A plain back, with room for a message, a stamp and an address. Print it behind the card, or on its own.'),
       renderCardBack(card),
       h('p', { class: 'pr-actions' }, action('Print the back', () => printCard(card, 'back')), action('Print front and back', () => printCard(card, 'both'))));
 

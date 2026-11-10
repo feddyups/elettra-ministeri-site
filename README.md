@@ -20,7 +20,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 - **Glass** – floating surfaces and buttons (the Paintings dropdown, the rail's labels, every "View ..." and enquire button) share one material in the theme: a blurred, saturated view of what is behind, a faint gradient, a bright thin edge and a soft drop, with a tint and text color that adapt to a light or dark surface, so it looks right on any background. A home section sets `data-glass` from its own text color, so glass in a cream section is light and in a dark one is dark.
 - **Section rail** – a slim vertical rail on the home page (never over the hero slideshow: it fades out while the hero is behind it), one tick per section: pointing at it names the sections, the current one is highlighted and choosing one scrolls to it smoothly (`data-rail="Name"` on a section names or includes it).
 - **Artist video** – the video in the home page's artist section shows a cover image with a play button; the YouTube player loads only when the visitor presses play.
-- **Print page** – `/print` (formerly the Downloads page; `/scrivo-una-cartolina` redirects to it) lists the postcards of "Scrivo una cartolina" (`src/print/cards.js`): one card for each month, each with its own page (`/print/<month>`, an item in the Paintings collection reached through a URL mapping, like the textiles) holding an English article, the card, a printable back to write on (`card-back.js`: a space opened by the month's question, a stamp box, address lines) and the way to the other cards (arrow keys and swipe, `work-slideshow.js`). "Print" prints the card and its back on two pages. The page is a code block holding a `.th` header and `<ul class="th-grid" data-print>`, which `src/print/main.js` fills.
+- **Print page** – `/print` (formerly the Downloads page; `/scrivo-una-cartolina` redirects to it) lists the postcards of "Scrivo una cartolina" (`src/print/cards.js`): one card for each month, each with its own page (`/print/<month>`, an item in the Paintings collection reached through a URL mapping, like the textiles) holding an English article, the card, a plain printable back (`card-back.js`: ruled space for a message, a stamp box, address lines, no text), and a question to start the message with and the way to the other cards (arrow keys and swipe, `work-slideshow.js`). "Print" prints the card and its back on two pages. The page is a code block holding a `.th` header and `<ul class="th-grid" data-print>`, which `src/print/main.js` fills.
 - **Enquiry drawer** – on every page, links to `/enquire` open the enquiry form in a side drawer so visitors keep their place. The form can arrive with `?SQF_WORK=<title>` and then says which work the enquiry is about.
 
 ## Loading it on the site
@@ -171,7 +171,7 @@ src/
   print/
     cards.js                  the postcards of "Scrivo una cartolina": month, picture, the blog post of its story
     card-page.js              the page of one postcard: card, article, back, links to the others
-    card-back.js              the back of a postcard to print and write on
+    card-back.js              the plain back of a postcard, to print and use
     print-actions.js          prints a card, its back, or both, on sheets of their own
     print-page.js             fills the Print page's grid
     print.css                 the grid, the card pages, the back, and the print layout of the sheets

@@ -1,21 +1,17 @@
 import { h } from '../lib/elements.js';
 
-const LINES = 3;
+const ADDRESS_LINES = 4;
 
 /**
- * The back of a postcard, to print and write on: a space for the message, opened by the month's own question, a box for the stamp and lines for
- * the address. It is drawn in the same proportions as the front, so the two print as one card. Everything is sized from the card's own width
- * (print.css), so it looks the same on the page and on paper.
+ * The back of a postcard, plain and ready to use: ruled space for a message on the left, and on the right a box for the stamp and lines for the
+ * address. It carries no text, so it suits any message. It is drawn in the same proportions as the front, so the two print as one card, and sized
+ * from the card's own width (print.css), so it looks the same on the page and on paper.
  */
-export const renderCardBack = (card) => h('div', { class: 'pr-back', style: { '--ratio': card.width / card.height } }, h('div', { class: 'pr-back-card' },
-  h('header', null,
-    h('div', null, h('p', { class: 'pr-back-name' }, 'Scrivo una cartolina'), h('p', { class: 'pr-back-month' }, card.month)),
-    h('div', { class: 'pr-back-stamp' }, 'Stamp')),
-  h('div', { class: 'pr-back-write' },
-    h('p', { class: 'pr-back-label' }, 'Write to yourself'),
-    h('p', { class: 'pr-back-prompt' }, card.prompt),
-    h('div', { class: 'pr-back-lines' })),
-  h('footer', null,
-    h('p', { class: 'pr-back-hint' }, 'What do you expect, feel, doubt or wish for? Or write a poem, a verse of a song, a quote. Keep it, give it, or send it.'),
-    h('div', { class: 'pr-back-address' }, Array.from({ length: LINES }, () => h('span')))),
-  h('p', { class: 'pr-back-credit' }, '© Elettra Ministeri · #scrivounacartolina')));
+export const renderCardBack = (card) => h('div', {
+  class: 'pr-back', style: { '--ratio': card.width / card.height }, role: 'img',
+  'aria-label': 'The back of the postcard, blank: ruled space for a message, a box for the stamp and lines for the address',
+}, h('div', { class: 'pr-back-card' },
+  h('div', { class: 'pr-back-message' }),
+  h('div', { class: 'pr-back-side' },
+    h('div', { class: 'pr-back-stamp' }),
+    h('div', { class: 'pr-back-address' }, Array.from({ length: ADDRESS_LINES }, () => h('span'))))));
