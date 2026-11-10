@@ -667,59 +667,7 @@ export const CATALOGUE = {
       intro: [
         "I did not set out to copy a mask, but I know where this face comes from. It is the face I keep meeting in the masks of West and Central Africa: a woman, calm, almost too perfect to be real, with her hair built up like architecture and her forehead marked.",
         "Everything I put on her has a cousin there: the pale rim stitched around the face, the two dark lobes of hair with their white bands, the five buttons set like a jewel between the brows, the red mouth. I made mine in felt and thread because I wanted to be able to touch it. Looking at it now, I can see the older faces standing behind it."
-      ],
-      echoes: [
-        {
-          name: "The Punu masks of Gabon",
-          place: "Gabon",
-          text: "These are the ones I think of first. The face is painted white with kaolin, the color of the spirit world, and the hair rises in two dark lobes. On the forehead there is a diamond, like the marks Punu women once wore, and the lips are often red. The mask is danced on stilts at funerals and celebrations, and the woman it shows is both a real beauty of the village and an ancestor: someone to honor, and to see on her way.",
-          sources: [
-            {
-              label: "Brooklyn Museum",
-              url: "https://www.brooklynmuseum.org/objects/4806"
-            },
-            {
-              label: "Art Institute of Chicago",
-              url: "https://www.artic.edu/artworks/20578/mask-mukudj"
-            },
-            {
-              label: "The Metropolitan Museum of Art",
-              url: "https://www.metmuseum.org/art/collection/search/318667"
-            }
-          ]
-        },
-        {
-          name: "The Baule portrait masks",
-          place: "Côte d’Ivoire",
-          text: "A Baule mask is not a likeness. It is a double, the person as she should be seen: a high forehead, lowered eyes, hair carefully arranged. It is made to honor someone who is alive, often a woman, and I love that idea of a face made as a gift.",
-          sources: [
-            {
-              label: "The Metropolitan Museum of Art",
-              url: "https://metmuseum.org/art/collection/search/317834"
-            },
-            {
-              label: "Cleveland Museum of Art",
-              url: "https://clevelandart.org/art/1974.203"
-            }
-          ]
-        },
-        {
-          name: "The Gelede masks of the Yoruba",
-          place: "Nigeria and Benin",
-          text: "Gelede is danced to honor women, above all the powerful Mothers. Their faces are calm and “cool”, the way women are expected to be, under hair worn in three lobes. The Mothers are honored, entertained and appeased, and I like that a woman’s power is something a whole village dances for.",
-          sources: [
-            {
-              label: "Hofstra University Museum",
-              url: "https://www.hofstra.edu/pdf/community/museum/gelede.pdf"
-            },
-            {
-              label: "Princeton University Art Museum",
-              url: "https://artmuseum.princeton.edu/art/collections/objects/61091"
-            }
-          ]
-        }
-      ],
-      closing: "In all of them a woman’s face is made to be honored. That is what I wanted from mine: something calm, a little beyond the human, that you can look at for a long time. It is the same thing I keep coming back to in my work, my idea of femininity and womanhood. I came to these masks through museum collections, not through the people who made them, and I do not want to speak for them."
+      ]
     }
   },
   'saguaro': {
