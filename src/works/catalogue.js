@@ -298,8 +298,15 @@ export const CATALOGUE = {
     alt: "Cart wheel: a red wooden wheel with twelve yellow and red spokes, a blue, white and green flower at the hub and a ring of rainbow arches and lotus flowers on the rim",
     story: [
       "A Sicilian cart is painted all over, and its wheels are some of the most carefully painted parts: spokes in red and yellow, a flower at the hub, small arches of color around the rim. This one is a wheel on its own.",
-      "It is wood, not canvas, and I painted it the same way as the paintings in this series: flat color, no shading, every part given its own bright patch."
-    ]
+      "It is wood, not canvas, and I painted it the way I paint the rest of this series: flat color, no shading, every part given its own bright patch. It is less a painting than a piece of the cart itself, so this way a part of the carretto can come and live in your home."
+    ],
+    context: {
+      heading: "Where this wheel comes from",
+      intro: [
+        "The carretto siciliano is the island’s painted cart. The decorated cart we know today dates from the early nineteenth century, when carts like it carried goods over rough roads, and it became a picture on wheels: scenes from Sicilian history and legend and geometric patterns, painted on every side. For people who could not read, it was a kind of history book passing by on the road.",
+        "Making one took many hands, and painting carts was often a family trade, handed down in the workshops of Palermo. The wheels were carved and painted too. A cart wheel has twelve spokes around its hub, and mine keeps all twelve."
+      ]
+    }
   },
   'sunburst': {
     title: "Sunburst",
@@ -675,7 +682,7 @@ export const CATALOGUE = {
   'by-the-window': {
     title: "By the window",
     series: "textiles",
-    medium: "Felt, fabric, silk and thread",
+    medium: "Felt, fabric, satin and thread",
     size: "61 × 78 cm",
     price: 650,
     image: {
@@ -683,9 +690,9 @@ export const CATALOGUE = {
       width: 1000,
       height: 1347
     },
-    alt: "By the window: a white felt woman seen from behind, outlined in colored stitches, sitting near a window and half hidden by a bright blue silk curtain, against a patterned blue and cream wall",
+    alt: "By the window: a white felt woman seen from behind, outlined in colored stitches, sitting near a window and half hidden by a bright blue satin curtain, against a patterned blue and cream wall",
     story: [
-      "A woman sits close to a window with her back to us, half hidden by a long blue silk curtain. The old patterned cloth behind her is the wall and the light on it.",
+      "A woman sits close to a window with her back to us, half hidden by a long blue satin curtain. The old patterned cloth behind her is the wall and the light on it.",
       "What I wanted to paint is her privacy: the moment when nobody is looking and a person is entirely herself. I cut her from white felt, left her face out, and let the color live only in the stitches that draw her."
     ]
   }
