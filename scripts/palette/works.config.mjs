@@ -23,9 +23,9 @@ export const WORKS = [
   { id: 'pomegranates', anchor: 'pomegranates', title: 'Pomegranates', series: 'mediterranean', onSite: true, catalogue: sent('04 Pomenegrates.png') },
   { id: 'fishfit', anchor: 'fishfit', title: 'FishFit', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-fishfit.jpg' },
 
-  { id: 'maternity-1', anchor: 'maternity-i', title: 'Maternity I', series: 'maternity', onSite: true, catalogue: sent('05 Maternity I.png') },
-  { id: 'maternity-2', anchor: 'maternity-ii', title: 'Maternity II', series: 'maternity', onSite: true, catalogue: sent('06 Maternity II.png') },
-  { id: 'maternity-3', anchor: 'maternity-iii', title: 'Maternity III', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-iii.jpg' },
+  { id: 'maternity-1', anchor: 'maternity-i', title: 'Maternity I', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-i-v2.jpg' },
+  { id: 'maternity-2', anchor: 'maternity-ii', title: 'Maternity II', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-ii-v2.jpg' },
+  { id: 'maternity-3', anchor: 'maternity-iii', title: 'Maternity III', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-iii-v3.jpg' },
 
   { id: 'carretto', anchor: 'carretto', title: 'Carretto siciliano', series: 'sicily', onSite: true, catalogue: 'rectified/carretto-siciliano.jpg' },
   { id: 'pistacchi', anchor: 'pistacchi', title: 'Pistacchi', series: 'sicily', onSite: true, catalogue: 'rectified/pistacchi.jpg' },

@@ -92,9 +92,9 @@ export const CATALOGUE = {
     medium: "Acrylic on watercolor canvas",
     size: "18 × 25.5 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1706395437954-VXOD34RJGX8YZ2L05HR3/maternity+I.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/2db645de-d443-4619-b04d-50616c099d4f/maternity-i-v2.jpg",
       width: 1000,
-      height: 1435
+      height: 1433
     },
     alt: "Maternity I: a pregnant body in profile, pink and orange with black outlines, on a yellow ground in a blue frame, acrylic on canvas",
     story: [
@@ -108,9 +108,9 @@ export const CATALOGUE = {
     medium: "Acrylic on watercolor canvas",
     size: "18 × 25.5 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1706395438108-49N60VM3SQ8D7HBOKEWW/maternity+II.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/219f0475-e346-4f9a-ba1e-fa51b336d487/maternity-ii-v2.jpg",
       width: 1000,
-      height: 1430
+      height: 1433
     },
     alt: "Maternity II: a pregnant torso seen from the front in vivid red and orange, outlined in deep blue, acrylic on canvas",
     story: [
@@ -124,9 +124,9 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "50 × 70 cm",
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/3b49f37d-ceef-4b2b-bab1-5b8bd1d954bd/maternity-iii-v2.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0b1d79c4-2ded-4f2e-87a6-509427c4da84/maternity-iii-v3.jpg",
       width: 2400,
-      height: 3497
+      height: 3438
     },
     alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, acrylic on canvas",
     story: [
