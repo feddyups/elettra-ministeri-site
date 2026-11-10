@@ -4,7 +4,9 @@ import { inSeriesOrder } from './series-order.js';
 import { workPath } from './work-path.js';
 import { markPicks } from './pick-star.js';
 import { factsLine } from './facts.js';
-import { enquiryTopic, priceOf } from './price.js';
+import { enquiryTopic, onSale, discountOf } from './price.js';
+import { renderPrice } from './price-view.js';
+import { offersReady } from './offers.js';
 
 const WIDTHS = [500, 1000, 1500];
 const SIZES = '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw';
@@ -18,11 +20,12 @@ export const renderEntry = (slug, work) => {
       h('img', {
         src: pictureAt(work, 1000), srcset: WIDTHS.map((w) => `${pictureAt(work, w)} ${w}w`).join(', '), sizes: SIZES,
         alt: work.alt, width: 1000, height: Math.round(1000 * height / width), loading: 'lazy',
-      })),
+      }),
+      onSale(work) && h('span', { class: 'th-sale' }, `${discountOf(work)}% off`)),
     h('div', { class: 'th-cap' },
       h('div', null, h('b', null, h('a', { href: page }, work.title)), h('small', null, factsLine(work))),
       h('div', { class: 'th-act' },
-        priceOf(work) && h('span', { class: 'th-price' }, priceOf(work)),
+        renderPrice(work, { className: 'th-price' }),
         h('a', { href: `/enquire?SQF_WORK=${encodeURIComponent(enquiryTopic(work.title, work))}` }, 'Enquire'))));
 };
 
@@ -31,8 +34,9 @@ export const renderEntry = (slug, work) => {
  * every `<ul class="th-grid">` is filled for the series the page belongs to (the page's `data-series`, or its own `data-series-grid="archive"`). The strips of color and the hover labels are added to each entry afterwards
  * (works/series-strip.js). The entries follow the series' smooth path through color (works/harmony-order.js), and a small star marks the artist's picks (works/pick-star.js). Whatever the page already held in the list stays as it was if the series is unknown.
  */
-export const initSeriesGrid = (list) => {
+export const initSeriesGrid = async (list) => {
   if (list.hasAttribute('data-picks')) return;
+  await offersReady();
   const series = list.dataset.seriesGrid || document.documentElement.dataset.series;
   const works = inSeriesOrder(series, worksOfSeries(series), ([slug]) => slug);
   if (!works.length) return;

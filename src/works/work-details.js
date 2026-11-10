@@ -1,5 +1,5 @@
 import { h } from '../lib/elements.js';
-import { priceOf } from './price.js';
+import { renderPrice } from './price-view.js';
 
 const format = (image) => {
   const ratio = image.width / image.height;
@@ -9,7 +9,7 @@ const format = (image) => {
 /** The technical facts that are known; a row appears only when its field exists. */
 export const renderWorkDetails = (info, series) => {
   const rows = [
-    ['Medium', info.medium], ['Dimensions', info.size], ['Frame', info.frame], ['Price', priceOf(info) && priceOf(info)],
+    ['Medium', info.medium], ['Dimensions', info.size], ['Frame', info.frame], ['Price', renderPrice(info, { percent: true })],
     ['Format', format(info.image)], ['Series', h('a', { href: series.path }, series.label)],
   ].filter(([, value]) => value);
   return h('section', { class: 'wp-section' },

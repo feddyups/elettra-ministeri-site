@@ -4,7 +4,8 @@ import { passes } from './filter-state.js';
 import { FAMILY_LABELS } from './works.js';
 import { SUBJECTS, MEDIA } from './subjects.js';
 import { BUILDS } from '../lib/color-harmony.js';
-import { PRICE_BANDS, priceOf } from '../works/price.js';
+import { PRICE_BANDS } from '../works/price.js';
+import { renderPrice } from '../works/price-view.js';
 
 const SORTS = {
   title: ['A to Z', (a, b) => a.title.localeCompare(b.title)],
@@ -23,7 +24,7 @@ const row = (work) => {
       h('span', { class: 'ov-work-title' }, work.title),
       h('span', { class: 'ov-work-series' }, work.seriesLabel),
       h('span', { class: 'ov-work-facts' }, [entry.medium, entry.size].filter(Boolean).join(' · ')),
-      h('span', { class: 'ov-work-price' }, priceOf(entry)),
+      renderPrice(entry, { className: 'ov-work-price', percent: true }) || h('span', { class: 'ov-work-price' }),
       h('span', { class: 'ov-work-colors', 'aria-hidden': 'true' }, work.palette.map(([hex, , share]) => h('i', { style: { '--color': hex, '--share': share } })))));
 };
 
@@ -63,7 +64,10 @@ export const renderWorkIndex = (works, seriesData, filter) => {
       group('Series', seriesData.map((s) => choice('series', s.slug, s.label))),
       group('Subject', SUBJECTS.map((s) => choice('subject', s.key, s.label))),
       group('Made on', MEDIA.filter((m) => works.some((w) => w.medium === m.key)).map((m) => choice('medium', m.key, m.label))),
-      group('Price', PRICE_BANDS.filter((b) => works.some((w) => w.priceBand === b.key)).map((b) => choice('price', b.key, b.label))),
+      group('Price', [
+        ...PRICE_BANDS.filter((b) => works.some((w) => w.priceBand === b.key)).map((b) => choice('price', b.key, b.label)),
+        ...(works.some((w) => w.onSale) ? [choice('sale', 'on', 'On sale')] : []),
+      ]),
       group('Mostly', Object.entries(FAMILY_LABELS).map(([key, label]) => choice('family', key, label))),
       group('Colors built as', BUILDS.map((b) => choice('build', b.key, b.label)))),
     h('div', { class: 'ov-bar-row' }, count, h('label', { for: 'ov-sort' }, 'Sort ', select), clear),

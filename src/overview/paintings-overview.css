@@ -143,3 +143,9 @@ button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; t
 .ov-tile-color:hover, .ov-tile-color:focus-visible { transform: scale(1.06); outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); position: relative; z-index: 1; }
 .ov-tile-color.is-faded { opacity: 0.12; }
 @media (max-width: 40em) { .ov-mosaic { --unit: 2rem; } }
+
+/* a work on sale: the list price struck through above the price now, with the percentage taken off */
+.ov-work-price.is-sale { display: grid; justify-items: end; }
+.ov-work-price.is-sale s { opacity: 0.6; font-size: var(--em-text-xs); text-decoration-thickness: var(--em-hairline); }
+.ov-work-price.is-sale b { font-weight: inherit; }
+.ov-work-price.is-sale small { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }

@@ -3,7 +3,7 @@ import { createColorFocus } from '../color/color-focus.js';
 import { renderColorStrip } from '../color/color-strip.js';
 import { openLightbox } from './lightbox.js';
 import { createWorkPaint } from './work-paint.js';
-import { priceOf } from './price.js';
+import { renderPrice } from './price-view.js';
 import { readPickSlugs } from './picks.js';
 import { starIcon } from './pick-star.js';
 
@@ -48,7 +48,7 @@ export const renderWorkHero = (info, work, series) => {
       kicker,
       h('h1', null, info.title),
       h('p', { class: 'wp-facts' }, facts),
-      priceOf(info) && h('p', { class: 'wp-price' }, priceOf(info)),
+      renderPrice(info, { tag: 'p', className: 'wp-price', percent: true }),
       h('a', { class: 'wp-cta', href: '#enquire' }, 'Enquire about this work')));
 
   return { element };

@@ -219,3 +219,9 @@ html .wp .wp-next .wp-colors + .wp-next-suggestions { margin-top: var(--em-space
 /* the strips of the series with the note about moving through it beside them */
 .wp-strips-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--em-space-m) var(--em-space-xl); }
 .wp-strips-row .ca-strips { flex: 1 1 24rem; }
+
+/* a work on sale: the list price struck through, the price now, and the percentage as a small tag (hero and technical details) */
+html .wp .is-sale s { margin-right: 0.5em; opacity: 0.6; text-decoration-thickness: var(--em-hairline); }
+html .wp .is-sale b { font-weight: inherit; }
+html .wp .is-sale small { margin-left: 0.75em; padding: 0.15em 0.5em; border: var(--em-hairline) solid currentColor; font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; vertical-align: 0.2em; }
+html .wp .wp-price.is-sale s { font-size: 0.7em; }

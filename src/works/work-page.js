@@ -8,6 +8,7 @@ import { renderWorkColors } from './work-colors.js';
 import { renderWorkSeriesNav } from './work-series-nav.js';
 import { renderWorkNext } from './work-next.js';
 import { initWorkSlideshow } from './work-slideshow.js';
+import { offersReady } from './offers.js';
 import { cardOf } from '../print/cards.js';
 import { initCardPage } from '../print/card-page.js';
 import { renderWorkEnquiry } from './work-enquiry.js';
@@ -18,7 +19,7 @@ import { renderWorkEnquiry } from './work-enquiry.js';
  * src/works/catalogue.js and the colors from src/color/atlas.generated.js; a section appears only when
  * there is something to show in it. The arrow keys move through the series (work-slideshow.js).
  */
-export const initWorkPage = (host) => {
+export const initWorkPage = async (host) => {
   const fromAddress = location.pathname.split('/').filter(Boolean).pop();
   const slug = CATALOGUE[fromAddress] || cardOf(fromAddress) ? fromAddress : host.dataset.workPage;
   if (cardOf(slug)) { initCardPage(host, cardOf(slug)); return; }
@@ -27,6 +28,7 @@ export const initWorkPage = (host) => {
   const series = info && seriesInfo(info.series);
   if (!info || !scope || !series) return;
 
+  await offersReady();
   const work = scope.works[0];
   host.classList.add('ca', 'wp');
   host.dataset.surface = 'theme';

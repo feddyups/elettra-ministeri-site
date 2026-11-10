@@ -1,4 +1,4 @@
-const LISTED = / · listed at (€[\d,]+) on (\d{4}-\d{2}-\d{2})$/;
+const LISTED = / · listed at (€[\d,]+)(?: \(was (€[\d,]+), (\d+(?:\.\d)?)% off\))? on (\d{4}-\d{2}-\d{2})$/;
 
 /**
  * When the enquiry form is opened for a specific work (`?SQF_WORK=<title>`, or `<title> · listed at €600 on 2026-11-10` when the
@@ -28,9 +28,10 @@ export const showEnquiringAbout = () => {
     title.textContent = name;
     note.appendChild(title);
     if (listed) {
-      const day = new Date(`${listed[2]}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+      const day = new Date(`${listed[4]}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
       const price = document.createElement('small');
-      price.textContent = `Listed at ${listed[1]} on ${day}. Prices may change.`;
+      const offer = listed[2] ? ` (was ${listed[2]}, ${listed[3]}% off)` : '';
+      price.textContent = `Listed at ${listed[1]}${offer} on ${day}. Prices may change.`;
       note.append(price);
     }
     form.parentNode.insertBefore(note, form);

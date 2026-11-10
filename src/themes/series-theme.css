@@ -100,3 +100,19 @@ html .th-work { --star: 2.25rem; }
 html .th-work .th-star { position: absolute; top: var(--em-space-s); right: calc(var(--star) * -0.75); z-index: 1; display: grid; place-items: center; width: var(--star); height: var(--star); border-radius: 50%; background: var(--em-paper); color: var(--em-night); box-shadow: var(--em-shadow-lift); }
 html .th-work .th-star svg { width: 62%; height: 62%; fill: currentColor; }
 @media (max-width: 40em) { html .th-work .th-star { right: calc(var(--star) * -0.25); } }
+
+/* A work the artist has put on sale: its list price struck through beside the price now, and the percentage as a small tag on the picture */
+html .th-work .th-cap .th-price s { margin-right: var(--em-space-2xs); opacity: 0.6; text-decoration-thickness: var(--em-hairline); }
+html .th-work .th-cap .th-price b { font-weight: inherit; }
+html .th-work > a.th-img .th-sale {
+  position: absolute;
+  top: var(--em-space-s);
+  left: var(--em-space-s);
+  z-index: 1;
+  padding: var(--em-space-2xs) var(--em-space-xs);
+  background: var(--em-ink);
+  color: var(--em-bg);
+  font: var(--em-weight-medium) var(--em-text-2xs) / 1 var(--em-font-sans);
+  letter-spacing: var(--em-tracking-label);
+  text-transform: uppercase;
+}
