@@ -152,13 +152,14 @@ src/
     menu.css                  the header menu: its order (named numbers at the top), spacing and the Paintings dropdown
     tokens.css                THE THEME (one variable, --em-radius, sets every box's corner radius): colors, type, spacing, shadows, motion and layout, in three layers
   themes/
-    tones.config.js           THE FILE TO EDIT: which painting gives each series its color, and the global settings
+    tones.config.js           THE FILE TO EDIT: the settings that derive each series' background from its colors, a series' own override, and the old hand-set map (MANUAL_TONES)
     tones.generated.js        generated: the tones as a JS module (home page sections)
     tones.generated.css       generated: the tones as CSS variables (series pages)
     series-theme.css          maps the tone onto the site's color variables for series pages
     series-attr.js            generated: tags a series or painting page with data-series before it is painted
   scripts/
-    build-tones.mjs           generates the two tones.generated files
+    build-tones.mjs           works out each series' background from its colors and generates the two tones.generated files
+    palette/series-ground.mjs the judgment that chooses a background hue for each series (see Colors)
     build-atlas.mjs           generates atlas.generated.js from the catalogue images
     sync.mjs                  rebuilds every generated file (colors, atlas, series attributes) in one command
     pins.mjs                  prints the lines to paste into the three Squarespace places after a release
@@ -195,19 +196,29 @@ The modules look for `.em-home` with `.eh-hero` (containing `#eh-heroImg`, `#eh-
 
 ## Colors
 
-Every series has one color. The home page section for a series and the series page itself both use it, so a visitor learns that Mediterranean is deep sea blue, Maternity is rust, and so on.
+Every series has one background, and so does the page of every painting (`data-series="all"`, the All paintings page). The home page section for a series and the series page itself both use it, so a visitor learns that one series is deep teal, another rust, and so on. The backgrounds are worked out from the colors the series is made of, so they follow the works.
 
-All of it comes from `src/themes/tones.config.js`:
+`npm run sync` does it: the color analysis first (each series' pooled palette), then `scripts/build-tones.mjs`, which reads those palettes and chooses a hue for each series (`scripts/palette/series-ground.mjs`). Every hue that could serve (the hue of each palette color, and its opposite) is judged on four things:
 
-- **One series:** give it `pick: 2` to use another color from its painting, or `bg: '#1f3a2e'` to set the color directly.
-- **All series at once:** change `TONE_SETTINGS`, for example a lower `darkness` for darker tones.
-- **A new series:** add one line with the series' page name and the painting its color should come from.
+- **family:** how much of the series lives in that hue family, so the ground belongs to the series (a deep ochre under Sicily's ochres and sands);
+- **opposites:** how much vivid color sits opposite the ground, which the ground makes stand out (Sicily's blues and teals against ochre);
+- **warmth:** whether the ground agrees with the series' overall temperature;
+- **anchor:** how salient the palette color that names the hue is.
+
+The series are assigned a hue together, so the best total is reached while every pair stays at least 55 degrees apart (the first gap of `TONE_SETTINGS.ground.gaps` that can be met), which keeps the colors working as a map. The ground is that hue at a fixed lightness and a chroma taken from how colorful the series is, lowered until the text color reads on it (contrast `minContrast`). The All paintings page takes its hue from the palette of the whole body of work, from the hues left between the series, with a calmer chroma (`TONE_SETTINGS.umbrella`).
+
+All of it is set in `src/themes/tones.config.js`:
+
+- **One series:** give it `bg: '#1f3a2e'` to pin its background to a color of your own.
+- **All series at once:** change `TONE_SETTINGS.ground` (lightness, chroma range, contrast, gaps, the weight of each judgment).
+- **A new series:** add one line with the series' page name and label.
+- **Compare with the hand-set colors:** `MANUAL_TONES` keeps the map that was set by hand; `npm run build:tones` prints each ground beside it.
 
 Then regenerate and release:
 
 ```sh
 npm install                # once
-npm run build:tones        # prints each series' color and the alternative palette colors to pick from
+npm run build:tones        # prints each series' background, the hand-set one it replaces and why the new one was chosen
 git add -A && git commit -m "Update series colors"
 git tag vX.Y.Z && git push origin main vX.Y.Z
 ```
