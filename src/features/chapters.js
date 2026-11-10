@@ -7,7 +7,7 @@ import { h } from '../lib/elements.js';
 import { renderSwatch } from '../color/swatch.js';
 import { createColorFocus } from '../color/color-focus.js';
 import { seriesColors } from '../color/scope.js';
-import { pictureAt, randomWorkOf, worksOfSeries } from '../works/series-notes.js';
+import { SERIES_NOTES, pictureAt, randomWorkOf, worksOfSeries } from '../works/series-notes.js';
 
 /** The series a chapter belongs to, from the link to its page (/paintings/<series>). */
 const seriesOf = (chapter) => {
@@ -28,6 +28,9 @@ export const initChapter = (chapter) => {
   if (pick) chapter.setAttribute('data-img', pictureAt(pick[1], 1500)); // a different work of the series on each visit; its number of works comes from the catalogue
   const meta = chapter.querySelector('.meta');
   if (meta && series) meta.textContent = meta.textContent.replace(/^\d+ works?/, `${worksOfSeries(series).length} works`);
+  const desc = chapter.querySelector('.desc');
+  const home = series && (SERIES_NOTES[series] || {}).home;
+  if (desc && home) desc.textContent = home;
   const frame = chapter.querySelector('.frame');
   const img = frame.querySelector('img');
   if (pick) img.alt = pick[1].alt;

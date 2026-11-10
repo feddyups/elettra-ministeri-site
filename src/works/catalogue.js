@@ -125,6 +125,23 @@ export const CATALOGUE = {
       "Tiny gems circle the pupil like a ring of lights. It is an eye that looks back."
     ]
   },
+  'vacanze-in-santorini': {
+    title: "Vacanze in Santorini",
+    series: "mediterranean",
+    medium: "Acrylic on canvas",
+    size: "50 × 60 cm",
+    price: 550,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/c3ce4efb-0589-432c-b0b3-4a35a85f7154/archive-donkey-in-santorini.jpg",
+      width: 2400,
+      height: 2898
+    },
+    alt: "Vacanze in Santorini: a brown donkey with roses and an evil eye on its saddle climbing white stone steps below a blue dome and the sea, acrylic",
+    story: [
+      "A little donkey climbing the white stone steps of Santorini under a blue dome, with roses and an evil eye on its saddle.",
+      "Dome, whitewashed walls, steps and sea are flat shapes held together by black outlines."
+    ]
+  },
   'maternity-i': {
     title: "Maternity I",
     series: "maternity",
@@ -655,23 +672,6 @@ export const CATALOGUE = {
         }
       ]
     }
-  },
-  'donkey-in-santorini': {
-    title: "Donkey in Santorini",
-    series: "archive",
-    medium: "Acrylic on canvas",
-    size: "50 × 60 cm",
-    price: 550,
-    image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/c3ce4efb-0589-432c-b0b3-4a35a85f7154/archive-donkey-in-santorini.jpg",
-      width: 2400,
-      height: 2898
-    },
-    alt: "Donkey in Santorini: a brown donkey with roses and an evil eye on its saddle climbing white stone steps below a blue dome and the sea, acrylic",
-    story: [
-      "A little donkey climbing the white stone steps of Santorini under a blue dome, with roses and an evil eye on its saddle.",
-      "Dome, whitewashed walls, steps and sea are flat shapes held together by black outlines."
-    ]
   },
   'mask-divine': {
     title: "Mask Divine",

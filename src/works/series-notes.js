@@ -2,11 +2,11 @@ import { CATALOGUE } from './catalogue.js';
 
 /**
  * What the site says about each series in one place: a line about it and the painting that stands for it
- * (its tile on the Paintings page, its chapter on the home page). Everything else about a series (its works, counts,
+ * (its tile on the Paintings page, its chapter on the home page); `home` is a line for the home chapter when it should say something other than `note`. Everything else about a series (its works, counts,
  * colors, years, media) is worked out from the catalogue and the color analysis.
  */
 export const SERIES_NOTES = {
-  mediterranean: { cover: 'wave', note: 'The sea, its shells and fish, and a table set in the sun: where I grew up.' },
+  mediterranean: { cover: 'wave', note: 'The sea I grew up beside and the places around it: waves, shells, fish, whitewashed islands and a table set in the sun.', home: 'The sea I grew up beside and the places around it: waves, shells and fish, lighthouses, whitewashed islands and a table set in the sun.' },
   maternity: { cover: 'maternity-ii', note: 'Pregnancy as it is lived: body, strength and agency.' },
   sicily: { cover: 'carretto', note: 'A tribute to the island of my birth, set in hand-painted frames.' },
   'human-figure': { cover: 'amore-e-pandemia-i', note: 'Bodies reduced to gesture and color: bonds, embraces, states of mind.' },
