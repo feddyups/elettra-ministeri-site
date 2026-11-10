@@ -15,7 +15,7 @@ html .em-tone-button {
   height: var(--em-space-xl, 2.5rem);
   margin-left: var(--em-space-s);
   border-radius: 50%;
-  color: inherit;
+  color: var(--em-ink, inherit);
   transition: background var(--em-duration-quick) var(--em-ease);
 }
 html .em-tone-button:hover,
