@@ -24,6 +24,7 @@ export const describeWork = (work, peers, seriesLabel) => {
   const reading = readPalette(work.palette);
   const percent = Math.round(reading.dominantShare * 100);
   const build = [
+    reading.partner && `its ${reading.dominant.name} is met by an opposite of nearly equal weight, ${reading.partner.name}`,
     reading.accent && `a small ${reading.accent.name} accent set against its ${reading.dominant.name}`,
     reading.gathered && 'colors gathered in neighboring hues',
     reading.carried && `${reading.dominant.name} alone covers ${percent}% of it`,

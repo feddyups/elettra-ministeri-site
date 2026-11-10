@@ -10,6 +10,8 @@ import { rgbToOklab, chroma, hue } from './color-science.js';
  *   gathered    the painting's hues sit close together (their share-weighted spread is tight): an analogous scheme
  *   accent      a chromatic color covering at most ACCENT_MAX_SHARE of the picture whose hue lies ACCENT_ANGLE or more
  *               away from the dominant one: a small opposite held against a larger mass
+ *   partner     a chromatic color covering more than ACCENT_MAX_SHARE whose hue lies ACCENT_ANGLE or more away from the dominant one:
+ *               an opposite that is a full partner, not an accent (a painting with a partner has no accent)
  *   carried     the dominant color alone covers CARRIED_SHARE or more of the picture
  *
  * Hue is OKLCH hue in degrees; "opposite" means 150 degrees or more apart. These are readings of five clustered colors per
@@ -37,13 +39,14 @@ export const readPalette = (palette) => {
   const total = colors.reduce((sum, c) => sum + c.share, 0) || 1;
   const chromatic = colors.filter((c) => c.C >= MIN_CHROMA);
   const dominant = [...chromatic].sort((a, b) => b.share - a.share)[0] || null;
-  const accents = dominant ? chromatic.filter((c) => c.share / total <= ACCENT_MAX_SHARE && hueGap(c.h, dominant.h) >= ACCENT_ANGLE) : [];
+  const partner = dominant ? chromatic.filter((c) => c !== dominant && c.share / total > ACCENT_MAX_SHARE && hueGap(c.h, dominant.h) >= ACCENT_ANGLE).sort((a, b) => b.share - a.share)[0] || null : null;
+  const accents = dominant && !partner ? chromatic.filter((c) => c.share / total <= ACCENT_MAX_SHARE && hueGap(c.h, dominant.h) >= ACCENT_ANGLE) : [];
   const accent = accents.sort((a, b) => b.C - a.C)[0] || null;
   let x = 0; let y = 0; let weight = 0;
   chromatic.forEach((c) => { x += Math.cos(c.h * Math.PI / 180) * c.share; y += Math.sin(c.h * Math.PI / 180) * c.share; weight += c.share; });
   const lights = colors.map((c) => c.L);
   return {
-    colors, chromatic, dominant, accent,
+    colors, chromatic, dominant, accent, partner,
     dominantShare: dominant ? dominant.share / total : 0,
     gathered: weight > 0 && Math.hypot(x, y) / weight >= GATHERED,
     carried: dominant ? dominant.share / total >= CARRIED_SHARE : false,
@@ -55,6 +58,7 @@ export const readPalette = (palette) => {
 export const BUILDS = [
   { key: 'gathered', label: 'Neighboring hues', test: (r) => r.gathered },
   { key: 'accent', label: 'Opposite accent', test: (r) => Boolean(r.accent) },
+  { key: 'partner', label: 'Opposite partner', test: (r) => Boolean(r.partner) },
   { key: 'carried', label: 'One color carries it', test: (r) => r.carried },
 ];
 export const buildsOf = (reading) => BUILDS.filter((b) => b.test(reading)).map((b) => b.key);
@@ -96,7 +100,7 @@ export const harmonyOf = (works, runs = 400) => {
   const count = (test) => readings.filter(test).length;
   return {
     works: works.length, ...observed, chanceOpposite, chanceAdjacent,
-    gathered: count((r) => r.gathered), accented: count((r) => r.accent), carried: count((r) => r.carried),
+    gathered: count((r) => r.gathered), accented: count((r) => r.accent), partnered: count((r) => r.partner), carried: count((r) => r.carried),
     meanLightRange: readings.reduce((sum, r) => sum + r.lightRange, 0) / (readings.length || 1),
   };
 };

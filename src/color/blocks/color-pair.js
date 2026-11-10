@@ -19,7 +19,7 @@ export const renderColorPair = (scope) => {
     h('span', { class: 'ca-dots' }, h('i', { style: { background: pattern.dominant.hex } }), h('i', { style: { background: pattern.accent.hex } })),
     h('div', { class: 'ca-pair-body' },
       h('p', null, h('b', null, `A mass of one hue, a small opposite held back.`),
-        ` In ${harmony.accented} of my ${harmony.works} paintings a small patch of an opposite hue sits against the main color, most often a ${pattern.accentFamily} accent on a ${pattern.dominantFamily} mass (${pattern.works.length} of them, below).`),
+        ` In ${harmony.accented} of my ${harmony.works} paintings a small patch of an opposite hue sits against the main color, most often a ${pattern.accentFamily} accent on a ${pattern.dominantFamily} mass (${pattern.works.length} of them, below). In ${harmony.partnered} more, the opposite is a partner of nearly equal weight.`),
       h('p', { class: 'ca-pair-proof' },
         `Neighboring hues make up ${percent(harmony.adjacent)} of the color I put side by side, against ${percent(harmony.chanceAdjacent)} if hues were drawn at random. Opposites make up ${percent(harmony.opposite)}, which is what chance alone gives (${percent(harmony.chanceOpposite)}): I gather related hues, and keep opposites for accents.`),
       h('div', { class: 'ca-strips ca-pair-works' }, pattern.works.map(renderStrip))));

@@ -272,7 +272,7 @@ export const CATALOGUE = {
     },
     alt: "Amore e Pandemia I: a red figure and a green figure in an embrace against a blue and black ground, acrylic on canvas",
     colorNote: [
-      "Red and green sit exactly opposite each other on the color wheel, and here they are pressed together. The green figure is the larger mass and the red one holds on from behind, so the opposite is the smaller color, as in most of this body of work, but in contact with the main color, not set apart from it.",
+      "Red and green are opposites on the traditional artist's color wheel, and here they are pressed together. The green figure is the larger mass and the red one holds on from behind, so the opposite is the smaller color, as in most of this body of work, but in contact with the main color, not set apart from it.",
       "Neither figure has a face. The blue behind them runs from light on the left to near black on the right, and the only warm color in the picture is the one inside the embrace."
     ],
     story: [
