@@ -21,7 +21,6 @@ export const overviewWorks = () => allPaintings().filter((work) => CATALOGUE[wor
     medium: mediumOf(work.slug),
     family: dominantFamily(work),
     builds: buildsOf(readPalette(work.palette)),
-    year: entry.year || null,
     price: priceValue(entry),
     priceBand: priceBandOf(entry),
   };

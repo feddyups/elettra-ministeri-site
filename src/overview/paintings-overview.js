@@ -28,7 +28,6 @@ export const initPaintingsOverview = (host) => {
   const filter = createFilter();
 
   const atlas = h('div', { 'data-color-atlas': '', 'data-scope': 'all', 'data-blocks': 'wheel,palette', 'data-heading': 'none', 'data-surface': 'inherit' });
-  const range = works.map((w) => w.year).filter(Boolean);
 
   host.replaceChildren(
     section('series', 'Series', `${count(works.length, 'work', 'works')} in ${count(series.length, 'series', 'series')}`,
@@ -38,7 +37,7 @@ export const initPaintingsOverview = (host) => {
       section('reading', 'How she paints', 'The key to the pictures', 'Four things the colors show about how these paintings are put together. Point at a painting for its title and series.', h('div', { class: 'ca', 'data-surface': 'inherit' }, renderReadings(resolveScope('all')))),
       section('compare', 'Compare', 'The series side by side', 'Warmest first. Every series is read the same way: the colors that cover most of it, how its hues divide, and what its colors do in a line.',
         renderSeriesRows(series, worksBySeries), renderWheels(series)),
-      section('colors', 'The whole body of work', 'The colors I use, measured', `All ${works.length} works together${range.length ? `, from ${Math.min(...range)} to ${Math.max(...range)} where the year is known` : ''}.`, atlas, renderMap(series, filter)),
+      section('colors', 'The whole body of work', 'The colors I use, measured', `All ${works.length} works together.`, atlas, renderMap(series, filter)),
       section('subjects', 'Subjects and materials', 'What I paint, and what on', 'Choose a bar to narrow everything on this page to those works.',
         h('div', { class: 'ov-bars-pair' }, renderSubjectBars(works, filter), renderMediumBars(works, filter))),
       section('index', 'Every work', 'The index', 'Sort it, or narrow it by series, subject, material, price, the color that covers most of the picture, or how its colors are built: in neighboring hues, with a small opposite accent, or carried by one color.',

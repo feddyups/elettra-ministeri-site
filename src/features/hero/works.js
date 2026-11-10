@@ -13,7 +13,7 @@ const slideFor = (atlasWork) => {
     colorKey: atlasWork.title,
     series: series.label,
     title: work.title,
-    meta: [work.medium, work.size, work.year].filter(Boolean).join(' · '),
+    meta: [work.medium, work.size].filter(Boolean).join(' · '),
     href: series.path,
     image: `${work.image.src}?format=${WIDTH}w`,
     alt: work.alt,

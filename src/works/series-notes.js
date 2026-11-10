@@ -3,7 +3,7 @@ import { CATALOGUE } from './catalogue.js';
 /**
  * What the site says about each series in one place: a line about it and the painting that stands for it
  * (its tile on the Paintings page, its chapter on the home page); `home` is a line for the home chapter when it should say something other than `note`. Everything else about a series (its works, counts,
- * colors, years, media) is worked out from the catalogue and the color analysis.
+ * colors, media) is worked out from the catalogue and the color analysis.
  */
 export const SERIES_NOTES = {
   mediterranean: { cover: 'wave', note: 'The sea I grew up beside and the places around it: waves, shells, fish, whitewashed islands and a table set in the sun.', home: 'The sea I grew up beside and the places around it: waves, shells and fish, lighthouses, whitewashed islands and a table set in the sun.' },

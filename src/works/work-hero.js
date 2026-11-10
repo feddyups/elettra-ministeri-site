@@ -27,7 +27,7 @@ export const renderWorkHero = (info, work, series) => {
   const zoom = h('button', { class: 'wp-zoom', type: 'button', 'aria-label': `View ${info.title} larger` }, img, paintCanvas, focusCanvas);
   zoom.addEventListener('click', () => openLightbox({ src: `${src}?format=2500w`, alt: info.alt }));
 
-  const facts = [info.medium, info.size, info.year].filter(Boolean).join(' · ');
+  const facts = [info.medium, info.size].filter(Boolean).join(' · ');
   const stage = h('div', { class: 'wp-stage' }, zoom);
   const figure = h('figure', { class: 'wp-figure', style: { '--ratio': width / height } }, stage);
   const painter = createWorkPaint({ figure, zoom, canvas: paintCanvas, url: `${src}?format=1500w`, width, height });

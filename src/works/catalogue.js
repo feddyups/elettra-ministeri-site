@@ -2,7 +2,7 @@
  * What is known about each painting, written by hand (everything about its colors is generated; see src/color/).
  * Keyed by the work's page name: its page is /paintings/<key> and its entry on the series page has the same id.
  * Every field but title, series, medium, image and alt is optional ('colorNote' adds paragraphs to the reading of the painting's colors; a 'context' adds a section about where a work comes from: intro, echoes with sources, closing), and a section of the page appears only when
- * its field exists: add 'story' (one string per paragraph), 'year', 'size', 'frame' or 'price' (whole euros for the work itself; a frame is added on top of it automatically (200 by default, or the work's own `framePrice`; `frameNote` is the short label for the facts line), see works/price.js; a work without one shows no price) as they become known.
+ * its field exists: add 'story' (one string per paragraph), 'size', 'frame' or 'price' (whole euros for the work itself; a frame is added on top of it automatically (200 by default, or the work's own `framePrice`; `frameNote` is the short label for the facts line), see works/price.js; a work without one shows no price) as they become known.
  */
 export const CATALOGUE = {
   'lighthouses': {
@@ -11,7 +11,6 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "100 × 50 cm",
     price: 750,
-    year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/80fe7bd2-f0e7-4ff0-b22b-bd5f5e4a1750/mediterranean-lighthouses.jpg",
       width: 2476,
@@ -345,7 +344,6 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "50 × 70 cm",
     price: 600,
-    year: 2021,
     image: {
       src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1661723960416-YL4284WHMOEKYM77FYZR/01+The+Hug.jpg",
       width: 1000,
@@ -368,7 +366,6 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "50 × 70 cm",
     price: 600,
-    year: 2021,
     image: {
       src: "https://images.squarespace-cdn.com/content/v1/596fbc34c534a5fa937bd9bf/1661723893566-A50LFYP3717C8TB31ZGH/02+The+Hug.png",
       width: 1000,
@@ -442,7 +439,6 @@ export const CATALOGUE = {
     medium: "Acrylic on canvas",
     size: "80 × 100 cm",
     price: 1025,
-    year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0979d960-fe28-469a-858d-36d96a14375b/archive-messengers-of-love-v2.jpg",
       width: 2437,
@@ -495,7 +491,6 @@ export const CATALOGUE = {
     medium: "Watercolor on vintage paper",
     size: "26 × 20 cm",
     price: 15,
-    year: 2013,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/8573e1e8-5e8e-4ebb-89d6-4bfaaf1f7675/archive-lilies-v3.jpg",
       width: 2000,
@@ -509,7 +504,6 @@ export const CATALOGUE = {
     medium: "Watercolor on vintage paper",
     size: "26 × 20 cm",
     price: 15,
-    year: 2013,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/8deedb6b-8664-4834-9b9e-d7b41429aec0/archive-lemons-v3.jpg",
       width: 2000,
@@ -523,7 +517,6 @@ export const CATALOGUE = {
     medium: "Acrylic on paper",
     size: "30 × 20.5 cm",
     price: 15,
-    year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/fbefe225-5643-4268-bd12-008e6da26dba/archive-cactus-in-the-desert-v3.jpg",
       width: 1880,
@@ -537,7 +530,6 @@ export const CATALOGUE = {
     medium: "Acrylic on paper",
     size: "18 × 26.5 cm",
     price: 15,
-    year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cada1a4c-bf8b-4b4d-b405-d5f1cf5b6d65/archive-seahorse-v3.jpg",
       width: 1978,
@@ -551,7 +543,6 @@ export const CATALOGUE = {
     medium: "Oil pastels on handmade recycled cotton paper",
     size: "30 × 21 cm",
     price: 15,
-    year: 2026,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/800f31e7-f56e-452f-af89-3c0d58745e19/archive-swan-in-a-shell-v3.jpg",
       width: 2000,
@@ -565,7 +556,6 @@ export const CATALOGUE = {
     medium: "Oil pastels on handmade recycled cotton paper",
     size: "30 × 21 cm",
     price: 15,
-    year: 2026,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cadea2a3-13ce-41ac-a2bd-16c4e227f367/archive-rainbow-shell-v3.jpg",
       width: 2000,

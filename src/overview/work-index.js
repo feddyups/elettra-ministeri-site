@@ -7,7 +7,6 @@ import { PRICE_BANDS, priceOf } from '../works/price.js';
 
 const SORTS = {
   title: ['A to Z', (a, b) => a.title.localeCompare(b.title)],
-  year: ['Oldest first', (a, b) => (a.year || 9999) - (b.year || 9999) || a.title.localeCompare(b.title)],
   warm: ['Warmest first', (a, b) => (b.warm - b.cool - b.violet) - (a.warm - a.cool - a.violet)],
   vivid: ['Most saturated first', (a, b) => b.chroma - a.chroma],
   priceLow: ['Lowest price first', (a, b) => (a.price || Infinity) - (b.price || Infinity) || a.title.localeCompare(b.title)],
@@ -22,7 +21,7 @@ const row = (work) => {
       h('span', { class: 'ov-work-picture' }, h('img', { src: picture, alt: '', loading: 'lazy' })),
       h('span', { class: 'ov-work-title' }, work.title),
       h('span', { class: 'ov-work-series' }, work.seriesLabel),
-      h('span', { class: 'ov-work-facts' }, [entry.medium, entry.size, entry.year].filter(Boolean).join(' · ')),
+      h('span', { class: 'ov-work-facts' }, [entry.medium, entry.size].filter(Boolean).join(' · ')),
       h('span', { class: 'ov-work-price' }, priceOf(entry)),
       h('span', { class: 'ov-work-colors', 'aria-hidden': 'true' }, work.palette.map(([hex, , share]) => h('i', { style: { '--color': hex, '--share': share } })))));
 };
