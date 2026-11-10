@@ -246,8 +246,8 @@ export const CATALOGUE = {
       "The hand-painted frame makes the picture feel like a tile, or a doorway."
     ]
   },
-  'testa-di-moro': {
-    title: "Testa di moro",
+  'paladino-siciliano': {
+    title: "Paladino siciliano",
     series: "sicily",
     medium: "Acrylic on canvas",
     size: "60 × 60 cm without frame",
@@ -260,7 +260,7 @@ export const CATALOGUE = {
       width: 2400,
       height: 2401
     },
-    alt: "Testa di moro: a smiling man's head in profile, in a ribbed yellow helmet with a red scrolled crest, beside a prickly pear and a red cart wheel inside a ring of red and blue eyes, with lemons in the four corners of a blue and white tiled ground, in a red frame",
+    alt: "Paladino siciliano: a smiling man's head in profile, in a ribbed yellow helmet with a red scrolled crest, beside a prickly pear and a red cart wheel inside a ring of red and blue eyes, with lemons in the four corners of a blue and white tiled ground, in a red frame",
     story: [
       "A Sicilian knight in profile, dressed the way the pupi are, the puppets of the island’s traditional theatre: a ribbed yellow helmet with a red crest, a mustache, a calm smile. I wanted a face that could have stepped out of one of those stories.",
       "Around his head I put what I see when I think of home: the prickly pear with its red fruit, lemons in the four corners, the wheel of a Sicilian cart, and a ring of the same painted eyes that run along the carts’ sides."

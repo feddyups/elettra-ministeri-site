@@ -32,7 +32,7 @@ export const WORKS = [
   { id: 'carretto', anchor: 'carretto', title: 'Carretto siciliano', series: 'sicily', onSite: true, catalogue: 'rectified/carretto-siciliano.jpg' },
   { id: 'pistacchi', anchor: 'pistacchi', title: 'Pistacchi', series: 'sicily', onSite: true, catalogue: 'rectified/pistacchi.jpg' },
   { id: 'sole', anchor: 'sole', title: 'Il sole', series: 'sicily', onSite: true, catalogue: 'rectified/il-sole.jpg' },
-  { id: 'testa-di-moro', anchor: 'testa-di-moro', title: 'Testa di moro', series: 'sicily', onSite: true, catalogue: 'rectified/sicily-moor-head.jpg' },
+  { id: 'paladino-siciliano', anchor: 'paladino-siciliano', title: 'Paladino siciliano', series: 'sicily', onSite: true, catalogue: 'rectified/sicily-moor-head.jpg' },
   { id: 'santa-rosalia', anchor: 'santa-rosalia', title: 'Santa Rosalia', series: 'sicily', onSite: true, catalogue: 'rectified/sicily-lilies.jpg' },
   { id: 'cart-wheel', anchor: 'cart-wheel', title: 'Cart wheel', series: 'sicily', onSite: true, catalogue: 'rectified/sicilian-wheel-masked-for-analysis.jpg' },
   { id: 'sunburst', anchor: 'sunburst', title: 'Sunburst', series: 'sicily', onSite: true, catalogue: 'rectified/sicily-sunburst.jpg' },
