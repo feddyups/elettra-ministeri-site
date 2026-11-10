@@ -89,4 +89,6 @@ html[data-series="favorites"] {
   --series-line: rgba(250, 248, 245, 0.22);
   --series-body: rgba(250, 248, 245, 0.88);
 }
+/* and it has no navigation at its foot: neither the links of a series page nor the collection's Previous / Next bar */
+html[data-series="favorites"] .item-pagination { display: none !important; }
 html .th-grid .th-empty { grid-column: 1 / -1; padding-block: var(--em-space-xl); color: var(--em-muted); font-size: var(--em-text-lg); list-style: none; }
