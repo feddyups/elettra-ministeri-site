@@ -30,13 +30,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.54/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.55/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.54/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.55/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -50,7 +50,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.54/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.55/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -296,7 +296,7 @@ Edit `src/features/hero/works.js`, commit, tag a new version and update the vers
 ## Adding or changing a work
 
 1. **Photograph to picture.** `scripts/rectify.mjs` (flatten and crop a phone photo to the frame), `scripts/trim-border.mjs` (cut a pale border off a scan or an export), `scripts/tone-photo.mjs` (white balance from the bed sheet, levels, vibrance). Keep the finished file in the catalogue folder under `rectified/`.
-2. **Upload** it in Squarespace (Assets → Upload) and copy its address into `src/works/catalogue.js` (a new work also needs its entry there: title, series, medium, size, year, image, alt; `price` is whole US dollars and, when present, appears on the painting page and in the enquiry the work is named in) and into `scripts/palette/works.config.mjs`.
+2. **Upload** it in Squarespace (Assets → Upload) and copy its address into `src/works/catalogue.js` (a new work also needs its entry there: title, series, medium, size, year, image, alt; `price` is whole euros and, when present, appears on the painting page and in the enquiry the work is named in) and into `scripts/palette/works.config.mjs`.
 3. **Rebuild the data**: `npm run sync -- --catalogue "<catalogue folder>"`. This recomputes every work's colors, the series fingerprints, the overall statistics, the warm/cool map and the series colors (the harmony readings are worked out in the browser from each work's palette, `src/lib/color-harmony.js`). Every infographic, the hero and the painting pages read this one result.
 4. **Release**: commit, tag `vX.Y.Z`, push, wait until jsDelivr serves every changed file, then run `npm run pins` and paste the version into the header injection, the footer injection and the home code block.
 5. **Squarespace pieces**: a new work needs its painting page (duplicate the template item in the Paintings collection, set title, slug, Published), a thumbnail in its series page's code block, and the "N works" counts on `/paintings` and the home chapter.

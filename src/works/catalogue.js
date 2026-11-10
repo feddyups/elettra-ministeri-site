@@ -2,7 +2,7 @@
  * What is known about each painting, written by hand (everything about its colors is generated; see src/color/).
  * Keyed by the work's page name: its page is /paintings/<key> and its entry on the series page has the same id.
  * Every field but title, series, medium, image and alt is optional ('colorNote' adds paragraphs to the reading of the painting's colors; a 'context' adds a section about where a work comes from: intro, echoes with sources, closing), and a section of the page appears only when
- * its field exists: add 'story' (one string per paragraph), 'year', 'size', 'frame' or 'price' (whole US dollars for the work itself; the hand-painted frame is added on top of it automatically, see works/price.js; a work without one shows no price) as they become known.
+ * its field exists: add 'story' (one string per paragraph), 'year', 'size', 'frame' or 'price' (whole euros for the work itself; the hand-painted frame is added on top of it automatically, see works/price.js; a work without one shows no price) as they become known.
  */
 export const CATALOGUE = {
   'lighthouses': {
@@ -161,6 +161,8 @@ export const CATALOGUE = {
     title: "Carretto siciliano",
     series: "sicily",
     medium: "Acrylic on canvas",
+    size: "33 × 42 cm with frame",
+    price: 325,
     frame: "Hand-painted frame, part of the work",
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/d0403442-5dd2-4b6c-8c1b-93b9b2388298/carretto-siciliano-v2.jpg",
@@ -177,6 +179,8 @@ export const CATALOGUE = {
     title: "Pistacchi",
     series: "sicily",
     medium: "Acrylic on canvas",
+    size: "33 × 42 cm with frame",
+    price: 325,
     frame: "Hand-painted frame, part of the work",
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/34d3cfec-6b34-4410-9aee-d191daad4102/pistacchi-v2.jpg",
@@ -193,6 +197,8 @@ export const CATALOGUE = {
     title: "Il sole",
     series: "sicily",
     medium: "Acrylic on canvas",
+    size: "33 × 42 cm with frame",
+    price: 325,
     frame: "Hand-painted frame, part of the work",
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/3daf7474-cbdc-4815-a08a-1949bf772d23/il-sole-v2.jpg",
@@ -209,6 +215,8 @@ export const CATALOGUE = {
     title: "Testa di moro",
     series: "sicily",
     medium: "Acrylic on canvas",
+    size: "60 × 60 cm",
+    price: 600,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cd277713-b540-46f1-9c76-14f249705704/sicily-moor-head-v2.jpg",
       width: 2400,
@@ -224,6 +232,8 @@ export const CATALOGUE = {
     title: "Santa Rosalia",
     series: "sicily",
     medium: "Acrylic on canvas",
+    size: "33 × 42 cm with frame",
+    price: 325,
     frame: "Hand-painted frame, part of the work",
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/63077b44-b92a-44af-824e-52d0a57003c3/sicily-lilies-v2.jpg",
@@ -240,6 +250,8 @@ export const CATALOGUE = {
     title: "Cart wheel",
     series: "sicily",
     medium: "Painted wood",
+    size: "52 cm diameter",
+    price: 425,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/d78134ef-a644-4aca-98a2-16e0c64c2b66/sicilian-wheel-on-sheet.jpg",
       width: 2000,
@@ -351,7 +363,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on textured paper",
     size: "32 × 25 cm",
-    price: 150,
+    price: 20,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/50112205-332a-418a-a6ca-d360f2b04d91/archive-help-v2.jpg",
       width: 2430,
@@ -417,7 +429,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Watercolor on vintage paper",
     size: "26 × 20 cm",
-    price: 100,
+    price: 15,
     year: 2013,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/8573e1e8-5e8e-4ebb-89d6-4bfaaf1f7675/archive-lilies-v3.jpg",
@@ -431,7 +443,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Watercolor on vintage paper",
     size: "26 × 20 cm",
-    price: 100,
+    price: 15,
     year: 2013,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/8deedb6b-8664-4834-9b9e-d7b41429aec0/archive-lemons-v3.jpg",
@@ -445,7 +457,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on paper",
     size: "30 × 20.5 cm",
-    price: 125,
+    price: 15,
     year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/fbefe225-5643-4268-bd12-008e6da26dba/archive-cactus-in-the-desert-v3.jpg",
@@ -459,7 +471,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on paper",
     size: "18 × 26.5 cm",
-    price: 100,
+    price: 15,
     year: 2020,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cada1a4c-bf8b-4b4d-b405-d5f1cf5b6d65/archive-seahorse-v3.jpg",
@@ -473,7 +485,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Oil pastels on handmade recycled cotton paper",
     size: "30 × 21 cm",
-    price: 125,
+    price: 15,
     year: 2026,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/800f31e7-f56e-452f-af89-3c0d58745e19/archive-swan-in-a-shell-v3.jpg",
@@ -487,7 +499,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Oil pastels on handmade recycled cotton paper",
     size: "30 × 21 cm",
-    price: 125,
+    price: 15,
     year: 2026,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/cadea2a3-13ce-41ac-a2bd-16c4e227f367/archive-rainbow-shell-v3.jpg",

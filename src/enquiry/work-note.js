@@ -1,7 +1,7 @@
-const LISTED = / · listed at (\$[\d,]+) on (\d{4}-\d{2}-\d{2})$/;
+const LISTED = / · listed at (€[\d,]+) on (\d{4}-\d{2}-\d{2})$/;
 
 /**
- * When the enquiry form is opened for a specific work (`?SQF_WORK=<title>`, or `<title> · listed at $600 on 2026-11-10` when the
+ * When the enquiry form is opened for a specific work (`?SQF_WORK=<title>`, or `<title> · listed at €600 on 2026-11-10` when the
  * work has a price), shows "Enquiring about: <title>" above the form once the form has rendered, with the price and the day it was
  * listed on a quieter line beneath. The form's own hidden field keeps the full text, so the sheet records the price listed at the time.
  */
@@ -30,7 +30,7 @@ export const showEnquiringAbout = () => {
     if (listed) {
       const day = new Date(`${listed[2]}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
       const price = document.createElement('small');
-      price.textContent = `Listed at ${listed[1]} (US dollars) on ${day}. Prices may change.`;
+      price.textContent = `Listed at ${listed[1]} (euros) on ${day}. Prices may change.`;
       note.append(price);
     }
     form.parentNode.insertBefore(note, form);
