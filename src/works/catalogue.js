@@ -396,14 +396,14 @@ export const CATALOGUE = {
     size: "22.9 × 30.5 cm",
     price: 50,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/fe245f61-06bf-4313-b829-fff12b517468/keep-looking-up.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/61349494-a99f-4e4b-9c5c-a7c1e4bee315/keep-looking-up-v2.jpg",
       width: 1000,
-      height: 1393
+      height: 1423
     },
     alt: "Keep looking up: a brown figure kneeling on a rainbow and lifting a smiling sun with golden rays above her head, acrylic on canvas pad",
     story: [
-      "A woman kneels on a rainbow and lifts the sun above her head. The sun has a face, and under its eyes a few lines that look a little like tears.",
-      "Keep looking up is a reminder I give myself: that light is something you can hold up, even when it is heavy."
+      "Literally, “with your eyes lifted.” It is an English saying that urges you to look toward the bright side in dark and difficult moments, keeping hope alive that “things are looking up,” that things will turn in your favor.",
+      "To me, this drawing is a totem of life and hope. It is a warrior woman who has endured the storms and knew how to wait for the right moment to climb above the rainbow and reach the sun, holding it up like a trophy. As if she were saying, “Look at me, I made it!”"
     ]
   },
   'hes-raining-flowers': {

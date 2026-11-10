@@ -36,8 +36,7 @@ export const initWorkPage = (host) => {
     renderWorkContext(info),
     renderWorkDetails(info, series),
     renderWorkSeriesNav(work, series),
-    renderWorkColors({ work, series }),
-    renderWorkNext({ work, scope }),
+    renderWorkNext({ work, scope, intro: renderWorkColors({ work, series }) }),
     renderWorkEnquiry(info),
   ].filter(Boolean));
   initWorkSlideshow({ host, work, series });

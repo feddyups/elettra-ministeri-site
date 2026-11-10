@@ -8,18 +8,21 @@ import { TONES } from '../themes/tones.generated.js';
 const KIND_TITLE = { nearest: 'Nearest in color', counterpart: 'Turned the other way', step: 'A step along' };
 
 /**
- * "Where to look next": up to three paintings suggested by color (see walk.js). Each is its picture, its strip of colors and a
+ * "Where to look next": the band the colors of the painting (`intro`) and up to three paintings suggested by color (see walk.js). Each is its picture, its strip of colors and a
  * reason in a line; a painting from another series says which. The band behind them is a color worked out from the three
  * paintings (next-tone.js). The painting being looked at is remembered for the visit, so the
  * next suggestions lead somewhere new.
  */
-export const renderWorkNext = ({ work, scope }) => {
+export const renderWorkNext = ({ work, scope, intro }) => {
   const seen = seenWorks();
   markSeen(work.slug);
   const suggestions = nextWorks(work, scope.universe, seen);
-  if (!suggestions.length) return null;
+  if (!suggestions.length && !intro) return null;
   const tone = TONES[work.series];
-  return h('div', { class: 'wp-next', style: { '--next-bg': nextBandColor(suggestions.map((s) => s.work), tone && tone.bg) } },
+  const bg = suggestions.length ? nextBandColor(suggestions.map((s) => s.work), tone && tone.bg) : (tone && tone.bg);
+  return h('div', { class: 'wp-next', style: bg ? { '--next-bg': bg } : null },
+    intro,
+    suggestions.length > 0 && h('div', { class: 'wp-next-suggestions' },
     h('p', { class: 'ca-label' }, 'Where to look next'),
     h('div', { class: 'wp-next-list' }, suggestions.map(({ work: other, kind, reason, crossSeries }) => {
       const entry = CATALOGUE[other.slug];
@@ -30,5 +33,5 @@ export const renderWorkNext = ({ work, scope }) => {
         h('span', { class: 'wp-next-strip', 'aria-hidden': 'true' }, other.palette.map(([hex, , share]) => h('i', { style: { '--color': hex, '--share': share } }))),
         h('b', null, other.title),
         h('span', { class: 'wp-next-reason' }, reason, crossSeries && series ? ` From ${series.label}.` : ''));
-    })));
+    }))));
 };

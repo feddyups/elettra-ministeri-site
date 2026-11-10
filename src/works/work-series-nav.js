@@ -10,11 +10,12 @@ export const renderWorkSeriesNav = (work, series) => {
   const { previous, next } = around(ordered, work.slug);
   return h('section', { class: 'wp-section' },
     h('p', { class: 'ca-label' }, `More in ${series.label}`),
-    h('div', { class: 'ca-strips' }, ordered.map((w) => strip(w, w.slug === work.slug))),
+    h('div', { class: 'wp-strips-row' },
+      h('div', { class: 'ca-strips' }, ordered.map((w) => strip(w, w.slug === work.slug))),
+      ordered.length > 1 && h('p', { class: 'wp-keys wp-keys--keys' }, 'Use the ← and → keys to move through the series.'),
+      ordered.length > 1 && h('p', { class: 'wp-keys wp-keys--swipe' }, 'Swipe left or right to move through the series.')),
     ordered.length > 1 && h('nav', { class: 'wp-pager', 'aria-label': `${series.label} paintings` },
       h('a', { href: previous.href }, `‹ ${previous.title}`),
       h('a', { href: series.path }, `All of ${series.label}`),
-      h('a', { href: next.href }, `${next.title} ›`)),
-    ordered.length > 1 && h('p', { class: 'wp-keys wp-keys--keys' }, 'Use the ← and → keys to move through the series.'),
-    ordered.length > 1 && h('p', { class: 'wp-keys wp-keys--swipe' }, 'Swipe left or right to move through the series.'));
+      h('a', { href: next.href }, `${next.title} ›`)));
 };

@@ -155,7 +155,7 @@ html .wp a.wp-next-item { display: grid; align-content: start; gap: var(--em-spa
 html .wp a.wp-next-item:hover .wp-next-picture img, html .wp a.wp-next-item:focus-visible .wp-next-picture img { transform: scale(1.03); }
 .wp-next-strip { display: flex; height: var(--em-space-s); }
 .wp-next-strip i { display: block; flex: var(--share) 1 0; background: var(--color); }
-.wp-next-item b { font-family: var(--em-font-serif); font-size: var(--em-text-xl); font-weight: var(--em-weight-medium); line-height: var(--em-leading-tight); }
+.wp-next-item b { font-family: var(--em-font-serif); font-size: var(--em-text-lg); font-weight: var(--em-weight-medium); line-height: var(--em-leading-tight); }
 .wp-next-reason { max-width: 24rem; font-size: var(--em-text-sm); line-height: var(--em-leading-body); color: var(--ca-muted); }
 .ca-strip.is-current { outline: var(--em-stroke) solid var(--ca-ink); outline-offset: var(--em-space-2xs); }
 
@@ -207,6 +207,15 @@ html .wp.wp-leave-to-right { transform: translateX(var(--em-space-3xl)); }
 @keyframes wp-enter-from-left { from { opacity: 0; transform: translateX(calc(-1 * var(--em-space-3xl))); } to { opacity: 1; transform: none; } }
 html .wp.wp-enter-from-right { animation: wp-enter-from-right var(--em-duration-base) var(--em-ease) both; }
 html .wp.wp-enter-from-left { animation: wp-enter-from-left var(--em-duration-base) var(--em-ease) both; }
-.wp-keys { display: none; margin: var(--em-space-s) 0 0; font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
+.wp-keys { display: none; margin: 0; max-width: 14rem; flex: 0 1 auto; font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
 @media (hover: hover) and (pointer: fine) { .wp-keys--keys { display: block; } }
 @media (pointer: coarse) { .wp-keys--swipe { display: block; } }
+
+/* the colors of the painting and the suggestions are one band: one quiet kind of label, one rhythm */
+html .wp .wp-next .wp-colors { margin-top: 0; }
+html .wp .wp-next .ca-label { margin-bottom: var(--em-space-ml); font-size: var(--em-text-2xs); }
+html .wp .wp-next .wp-colors + .wp-next-suggestions { margin-top: var(--em-space-3xl); }
+
+/* the strips of the series with the note about moving through it beside them */
+.wp-strips-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--em-space-m) var(--em-space-xl); }
+.wp-strips-row .ca-strips { flex: 1 1 24rem; }

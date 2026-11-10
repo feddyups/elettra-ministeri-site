@@ -44,7 +44,7 @@ export const WORKS = [
   { id: 'help', anchor: 'help', title: 'Help', series: 'archive', onSite: true, catalogue: 'rectified/archive-help.jpg' },
   { id: 'messengers', anchor: 'messengers-of-love', title: 'Messengers of Love', series: 'archive', onSite: true, catalogue: 'rectified/archive-messengers-of-love.jpg' },
 
-  { id: 'keep-looking-up', anchor: 'keep-looking-up', title: 'Keep looking up', series: 'human-figure', onSite: true, catalogue: sent('10 Keep looking up.png') },
+  { id: 'keep-looking-up', anchor: 'keep-looking-up', title: 'Keep looking up', series: 'human-figure', onSite: true, catalogue: 'rectified/keep-looking-up-v2.jpg' },
   { id: 'raining-flowers', anchor: 'hes-raining-flowers', title: "He's raining Flowers", series: 'human-figure', onSite: true, catalogue: sent("11 He's raining Flowers.png") },
   { id: 'shape-of-beauty', anchor: 'the-shape-of-beauty', title: 'The Shape of Beauty', series: 'maternity', onSite: true, catalogue: sent('12 The Shape of Beauty.png') },
   { id: 'rainbow-cacti', anchor: 'rainbow-and-cacti', title: 'Rainbow and cacti', series: 'archive', onSite: true, catalogue: sent('13.png') },
