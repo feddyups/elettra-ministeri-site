@@ -146,3 +146,11 @@ button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; t
 .ov-section .ca-readings > .ca-label { display: none; }
 
 .ov-section { scroll-margin-top: calc(var(--em-space-xl) * 2); }
+
+/* The mosaic of every main color */
+.ov-mosaic { --unit: 2.75rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--unit), 1fr)); grid-auto-rows: var(--unit); grid-auto-flow: dense; gap: var(--em-space-2xs); }
+.ov-tile-color { display: block; background: var(--color); border-radius: var(--em-radius-item); transition: opacity var(--em-duration-quick) var(--em-ease), transform var(--em-duration-quick) var(--em-ease); }
+.ov-tile-color--large { grid-column: span 2; grid-row: span 2; }
+.ov-tile-color:hover, .ov-tile-color:focus-visible { transform: scale(1.06); outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); position: relative; z-index: 1; }
+.ov-tile-color.is-faded { opacity: 0.12; }
+@media (max-width: 40em) { .ov-mosaic { --unit: 2rem; } }

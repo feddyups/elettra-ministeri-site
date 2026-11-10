@@ -8,6 +8,7 @@ import { renderReadings } from '../color/blocks/readings.js';
 import { resolveScope } from '../color/scope.js';
 import { renderSubjectBars, renderMediumBars } from './bars.js';
 import { renderWorkIndex } from './work-index.js';
+import { renderColorMosaic } from './color-mosaic.js';
 
 const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
@@ -38,6 +39,7 @@ export const initPaintingsOverview = (host) => {
       section('compare', 'Compare', 'The series side by side', 'Warmest first. Every series is read the same way: the colors that cover most of it, how its hues divide, and what its colors do in a line.',
         renderSeriesRows(series, worksBySeries), renderWheels(series)),
       section('colors', 'The whole body of work', 'The colors I use, measured', `All ${works.length} works together.`, atlas, renderMap(series, filter)),
+      section('mosaic', 'Every main color', 'The mosaic', 'Each tile is one of the main colors of one painting, gathered by hue from red round to violet, light to dark, with the greys and paper at the end. A larger tile is a color that covers a large part of its picture. Point at a tile for its painting; choose a series, a subject or a material below and only those works stay lit.', renderColorMosaic(works, filter)),
       section('subjects', 'Subjects and materials', 'What I paint, and what on', 'Choose a bar to narrow everything on this page to those works.',
         h('div', { class: 'ov-bars-pair' }, renderSubjectBars(works, filter), renderMediumBars(works, filter))),
       section('index', 'Every work', 'The index', 'Sort it, or narrow it by series, subject, material, price, the color that covers most of the picture, or how its colors are built: in neighboring hues, with a small opposite accent, or carried by one color.',
