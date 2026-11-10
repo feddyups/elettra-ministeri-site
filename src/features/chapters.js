@@ -34,6 +34,7 @@ export const initChapter = (chapter) => {
   const frame = chapter.querySelector('.frame');
   const img = frame.querySelector('img');
   if (pick) img.alt = pick[1].alt;
+  if (pick) frame.append(h('a', { class: 'em-frame-link', href: `/paintings/${pick[0]}`, 'aria-label': `View ${pick[1].title}` })); // the picture leads to the painting it shows
 
   loadImage(img, chapter.getAttribute('data-img')).then(() => {
     const palette = extractPalette(sampleImage(img));

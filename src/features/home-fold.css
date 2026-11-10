@@ -43,6 +43,15 @@ html .em-home .chapter .frame {
   margin-inline: auto;
 }
 
+/* the picture of a chapter is a link to the painting it shows */
+html .em-home .chapter .em-frame-link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  cursor: pointer;
+}
+html .em-home .chapter .em-frame-link:focus-visible { outline: 2px solid currentColor; outline-offset: -4px; }
+
 /* the infographic inside the home page is the compact version */
 html .em-home .ca {
   --ca-bar-height: 3.5rem;
