@@ -161,15 +161,15 @@ export const CATALOGUE = {
   'maternity-iii': {
     title: "Maternity III",
     series: "maternity",
-    medium: "Acrylic on canvas",
+    medium: "Acrylic on watercolor canvas",
     size: "18 × 25.5 cm",
-    price: 150,
+    price: 125,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0b1d79c4-2ded-4f2e-87a6-509427c4da84/maternity-iii-v3.jpg",
       width: 2400,
       height: 3438
     },
-    alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, acrylic on canvas",
+    alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, acrylic on watercolor canvas",
     story: [
       "A figure sits, orange against pink and crimson, and takes up the space she needs. Her posture says what the whole series says: this body has agency.",
       "Maternity III is the third of the paintings from my pregnancy."
@@ -178,15 +178,15 @@ export const CATALOGUE = {
   'the-shape-of-beauty': {
     title: "The Shape of Beauty",
     series: "maternity",
-    medium: "Acrylic on canvas",
+    medium: "Acrylic on canvas pad",
     size: "21 × 29.7 cm (A4)",
-    price: 200,
+    price: 50,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/9463b35a-6c44-4768-89cb-d2a74a3f0d32/the-shape-of-beauty.jpg",
       width: 1000,
       height: 1393
     },
-    alt: "The Shape of Beauty: a pink figure kneeling with its back turned, against warm oranges and rust-striped hills, acrylic on canvas",
+    alt: "The Shape of Beauty: a pink figure kneeling with its back turned, against warm oranges and rust-striped hills, acrylic on canvas pad",
     story: [
       "A figure kneels with her back to us, pink and soft against warm oranges and rust-striped hills. We usually meet a body from the front, as something to be judged; here I turned it around.",
       "Beauty has a shape, and it is not always the one we are shown."
