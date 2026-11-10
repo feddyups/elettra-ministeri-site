@@ -17,8 +17,12 @@ const initEmbeddedForm = () => {
   document.documentElement.classList.add('em-embed');
   showEnquiringAbout();
   initSmartForm();
-  const reportHeight = () => window.parent.postMessage({ type: 'em-height', height: document.documentElement.scrollHeight }, location.origin);
-  new ResizeObserver(reportHeight).observe(document.documentElement);
+  // The frame is as tall as the form's own content: the document is never shorter than the frame, so its scroll height could only ever grow.
+  const contentHeight = () => Math.ceil(Math.max(0, ...[...document.querySelectorAll('main, .sqs-block')].map((el) => el.getBoundingClientRect().bottom)) + window.scrollY);
+  const reportHeight = () => window.parent.postMessage({ type: 'em-height', height: contentHeight() }, location.origin);
+  const resizes = new ResizeObserver(reportHeight);
+  resizes.observe(document.documentElement);
+  document.querySelectorAll('main, .sqs-block').forEach((el) => resizes.observe(el));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') window.parent.postMessage('em-close', location.origin);
   });
