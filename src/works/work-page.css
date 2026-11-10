@@ -70,7 +70,7 @@ html .wp .wp-repaint {
 .wp-figure.is-painting .wp-repaint { display: none; }
 
 .wp-info { padding-bottom: var(--em-space-s); }
-html .wp .wp-kicker { display: inline-block; margin-bottom: var(--em-space-ml); font-size: var(--em-text-xs); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
+html .wp .wp-kicker { display: inline-block; margin-bottom: var(--em-space-ml); font-size: var(--em-text-base); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--ca-muted); }
 html .wp .wp-info h1 {
   margin: 0 0 var(--em-space-m);
   font-family: var(--em-font-serif);
