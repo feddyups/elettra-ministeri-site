@@ -127,9 +127,9 @@ export const CATALOGUE = {
   'maternity-i': {
     title: "Maternity I",
     series: "maternity",
-    medium: "Acrylic on watercolor canvas",
+    medium: "Acrylic on watercolor paper",
     size: "18 × 25.5 cm",
-    price: 125,
+    price: 15,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/2db645de-d443-4619-b04d-50616c099d4f/maternity-i-v2.jpg",
       width: 1000,
@@ -144,9 +144,9 @@ export const CATALOGUE = {
   'maternity-ii': {
     title: "Maternity II",
     series: "maternity",
-    medium: "Acrylic on watercolor canvas",
+    medium: "Acrylic on watercolor paper",
     size: "18 × 25.5 cm",
-    price: 125,
+    price: 15,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/219f0475-e346-4f9a-ba1e-fa51b336d487/maternity-ii-v2.jpg",
       width: 1000,
@@ -161,15 +161,15 @@ export const CATALOGUE = {
   'maternity-iii': {
     title: "Maternity III",
     series: "maternity",
-    medium: "Acrylic on watercolor canvas",
+    medium: "Acrylic on watercolor paper",
     size: "18 × 25.5 cm",
-    price: 125,
+    price: 15,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0b1d79c4-2ded-4f2e-87a6-509427c4da84/maternity-iii-v3.jpg",
       width: 2400,
       height: 3438
     },
-    alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, acrylic on watercolor canvas",
+    alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, acrylic on watercolor paper",
     story: [
       "A figure sits, orange against pink and crimson, and takes up the space she needs. Her posture says what the whole series says: this body has agency.",
       "Maternity III is the third of the paintings from my pregnancy."
