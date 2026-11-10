@@ -22,8 +22,10 @@ export const runAnalysis = async ({ catalogueDir, k = 5, onWork = () => {} } = {
     const group = results.filter((r) => r.series === id);
     return [id, { ...summarize(group), palette: poolPalette(group, 5) }];
   }));
-  const signature = poolPalette(results, 10);
-  const accents = poolPalette(results, 8, { vivid: true });
-  const overall = { ...summarize(results), signature, accents, complementary: complementaryPair(accents) };
+  // the body of work is the paintings: a textile has its own page and is left out of the overall figures
+  const paintings = results.filter((r) => r.material !== 'textile');
+  const signature = poolPalette(paintings, 10);
+  const accents = poolPalette(paintings, 8, { vivid: true });
+  const overall = { ...summarize(paintings), signature, accents, complementary: complementaryPair(accents) };
   return { k, works: results.map(({ samples, ...rest }) => rest), series, overall };
 };

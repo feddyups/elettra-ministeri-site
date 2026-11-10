@@ -5,6 +5,9 @@ import { mergeCloseColors } from './palette.js';
 const merged = (palette) => mergeCloseColors(palette, FOCUS.merge);
 
 /** The generated analysis with every palette's near-duplicate colors merged (see focus-config.js), so each swatch selects its own part of a painting. */
+/** The overall figures, the map and the overview are about paintings; the textile has its own page. */
+const PAINTINGS = (works) => works.filter((w) => w.series !== 'textiles');
+
 const ATLAS = {
   overall: { ...GENERATED.overall, palette: merged(GENERATED.overall.palette), loud: merged(GENERATED.overall.loud) },
   series: Object.fromEntries(Object.entries(GENERATED.series).map(([slug, s]) => [slug, { ...s, palette: merged(s.palette) }])),
@@ -25,18 +28,21 @@ export const resolveScope = (spec = 'all') => {
   }
   if (spec === 'all') {
     const { works: count, palette, loud, pair, hue, ...stats } = ATLAS.overall;
-    return { id: 'all', label: 'All works', count, accent: null, stats, hue, palette, loud, pair, works: ATLAS.works, universe: ATLAS.works };
+    return { id: 'all', label: 'All works', count, accent: null, stats, hue, palette, loud, pair, works: PAINTINGS(ATLAS.works), universe: PAINTINGS(ATLAS.works) };
   }
   const slug = spec.replace(/^series:/, '');
   const series = ATLAS.series[slug];
   if (!series) return null;
   const { label, works: count, accent, palette, hue, path, ...stats } = series;
-  return { id: slug, label, count, accent, stats, hue, palette, loud: null, pair: null, works: ATLAS.works.filter((w) => w.series === slug), universe: ATLAS.works, path };
+  return { id: slug, label, count, accent, stats, hue, palette, loud: null, pair: null, works: ATLAS.works.filter((w) => w.series === slug), universe: PAINTINGS(ATLAS.works), path };
 };
 
 /** A work by its page name (its `slug`), with its palette and numbers. */
 /** Every analysed work, in catalogue order. */
 export const allWorks = () => ATLAS.works;
+
+/** Every analysed painting (everything but the textile). */
+export const allPaintings = () => PAINTINGS(ATLAS.works);
 
 export const findWork = (slug) => ATLAS.works.find((w) => w.slug === slug);
 

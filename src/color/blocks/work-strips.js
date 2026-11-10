@@ -11,5 +11,5 @@ const group = (label, href, works) => h('div', { class: label ? 'ca-row' : 'ca-r
 /** Each work as a stack of its colors, sized by how much of the work they cover; every strip links to the work. */
 export const renderWorkStrips = (scope) => {
   if (scope.id !== 'all') return h('div', { class: 'ca-rows' }, group(null, null, scope.works));
-  return h('div', { class: 'ca-rows' }, seriesList().map(({ slug, label, path }) => group(label, path, scope.works.filter((w) => w.series === slug))));
+  return h('div', { class: 'ca-rows' }, seriesList().map(({ slug, label, path }) => ({ label, path, works: scope.works.filter((w) => w.series === slug) })).filter((g) => g.works.length).map((g) => group(g.label, g.path, g.works)));
 };
