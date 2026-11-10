@@ -8,7 +8,14 @@ body.collection-598080d015d5db77a628d2b4 .sqs-block-html p { font-size: var(--em
 body.collection-598080d015d5db77a628d2b4 .image-caption p { font-size: var(--em-text-sm); }
 
 /*
- * The portrait stays above the fold: its width is capped so that the photo (a portrait of 1.1326 times its width) and its credit line fit in the first
- * screen below the header (15rem), whatever the window's height. On a narrow screen the width is the page's, which is already shorter than that.
+ * The portrait stays above the fold. Its picture keeps the ratio of the photo (a portrait 1.1326 times as tall as it is wide), so a picture as wide
+ * as its column is taller than the screen. The picture's width is capped so that the photo and its credit line fit below the header (15rem) whatever the
+ * window's height; on a screen wide enough for two columns the photo's column is exactly that wide and the text takes the rest. On a narrow screen the
+ * columns stack and the picture is the width of the page, which is already shorter than that.
  */
 body.collection-598080d015d5db77a628d2b4 .sqs-block-image figure.sqs-block-image-figure { max-width: min(100%, calc((100svh - 15rem) / 1.1326)) !important; }
+@media (min-width: 768px) {
+  body.collection-598080d015d5db77a628d2b4 .sqs-row:has(> .sqs-col-7 .sqs-block-image) { display: flex; align-items: flex-start; }
+  body.collection-598080d015d5db77a628d2b4 .sqs-row:has(> .sqs-col-7 .sqs-block-image) > .sqs-col-7 { float: none; flex: none; width: min(58.333%, calc((100svh - 15rem) / 1.1326)); }
+  body.collection-598080d015d5db77a628d2b4 .sqs-row:has(> .sqs-col-7 .sqs-block-image) > .sqs-col-5 { float: none; flex: 1 1 0; width: auto; min-width: 0; padding-left: var(--em-space-xl); }
+}
