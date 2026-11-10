@@ -18,15 +18,19 @@ const MESSAGES = {
  * Changing a tick in the sheet changes the page; nothing here is typed by hand.
  */
 export const initPicksGrid = async (list) => {
-  const [slugs] = await Promise.all([readPickSlugs(), offersReady()]);
-  const marked = new Set([...(slugs || []), ...discountedSlugs()]);
-  const works = harmonicOrder(allPaintings().filter((work) => marked.has(work.slug) && CATALOGUE[work.slug])).map((work) => work.slug);
-  // a work without a color analysis (a textile) still belongs on the page, after the others
-  [...marked].filter((slug) => CATALOGUE[slug] && !works.includes(slug)).forEach((slug) => works.push(slug));
-  if (!works.length) {
-    list.replaceChildren(h('li', { class: 'th-empty' }, slugs === null ? MESSAGES.unreadable : MESSAGES.none));
-    return;
+  try {
+    const [slugs] = await Promise.all([readPickSlugs(), offersReady()]);
+    const marked = new Set([...(slugs || []), ...discountedSlugs()]);
+    const works = harmonicOrder(allPaintings().filter((work) => marked.has(work.slug) && CATALOGUE[work.slug])).map((work) => work.slug);
+    // a work without a color analysis (a textile) still belongs on the page, after the others
+    [...marked].filter((slug) => CATALOGUE[slug] && !works.includes(slug)).forEach((slug) => works.push(slug));
+    if (!works.length) {
+      list.replaceChildren(h('li', { class: 'th-empty' }, slugs === null ? MESSAGES.unreadable : MESSAGES.none));
+      return;
+    }
+    list.replaceChildren(...works.map((slug) => renderEntry(slug, CATALOGUE[slug])));
+    if (slugs && slugs.length) markSlugs(list, slugs);
+  } finally {
+    list.setAttribute('data-ready', '');
   }
-  list.replaceChildren(...works.map((slug) => renderEntry(slug, CATALOGUE[slug])));
-  if (slugs && slugs.length) markSlugs(list, slugs);
 };

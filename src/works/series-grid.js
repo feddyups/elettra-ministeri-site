@@ -32,14 +32,18 @@ export const renderEntry = (slug, work) => {
 /**
  * Fills a series page's grid of works from the catalogue, so adding a work to the catalogue is enough to put it on its series' page:
  * every `<ul class="th-grid">` is filled for the series the page belongs to (the page's `data-series`, or its own `data-series-grid="archive"`). The strips of color and the hover labels are added to each entry afterwards
- * (works/series-strip.js). The entries follow the series' smooth path through color (works/harmony-order.js), and a small star marks the artist's picks (works/pick-star.js). Whatever the page already held in the list stays as it was if the series is unknown.
+ * (works/series-strip.js). The entries follow the series' smooth path through color (works/harmony-order.js), and a small star marks the artist's picks (works/pick-star.js). Whatever the page already held in the list stays as it was if the series is unknown. The list stays invisible until it holds its final entries in their final order (`data-ready`, see series-theme.css), so the page's stored entries are never seen reshuffling.
  */
 export const initSeriesGrid = async (list) => {
-  if (list.hasAttribute('data-picks')) return;
-  await offersReady();
-  const series = list.dataset.seriesGrid || document.documentElement.dataset.series;
-  const works = inSeriesOrder(series, worksOfSeries(series), ([slug]) => slug);
-  if (!works.length) return;
-  list.replaceChildren(...works.map(([slug, work]) => renderEntry(slug, work)));
-  markPicks(list);
+  if (list.hasAttribute('data-picks') || list.hasAttribute('data-print')) return;
+  try {
+    await offersReady();
+    const series = list.dataset.seriesGrid || document.documentElement.dataset.series;
+    const works = inSeriesOrder(series, worksOfSeries(series), ([slug]) => slug);
+    if (!works.length) return;
+    list.replaceChildren(...works.map(([slug, work]) => renderEntry(slug, work)));
+    markPicks(list);
+  } finally {
+    list.setAttribute('data-ready', '');
+  }
 };

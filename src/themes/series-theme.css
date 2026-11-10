@@ -93,6 +93,13 @@ html[data-series="print"] {
 }
 /* and it has no navigation at its foot: neither the links of a series page nor the collection's Previous / Next bar */
 html[data-series="artist-picks"] .item-pagination { display: none !important; }
+/* a grid is drawn from the catalogue by script (works/series-grid.js, works/picks-grid.js); it stays invisible until its final entries are in
+   place (data-ready) so the page's stored entries are never seen reshuffling, and shows itself anyway after a moment if the script cannot run */
+html .th-grid:not([data-ready]) { opacity: 0; animation: th-grid-fallback 0s 2.5s forwards; }
+html .th-grid[data-ready] { animation: th-grid-in var(--em-duration-base, 0.3s) ease both; }
+@keyframes th-grid-fallback { to { opacity: 1; } }
+@keyframes th-grid-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { html .th-grid[data-ready] { animation: none; } }
 html .th-grid .th-empty { grid-column: 1 / -1; padding-block: var(--em-space-xl); color: var(--em-muted); font-size: var(--em-text-lg); list-style: none; }
 
 /* the star on a painting the artist has marked as a pick hangs off the picture's right edge, near the top: a quarter of it over the painting,
