@@ -152,7 +152,7 @@ src/
     menu.css                  the header menu: its order (named numbers at the top), spacing and the Paintings dropdown
     tokens.css                THE THEME (one variable, --em-radius, sets every box's corner radius): colors, type, spacing, shadows, motion and layout, in three layers
   themes/
-    tones.config.js           THE FILE TO EDIT: the settings that derive each series' background from its colors, a series' own override, and the old hand-set map (MANUAL_TONES)
+    tones.config.js           THE FILE TO EDIT: the settings that derive each background from the colors, and the old hand-set map (MANUAL_TONES)
     tones.generated.js        generated: the tones as a JS module (home page sections)
     tones.generated.css       generated: the tones as CSS variables (series pages)
     series-theme.css          maps the tone onto the site's color variables for series pages
@@ -196,24 +196,27 @@ The modules look for `.em-home` with `.eh-hero` (containing `#eh-heroImg`, `#eh-
 
 ## Colors
 
-Every series has one background, and so does the page of every painting (`data-series="all"`, the All paintings page). The home page section for a series and the series page itself both use it, so a visitor learns that one series is deep teal, another rust, and so on. The backgrounds are worked out from the colors the series is made of, so they follow the works.
+Every series has one background, and so does the page of every painting (`data-series="all"`, the All paintings page). The home page section for a series and the series page itself both use it, so a visitor learns which color belongs to which series. The backgrounds are worked out from the colors the series are made of, so they follow the works. One judgment applies to all of them, with no exception for any series or page.
 
-`npm run sync` does it: the color analysis first (each series' pooled palette), then `scripts/build-tones.mjs`, which reads those palettes and chooses a hue for each series (`scripts/palette/series-ground.mjs`). Every hue that could serve (the hue of each palette color, and its opposite) is judged on six things:
+`npm run sync` does it: the color analysis first (each series' pooled palette, and the palette of the whole body of work), then `scripts/build-tones.mjs`, which hands those palettes to `scripts/palette/series-ground.mjs`.
 
-- **family:** how much of the series lives in that hue family, so the ground belongs to the series (a deep ochre under Sicily's ochres and sands);
+**How much a color counts.** A palette color counts for how far its hue family rises above the same family in the whole body of work. Sand and ochre are in every series, so they count for little; a series' own reds or greens count for a lot. The whole body of work has nothing to rise above, so its colors count at their plain share.
+
+**What is judged.** Every hue that could serve (the hue of each palette color, and its opposite) is judged on five things:
+
+- **family:** how much of the series lives in that hue family, so the ground belongs to it (a deep ochre under Sicily's ochres);
 - **opposites:** how much vivid color sits opposite the ground, which the ground makes stand out (Sicily's blues and teals against ochre);
 - **warmth:** whether the ground agrees with the series' overall temperature;
 - **anchor:** how salient the palette color that names the hue is;
-- **lead:** whether it is the hue of the series' largest color, which sets its key;
-- **distinct:** how much more of that hue family the series has than the other series do (sand and ochre are in every series, so they say little).
+- **lead:** whether it is the hue of the series' heaviest color, which sets its key.
 
-The series then choose a hue in turn, the clearest claim first, keeping every pair apart by the first gap of `TONE_SETTINGS.ground.gaps` that can be met, which keeps the colors working as a map. A series with `key: 'lead'` in `SERIES` is held to the hue of its largest color (Mediterranean's cerulean). The ground is that hue at a fixed lightness and a chroma taken from how colorful the series is, lowered until the text color reads on it (contrast `minContrast`). The All paintings page takes its hue from the palette of the whole body of work, from the hues left between the series, with a calmer chroma (`TONE_SETTINGS.umbrella`).
+**How they are assigned.** All series and the All paintings page are assigned a hue together: the assignment with the best total, among those that keep every pair at least 60, 55, ... 30 degrees apart (the first gap that can be met), so the colors keep working as a map. A ground is its hue at a fixed lightness and a chroma taken from how colorful the series is, with the lightness lowered until the text color reads on it.
 
 All of it is set in `src/themes/tones.config.js`:
 
-- **One series:** give it `bg: '#1f3a2e'` to pin its background to a color of your own.
 - **All series at once:** change `TONE_SETTINGS.ground` (lightness, chroma range, contrast, gaps, the weight of each judgment).
 - **A new series:** add one line with the series' page name and label.
+- **One series pinned by hand:** give it `bg: '#1f3a2e'`; it then leaves the judgment, and the others are arranged without it.
 - **Compare with the hand-set colors:** `MANUAL_TONES` keeps the map that was set by hand; `npm run build:tones` prints each ground beside it.
 
 Then regenerate and release:

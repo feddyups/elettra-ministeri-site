@@ -27,18 +27,16 @@ export const TONE_SETTINGS = {
     chromaShare: 0.85,
     minContrast: 8,
     gaps: [60, 55, 50, 45, 40, 35, 30],
-    weights: { family: 0.20, opposites: 0.20, warmth: 0.15, anchor: 0.10, lead: 0.10, distinct: 0.30 },
+    weights: { family: 0.30, opposites: 0.25, warmth: 0.20, anchor: 0.15, lead: 0.10 },
   },
-  /** The ground of the page of every work, calmer than a series' own so that it recedes behind the series' tiles. */
-  umbrella: { minChroma: 0.035, maxChroma: 0.065, chromaShare: 0.5 },
 };
 
 /**
  * One entry per series. `label` is its display name and `path` its page (default `/paintings/<slug>`); the color infographic uses both to
- * name and link each series. `bg` pins the series' background to a color of your own instead of the one worked out from its colors; `key: 'lead'` keeps the series in the hue family of its largest color (the sea's cerulean for Mediterranean) and lets the others arrange around it.
+ * name and link each series. `bg` pins the series' background to a color of your own instead of the one worked out from its colors.
  */
 export const SERIES = {
-  mediterranean: { label: 'Mediterranean', key: 'lead' },
+  mediterranean: { label: 'Mediterranean' },
   maternity: { label: 'Maternity' },
   sicily: { label: 'Sicily' },
   'human-figure': { label: 'Human figure' },
