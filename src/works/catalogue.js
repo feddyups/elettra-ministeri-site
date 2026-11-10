@@ -260,9 +260,9 @@ export const CATALOGUE = {
       width: 2400,
       height: 2401
     },
-    alt: "Testa di moro: a smiling man's head in profile, with a yellow headscarf and a red curl, beside a prickly pear and a red cart wheel inside a ring of red and blue eyes, with lemons in the four corners of a blue and white tiled ground, in a red frame",
+    alt: "Testa di moro: a smiling man's head in profile, in a ribbed yellow helmet with a red scrolled crest, beside a prickly pear and a red cart wheel inside a ring of red and blue eyes, with lemons in the four corners of a blue and white tiled ground, in a red frame",
     story: [
-      "The testa di moro is one of Sicily’s oldest images: a painted ceramic head, a man with a mustache and a turban, set on a balcony with basil growing out of it. The story told about it is a dark love story, and I wanted to keep the face and let the color say what is bright about the island.",
+      "A Sicilian knight in profile, dressed the way the pupi are, the puppets of the island’s traditional theatre: a ribbed yellow helmet with a red crest, a mustache, a calm smile. I wanted a face that could have stepped out of one of those stories.",
       "Around his head I put what I see when I think of home: the prickly pear with its red fruit, lemons in the four corners, the wheel of a Sicilian cart, and a ring of the same painted eyes that run along the carts’ sides."
     ]
   },
