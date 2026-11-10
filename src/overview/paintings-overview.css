@@ -144,3 +144,5 @@ button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; t
 /* the readings reuse the atlas's own styles; on this page they sit directly in the section */
 .ov-section > .ca { margin: 0; }
 .ov-section .ca-readings > .ca-label { display: none; }
+
+.ov-section { scroll-margin-top: calc(var(--em-space-xl) * 2); }

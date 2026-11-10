@@ -11,7 +11,7 @@ import { renderWorkIndex } from './work-index.js';
 
 const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
-const section = (kicker, title, lede, ...children) => h('section', { class: 'ov-section' },
+const section = (id, kicker, title, lede, ...children) => h('section', { class: 'ov-section', id },
   h('header', null, h('p', { class: 'ov-kicker' }, kicker), h('h2', null, title), lede && h('p', { class: 'ov-lede' }, lede)), children);
 
 /**
@@ -31,16 +31,19 @@ export const initPaintingsOverview = (host) => {
   const range = works.map((w) => w.year).filter(Boolean);
 
   host.replaceChildren(
-    section('Series', `${count(works.length, 'work', 'works')} in ${count(series.length, 'series', 'series')}`,
+    section('series', 'Series', `${count(works.length, 'work', 'works')} in ${count(series.length, 'series', 'series')}`,
       'Choose a series to see its works. The strip under each name is the series’ main colors, as wide as the share they cover.',
       renderSeriesTiles(series, worksBySeries)),
     h('div', { class: 'ov-plate' },
-      section('How she paints', 'The key to the pictures', 'Four things the colors show about how these paintings are put together. Point at a painting for its title and series.', h('div', { class: 'ca', 'data-surface': 'inherit' }, renderReadings(resolveScope('all')))),
-      section('Compare', 'The series side by side', 'Warmest first. Every series is read the same way: the colors that cover most of it, how its hues divide, and what its colors do in a line.',
+      section('reading', 'How she paints', 'The key to the pictures', 'Four things the colors show about how these paintings are put together. Point at a painting for its title and series.', h('div', { class: 'ca', 'data-surface': 'inherit' }, renderReadings(resolveScope('all')))),
+      section('compare', 'Compare', 'The series side by side', 'Warmest first. Every series is read the same way: the colors that cover most of it, how its hues divide, and what its colors do in a line.',
         renderSeriesRows(series, worksBySeries), renderWheels(series)),
-      section('The whole body of work', 'The colors I use, measured', `All ${works.length} works together${range.length ? `, from ${Math.min(...range)} to ${Math.max(...range)} where the year is known` : ''}.`, atlas, renderMap(series, filter)),
-      section('Subjects and materials', 'What I paint, and what on', 'Choose a bar to narrow everything on this page to those works.',
+      section('colors', 'The whole body of work', 'The colors I use, measured', `All ${works.length} works together${range.length ? `, from ${Math.min(...range)} to ${Math.max(...range)} where the year is known` : ''}.`, atlas, renderMap(series, filter)),
+      section('subjects', 'Subjects and materials', 'What I paint, and what on', 'Choose a bar to narrow everything on this page to those works.',
         h('div', { class: 'ov-bars-pair' }, renderSubjectBars(works, filter), renderMediumBars(works, filter))),
-      section('Every work', 'The index', 'Sort it, or narrow it by series, subject, material, price, the color that covers most of the picture, or how its colors are built: in neighboring hues, with a small opposite accent, or carried by one color.',
+      section('index', 'Every work', 'The index', 'Sort it, or narrow it by series, subject, material, price, the color that covers most of the picture, or how its colors are built: in neighboring hues, with a small opposite accent, or carried by one color.',
         renderWorkIndex(works, series, filter))));
+  // the page is built here, after the browser has looked for an address like /paintings#index, so go there now
+  const target = location.hash && host.querySelector(`#${CSS.escape(location.hash.slice(1))}`);
+  if (target) requestAnimationFrame(() => target.scrollIntoView());
 };
