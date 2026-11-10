@@ -30,13 +30,13 @@ Two entry points, one `<script type="module">` line each.
 Home page code block (painting effect, hero, chapters, page tone):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.76/src/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.77/src/main.js"></script>
 ```
 
 Site-wide Code Injection, Footer (enquiry drawer):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.76/src/enquiry/main.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.77/src/enquiry/main.js"></script>
 ```
 
 Site-wide Code Injection, Header (series colors; must be in the header so the page is colored before it is first painted):
@@ -50,7 +50,7 @@ Site-wide Code Injection, Header (series colors; must be in the header so the pa
 Site-wide Code Injection, Footer (the color infographic and the painting pages; it does nothing on a page without one):
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.76/src/blocks.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/feddyups/elettra-ministeri-site@v1.22.77/src/blocks.js"></script>
 ```
 
 Postcards page, Page Settings → Advanced → Page Header Code Injection:
@@ -282,6 +282,10 @@ A painting's page is a Squarespace item in the Paintings collection whose URL is
 ```
 
 The painting is read from the page's own address, so `<name>` is the key in `src/works/catalogue.js` and every painting page has identical content: a new one is a duplicate of an existing page with a new title and URL slug. (A page can name its painting instead with `data-work-page="<name>"`.) To add or change a painting, edit that file (a section of the page appears only when its field exists, so adding a `story` array, a `year` or a `size` is enough), then run `npm run build:atlas -- --catalogue "/path/to/catalogue"` (it regenerates the colors and the pre-paint theming script), commit, tag and update the version in the footer line. A new painting also needs its entry in `scripts/palette/works.config.mjs`, a placeholder page, and its thumbnail on the series page linking to `/paintings/<name>`.
+
+## Artist favorites
+
+The page `/paintings/favorites` (a page in the unlinked Paintings collection, holding the `.th` markup of a series page with `<ul class="th-grid" data-favorites>`) lists the paintings the artist marks as favorites, in the layout of a series page and in its smooth path through color. She marks them in a Google Sheet (the `Artist favorites.xlsx` made in the catalogue folder's `favorites/` directory, uploaded to her Google Drive): a Favorite column with Yes, next to each painting's page address. The sheet is published to the web as CSV and its address goes in `src/works/favorites-source.js`; after that every change she makes shows on the page within minutes, with no release. A new painting needs a new row in the sheet.
 
 ## Changing the works
 

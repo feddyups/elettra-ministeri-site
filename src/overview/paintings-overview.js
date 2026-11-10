@@ -30,7 +30,7 @@ export const initPaintingsOverview = (host) => {
 
   host.replaceChildren(
     section('series', 'Series', `${count(works.length, 'work', 'works')} in ${count(series.length, 'series', 'series')}`,
-      'Choose a series to see its works. The strip under each name is the series’ main colors, as wide as the share they cover.',
+      ['Choose a series to see its works. The strip under each name is the series’ main colors, as wide as the share they cover. ', h('a', { href: '/paintings/favorites' }, 'Or see the artist’s favorites.')],
       renderSeriesTiles(series, worksBySeries)),
     h('div', { class: 'ov-plate' },
       section('compare', 'Compare', 'The series side by side', 'Warmest first. Every series is read the same way: the colors that cover most of it, how its hues divide, and what its colors do in a line.',

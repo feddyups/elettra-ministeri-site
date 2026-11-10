@@ -9,7 +9,7 @@ const WIDTHS = [500, 1000, 1500];
 const SIZES = '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw';
 
 /** One entry of a series page: the picture, its title and facts, and the way to enquire with the price beside it. */
-const renderEntry = (slug, work) => {
+export const renderEntry = (slug, work) => {
   const page = `/paintings/${slug}`;
   const { width, height } = work.image;
   return h('li', { class: 'th-work', id: slug },
@@ -31,6 +31,7 @@ const renderEntry = (slug, work) => {
  * (works/series-strip.js). The entries follow the series' smooth path through color (works/harmony-order.js). Whatever the page already held in the list stays as it was if the series is unknown.
  */
 export const initSeriesGrid = (list) => {
+  if (list.hasAttribute('data-favorites')) return;
   const series = list.dataset.seriesGrid || document.documentElement.dataset.series;
   const order = harmonicOrder(allPaintings().filter((work) => work.series === series)).map((work) => work.slug);
   const rank = (slug) => (order.includes(slug) ? order.indexOf(slug) : order.length);
