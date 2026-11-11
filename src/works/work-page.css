@@ -227,7 +227,7 @@ html .wp .is-sale small { margin-left: 0.75em; padding: 0.15em 0.5em; border: va
 html .wp .wp-price.is-sale s { font-size: 0.7em; }
 
 /* "Part of a set": the paintings made together with this one, each as its picture and title; this one is marked */
-.wp-set-title { margin: var(--em-space-2xs) 0 var(--em-space-m); font: var(--em-weight-medium) var(--em-display-sm) / var(--em-leading-none) var(--em-font-serif); }
+html .wp h2.wp-set-title { margin: var(--em-space-2xs) 0 var(--em-space-m); font: var(--em-weight-medium) var(--em-text-xl) / var(--em-leading-snug) var(--em-font-serif); }
 .wp-set-list { display: flex; flex-wrap: wrap; gap: var(--em-space-m); margin: 0; padding: 0; list-style: none; }
 .wp-set-list li { width: clamp(7rem, 22vw, 11rem); min-width: 0; }
 .wp-set-list a { display: grid; gap: var(--em-space-xs); color: inherit; text-decoration: none; border: 0; }
