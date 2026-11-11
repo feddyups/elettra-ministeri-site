@@ -67,11 +67,11 @@ export const TONE_PRESETS = [
 export const DEFAULT_TONE = 'chosen';
 
 /**
- * The backgrounds picked by Elettra, one per page: the hand-set map the site had before backgrounds were worked out from the colors (`MANUAL_TONES`),
- * and for the All paintings page (which had none) the pick made on the capture page "Lo sfondo di ogni quadro". A preset of their own, so a change in
- * the colors of a series does not move them.
+ * The backgrounds picked for each page: the hand-set map the site had before backgrounds were worked out from the colors (`MANUAL_TONES`), and for the
+ * All paintings page a deep teal (hue 190 degrees) in the widest empty stretch of the hue wheel, between the Archive green and the Mediterranean blue,
+ * so the page that gathers every series borrows the color of none. A preset of their own, so a change in the colors of a series does not move them.
  */
-export const CHOSEN_TONES = { ...MANUAL_TONES, all: '#513317' };
+export const CHOSEN_TONES = { ...MANUAL_TONES, all: '#004946' };
 
 /** The neutral near-black of the `night` preset (the color of the Print page). */
 export const NIGHT_TONE = { bg: '#14110f', alt: '#1d1916' };

@@ -208,7 +208,7 @@ Every series has one background, and so does the page of every painting (`data-s
 
 **Choosing a background.** A palette button in the header (`theme/tone-control.js`) lets a visitor choose between four backgrounds for the page they are on: on a series page or a painting page it sets that series' background, on the All paintings page that page's; pages with no presets (About me, Print, Artist picks) have no button. The four presets are made for every page by `scripts/build-tones.mjs`:
 
-- **Chosen** (the default): the backgrounds picked by Elettra for each page (`CHOSEN_TONES` in `tones.config.js`: the hand-set map the site had before backgrounds were worked out from the colors, and for the All paintings page the pick made on the capture page);
+- **Chosen** (the default): the backgrounds picked by Elettra for each page (`CHOSEN_TONES` in `tones.config.js`: the hand-set map the site had before backgrounds were worked out from the colors, and for the All paintings page a deep teal, #004946, in the widest empty stretch of the hue wheel between the Archive green and the Mediterranean blue);
 - **Tonal:** the hue of the cast, made deep (the rule above);
 - **Contrast:** the opposite hue;
 - **Night:** the neutral near-black of the Print page.

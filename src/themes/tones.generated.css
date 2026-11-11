@@ -120,8 +120,8 @@ html[data-series="textiles"][data-tone="night"] {
   --series-bg-alt: rgb(29,25,22);
 }
 html[data-series="all"] {
-  --series-bg: rgb(81,51,23);
-  --series-bg-alt: rgb(49,24,0);
+  --series-bg: rgb(0,73,70);
+  --series-bg-alt: rgb(0,42,39);
   --series-fg: #faf8f5;
   --series-muted: rgba(250,248,245,0.78);
   --series-line: rgba(250,248,245,0.22);

@@ -58,7 +58,7 @@ export const PRESETS = {
     night: { bg: 'rgb(20,17,15)', alt: 'rgb(29,25,22)', fg: '#faf8f5' },
   },
   'all': {
-    chosen: { bg: 'rgb(81,51,23)', alt: 'rgb(49,24,0)', fg: '#faf8f5' },
+    chosen: { bg: 'rgb(0,73,70)', alt: 'rgb(0,42,39)', fg: '#faf8f5' },
     tonal: { bg: 'rgb(81,51,23)', alt: 'rgb(49,24,0)', fg: '#faf8f5' },
     contrast: { bg: 'rgb(26,62,87)', alt: 'rgb(0,33,54)', fg: '#faf8f5' },
     night: { bg: 'rgb(20,17,15)', alt: 'rgb(29,25,22)', fg: '#faf8f5' },
