@@ -12,31 +12,39 @@ const stopOf = (members) => ({
 });
 
 /**
- * Paintings (each with a `slug`, `palette`, `warm`, `cool` and `violet`) in the order of their smooth path through color (works/harmony-order.js), the groups first:
- * each set the artist made together (works/sets.js) is one stop on the path, placed by the colors of the set as a whole, and the paintings of a stop follow the
- * order given for the set (the order of its rows in her sheet). A painting that is in no set is a stop of its own, placed by its own colors.
- * A set stands for the paintings of it that are in `works`.
+ * Paintings (each with a `slug`, `palette`, `warm`, `cool` and `violet`) as groups, the sets first: each set the artist made together (works/sets.js) is a group of
+ * its own, its paintings in the order given for the set (the order of its rows in her sheet); the sets follow a smooth path through color
+ * (works/harmony-order.js), each placed by the colors of the set as a whole; the paintings that are in no set come last, as one group in their own path through
+ * color (`label: null`). A set stands for the paintings of it that are in `works`, and needs two of them. Resolves to `[{ label, works }]`.
  */
-export const orderWithSets = (works) => {
+export const groupsOf = (works) => {
   const bySlug = new Map(works.map((work) => [work.slug, work]));
   const taken = new Set();
-  const stops = [];
+  const sets = [];
   works.forEach((work) => {
     if (taken.has(work.slug)) return;
     const set = setOf(work.slug);
-    const members = (set ? set.works.map((slug) => bySlug.get(slug)).filter(Boolean) : [work]);
+    const members = set ? set.works.map((slug) => bySlug.get(slug)).filter(Boolean) : [];
+    if (members.length < 2) return;
     members.forEach((member) => taken.add(member.slug));
-    stops.push(members.length > 1 ? stopOf(members) : { ...work, members });
+    sets.push({ ...stopOf(members), label: set.label });
   });
-  return harmonicOrder(stops).flatMap((stop) => stop.members);
+  const singles = harmonicOrder(works.filter((work) => !taken.has(work.slug)));
+  return [
+    ...harmonicOrder(sets).map(({ label, members }) => ({ label, works: members })),
+    ...(singles.length ? [{ label: null, works: singles }] : []),
+  ];
 };
 
 /**
- * The slugs of a series' paintings in the order its page lays them out (orderWithSets), which the strips under "More in <series>" on a painting page,
- * the way to the previous and next painting and the arrow keys follow too. Empty for a series that is not made of paintings (textiles), whose works stay in
- * catalogue order. Sets are known once `offersReady()` has resolved, so every page of a visit asks after it.
+ * The slugs of a series' paintings in the order its page lays them out (groupsOf: the sets, then the rest), which the strips under "More in <series>" on a
+ * painting page, the way to the previous and next painting and the arrow keys follow too. Empty for a series that is not made of paintings (textiles), whose
+ * works stay in catalogue order. Sets are known once `offersReady()` has resolved, so every page of a visit asks after it.
  */
-export const seriesOrder = (series) => orderWithSets(allPaintings().filter((work) => work.series === series)).map((work) => work.slug);
+export const seriesOrder = (series) => groupsOf(allPaintings().filter((work) => work.series === series)).flatMap((group) => group.works).map((work) => work.slug);
+
+/** The groups of a series page (groupsOf) as `{ label, slugs }`; empty for a series that is not made of paintings. */
+export const seriesGroups = (series) => groupsOf(allPaintings().filter((work) => work.series === series)).map(({ label, works }) => ({ label, slugs: works.map((work) => work.slug) }));
 
 /** Sorts items of a series (by their slug) into that order; items the order does not name keep their place at the end. */
 export const inSeriesOrder = (series, items, slugOf) => {

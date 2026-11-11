@@ -128,3 +128,8 @@ html .th-work > a.th-img .th-sale {
 
 /* The set a painting belongs to, on its entry in the grid: a quiet line under the facts line */
 html .th-work .th-cap small.th-set { display: block; margin-top: var(--em-space-3xs); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; opacity: 0.78; }
+
+/* A series page with a set in it: the set has a grid of its own under its name, and the rest of the series follows under "Also in <series>" (works/series-grid.js) */
+html .th-group-head { display: grid; gap: var(--em-space-2xs); margin: var(--em-section-gap) 0 var(--em-block-gap); }
+html .th-group-head h2 { margin: 0; color: inherit; font: var(--em-weight-medium) var(--em-display-sm) / var(--em-leading-none) var(--em-font-serif); letter-spacing: var(--em-tracking-tight); }
+html .th-group-head p { margin: 0; color: var(--em-muted); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }
