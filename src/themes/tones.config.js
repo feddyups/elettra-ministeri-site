@@ -41,7 +41,7 @@ export const SERIES = {
   textiles: { label: 'Textiles', path: '/textiles' },
 };
 
-/** The backgrounds that were set by hand, one per region of the color wheel, before they were worked out from each series' colors. Kept to compare with `npm run build:tones`. */
+/** The backgrounds that were set by hand, one per region of the color wheel, before they were worked out from each series' colors. They are the `chosen` preset. */
 export const MANUAL_TONES = {
   mediterranean: 'rgb(0,64,89)',
   maternity: 'rgb(94,27,19)',
@@ -57,25 +57,21 @@ export const MANUAL_TONES = {
  * `tonal` is the hue of the colors of the series made deep; `contrast` is the opposite hue; `night` is the neutral near-black of the Print page.
  */
 export const TONE_PRESETS = [
-  { id: 'chosen', label: 'Chosen', note: 'Picked by hand for this page' },
+  { id: 'chosen', label: 'Chosen', note: 'Picked by Elettra for this page' },
   { id: 'tonal', label: 'Tonal', note: 'The hue of its colors, made deep' },
   { id: 'contrast', label: 'Contrast', note: 'The opposite hue, so the paintings stand out' },
   { id: 'night', label: 'Night', note: 'A neutral near-black' },
 ];
 
 /** The preset every page shows until a visitor chooses another. */
-export const DEFAULT_TONE = 'tonal';
+export const DEFAULT_TONE = 'chosen';
 
-/** The backgrounds picked by hand, on the capture page "Lo sfondo di ogni quadro" on 2026-11-10 (one per page). A preset of their own, so a change in the colors of a series does not move them. */
-export const CHOSEN_TONES = {
-  mediterranean: '#084150',
-  maternity: '#54301d',
-  sicily: '#314430',
-  'human-figure': '#4a3716',
-  archive: '#463911',
-  textiles: '#2f3958',
-  all: '#513317',
-};
+/**
+ * The backgrounds picked by Elettra, one per page: the hand-set map the site had before backgrounds were worked out from the colors (`MANUAL_TONES`),
+ * and for the All paintings page (which had none) the pick made on the capture page "Lo sfondo di ogni quadro". A preset of their own, so a change in
+ * the colors of a series does not move them.
+ */
+export const CHOSEN_TONES = { ...MANUAL_TONES, all: '#513317' };
 
 /** The neutral near-black of the `night` preset (the color of the Print page). */
 export const NIGHT_TONE = { bg: '#14110f', alt: '#1d1916' };

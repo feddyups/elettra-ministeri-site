@@ -208,7 +208,7 @@ Every series has one background, and so does the page of every painting (`data-s
 
 **Choosing a background.** A palette button in the header (`theme/tone-control.js`) lets a visitor choose between four backgrounds for the page they are on: on a series page or a painting page it sets that series' background, on the All paintings page that page's; pages with no presets (About me, Print, Artist picks) have no button. The four presets are made for every page by `scripts/build-tones.mjs`:
 
-- **Chosen:** the backgrounds picked by hand (`CHOSEN_TONES` in `tones.config.js`);
+- **Chosen** (the default): the backgrounds picked by Elettra for each page (`CHOSEN_TONES` in `tones.config.js`: the hand-set map the site had before backgrounds were worked out from the colors, and for the All paintings page the pick made on the capture page);
 - **Tonal:** the hue of the cast, made deep (the rule above);
 - **Contrast:** the opposite hue;
 - **Night:** the neutral near-black of the Print page.
@@ -221,7 +221,7 @@ All of it is set in `src/themes/tones.config.js`:
 - **The presets:** edit `TONE_PRESETS` (names and notes), `DEFAULT_TONE` (the preset shown until a visitor chooses), `CHOSEN_TONES` and `NIGHT_TONE`.
 - **A new series:** add one line with the series' page name and label.
 - **One series pinned by hand:** give it `bg: '#1f3a2e'`.
-- **Compare with the hand-set colors:** `MANUAL_TONES` keeps the map that was set by hand; `npm run build:tones` prints each ground beside it.
+- **The hand-set colors:** `MANUAL_TONES` keeps the map that was set by hand; it is the `chosen` preset.
 
 Then regenerate and release:
 
