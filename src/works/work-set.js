@@ -10,7 +10,7 @@ import { workPath } from './work-path.js';
  */
 export const renderWorkSet = (slug) => {
   const set = setOf(slug);
-  if (!set) return null;
+  if (!set || set.works.length < 2) return null;
   return h('section', { class: 'wp-section wp-set' },
     h('p', { class: 'ca-label' }, 'Part of a set'),
     h('h2', { class: 'wp-set-title' }, set.label),

@@ -5,11 +5,11 @@ import { declaredSets } from './offers.js';
 /**
  * The sets of paintings the artist made together (a pair or a triplet of a theme, whose colors are coordinated): the ones in her sheet's "Set" column, or
  * the default list (set-defaults.js) while the sheet cannot be read or has no such column. A page asks for them after `offersReady()`, so that every
- * page of a visit shows the same sets. A painting belongs to at most one set, and a set needs two paintings of the catalogue.
+ * page of a visit shows the same sets. A painting belongs to at most one set, and a set needs one painting of the catalogue (a painting may be a set of its own, to have a heading and a few words of its own).
  */
 export const allSets = () => (declaredSets() || DEFAULT_SETS)
   .map(({ label, description = '', works }) => ({ label, description, works: works.filter((slug) => CATALOGUE[slug]) }))
-  .filter((set) => set.works.length >= 2);
+  .filter((set) => set.works.length >= 1);
 
 /** The set a painting belongs to (`{ label, works }`), or null. */
 export const setOf = (slug) => allSets().find((set) => set.works.includes(slug)) || null;

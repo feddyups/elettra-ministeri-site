@@ -18,7 +18,7 @@ const SIZES = '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw';
 /** The line naming a painting's set and its place in it (only the place, when the entry sits in the set's own grid), or nothing for a painting that is in none. */
 const setLine = (slug, grouped) => {
   const place = placeInSet(slug);
-  return place && h('small', { class: 'th-set' }, grouped ? `${place.number} of ${place.total}` : `Part of ${place.label} · ${place.number} of ${place.total}`);
+  return place && place.total > 1 && h('small', { class: 'th-set' }, grouped ? `${place.number} of ${place.total}` : `Part of ${place.label} · ${place.number} of ${place.total}`);
 };
 
 /** One entry of a series page: the picture, its title and facts, and the way to enquire with the price beside it. */
@@ -70,7 +70,7 @@ export const initSeriesGrid = async (list) => {
       const grid = i === 0 ? list : h('ul', { class: 'th-grid', 'data-group': '', 'data-ready': '' });
       if (several) {
         const title = group.label || `Also in ${(seriesInfo(series) || {}).label || 'this series'}`;
-        const note = group.label ? `${group.entries.length} paintings made together` : null;
+        const note = group.label && group.entries.length > 1 ? `${group.entries.length} paintings made together` : null;
         const about = group.label ? setOf(group.entries[0][0]) : null;
         const head = h('header', { class: 'th-group-head' }, h('h2', null, title), note && h('p', null, note), about && about.description && h('p', { class: 'th-group-about' }, about.description));
         if (i === 0) list.before(head); else after.after(head, grid);

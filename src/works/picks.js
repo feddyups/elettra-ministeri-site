@@ -65,7 +65,7 @@ export const readDiscounts = async () => {
 
 /**
  * The sets the artist has declared, from the sheet's "Set" column: paintings with the same text there belong together, in the order of the sheet's rows.
- * A set needs two paintings. Resolves to `null` when the sheet cannot be read or has no "Set" column, and to a list of `{ label, works }` otherwise
+ * A set needs one painting or more. Resolves to `null` when the sheet cannot be read or has no "Set" column, and to a list of `{ label, works }` otherwise
  * (the works are page addresses).
  */
 export const readSets = async () => {
@@ -82,7 +82,7 @@ export const readSets = async () => {
     group.works.push(slug);
     found.set(key, group);
   });
-  return [...found.values()].filter((set) => set.works.length >= 2);
+  return [...found.values()].filter((set) => set.works.length >= 1);
 };
 
 const readSheet = async () => {

@@ -15,7 +15,7 @@ const stopOf = (members) => ({
  * Paintings (each with a `slug`, `palette`, `warm`, `cool` and `violet`) as groups, the sets first: each set the artist made together (works/sets.js) is a group of
  * its own, its paintings in the order given for the set (the order of its rows in her sheet); the sets follow a smooth path through color
  * (works/harmony-order.js), each placed by the colors of the set as a whole; the paintings that are in no set come last, as one group in their own path through
- * color (`label: null`). A set stands for the paintings of it that are in `works`, and needs two of them. Resolves to `[{ label, works }]`.
+ * color (`label: null`). A set stands for the paintings of it that are in `works`, and needs one of them. Resolves to `[{ label, works }]`.
  */
 export const groupsOf = (works) => {
   const bySlug = new Map(works.map((work) => [work.slug, work]));
@@ -25,7 +25,7 @@ export const groupsOf = (works) => {
     if (taken.has(work.slug)) return;
     const set = setOf(work.slug);
     const members = set ? set.works.map((slug) => bySlug.get(slug)).filter(Boolean) : [];
-    if (members.length < 2) return;
+    if (members.length < 1) return;
     members.forEach((member) => taken.add(member.slug));
     sets.push({ ...stopOf(members), label: set.label });
   });
