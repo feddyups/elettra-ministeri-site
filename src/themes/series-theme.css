@@ -106,6 +106,7 @@ html .th-grid[data-masonry] { --th-columns: 3; position: relative; display: bloc
 @media (max-width: 640px) { html .th-grid[data-masonry] { --th-columns: 1; } }
 html .th-grid[data-masonry] > .th-work { position: absolute; top: 0; left: 0; box-sizing: border-box; margin: 0; }
 html .th-work.th-scaled .th-img { display: block; position: relative; width: calc(var(--th-share, 1) * 100%); margin-inline: auto; }
+@media (max-width: 640px) { html .th-work.th-scaled .th-img { width: 100%; } }
 html .th-grid .th-empty { grid-column: 1 / -1; padding-block: var(--em-space-xl); color: var(--em-muted); font-size: var(--em-text-lg); list-style: none; }
 
 /* the star on a painting the artist has marked as a pick hangs off the picture's right edge, near the top: a quarter of it over the painting,
