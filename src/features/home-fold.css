@@ -43,6 +43,11 @@ html .em-home .chapter .frame {
   margin-inline: auto;
 }
 
+/* on a phone the chapters are stacked and the picture takes the full width of the column, whatever its proportions */
+@media (max-width: 40em) {
+  html .em-home .chapter .frame { width: 100%; }
+}
+
 /* the picture of a chapter is a link to the painting it shows */
 html .em-home .chapter .em-frame-link {
   position: absolute;
