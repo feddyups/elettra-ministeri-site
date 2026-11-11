@@ -37,6 +37,8 @@ export const renderChartDrawer = (workbench, panels) => {
   const api = {
     element,
     isOpen: () => opened,
+    /** Whether the drawer sits beside the index (a wide screen), as opposed to over the bottom of the window. */
+    docked: () => docked.matches,
     open(id) { if (id) current = id; opened = true; paint(); },
     close() { opened = false; paint(); },
     toggle() { if (opened) api.close(); else api.open(); },

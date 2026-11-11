@@ -39,7 +39,7 @@ export const initPaintingsOverview = (host) => {
       renderColorMosaic(works, filter)] },
   ]);
   workbench.append(
-    section('index', 'Every work', 'The index', 'Sort it, or narrow it by series, set, subject, material, price, the color that covers most of the picture, or how its colors are built. The charts for subjects, materials and colors open beside it and follow what you choose.',
+    section('index', 'Every work', 'The index', 'Sort it, or narrow it by series, set, subject, material, price, the color that covers most of the picture, or how its colors are built. The charts for subjects, materials and colors open from the Charts button and follow what you choose.',
       renderWorkIndex(works, series, filter, drawer)),
     drawer.element);
 

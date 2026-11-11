@@ -84,9 +84,15 @@ export const renderWorkIndex = (works, seriesData, filter, drawer) => {
     controls.hidden = !open;
     filtersButton.setAttribute('aria-expanded', String(open));
   };
-  filtersButton.addEventListener('click', () => showFilters(controls.hidden));
+  filtersButton.addEventListener('click', () => {
+    if (controls.hidden && !drawer.docked()) drawer.close();
+    showFilters(controls.hidden);
+  });
   chartsButton.addEventListener('click', () => drawer.toggle());
-  drawer.onChange((open) => chartsButton.setAttribute('aria-expanded', String(open)));
+  drawer.onChange((open) => {
+    chartsButton.setAttribute('aria-expanded', String(open));
+    if (open && !drawer.docked()) showFilters(false);
+  });
   document.addEventListener('click', (event) => { if (!controls.hidden && !toolbar.contains(event.target)) showFilters(false); });
   toolbar.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !controls.hidden) { showFilters(false); filtersButton.focus(); } });
 

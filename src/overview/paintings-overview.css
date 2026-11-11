@@ -100,12 +100,17 @@ button.ov-bar[aria-pressed="true"] i { background: var(--em-ink, var(--em-paper)
 button.ov-bar[aria-pressed="true"] .ov-bar-label { text-decoration: underline; text-underline-offset: var(--em-space-2xs); }
 
 /* the workbench: the index, and the drawer of charts beside it */
-.ov-workbench { --ov-sticky-top: 5.75rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--em-block-gap); align-items: start; }
-html.em-hdr-hidden .ov-workbench { --ov-sticky-top: var(--em-space-m); }
-@media (min-width: 68.75em) { .ov-workbench[data-drawer="open"] { grid-template-columns: minmax(0, 1fr) minmax(22rem, 27rem); } }
+.ov-workbench { --ov-sticky-top: 5.75rem; --ov-bar-top: 5.75rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--em-block-gap); align-items: start; }
+html.em-hdr-hidden .ov-workbench { --ov-sticky-top: var(--em-space-m); --ov-bar-top: 0px; }
+@media (min-width: 68.75em) {
+  .ov-workbench[data-drawer="open"] { grid-template-columns: minmax(0, 1fr) minmax(22rem, 27rem); }
+  /* beside the drawer the list is narrower: the line of facts gives way so the series name keeps its room */
+  .ov-workbench[data-drawer="open"] .ov-work a { grid-template-columns: 3.75rem minmax(0, 1.4fr) minmax(8.5rem, 0.7fr) 4.5rem minmax(0, 5rem); }
+  .ov-workbench[data-drawer="open"] .ov-work-facts { display: none; }
+}
 
 /* the toolbar of the index stays in view while the list scrolls */
-.ov-toolbar { position: sticky; top: var(--ov-sticky-top); z-index: 5; margin-inline: calc(var(--em-space-m) * -1); padding-inline: var(--em-space-m); background: var(--em-bg, var(--em-night)); border-bottom: var(--em-hairline) solid var(--ov-line); transition: top var(--em-duration-base) var(--em-ease); }
+.ov-toolbar { position: sticky; top: var(--ov-bar-top); z-index: 5; margin-inline: calc(var(--em-space-m) * -1); padding-inline: var(--em-space-m); background: var(--em-bg, var(--em-night)); border-bottom: var(--em-hairline) solid var(--ov-line); transition: top var(--em-duration-base) var(--em-ease); }
 .ov-toolbar-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--em-space-s) var(--em-space-m); padding-block: var(--em-space-s); font-size: var(--em-text-sm); }
 .ov-count { font-weight: var(--em-weight-medium); white-space: nowrap; }
 .ov-active { display: flex; flex-wrap: wrap; gap: var(--em-space-xs); flex: 1 1 auto; min-width: 0; }
@@ -146,7 +151,7 @@ button.ov-drawer-tab:focus-visible, button.ov-drawer-close:focus-visible { outli
 .ov-drawer .ov-bars-pair { grid-template-columns: minmax(0, 1fr); gap: var(--em-block-gap); }
 .ov-drawer .ov-mosaic { --unit: 2.25rem; }
 @media (max-width: 68.75em) {
-  .ov-drawer { position: fixed; top: auto; left: 0; right: 0; bottom: 0; z-index: var(--em-z-shade); max-height: 70svh; border-radius: var(--em-radius-panel) var(--em-radius-panel) 0 0; box-shadow: var(--em-shadow-card); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .ov-drawer { position: fixed; top: auto; left: 0; right: 0; bottom: 0; z-index: var(--em-z-shade); max-height: 62svh; border-radius: var(--em-radius-panel) var(--em-radius-panel) 0 0; box-shadow: var(--em-shadow-card); padding-bottom: env(safe-area-inset-bottom, 0px); }
 }
 
 /* the index */
@@ -172,6 +177,11 @@ button.ov-drawer-tab:focus-visible, button.ov-drawer-close:focus-visible { outli
   .ov-work-picture { width: 3.25rem; height: 3.25rem; }
   .ov-work-series, .ov-work-facts { display: none; }
   .ov-group { grid-template-columns: minmax(0, 1fr); gap: var(--em-space-xs); }
+}
+@media (max-width: 40em) {
+  .ov-toolbar-row { gap: var(--em-space-xs) var(--em-space-s); }
+  .ov-sort { font-size: var(--em-text-xs); }
+  .ov-sort select { max-width: 8.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ov-tile, .ov-strip i, .ov-hues i, .ov-bar i, button.ov-chip, .ov-toolbar, .ov-drawer { transition: none; }
