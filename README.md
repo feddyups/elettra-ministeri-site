@@ -322,6 +322,10 @@ A set shows as a grid of its own on its series page (members marked "2 of 3"; "P
 
 The sets are read with the discounts, in one request (`works/picks.js`, `works/offers.js`), so a page never shows two different sets in one visit. When the sheet cannot be read in time, or has no Set column, the sets in `works/set-defaults.js` show instead; once the column exists, the sheet decides (an empty column means no sets).
 
+### The Paintings page
+
+The All paintings page (`<div data-paintings-overview>`, built by `src/overview/paintings-overview.js` from the catalogue and the color analysis) opens on the **index** of every work, so the work can start at once. A toolbar stays in view while the list scrolls: the number of works shown, the choices made (each can be taken off there), a sort, a **Filters** button that opens every choice (series, set, subject, made on, price, sale, mostly, colors built as) over the list, and a **Charts** button. The charts that answer to the choices (subjects and materials, and the mosaic of every main color) live in a **drawer** (`overview/chart-drawer.js`): on a screen wider than 1100 px it sits beside the index and narrows it, and a choice it has a chart for (a subject, a material, a color family, how the colors are built) brings that chart up; on a narrower screen it is a sheet over the bottom of the window, opened by the Charts button only, and it and the Filters panel never show together. Under the index come the series tiles, the series compared, and the colors of the whole body of work. The choices are shared by all of it (`overview/filter-state.js`), so a bar in the drawer and a chip in the index are the same choice.
+
 ## Changing the works
 
 Edit `src/features/hero/works.js`, commit, tag a new version and update the version in the script line.
