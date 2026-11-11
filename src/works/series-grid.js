@@ -9,6 +9,7 @@ import { renderPrice } from './price-view.js';
 import { offersReady } from './offers.js';
 import { placeInSet, setOf } from './sets.js';
 import { masonry } from './masonry.js';
+import { longestSideCm, pictureShare } from './picture-scale.js';
 import { seriesInfo } from '../color/scope.js';
 
 const WIDTHS = [500, 1000, 1500];
@@ -62,6 +63,7 @@ export const initSeriesGrid = async (list) => {
       if (others) others.entries.push(...rest); else ordered.push({ label: null, entries: rest });
     }
     if (!ordered.length) return;
+    const largest = Math.max(0, ...entries.map(([, work]) => longestSideCm(work) || 0));
     const several = ordered.length > 1;
     let after = list;
     ordered.forEach((group, i) => {
@@ -74,6 +76,10 @@ export const initSeriesGrid = async (list) => {
         if (i === 0) list.before(head); else after.after(head, grid);
       }
       grid.replaceChildren(...group.entries.map(([slug, work]) => renderEntry(slug, work, Boolean(group.label))));
+      grid.querySelectorAll('.th-work').forEach((item) => {
+        item.classList.add('th-scaled');
+        item.style.setProperty('--th-share', pictureShare(entries.find(([name]) => name === item.id)[1], largest).toFixed(3));
+      });
       markPicks(grid);
       masonry(grid);
       after = grid;
