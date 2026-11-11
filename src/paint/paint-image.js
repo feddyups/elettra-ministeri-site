@@ -23,7 +23,11 @@ export const paintImage = (img, canvas, W, H, speed = 1) => new Promise((resolve
   runs.set(canvas, run);
   canvas.width = W;
   canvas.height = H;
+  // the canvas covers the picture at once (no fade in), so the picture under it is never seen through a half-visible canvas
+  canvas.style.transition = 'none';
   canvas.style.opacity = 1;
+  void canvas.offsetWidth;
+  canvas.style.transition = '';
   const ctx = canvas.getContext('2d');
 
   const source = createSourcePixels(img, W, H);

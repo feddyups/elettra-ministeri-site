@@ -48,7 +48,7 @@ html .wp .wp-zoom {
   cursor: zoom-in;
   box-shadow: var(--em-shadow-figure);
 }
-.wp-zoom img { display: block; width: 100%; height: auto; transition: opacity var(--em-duration-slow) var(--em-ease); }
+.wp-zoom img { display: block; width: 100%; height: auto; }  /* no fade of its own: it is under the canvas, and only the canvas fades (fading both lets the page color show through and the picture flashes light) */
 .wp-figure.is-painting .wp-zoom img { opacity: 0; }
 .wp-paint { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; transition: opacity var(--em-duration-slow) var(--em-ease); }
 html .wp .wp-repaint {

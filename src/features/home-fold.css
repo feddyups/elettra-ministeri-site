@@ -75,3 +75,10 @@ html .em-home .ca {
   :root { --em-chapter-pad: 4rem; --em-frame-max: 45svh; }
   html .em-home .ca .ca-names,
 }
+
+/*
+ * When a painting is done the picture is already in place under the canvas and only the canvas fades (the site's Custom CSS fades the canvas out
+ * over 1.2s). If the picture faded in at the same time, the page color would show through both and the picture would flash light.
+ */
+.em-home .eh-hero.done .stage img,
+.em-home .frame.done img { transition: none; }
