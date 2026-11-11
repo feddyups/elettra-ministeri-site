@@ -6,6 +6,7 @@ import { readPickSlugs } from './picks.js';
 import { offersReady, discountedSlugs } from './offers.js';
 import { markSlugs } from './pick-star.js';
 import { renderEntry } from './series-grid.js';
+import { masonry } from './masonry.js';
 
 const MESSAGES = {
   unreadable: 'The artist’s picks will appear here soon.',
@@ -30,6 +31,7 @@ export const initPicksGrid = async (list) => {
     }
     list.replaceChildren(...works.map((slug) => renderEntry(slug, CATALOGUE[slug])));
     if (slugs && slugs.length) markSlugs(list, slugs);
+    masonry(list);
   } finally {
     list.setAttribute('data-ready', '');
   }

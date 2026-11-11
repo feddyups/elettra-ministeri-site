@@ -101,9 +101,10 @@ html .th-grid[data-ready] { animation: th-grid-in var(--em-duration-base, 0.3s) 
 @keyframes th-grid-fallback { to { opacity: 1; } }
 @keyframes th-grid-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { html .th-grid[data-ready] { animation: none; } }
-html .th-grid[data-set] { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-count: auto; row-gap: 0; align-items: start; }
-@media (max-width: 1000px) { html .th-grid[data-set] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 640px) { html .th-grid[data-set] { grid-template-columns: minmax(0, 1fr); } }
+html .th-grid[data-masonry] { --th-columns: 3; position: relative; display: block; column-count: auto; }
+@media (max-width: 1000px) { html .th-grid[data-masonry] { --th-columns: 2; } }
+@media (max-width: 640px) { html .th-grid[data-masonry] { --th-columns: 1; } }
+html .th-grid[data-masonry] > .th-work { position: absolute; top: 0; left: 0; box-sizing: border-box; margin: 0; }
 html .th-grid .th-empty { grid-column: 1 / -1; padding-block: var(--em-space-xl); color: var(--em-muted); font-size: var(--em-text-lg); list-style: none; }
 
 /* the star on a painting the artist has marked as a pick hangs off the picture's right edge, near the top: a quarter of it over the painting,
