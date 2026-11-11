@@ -22,17 +22,3 @@ export const placeInSet = (slug) => {
   const set = setOf(slug);
   return set ? { label: set.label, number: set.works.indexOf(slug) + 1, total: set.works.length } : null;
 };
-
-/** Puts the paintings of each set side by side, in the set's order, at the place its first member has in `items` (a series page's order); the rest keep their places. */
-export const inSetOrder = (items, slugOf) => {
-  const placed = new Set();
-  const out = [];
-  items.forEach((item) => {
-    const slug = slugOf(item);
-    if (placed.has(slug)) return;
-    const set = setOf(slug);
-    const members = set ? set.works.map((s) => items.find((other) => slugOf(other) === s)).filter(Boolean) : [item];
-    members.forEach((member) => { out.push(member); placed.add(slugOf(member)); });
-  });
-  return out;
-};
