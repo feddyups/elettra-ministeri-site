@@ -72,6 +72,7 @@ export const initSeriesGrid = async (list) => {
         const head = h('header', { class: 'th-group-head' }, h('h2', null, title), note && h('p', null, note), about && about.description && h('p', { class: 'th-group-about' }, about.description));
         if (i === 0) list.before(head); else after.after(head, grid);
       }
+      if (group.label) grid.setAttribute('data-set', '');
       grid.replaceChildren(...group.entries.map(([slug, work]) => renderEntry(slug, work, Boolean(group.label))));
       markPicks(grid);
       after = grid;
