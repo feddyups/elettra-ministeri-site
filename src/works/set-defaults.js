@@ -5,6 +5,6 @@
  */
 export const DEFAULT_SETS = [
   { label: 'Maternity', description: 'Three paintings on motherhood, made together in one family of colors.', works: ['maternity-i', 'maternity-ii', 'maternity-iii'] },
-  { label: 'Amore e Pandemia', description: 'Two paintings made together, on love in the time of the pandemic.', works: ['amore-e-pandemia-i', 'amore-e-pandemia-ii'] },
+  { label: 'Bonds', description: 'Three paintings of two figures together, in one key of red, green and blue: two embraces and a sphere lifted by both.', works: ['amore-e-pandemia-i', 'amore-e-pandemia-ii', 'the-bonding'] },
   { label: 'Icons of Sicily', description: 'Six paintings of the emblems of Sicily: the painted cart and its wheel, pistachios, the sun, the paladino and Santa Rosalia.', works: ['carretto', 'cart-wheel', 'pistacchi', 'sole', 'paladino-siciliano', 'santa-rosalia'] },
 ];
