@@ -7,6 +7,7 @@ import { renderSeriesRows } from './series-compare.js';
 import { renderSubjectBars, renderMediumBars } from './bars.js';
 import { renderWorkIndex } from './work-index.js';
 import { renderColorMosaic } from './color-mosaic.js';
+import { renderChartDrawer } from './chart-drawer.js';
 
 const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
@@ -28,19 +29,29 @@ export const initPaintingsOverview = (host) => {
 
   const atlas = h('div', { 'data-color-atlas': '', 'data-scope': 'all', 'data-blocks': 'palette', 'data-heading': 'none', 'data-surface': 'inherit' });
 
+  const workbench = h('div', { class: 'ov-workbench', 'data-drawer': 'closed' });
+  const drawer = renderChartDrawer(workbench, [
+    { id: 'subjects', label: 'Subjects and materials', content: [
+      h('p', { class: 'ov-note' }, 'Choose a bar to narrow the index to those works.'),
+      h('div', { class: 'ov-bars-pair' }, renderSubjectBars(works, filter), renderMediumBars(works, filter))] },
+    { id: 'colors', label: 'Every main color', content: [
+      h('p', { class: 'ov-note' }, 'Each tile is one of the main colors of one painting, gathered by hue from red round to violet, light to dark, with the greys and paper at the end. A larger tile is a color that covers a large part of its picture. Point at a tile for its painting; the works outside your choices fade back.'),
+      renderColorMosaic(works, filter)] },
+  ]);
+  workbench.append(
+    section('index', 'Every work', 'The index', 'Sort it, or narrow it by series, set, subject, material, price, the color that covers most of the picture, or how its colors are built. The charts for subjects, materials and colors open beside it and follow what you choose.',
+      renderWorkIndex(works, series, filter, drawer)),
+    drawer.element);
+
   host.replaceChildren(
+    workbench,
     section('series', 'Series', `${count(works.length, 'work', 'works')} in ${count(series.length, 'series', 'series')}`,
       ['Choose a series to see its works. The strip under each name is the series’ main colors, as wide as the share they cover. ', h('a', { href: '/paintings/artist-picks' }, 'Or see the artist’s picks.')],
       renderSeriesTiles(series, worksBySeries)),
     h('div', { class: 'ov-plate' },
       section('compare', 'Compare', 'The series side by side', 'Warmest first. Every series is read the same way: the colors that cover most of it, how its hues divide, and what its colors do in a line.',
         renderSeriesRows(series, worksBySeries)),
-      section('colors', 'The whole body of work', 'The colors I use, measured', `All ${works.length} works together.`, atlas),
-      section('mosaic', 'Every main color', 'The mosaic', 'Each tile is one of the main colors of one painting, gathered by hue from red round to violet, light to dark, with the greys and paper at the end. A larger tile is a color that covers a large part of its picture. Point at a tile for its painting; choose a series, a subject or a material below and only those works stay lit.', renderColorMosaic(works, filter)),
-      section('subjects', 'Subjects and materials', 'What I paint, and what on', 'Choose a bar to narrow everything on this page to those works.',
-        h('div', { class: 'ov-bars-pair' }, renderSubjectBars(works, filter), renderMediumBars(works, filter))),
-      section('index', 'Every work', 'The index', 'Sort it, or narrow it by series, subject, material, price, the color that covers most of the picture, or how its colors are built: in neighboring hues, with a small opposite accent, or carried by one color.',
-        renderWorkIndex(works, series, filter))));
+      section('colors', 'The whole body of work', 'The colors I use, measured', `All ${works.length} works together.`, atlas)));
   // the page is built here, after the browser has looked for an address like /paintings#index, so go there now
   const target = location.hash && host.querySelector(`#${CSS.escape(location.hash.slice(1))}`);
   if (target) requestAnimationFrame(() => target.scrollIntoView());
