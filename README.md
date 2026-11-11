@@ -312,6 +312,14 @@ The page `/paintings/artist-picks` (a page in the unlinked Paintings collection,
 ### Sales
 
 The same sheet carries a **Discount (%)** column (also read as "Sale", "Discount %" or "Percent off"; 15, 15% and 12,5 all work; a value of 90 or less). A work with a discount is on sale: its list price (its own price plus the frame when the frame is part of it) is reduced by that percentage, rounded to a whole euro (`works/price.js`, `works/offers.js`). Series pages, the picks page, a work's page, the Paintings index (its price filter and sorting use the price now, and an **On sale** choice appears while any work is on sale) and the enquiry all show the list price struck through, the price now and the percentage (`works/price-view.js`); the enquiry records "listed at €510 (was €600, 15% off) on <date>". A work on sale also appears on the Artist picks page whether or not it is marked as a pick; only the picks carry the star. A page waits a moment for the sheet before drawing its prices; if the sheet cannot be read in time it shows the list prices, never an unconfirmed discount. Works the sheet does not list cannot be put on sale, so the sheet needs a row for every new work (the template in `picks/Artist picks.xlsx` lists them all).
+### Sets
+
+A **set** is a few paintings the artist made together (a pair or a triplet of a theme, a family of frames); their palettes are coordinated, so the site shows them together. The same sheet declares them in a **Set** column (also read as "Sets" or "Group"): paintings with the same text there belong together, in the order of the sheet's rows, or in the order of an optional **Order** column (a number). A painting belongs to at most one set, a set needs two paintings, and a blank cell means no set. Nothing needs a release: she types the same word on two or three rows.
+
+A set shows as a line under each member in its series grid ("Part of Maternity · 2 of 3", the members side by side in the set's order), as a "Part of a set" block with the set's paintings on each member's page (`works/work-set.js`), and as a **Set** filter in the index on the Paintings page. A set is not a page and not a menu entry.
+
+The sets are read with the discounts, in one request (`works/picks.js`, `works/offers.js`), so a page never shows two different sets in one visit. When the sheet cannot be read in time, or has no Set column, the sets in `works/set-defaults.js` show instead; once the column exists, the sheet decides (an empty column means no sets).
+
 ## Changing the works
 
 Edit `src/features/hero/works.js`, commit, tag a new version and update the version in the script line.

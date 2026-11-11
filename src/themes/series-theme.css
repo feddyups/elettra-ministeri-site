@@ -125,3 +125,6 @@ html .th-work > a.th-img .th-sale {
   letter-spacing: var(--em-tracking-label);
   text-transform: uppercase;
 }
+
+/* The set a painting belongs to, on its entry in the grid: a quiet line under the facts line */
+html .th-work .th-cap small.th-set { display: block; margin-top: var(--em-space-3xs); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; opacity: 0.78; }

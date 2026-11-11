@@ -33,6 +33,7 @@ const row = (work) => {
  * narrow the charts above it, because the choices are shared (see filter-state.js).
  */
 export const renderWorkIndex = (works, seriesData, filter) => {
+  const setLabels = [...new Set(works.map((work) => work.set).filter(Boolean))];
   const items = new Map(works.map((work) => [work, row(work)]));
   const list = h('ul', { class: 'ov-works' });
   const count = h('p', { class: 'ov-count', role: 'status' });
@@ -62,6 +63,7 @@ export const renderWorkIndex = (works, seriesData, filter) => {
   return h('div', { class: 'ov-index' },
     h('div', { class: 'ov-controls' },
       group('Series', seriesData.map((s) => choice('series', s.slug, s.label))),
+      ...(setLabels.length ? [group('Set', setLabels.map((label) => choice('set', label, label)))] : []),
       group('Subject', SUBJECTS.map((s) => choice('subject', s.key, s.label))),
       group('Made on', MEDIA.filter((m) => works.some((w) => w.medium === m.key)).map((m) => choice('medium', m.key, m.label))),
       group('Price', [

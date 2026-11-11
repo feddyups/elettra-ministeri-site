@@ -3,6 +3,7 @@ import { allPaintings, seriesInfo } from '../color/scope.js';
 import { subjectsOf, mediumOf } from './subjects.js';
 import { readPalette, buildsOf } from '../lib/color-harmony.js';
 import { priceValue, priceBandOf, onSale } from '../works/price.js';
+import { setLabelOf } from '../works/sets.js';
 
 const FAMILIES = [['warm', 'reds and yellows'], ['green', 'greens'], ['cool', 'blues'], ['violet', 'violets']];
 export const FAMILY_LABELS = Object.fromEntries(FAMILIES);
@@ -17,6 +18,7 @@ export const overviewWorks = () => allPaintings().filter((work) => CATALOGUE[wor
     ...work,
     entry,
     seriesLabel: (seriesInfo(work.series) || {}).label || work.series,
+    set: setLabelOf(work.slug),
     subjects: subjectsOf(work.slug),
     medium: mediumOf(work.slug),
     family: dominantFamily(work),

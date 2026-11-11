@@ -7,9 +7,16 @@ import { factsLine } from './facts.js';
 import { enquiryTopic, onSale, discountOf } from './price.js';
 import { renderPrice } from './price-view.js';
 import { offersReady } from './offers.js';
+import { inSetOrder, placeInSet } from './sets.js';
 
 const WIDTHS = [500, 1000, 1500];
 const SIZES = '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw';
+
+/** The line naming a painting's set and its place in it, or nothing for a painting that is in none. */
+const setLine = (slug) => {
+  const place = placeInSet(slug);
+  return place && h('small', { class: 'th-set' }, `Part of ${place.label} · ${place.number} of ${place.total}`);
+};
 
 /** One entry of a series page: the picture, its title and facts, and the way to enquire with the price beside it. */
 export const renderEntry = (slug, work) => {
@@ -23,7 +30,7 @@ export const renderEntry = (slug, work) => {
       }),
       onSale(work) && h('span', { class: 'th-sale' }, `${discountOf(work)}% off`)),
     h('div', { class: 'th-cap' },
-      h('div', null, h('b', null, h('a', { href: page }, work.title)), h('small', null, factsLine(work))),
+      h('div', null, h('b', null, h('a', { href: page }, work.title)), h('small', null, factsLine(work)), setLine(slug)),
       h('div', { class: 'th-act' },
         renderPrice(work, { className: 'th-price' }),
         h('a', { href: `/enquire?SQF_WORK=${encodeURIComponent(enquiryTopic(work.title, work))}` }, 'Enquire'))));
@@ -32,14 +39,14 @@ export const renderEntry = (slug, work) => {
 /**
  * Fills a series page's grid of works from the catalogue, so adding a work to the catalogue is enough to put it on its series' page:
  * every `<ul class="th-grid">` is filled for the series the page belongs to (the page's `data-series`, or its own `data-series-grid="archive"`). The strips of color and the hover labels are added to each entry afterwards
- * (works/series-strip.js). The entries follow the series' smooth path through color (works/harmony-order.js), and a small star marks the artist's picks (works/pick-star.js). Whatever the page already held in the list stays as it was if the series is unknown. The list stays invisible until it holds its final entries in their final order (`data-ready`, see series-theme.css), so the page's stored entries are never seen reshuffling.
+ * (works/series-strip.js). The entries follow the series' smooth path through color (works/harmony-order.js), with the paintings of a set side by side (works/sets.js), and a small star marks the artist's picks (works/pick-star.js). Whatever the page already held in the list stays as it was if the series is unknown. The list stays invisible until it holds its final entries in their final order (`data-ready`, see series-theme.css), so the page's stored entries are never seen reshuffling.
  */
 export const initSeriesGrid = async (list) => {
   if (list.hasAttribute('data-picks') || list.hasAttribute('data-print')) return;
   try {
     await offersReady();
     const series = list.dataset.seriesGrid || document.documentElement.dataset.series;
-    const works = inSeriesOrder(series, worksOfSeries(series), ([slug]) => slug);
+    const works = inSetOrder(inSeriesOrder(series, worksOfSeries(series), ([slug]) => slug), ([slug]) => slug);
     if (!works.length) return;
     list.replaceChildren(...works.map(([slug, work]) => renderEntry(slug, work)));
     markPicks(list);
