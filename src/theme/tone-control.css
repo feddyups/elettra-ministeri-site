@@ -66,4 +66,29 @@ html .em-tone-button:focus-visible { outline: var(--em-stroke) solid currentColo
 .em-tone-text b { font-weight: var(--em-weight-medium); }
 .em-tone-text i { font-style: normal; font-weight: var(--em-weight-regular); opacity: 0.7; }
 .em-tone-text small { font-size: var(--em-text-xs); opacity: 0.75; }
+
+/* The row of backgrounds under a series' introduction, for a phone */
+.em-tone-row { display: none; }
+@media (max-width: 40em) {
+  html .em-tone-row { display: grid; gap: var(--em-space-xs); margin-bottom: var(--em-space-xl); }
+  .em-tone-row-title { margin: 0; font-size: var(--em-text-2xs); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--em-muted, inherit); }
+  .em-tone-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--em-space-xs); }
+  .em-tone-chip {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    gap: var(--em-space-xs);
+    min-height: 2.75rem;
+    padding-block: var(--em-space-2xs);
+    color: var(--em-ink, inherit);
+    font: var(--em-weight-regular) var(--em-text-xs) / var(--em-leading-snug) var(--em-font-sans);
+  }
+  .em-tone-chip .em-tone-swatch { width: 100%; max-width: 4.5rem; height: 2.5rem; }
+  .em-tone-chip[aria-checked="true"] { font-weight: var(--em-weight-medium); }
+  .em-tone-chip[aria-checked="true"] .em-tone-swatch { box-shadow: 0 0 0 var(--em-stroke) var(--em-bg, transparent), 0 0 0 calc(var(--em-stroke) * 2) currentColor; }
+  .em-tone-chip:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
+}
 @media (prefers-reduced-motion: reduce) { html .em-tone-button, .em-tone-option { transition: none; } }

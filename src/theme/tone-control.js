@@ -7,6 +7,8 @@ import { seriesInfo } from '../color/scope.js';
  * The palette button in the header and the panel it opens: the backgrounds a visitor can choose between for the page they are on. On a series page,
  * a painting page or the page of a series' works it changes that series' background; on the All paintings page it changes that page's. A page that
  * has no presets (About me, Print, Artist picks) gets no button. The choice is kept in the browser (themes/tone-choice.js) and shown at once.
+ * On a phone, where the menu holds the header's buttons out of sight, a series page and the All paintings page also carry a row of the same backgrounds
+ * under their introduction (hidden from wider screens, see tone-control.css).
  */
 const series = document.documentElement.dataset.series;
 
@@ -37,6 +39,22 @@ const initToneControl = () => {
       })));
   document.body.append(panel);
 
+  const chips = [];
+  const head = document.querySelector('.th-head');
+  if (head) {
+    head.after(h('div', { class: 'em-tone-row', role: 'radiogroup', 'aria-label': title },
+      h('p', { class: 'em-tone-row-title' }, 'Background'),
+      h('div', { class: 'em-tone-chips' }, PRESET_IDS.map((id) => {
+        const tone = PRESETS[series][id];
+        const chip = h('button', { class: 'em-tone-chip', type: 'button', role: 'radio', 'data-preset': id, style: { '--tone-bg': tone.bg, '--tone-alt': tone.alt } },
+          h('span', { class: 'em-tone-swatch', 'aria-hidden': 'true' }),
+          h('span', null, PRESET_INFO[id].label));
+        chip.addEventListener('click', () => choosePreset(series, id));
+        chips.push(chip);
+        return chip;
+      }))));
+  }
+
   const triggers = [];
   const sync = () => {
     const current = presetOf(series);
@@ -45,6 +63,7 @@ const initToneControl = () => {
       option.setAttribute('aria-checked', String(on));
       option.tabIndex = on ? 0 : -1;
     });
+    chips.forEach((chip) => chip.setAttribute('aria-checked', String(chip.dataset.preset === current)));
   };
 
   const isOpen = () => !panel.hidden;
@@ -90,6 +109,7 @@ const initToneControl = () => {
   document.addEventListener('click', (event) => { if (isOpen() && !panel.contains(event.target) && !triggers.some((t) => t.contains(event.target))) close(); });
   addEventListener('scroll', () => { if (isOpen() && Math.abs(scrollY - scrolledFrom) > 80) close(); }, { passive: true });
   addEventListener('resize', () => close());
+  addEventListener('em-tone-change', sync);
   sync();
 };
 
