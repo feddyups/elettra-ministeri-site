@@ -36,7 +36,7 @@ const percentOf = (cell) => {
 };
 
 /**
- * The artist's sheet, read once: the rows with the "Page address", "Artist pick", "Discount", "Set" and "Order" columns found by their headers.
+ * The artist's sheet, read once: the rows with the "Page address", "Artist pick", "Discount" and "Set" columns found by their headers.
  * Resolves to `null` when there is no sheet or it cannot be read.
  */
 let reading;
@@ -64,27 +64,24 @@ export const readDiscounts = async () => {
 };
 
 /**
- * The sets the artist has declared, from the sheet's "Set" column: paintings with the same text there belong together, in the order of the sheet's rows (or of an
- * "Order" column, a number). A set needs two paintings. Resolves to `null` when the sheet cannot be read or has no "Set" column, and to a list of
- * `{ label, works }` otherwise (the works are page addresses).
+ * The sets the artist has declared, from the sheet's "Set" column: paintings with the same text there belong together, in the order of the sheet's rows.
+ * A set needs two paintings. Resolves to `null` when the sheet cannot be read or has no "Set" column, and to a list of `{ label, works }` otherwise
+ * (the works are page addresses).
  */
 export const readSets = async () => {
   const sheet = await readRows();
   if (!sheet || sheet.set < 0) return null;
   const found = new Map();
-  sheet.rows.forEach((cells, index) => {
+  sheet.rows.forEach((cells) => {
     const label = (cells[sheet.set] || '').trim();
     const slug = slugOf(cells[sheet.address]);
     if (!label || !slug) return;
-    const number = sheet.order >= 0 ? Number((cells[sheet.order] || '').trim().replace(',', '.')) : NaN;
     const key = label.toLowerCase();
-    const group = found.get(key) || { label, members: [] };
-    group.members.push({ slug, index, number: Number.isFinite(number) && number > 0 ? number : null });
+    const group = found.get(key) || { label, works: [] };
+    group.works.push(slug);
     found.set(key, group);
   });
-  return [...found.values()]
-    .map(({ label, members }) => ({ label, works: members.sort((a, b) => (a.number ?? Infinity) - (b.number ?? Infinity) || a.index - b.index).map((m) => m.slug) }))
-    .filter((set) => set.works.length >= 2);
+  return [...found.values()].filter((set) => set.works.length >= 2);
 };
 
 const readSheet = async () => {
@@ -101,7 +98,6 @@ const readSheet = async () => {
       pick: column('artist pick', 'artist picks', 'favorite', 'favorites'),
       discount: column('discount', 'discount %', 'discount (%)', 'sale', 'sale %', 'sale (%)', 'percent off'),
       set: column('set', 'sets', 'group'),
-      order: column('order', 'position'),
     };
   } catch (error) {
     return null;

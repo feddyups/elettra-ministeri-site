@@ -14,7 +14,7 @@ const stopOf = (members) => ({
 /**
  * Paintings (each with a `slug`, `palette`, `warm`, `cool` and `violet`) in the order of their smooth path through color (works/harmony-order.js), the groups first:
  * each set the artist made together (works/sets.js) is one stop on the path, placed by the colors of the set as a whole, and the paintings of a stop follow the
- * order given for the set (the order of her sheet, or of its Order column). A painting that is in no set is a stop of its own, placed by its own colors.
+ * order given for the set (the order of its rows in her sheet). A painting that is in no set is a stop of its own, placed by its own colors.
  * A set stands for the paintings of it that are in `works`.
  */
 export const orderWithSets = (works) => {
