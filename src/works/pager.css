@@ -6,6 +6,8 @@ html .item-pagination.em-pager {
   color: var(--em-ink);
 }
 .em-pager-inner {
+  flex: 1 1 100%;
+  min-width: 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
