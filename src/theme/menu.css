@@ -112,3 +112,10 @@ html .header-menu-nav-item.is-current a {
   text-decoration-thickness: var(--em-stroke);
   text-underline-offset: 0.4em;
 }
+
+/*
+ * The mobile menu panel. On a series page it takes the page color (themes/series-theme.css); on every other page it keeps Squarespace's light ground,
+ * so its entries are drawn in ink there, whatever the color of the header text over the picture behind.
+ */
+html:not([data-series]) .header-menu a { color: var(--em-ink) !important; }
+html:not([data-series]) .header-menu svg { stroke: var(--em-ink) !important; }
