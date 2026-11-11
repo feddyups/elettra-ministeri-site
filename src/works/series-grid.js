@@ -7,7 +7,7 @@ import { factsLine } from './facts.js';
 import { enquiryTopic, onSale, discountOf } from './price.js';
 import { renderPrice } from './price-view.js';
 import { offersReady } from './offers.js';
-import { placeInSet } from './sets.js';
+import { placeInSet, setOf } from './sets.js';
 import { seriesInfo } from '../color/scope.js';
 
 const WIDTHS = [500, 1000, 1500];
@@ -68,7 +68,8 @@ export const initSeriesGrid = async (list) => {
       if (several) {
         const title = group.label || `Also in ${(seriesInfo(series) || {}).label || 'this series'}`;
         const note = group.label ? `${group.entries.length} paintings made together` : null;
-        const head = h('header', { class: 'th-group-head' }, h('h2', null, title), note && h('p', null, note));
+        const about = group.label ? setOf(group.entries[0][0]) : null;
+        const head = h('header', { class: 'th-group-head' }, h('h2', null, title), note && h('p', null, note), about && about.description && h('p', { class: 'th-group-about' }, about.description));
         if (i === 0) list.before(head); else after.after(head, grid);
       }
       grid.replaceChildren(...group.entries.map(([slug, work]) => renderEntry(slug, work, Boolean(group.label))));

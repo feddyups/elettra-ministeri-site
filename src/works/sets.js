@@ -8,7 +8,7 @@ import { declaredSets } from './offers.js';
  * page of a visit shows the same sets. A painting belongs to at most one set, and a set needs two paintings of the catalogue.
  */
 export const allSets = () => (declaredSets() || DEFAULT_SETS)
-  .map(({ label, works }) => ({ label, works: works.filter((slug) => CATALOGUE[slug]) }))
+  .map(({ label, description = '', works }) => ({ label, description, works: works.filter((slug) => CATALOGUE[slug]) }))
   .filter((set) => set.works.length >= 2);
 
 /** The set a painting belongs to (`{ label, works }`), or null. */

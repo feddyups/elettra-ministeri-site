@@ -14,6 +14,7 @@ export const renderWorkSet = (slug) => {
   return h('section', { class: 'wp-section wp-set' },
     h('p', { class: 'ca-label' }, 'Part of a set'),
     h('h2', { class: 'wp-set-title' }, set.label),
+    set.description && h('p', { class: 'wp-set-about' }, set.description),
     h('ul', { class: 'wp-set-list' }, set.works.map((member) => {
       const entry = CATALOGUE[member];
       const current = member === slug;

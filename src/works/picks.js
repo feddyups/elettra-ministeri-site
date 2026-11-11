@@ -77,7 +77,8 @@ export const readSets = async () => {
     const slug = slugOf(cells[sheet.address]);
     if (!label || !slug) return;
     const key = label.toLowerCase();
-    const group = found.get(key) || { label, works: [] };
+    const group = found.get(key) || { label, description: '', works: [] };
+    group.description = group.description || (sheet.setNote < 0 ? '' : (cells[sheet.setNote] || '').trim());
     group.works.push(slug);
     found.set(key, group);
   });
@@ -98,6 +99,7 @@ const readSheet = async () => {
       pick: column('artist pick', 'artist picks', 'favorite', 'favorites'),
       discount: column('discount', 'discount %', 'discount (%)', 'sale', 'sale %', 'sale (%)', 'percent off'),
       set: column('set', 'sets', 'group'),
+      setNote: column('set description', 'set note', 'set notes'),
     };
   } catch (error) {
     return null;

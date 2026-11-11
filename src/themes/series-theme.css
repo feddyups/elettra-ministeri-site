@@ -101,6 +101,9 @@ html .th-grid[data-ready] { animation: th-grid-in var(--em-duration-base, 0.3s) 
 @keyframes th-grid-fallback { to { opacity: 1; } }
 @keyframes th-grid-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { html .th-grid[data-ready] { animation: none; } }
+html .th-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-count: auto; row-gap: 0; align-items: start; }
+@media (max-width: 1000px) { html .th-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { html .th-grid { grid-template-columns: minmax(0, 1fr); } }
 html .th-grid .th-empty { grid-column: 1 / -1; padding-block: var(--em-space-xl); color: var(--em-muted); font-size: var(--em-text-lg); list-style: none; }
 
 /* the star on a painting the artist has marked as a pick hangs off the picture's right edge, near the top: a quarter of it over the painting,
@@ -132,4 +135,5 @@ html .th-work .th-cap small.th-set { display: block; margin-top: var(--em-space-
 /* A series page with a set in it: the set has a grid of its own under its name, and the rest of the series follows under "Also in <series>" (works/series-grid.js) */
 html .th-group-head { display: grid; gap: var(--em-space-2xs); margin: var(--em-section-gap) 0 var(--em-block-gap); }
 html .th-group-head h2 { margin: 0; color: inherit; font: var(--em-weight-medium) var(--em-display-sm) / var(--em-leading-none) var(--em-font-serif); letter-spacing: var(--em-tracking-tight); }
+html .th-group-head p.th-group-about { max-width: 60ch; margin-top: var(--em-space-xs); color: inherit; font-size: var(--em-text-md, 1.0625rem); letter-spacing: normal; text-transform: none; line-height: var(--em-leading-snug); }
 html .th-group-head p { margin: 0; color: var(--em-muted); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }
