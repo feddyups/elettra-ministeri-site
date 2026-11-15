@@ -87,3 +87,15 @@ html .em-home .ca {
  */
 .em-home .eh-hero.done .stage img,
 .em-home .frame.done img { transition: none; }
+
+/*
+ * Secondary text on the home page follows the text color the scroll sets (--eh-fg), so it keeps its contrast whatever the page color is: the
+ * fixed grays of the stylesheet are made for the light page and fall under 3:1 once the page turns dark.
+ */
+html.em-home-page body {
+  --eh-muted: color-mix(in srgb, var(--eh-fg) 84%, transparent);
+  --eh-line: color-mix(in srgb, var(--eh-fg) 28%, transparent);
+}
+html .em-home .row { border-bottom-color: var(--eh-line); }
+html .em-home .lists h3 { color: color-mix(in srgb, var(--eh-accent) 62%, var(--eh-fg)); }
+html .em-home .ca { --ca-muted: color-mix(in srgb, var(--eh-fg) 88%, transparent); }
