@@ -11,6 +11,7 @@ html.em-embed header,
 html.em-embed footer,
 html.em-embed #header,
 html.em-embed #footer-sections { display: none !important; }
+html.em-embed,
 html.em-embed body,
 html.em-embed #page { background: var(--em-paper-warm) !important; }
 html.em-embed #page section:first-of-type .content-wrapper { padding-top: var(--em-space-xl) !important; }
