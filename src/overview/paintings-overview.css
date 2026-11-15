@@ -208,4 +208,6 @@ button.ov-drawer-tab:focus-visible, button.ov-drawer-close:focus-visible { outli
 .ov-work-price.is-sale small { font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }
 
 /* a painting the artist has sold shows the word where its price would be */
-.ov-work-price.is-sold { font-size: var(--em-text-xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; opacity: 0.8; }
+.ov-work-price.is-sold { display: grid; justify-items: end; gap: var(--em-space-3xs); }
+.ov-work-price.is-sold s { opacity: 0.55; font-size: var(--em-text-xs); text-decoration-thickness: var(--em-hairline); }
+.ov-work-price.is-sold b { padding: 0.15em 0.6em; background: var(--em-ink, var(--em-paper)); color: var(--em-bg-alt, var(--em-night)); font-size: var(--em-text-2xs); font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }

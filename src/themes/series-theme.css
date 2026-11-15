@@ -142,6 +142,8 @@ html .th-group-head p.th-group-about { max-width: 60ch; margin-top: var(--em-spa
 html .th-group-head p { margin: 0; color: var(--em-muted); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }
 
 /* a painting the artist has sold shows the word where its price would be */
-html .th-price.is-sold { text-transform: uppercase; letter-spacing: var(--em-tracking-label); opacity: 0.8; }
+html .th-price.is-sold { display: inline-flex; align-items: center; gap: 0.6em; }
+html .th-price.is-sold s { opacity: 0.55; text-decoration-thickness: var(--em-hairline); }
+html .th-price.is-sold b { padding: 0.2em 0.65em; background: var(--em-ink); color: var(--em-bg); font-size: 0.72em; font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }
 /* the price, or the word Sold, and the way to enquire sit at the right of the caption, also when they wrap under the title */
 html .th-cap .th-act { margin-left: auto; }

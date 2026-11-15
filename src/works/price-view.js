@@ -2,11 +2,16 @@ import { h } from '../lib/elements.js';
 import { priceOf, listPriceOf, onSale, discountOf, isSoldWork } from './price.js';
 
 /**
- * A work's price as an element, or null when it has none: "Sold" for a work the artist has sold, otherwise the price, or when the artist has put the work on sale, its list price struck through,
+ * A work's price as an element, or null when it has none: for a work the artist has sold, its list price struck through beside a "Sold" badge, otherwise the price, or when the artist has put the work on sale, its list price struck through,
  * the price now and, when asked, the percentage taken off. A screen reader hears one sentence ("€510, was €600, 15% off").
  */
 export const renderPrice = (work, { tag = 'span', className = '', percent = false } = {}) => {
-  if (isSoldWork(work)) return h(tag, { class: `${className} is-sold`.trim() }, 'Sold');
+  if (isSoldWork(work)) {
+    const was = listPriceOf(work);
+    return h(tag, { class: `${className} is-sold`.trim(), 'aria-label': was ? `Sold, was ${was}` : 'Sold' },
+      was && h('s', { 'aria-hidden': 'true' }, was),
+      h('b', { 'aria-hidden': 'true' }, 'Sold'));
+  }
   const price = priceOf(work);
   if (!price) return null;
   if (!onSale(work)) return h(tag, { class: className || null }, price);

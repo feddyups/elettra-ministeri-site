@@ -240,4 +240,6 @@ html .wp h2.wp-set-title { margin: var(--em-space-2xs) 0 var(--em-space-m); font
 .wp-set-list a:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
 
 /* a painting the artist has sold shows the word where its price would be */
-html .wp .wp-price.is-sold { font: var(--em-weight-medium) var(--em-text-md) / var(--em-leading-none) var(--em-font-sans); letter-spacing: var(--em-tracking-label); text-transform: uppercase; opacity: 0.8; }
+html .wp .wp-price.is-sold { display: flex; align-items: center; gap: 0.75em; }
+html .wp .wp-price.is-sold s { opacity: 0.55; text-decoration-thickness: var(--em-hairline); }
+html .wp .wp-price.is-sold b { padding: 0.25em 0.7em; background: var(--ca-ink); color: var(--em-bg, #fff); font: var(--em-weight-medium) var(--em-text-sm) / 1 var(--em-font-sans); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }
