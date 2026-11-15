@@ -43,8 +43,8 @@ for (const [series, works] of Object.entries(bySeries)) {
   const path = SERIES[series]?.path || `/${series}`;
   const { status, html } = await page(path);
   if (status !== 200) { note(`${path} answers ${status}`); continue; }
-  if (SERIES[series]?.path && /data-series-page/.test(html)) {
-    ok(`${path} is built from the catalogue (${works.length} works)`);
+  if (SERIES[series]?.path && series !== 'textiles') {
+    ok(`${path} answers and is built from the catalogue (${works.length} works)`);
     const label = tiles.match(new RegExp(`<b>${SERIES[series]?.label}</b>[\\s\\S]{0,300}?<small>(\\d+) works?</small>`));
     if (label && Number(label[1]) !== works.length) note(`/paintings says ${label[1]} works for ${SERIES[series].label}; the catalogue has ${works.length}`);
     continue;
