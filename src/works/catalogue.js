@@ -95,7 +95,7 @@ export const CATALOGUE = {
     series: "mediterranean",
     medium: "Acrylic on canvas",
     size: "18 × 24 cm",
-    price: 150,
+    price: 100,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/0d5fc474-fa9a-43b1-b832-9d3bd62a02a0/mediterranean-medusa.jpg",
       width: 2400,
@@ -463,7 +463,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on canvas",
     size: "18 × 24 cm",
-    price: 150,
+    price: 100,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/04609aa9-05d7-4834-9165-8e5681125efc/scarab.jpg",
       width: 1000,
@@ -575,7 +575,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on canvas",
     size: "18 × 24 cm",
-    price: 150,
+    price: 100,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/e3df0049-fb04-4803-bbe1-4c06b076ba16/archive-heart-in-hand.jpg",
       width: 2400,
@@ -592,7 +592,7 @@ export const CATALOGUE = {
     series: "archive",
     medium: "Acrylic on canvas",
     size: "18 × 24 cm",
-    price: 150,
+    price: 100,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/46420d68-f5b4-4955-a6ae-d8415dbb7186/archive-scio.jpg",
       width: 2400,
