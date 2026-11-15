@@ -229,9 +229,19 @@ html[data-series="journal"] article[data-jl-ready] .blog-item-content .sqs-block
 html[data-series="journal"] .blog-item-content hr { margin-block: clamp(1.75rem, 3.5vw, 3rem); }
 
 /* the entry's tags, which lead to related entries, are chips like the filters of the index */
-html[data-series="journal"] article[data-jl-ready] .blog-item-tags,
-html[data-series="journal"] article[data-jl-ready] .blog-item-tags-wrapper { display: flex; flex-wrap: wrap; gap: var(--em-space-xs); max-width: var(--jl-col); margin: clamp(2rem, 4vw, 3rem) auto 0; padding: 0; }
+html[data-series="journal"] article[data-jl-ready] .blog-meta-item--tag {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: var(--em-space-xs);
+  max-width: var(--jl-col);
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
+  padding: 0;
+}
+html[data-series="journal"] .blog-item-tag-wrapper { display: block; }
 html[data-series="journal"] a.blog-item-tag {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
   padding: 0.6rem 0.95rem;
   border: 1px solid var(--em-line);
   border-radius: var(--em-radius-pill);
