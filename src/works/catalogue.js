@@ -175,6 +175,26 @@ export const CATALOGUE = {
       "I think of it as the sun after a day at sea: a little salty, very quiet, and still shining."
     ]
   },
+  'sea-treasures': {
+    title: "Sea Treasures",
+    series: "mediterranean",
+    medium: "Acrylic on canvas",
+    size: "15 × 15 cm without frame",
+    frame: "Rope frame, part of the work",
+    frameNote: "rope frame",
+    framePrice: 20,
+    price: 70,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/620df478-155b-42c8-bb3f-d668937751db/mediterranean-sea-treasures.jpg",
+      width: 2400,
+      height: 2400
+    },
+    alt: "Sea Treasures: a starfish dusted with glitter, a scallop shell, a wave, small pale fish and a sprig of dark seaweed on a deep blue ground, acrylic on canvas in a frame of twisted rope",
+    story: [
+      "Everything the sea leaves on the sand, gathered on one small canvas: a starfish with a little glitter in it, a shell, a curl of wave, a few pale fish and a branch of seaweed.",
+      "I wrapped the canvas in rope, the kind you find on a boat, and left one tassel loose at the corner, as if it had just come out of the water."
+    ]
+  },
   'maternity-i': {
     title: "Maternity I",
     series: "maternity",

@@ -27,6 +27,7 @@ export const WORKS = [
   { id: 'aegean-sea', anchor: 'aegean-sea', title: 'Aegean Sea', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-aegean-sea.jpg' },
   { id: 'cloudy-lighthouse', anchor: 'cloudy-lighthouse', title: 'Cloudy Lighthouse', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-cloudy-lighthouse.jpg' },
   { id: 'salty-sun', anchor: 'salty-sun', title: 'Salty Sun', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-salty-sun.jpg' },
+  { id: 'sea-treasures', anchor: 'sea-treasures', title: 'Sea Treasures', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-sea-treasures.jpg' },
 
   { id: 'maternity-1', anchor: 'maternity-i', title: 'Maternity I', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-i-v2.jpg' },
   { id: 'maternity-2', anchor: 'maternity-ii', title: 'Maternity II', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-ii-v2.jpg' },

@@ -23,8 +23,8 @@ export const PRESET_INFO = {
 export const PRESETS = {
   'mediterranean': {
     chosen: { bg: 'rgb(0,64,89)', alt: 'rgb(0,35,56)', fg: '#faf8f5' },
-    tonal: { bg: 'rgb(38,58,92)', alt: 'rgb(13,30,59)', fg: '#faf8f5' },
-    contrast: { bg: 'rgb(76,54,11)', alt: 'rgb(45,26,0)', fg: '#faf8f5' },
+    tonal: { bg: 'rgb(37,58,93)', alt: 'rgb(12,30,59)', fg: '#faf8f5' },
+    contrast: { bg: 'rgb(77,54,8)', alt: 'rgb(46,26,0)', fg: '#faf8f5' },
     night: { bg: 'rgb(20,17,15)', alt: 'rgb(29,25,22)', fg: '#faf8f5' },
   },
   'maternity': {
@@ -59,8 +59,8 @@ export const PRESETS = {
   },
   'all': {
     chosen: { bg: 'rgb(0,73,70)', alt: 'rgb(0,42,39)', fg: '#faf8f5' },
-    tonal: { bg: 'rgb(82,49,26)', alt: 'rgb(50,22,2)', fg: '#faf8f5' },
-    contrast: { bg: 'rgb(21,63,85)', alt: 'rgb(0,34,53)', fg: '#faf8f5' },
+    tonal: { bg: 'rgb(84,48,28)', alt: 'rgb(51,21,4)', fg: '#faf8f5' },
+    contrast: { bg: 'rgb(14,64,84)', alt: 'rgb(0,35,52)', fg: '#faf8f5' },
     night: { bg: 'rgb(20,17,15)', alt: 'rgb(29,25,22)', fg: '#faf8f5' },
   },
 };
