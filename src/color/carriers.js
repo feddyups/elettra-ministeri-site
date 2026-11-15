@@ -19,3 +19,10 @@ export const carriersOf = (scope, hex) => {
     .sort((a, b) => b.share - a.share)
     .map((x) => x.work);
 };
+
+/** How much of an average painting of `scope` is a color close to `hex`: the mean, over its works, of the shares of their main colors within CLOSE of it. */
+export const coverageOf = (scope, hex) => {
+  const target = lab(hex);
+  const total = scope.works.reduce((sum, work) => sum + work.palette.filter(([other]) => distance(target, lab(other)) < CLOSE).reduce((own, [, , share]) => own + share, 0), 0);
+  return total / scope.works.length;
+};
