@@ -41,7 +41,7 @@ export const renderWorkHero = (info, work, series) => {
   const kicker = h('a', { class: 'wp-kicker', href: series.path }, `${series.label} ›`);
   // a painting the artist has marked as a pick says so, beside its series, and leads to the page of her picks
   readPickSlugs().then((slugs) => {
-    if (slugs && slugs.includes(work.slug)) kicker.after(h('a', { class: 'wp-kicker wp-pick', href: '/paintings/artist-picks' }, starIcon(), 'Artist pick ›'));
+    if (slugs && slugs.includes(work.slug)) kicker.after(h('a', { class: 'wp-kicker wp-pick', href: '/artist-picks' }, starIcon(), 'Artist pick ›'));
   });
   const element = h('section', { class: 'wp-hero' },
     figure,

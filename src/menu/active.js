@@ -1,6 +1,6 @@
 import { initOnceFor } from '../lib/dom.js';
 import { CATALOGUE } from '../works/catalogue.js';
-import { seriesInfo } from '../color/scope.js';
+import { seriesInfo, seriesList } from '../color/scope.js';
 
 /**
  * Marks where the visitor is in the header menus: `is-current` on the entry for the page, and on the folder that holds
@@ -16,6 +16,8 @@ const seriesPath = (() => {
   return series ? trim(series.path) : null;
 })();
 
+const SERIES_PATHS = seriesList().filter((s) => s.slug !== 'textiles').map((s) => trim(s.path));
+
 const hrefOf = (item) => {
   const link = item.querySelector(':scope > a[href]');
   const folder = item.querySelector(':scope > .header-nav-folder-title[data-href]');
@@ -28,7 +30,7 @@ const mark = (item) => {
   if (!href) return;
   const isFolder = item.classList.contains('header-nav-item--folder');
   const exact = href === here;
-  const holdsHere = (isFolder && here.startsWith('/paintings')) || (seriesPath !== null && href === seriesPath);
+  const holdsHere = (isFolder && (here.startsWith('/paintings') || here === '/artist-picks' || SERIES_PATHS.includes(here))) || (seriesPath !== null && href === seriesPath);
   if (!exact && !holdsHere) return;
   item.classList.add('is-current');
   const link = item.querySelector(':scope > a[href]');

@@ -6,14 +6,15 @@ import { toneOf } from '../themes/tone-choice.js';
 import { h } from '../lib/elements.js';
 import { renderSwatch } from '../color/swatch.js';
 import { createColorFocus } from '../color/color-focus.js';
-import { seriesColors } from '../color/scope.js';
+import { seriesColors, seriesList } from '../color/scope.js';
 import { workPath } from '../works/work-path.js';
 import { SERIES_NOTES, pictureAt, randomWorkOf, worksOfSeries } from '../works/series-notes.js';
 
-/** The series a chapter belongs to, from the link to its page (/paintings/<series>). */
+/** The series a chapter belongs to, from the link to its page. */
 const seriesOf = (chapter) => {
-  const link = chapter.querySelector('a[href^="/paintings/"]');
-  return link ? link.getAttribute('href').split('/').filter(Boolean).pop() : null;
+  const hrefs = [...chapter.querySelectorAll('a[href]')].map((link) => link.getAttribute('href').replace(/\/$/, ''));
+  const found = seriesList().find((s) => hrefs.includes(s.path));
+  return found ? found.slug : null;
 };
 
 /**

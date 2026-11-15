@@ -40,9 +40,15 @@ const bySeries = {};
 Object.entries(CATALOGUE).forEach(([slug, work]) => { (bySeries[work.series] ||= []).push([slug, work]); });
 const tiles = (await page('/paintings')).html;
 for (const [series, works] of Object.entries(bySeries)) {
-  const path = SERIES[series]?.path || `/paintings/${series}`;
+  const path = SERIES[series]?.path || `/${series}`;
   const { status, html } = await page(path);
   if (status !== 200) { note(`${path} answers ${status}`); continue; }
+  if (SERIES[series]?.path && /data-series-page/.test(html)) {
+    ok(`${path} is built from the catalogue (${works.length} works)`);
+    const label = tiles.match(new RegExp(`<b>${SERIES[series]?.label}</b>[\\s\\S]{0,300}?<small>(\\d+) works?</small>`));
+    if (label && Number(label[1]) !== works.length) note(`/paintings says ${label[1]} works for ${SERIES[series].label}; the catalogue has ${works.length}`);
+    continue;
+  }
   const listed = [...html.matchAll(/<li class="th-work" id="([^"]+)"/g)].map((m) => m[1]);
   const missing = works.map(([slug]) => slug).filter((slug) => !listed.includes(slug));
   const extra = listed.filter((id) => !CATALOGUE[id]);

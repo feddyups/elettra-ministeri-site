@@ -29,15 +29,15 @@ export const TONE_SETTINGS = {
 };
 
 /**
- * One entry per series. `label` is its display name and `path` its page (default `/paintings/<slug>`); the color infographic uses both to
+ * One entry per series. `label` is its display name and `path` its page (default `/<slug>`); the color infographic uses both to
  * name and link each series. `bg` pins the series' background to a color of your own instead of the one worked out from its colors.
  */
 export const SERIES = {
-  mediterranean: { label: 'Mediterranean' },
-  maternity: { label: 'Maternity' },
-  sicily: { label: 'Sicily' },
-  'human-figure': { label: 'Human figure' },
-  archive: { label: 'Archive' },
+  mediterranean: { label: 'Mediterranean', path: '/mediterranean' },
+  maternity: { label: 'Maternity', path: '/maternity' },
+  sicily: { label: 'Sicily', path: '/sicily' },
+  'human-figure': { label: 'Human figure', path: '/human-figure' },
+  archive: { label: 'Archive', path: '/archive' },
   textiles: { label: 'Textiles', path: '/textiles' },
 };
 

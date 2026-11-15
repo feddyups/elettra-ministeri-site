@@ -4,6 +4,7 @@ import { initWorkPage } from './work-page.js';
 import { initSeriesStrip } from './series-strip.js';
 import { initSeriesGrid } from './series-grid.js';
 import { initPicksGrid } from './picks-grid.js';
+import { initSeriesPage, mountSeriesPages } from './series-page.js';
 import './pager.js';
 
 /*
@@ -17,6 +18,8 @@ const withStyles = (names, init) => (element) => {
 
 initOnceFor('[data-work-page]', 'work-page', withStyles(['../color/swatch.css', '../color/color-strip.css', '../color/color-atlas.css', './work-page.css'], initWorkPage));
 initOnceFor('.item-pagination', 'pager-style', withStyles(['./pager.css'], () => {}));
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountSeriesPages); else mountSeriesPages();
+initOnceFor('[data-series-page]', 'series-page', initSeriesPage);
 initOnceFor('ul.th-grid', 'series-grid', initSeriesGrid);
 initOnceFor('ul.th-grid[data-picks]', 'picks-grid', initPicksGrid);
 initOnceFor('.th-work', 'series-strip', withStyles(['../color/swatch.css', '../color/color-strip.css'], initSeriesStrip));
