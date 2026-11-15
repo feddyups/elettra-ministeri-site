@@ -70,6 +70,7 @@ export const renderWorkIndex = (works, seriesData, filter, drawer) => {
     group('Made on', 'medium', MEDIA.filter((m) => works.some((w) => w.medium === m.key)).map((m) => [m.key, m.label])),
     group('Price', 'price', PRICE_BANDS.filter((b) => works.some((w) => w.priceBand === b.key)).map((b) => [b.key, b.label])),
     ...(works.some((w) => w.onSale) ? [group('Sale', 'sale', [['on', 'On sale']])] : []),
+    ...(works.some((w) => w.sold) ? [group('Availability', 'availability', [['available', 'Available'], ['sold', 'Sold']])] : []),
     group('Mostly', 'family', Object.entries(FAMILY_LABELS)),
     group('Colors built as', 'build', BUILDS.map((b) => [b.key, b.label])));
 

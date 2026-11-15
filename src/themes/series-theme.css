@@ -140,3 +140,6 @@ html .th-group-head { display: grid; gap: var(--em-space-2xs); margin: var(--em-
 html .th-group-head h2 { margin: 0; color: inherit; font: var(--em-weight-medium) var(--em-display-sm) / var(--em-leading-none) var(--em-font-serif); letter-spacing: var(--em-tracking-tight); }
 html .th-group-head p.th-group-about { max-width: 60ch; margin-top: var(--em-space-xs); color: inherit; font-size: var(--em-text-md, 1.0625rem); letter-spacing: normal; text-transform: none; line-height: var(--em-leading-snug); }
 html .th-group-head p { margin: 0; color: var(--em-muted); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }
+
+/* a painting the artist has sold shows the word where its price would be */
+html .th-price.is-sold { text-transform: uppercase; letter-spacing: var(--em-tracking-label); opacity: 0.8; }

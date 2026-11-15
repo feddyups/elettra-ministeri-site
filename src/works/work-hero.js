@@ -4,6 +4,7 @@ import { renderColorStrip } from '../color/color-strip.js';
 import { openLightbox } from './lightbox.js';
 import { createWorkPaint } from './work-paint.js';
 import { renderPrice } from './price-view.js';
+import { isSoldWork } from './price.js';
 import { readPickSlugs } from './picks.js';
 import { starIcon } from './pick-star.js';
 
@@ -49,7 +50,7 @@ export const renderWorkHero = (info, work, series) => {
       h('h1', null, info.title),
       h('p', { class: 'wp-facts' }, facts),
       renderPrice(info, { tag: 'p', className: 'wp-price', percent: true }),
-      h('a', { class: 'wp-cta', href: '#enquire' }, 'Enquire about this work')));
+      h('a', { class: 'wp-cta', href: '#enquire' }, isSoldWork(info) ? 'Ask for one like it' : 'Enquire about this work')));
 
   return { element };
 };

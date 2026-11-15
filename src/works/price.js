@@ -1,5 +1,5 @@
 import { CATALOGUE } from './catalogue.js';
-import { discountFor } from './offers.js';
+import { discountFor, isSold } from './offers.js';
 
 const EUR = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 
@@ -20,6 +20,9 @@ export const discountOf = (work) => {
   const percent = listValue(work) ? discountFor(SLUGS.get(work)) : 0;
   return percent && reduced(work, percent) < listValue(work) ? percent : 0;
 };
+
+/** Whether the artist has marked a work as sold. */
+export const isSoldWork = (work) => isSold(SLUGS.get(work));
 
 /** Whether a work is on sale. */
 export const onSale = (work) => discountOf(work) > 0;
@@ -42,15 +45,17 @@ export const PRICE_BANDS = [
 ];
 
 export const priceBandOf = (work) => {
-  const band = PRICE_BANDS.find((b) => b.test(priceValue(work)));
+  const band = !isSoldWork(work) && PRICE_BANDS.find((b) => b.test(priceValue(work)));
   return band ? band.key : null;
 };
 
 /**
  * What an enquiry names the work as: the label, then the price shown at that moment with the date, so the enquiry keeps the price (and any
  * discount) it was made against ("Maternity III · listed at €600 on 2026-11-10", or "… · listed at €510 (was €600, 15% off) on 2026-11-10").
+ * A sold work is named as sold, with the list price a new painting of a similar size would start from ("Medusa · sold · from €100").
  */
 export const enquiryTopic = (label, work, today = new Date()) => {
+  if (isSoldWork(work)) return `${label} · sold${listValue(work) ? ` · from ${EUR.format(listValue(work))}` : ''}`;
   if (!priceValue(work)) return label;
   const offer = onSale(work) ? ` (was ${listPriceOf(work)}, ${discountOf(work)}% off)` : '';
   return `${label} · listed at ${priceOf(work)}${offer} on ${today.toISOString().slice(0, 10)}`;

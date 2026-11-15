@@ -85,6 +85,18 @@ export const readSets = async () => {
   return [...found.values()].filter((set) => set.works.length >= 1);
 };
 
+/**
+ * The page addresses of the paintings the artist has marked as sold, from the sheet's "Status" column (a cell reading Sold, or Sold out, in any case; anything else, or
+ * nothing, is available). Resolves to `null` when the sheet cannot be read, and to an empty set when it has no such column or no sold painting.
+ */
+export const readSold = async () => {
+  const sheet = await readRows();
+  if (!sheet) return null;
+  const sold = new Set();
+  if (sheet.status >= 0) sheet.rows.forEach((cells) => { if (/^sold(?: out)?$/i.test((cells[sheet.status] || '').trim())) sold.add(slugOf(cells[sheet.address])); });
+  return sold;
+};
+
 const readSheet = async () => {
   if (!PICKS_SHEET_CSV) return null;
   try {
@@ -100,6 +112,7 @@ const readSheet = async () => {
       discount: column('discount', 'discount %', 'discount (%)', 'sale', 'sale %', 'sale (%)', 'percent off'),
       set: column('set', 'sets', 'group'),
       setNote: column('set description', 'set note', 'set notes'),
+      status: column('status', 'availability'),
     };
   } catch (error) {
     return null;

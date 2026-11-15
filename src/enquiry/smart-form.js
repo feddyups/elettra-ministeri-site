@@ -3,6 +3,15 @@ import { h } from '../lib/elements.js';
 const COMMISSION = 'Commission';
 const COMMISSION_PLACEHOLDER = 'Tell me the size you have in mind, the colors you love and the space it is for.';
 
+const SOLD = / · sold(?: · from €[\d,]+)?$/;
+
+/** The title of the sold work the form was opened for (`?SQF_WORK=<title> · sold · from €100`), or null when it is about any other work or none. */
+const soldWork = () => {
+  const match = location.search.match(/[?&]SQF_WORK=([^&]*)/);
+  const topic = match ? decodeURIComponent(match[1].replace(/\+/g, ' ')) : '';
+  return SOLD.test(topic) ? topic.replace(SOLD, '') : null;
+};
+
 const fieldNamed = (form, legend) => [...form.querySelectorAll('fieldset.field')].find((f) => (f.querySelector('legend')?.textContent || '').trim().startsWith(legend));
 
 const optionText = (input) => (input.closest('.option')?.textContent || input.value || '').trim();
@@ -11,6 +20,7 @@ const optionText = (input) => (input.closest('.option')?.textContent || input.va
  * Makes the enquiry form ask only what applies: the budget question and a short explanation of how a commission works
  * appear once "Commission" is ticked under "Type of enquiry"; for a purchase, an exhibition or press enquiry, or anything else,
  * the budget stays out of the way (a purchase already has the listed price). A budget chosen and then hidden is cleared so it is not sent.
+ * For a sold work there is nothing to purchase: "Purchase" is taken away, "Commission" is ticked, and the message starts from the work the visitor would like one like.
  */
 export const initSmartForm = () => {
   let tries = 0;
@@ -34,12 +44,24 @@ export const initSmartForm = () => {
     const message = form.querySelector('textarea');
     const defaultPlaceholder = message && message.placeholder;
 
+    const sold = soldWork();
+    if (sold) {
+      [...type.querySelectorAll('.option')].forEach((option) => {
+        const input = option.querySelector('input');
+        if (optionText(input) !== 'Purchase') return;
+        if (input.checked) input.click();
+        option.setAttribute('data-em-off', '');
+      });
+      const commission = [...type.querySelectorAll('input')].find((input) => optionText(input) === COMMISSION);
+      if (commission && !commission.checked) commission.click();
+    }
+
     const update = () => {
       const commission = [...type.querySelectorAll('input:checked')].some((i) => optionText(i) === COMMISSION);
       panel.hidden = !commission;
       if (commission) budget.removeAttribute('data-em-off'); else budget.setAttribute('data-em-off', '');
       if (!commission) budget.querySelectorAll('input:checked').forEach((i) => i.click());
-      if (message) message.placeholder = commission ? COMMISSION_PLACEHOLDER : defaultPlaceholder;
+      if (message) message.placeholder = commission ? (sold ? `Tell me what you loved about ${sold}, the size you have in mind and the space it is for.` : COMMISSION_PLACEHOLDER) : defaultPlaceholder;
     };
     form.addEventListener('change', update);
     update();

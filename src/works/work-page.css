@@ -238,3 +238,6 @@ html .wp h2.wp-set-title { margin: var(--em-space-2xs) 0 var(--em-space-m); font
 .wp-set-list li.is-current span { font-weight: var(--em-weight-medium); }
 .wp-set-list a:hover span, .wp-set-list a:focus-visible span { text-decoration: underline; text-underline-offset: var(--em-space-2xs); }
 .wp-set-list a:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
+
+/* a painting the artist has sold shows the word where its price would be */
+html .wp .wp-price.is-sold { font: var(--em-weight-medium) var(--em-text-md) / var(--em-leading-none) var(--em-font-sans); letter-spacing: var(--em-tracking-label); text-transform: uppercase; opacity: 0.8; }

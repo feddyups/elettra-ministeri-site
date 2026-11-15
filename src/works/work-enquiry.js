@@ -1,5 +1,5 @@
 import { h } from '../lib/elements.js';
-import { enquiryTopic } from './price.js';
+import { enquiryTopic, isSoldWork } from './price.js';
 
 /** The enquiry form, inline: the site's /enquire page in its embedded mode, told which painting it is about; the frame grows to fit the form. */
 export const renderWorkEnquiry = (info) => {
@@ -10,7 +10,10 @@ export const renderWorkEnquiry = (info) => {
   });
   return h('section', { class: 'wp-section wp-enquiry', id: 'enquire' },
     h('p', { class: 'ca-label' }, 'Enquire'),
-    h('h2', null, `Interested in ${info.title}?`),
-    h('p', { class: 'wp-enquiry-note' }, 'Tell me a little about yourself and what you have in mind, and I will write back.'),
+    isSoldWork(info)
+      ? [h('h2', null, `${info.title} has found its home.`),
+        h('p', { class: 'wp-enquiry-note' }, 'Would you like a painting in its spirit? Tell me the size, the colors and the space it is for, and I will write back with a proposal.')]
+      : [h('h2', null, `Interested in ${info.title}?`),
+        h('p', { class: 'wp-enquiry-note' }, 'Tell me a little about yourself and what you have in mind, and I will write back.')],
     frame);
 };

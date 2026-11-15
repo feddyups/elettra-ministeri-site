@@ -1,9 +1,9 @@
 /**
- * The choices a visitor has made on the Paintings page (a series, a set, a subject, a medium, a color family, a way of building the colors, a price range, the works on sale), shared by every chart:
+ * The choices a visitor has made on the Paintings page (a series, a set, a subject, a medium, a color family, a way of building the colors, a price range, the works on sale, the works still available or already sold), shared by every chart:
  * choosing the same thing again clears it. `subscribe` is called now and after each change.
  */
 export const createFilter = () => {
-  const state = { series: null, set: null, subject: null, medium: null, family: null, build: null, price: null, sale: null };
+  const state = { series: null, set: null, subject: null, medium: null, family: null, build: null, price: null, sale: null, availability: null };
   const listeners = new Set();
   const notify = () => listeners.forEach((fn) => fn({ ...state }));
   return {
@@ -23,4 +23,5 @@ export const passes = (state, work) =>
   (!state.family || work.family === state.family) &&
   (!state.build || work.builds.includes(state.build)) &&
   (!state.price || work.priceBand === state.price) &&
-  (!state.sale || work.onSale);
+  (!state.sale || work.onSale) &&
+  (!state.availability || (state.availability === 'sold') === work.sold);
