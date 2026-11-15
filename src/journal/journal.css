@@ -92,7 +92,7 @@ html[data-series="journal"] article[data-jl-ready] .blog-item-top-wrapper {
 html[data-series="journal"] article[data-jl-ready] :is(.blog-item-meta-wrapper, .blog-meta-section, .blog-item-author-date-wrapper) { display: none !important; }
 /* the entry's blocks follow each other in the order they were written, as a column, whatever grid cell they were once placed in */
 html[data-series="journal"] article[data-jl-ready] .blog-item-content :is(.sqs-layout, .sqs-row, .sqs-col-12) { display: block !important; max-width: none; width: 100%; }
-html[data-series="journal"] article[data-jl-ready] .blog-item-content .sqs-block { width: 100% !important; max-width: none; }
+html[data-series="journal"] article[data-jl-ready] .blog-item-content .sqs-block { box-sizing: border-box; width: 100% !important; max-width: none; }
 html[data-series="journal"] article[data-jl-ready] .blog-item-content .sqs-block-image .sqs-block-content { width: 100% !important; }
 html[data-series="journal"] article[data-jl-ready] .entry-title {
   margin: 0 0 var(--em-space-l);
