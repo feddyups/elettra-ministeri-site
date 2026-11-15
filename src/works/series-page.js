@@ -3,6 +3,7 @@ import { loadStylesheet } from '../lib/stylesheet.js';
 import { SERIES_NOTES } from './series-notes.js';
 import { seriesInfo } from '../color/scope.js';
 import { seriesPager, paintingSeries } from './pager.js';
+import { cardOf } from '../print/cards.js';
 
 const PICKS_PATH = '/artist-picks';
 const PICKS_INTRO = ['The paintings I come back to. My choice changes from time to time, so look again.'];
@@ -32,8 +33,9 @@ export const initSeriesPage = (shell) => {
     h('nav', { class: 'th-more', 'aria-label': 'More paintings' },
       h('span', null, 'More paintings'),
       ...others.map((s) => h('a', { href: s.path }, s.label)),
-      h('a', { href: '/paintings' }, 'All paintings')),
-    seriesPager(slug));
+      h('a', { href: '/paintings' }, 'All paintings')));
+  const bar = seriesPager(slug);
+  if (bar) shell.after(bar);
   loadStylesheet(new URL('./pager.css', import.meta.url).href);
 };
 
@@ -44,16 +46,23 @@ const initPicksPage = (shell) => {
 };
 
 /**
- * The series pages and the Artist picks page are empty pages in Squarespace (the page's name, address and search text are set there); on the
- * address of one of them this puts its content into the page.
+ * The series pages, the Artist picks page and the postcard pages are empty pages in Squarespace (the page's name, address, search text and social
+ * image are set there); on the address of one of them this puts its content into the page: the page of a series or of the picks below the header
+ * and between the page's margins, a postcard's page as a painting's page is made (`[data-work-page]`, filled by work-page.js).
  */
 export const mountSeriesPages = () => {
   const here = location.pathname.replace(/\/$/, '');
   const picks = here === PICKS_PATH;
   const series = !picks && paintingSeries().find((s) => s.path === here);
+  const card = !picks && !series && /^\/(postcards|print)\/[a-z-]+$/.test(here) && cardOf(here.split('/').pop());
   const main = document.querySelector('main#page, main');
-  if ((!picks && !series) || !main || main.querySelector('[data-series-page], .th')) return;
+  if ((!picks && !series && !card) || !main || main.querySelector('[data-series-page], [data-work-page], .th')) return;
+  if (card) { main.append(h('div', { 'data-work-page': '' })); return; }
   const shell = h('div', { 'data-series-page': picks ? 'artist-picks' : series.slug, 'data-em-series-page': '1' });
   main.append(shell);
+  const header = document.querySelector('header');
+  const clear = () => shell.style.setProperty('--em-series-top', `${header ? header.getBoundingClientRect().height : 0}px`);
+  clear();
+  addEventListener('resize', clear);
   if (picks) initPicksPage(shell); else initSeriesPage(shell);
 };

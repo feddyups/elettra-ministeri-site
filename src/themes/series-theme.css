@@ -147,3 +147,9 @@ html .th-price.is-sold s { opacity: 0.55; text-decoration-thickness: var(--em-ha
 html .th-price.is-sold b { padding: 0.2em 0.65em; background: var(--em-ink); color: var(--em-bg); font-size: 0.72em; font-weight: var(--em-weight-medium); letter-spacing: var(--em-tracking-label); text-transform: uppercase; }
 /* the price, or the word Sold, and the way to enquire sit at the right of the caption, also when they wrap under the title */
 html .th-cap .th-act { margin-left: auto; }
+
+/* A series page or the Artist picks page built into an empty Squarespace page (works/series-page.js): the margins of a section and the clearance of the header. */
+main [data-series-page] { box-sizing: border-box; padding: calc(var(--em-series-top, 85px) + 56px) 24px 56px; }
+@media (min-width: 768px) {
+  main [data-series-page] { padding: calc(var(--em-series-top, 134px) + 106px) 64px 106px; }
+}

@@ -10,10 +10,10 @@ import { seriesColors, seriesList } from '../color/scope.js';
 import { workPath } from '../works/work-path.js';
 import { SERIES_NOTES, pictureAt, randomWorkOf, worksOfSeries } from '../works/series-notes.js';
 
-/** The series a chapter belongs to, from the link to its page. */
+/** The series a chapter belongs to: the one named by the last part of the link to its page. */
 const seriesOf = (chapter) => {
-  const hrefs = [...chapter.querySelectorAll('a[href]')].map((link) => link.getAttribute('href').replace(/\/$/, ''));
-  const found = seriesList().find((s) => hrefs.includes(s.path));
+  const names = [...chapter.querySelectorAll('a[href]')].map((link) => link.getAttribute('href').replace(/\/$/, '').split('/').pop());
+  const found = seriesList().find((s) => names.includes(s.slug));
   return found ? found.slug : null;
 };
 
