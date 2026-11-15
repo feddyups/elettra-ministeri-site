@@ -1,4 +1,5 @@
 import { CATALOGUE } from '../../works/catalogue.js';
+import { listPictureAt } from '../../works/series-notes.js';
 import { allWorks, seriesInfo } from '../../color/scope.js';
 
 const WIDTH = 2000;
@@ -15,7 +16,7 @@ const slideFor = (atlasWork) => {
     title: work.title,
     meta: [work.medium, work.size].filter(Boolean).join(' · '),
     href: series.path,
-    image: `${work.image.src}?format=${WIDTH}w`,
+    image: listPictureAt(work, WIDTH),
     alt: work.alt,
   };
 };

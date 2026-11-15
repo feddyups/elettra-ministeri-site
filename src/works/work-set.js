@@ -1,6 +1,6 @@
 import { h } from '../lib/elements.js';
 import { CATALOGUE } from './catalogue.js';
-import { pictureAt } from './series-notes.js';
+import { listImage, listPictureAt } from './series-notes.js';
 import { setOf } from './sets.js';
 import { workPath } from './work-path.js';
 
@@ -20,7 +20,7 @@ export const renderWorkSet = (slug) => {
       const current = member === slug;
       return h('li', { class: current ? 'is-current' : null },
         h('a', { href: workPath(member), 'aria-current': current ? 'page' : false },
-          h('img', { src: pictureAt(entry, 500), alt: '', loading: 'lazy', width: entry.image.width, height: entry.image.height }),
+          h('img', { src: listPictureAt(entry, 500), alt: '', loading: 'lazy', width: listImage(entry).width, height: listImage(entry).height }),
           h('span', null, entry.title)));
     })));
 };

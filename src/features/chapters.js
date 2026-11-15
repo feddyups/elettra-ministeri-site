@@ -8,7 +8,7 @@ import { renderSwatch } from '../color/swatch.js';
 import { createColorFocus } from '../color/color-focus.js';
 import { seriesColors, seriesList } from '../color/scope.js';
 import { workPath } from '../works/work-path.js';
-import { SERIES_NOTES, pictureAt, randomWorkOf, worksOfSeries } from '../works/series-notes.js';
+import { SERIES_NOTES, listPictureAt, randomWorkOf, worksOfSeries } from '../works/series-notes.js';
 
 /** The series a chapter belongs to: the one named by the last part of the link to its page. */
 const seriesOf = (chapter) => {
@@ -27,7 +27,7 @@ const seriesOf = (chapter) => {
 export const initChapter = (chapter) => {
   const series = seriesOf(chapter);
   const pick = series && randomWorkOf(series);
-  if (pick) chapter.setAttribute('data-img', pictureAt(pick[1], 1500)); // a different work of the series on each visit; its number of works comes from the catalogue
+  if (pick) chapter.setAttribute('data-img', listPictureAt(pick[1], 1500)); // a different work of the series on each visit; its number of works comes from the catalogue
   const meta = chapter.querySelector('.meta');
   const media = series && (SERIES_NOTES[series] || {}).media;
   if (meta && series) meta.textContent = media ? `${worksOfSeries(series).length} works · ${media}` : meta.textContent.replace(/^\d+ works?/, `${worksOfSeries(series).length} works`);

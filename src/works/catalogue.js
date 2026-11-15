@@ -189,6 +189,11 @@ export const CATALOGUE = {
       width: 2400,
       height: 2428
     },
+    thumbnail: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/12334e4f-3f9d-4180-962d-c7d94b945f81/mediterranean-sea-treasures.jpg",
+      width: 2400,
+      height: 2400
+    },
     alt: "Sea Treasures: a starfish dusted with glitter, a scallop shell, a wave, small pale fish and a sprig of dark seaweed on a deep blue ground, acrylic on canvas in a frame of twisted rope",
     story: [
       "Everything the sea leaves on the sand, gathered on one small canvas: a starfish with a little glitter in it, a shell, a curl of wave, a few pale fish and a branch of seaweed.",

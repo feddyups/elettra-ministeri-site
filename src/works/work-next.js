@@ -2,6 +2,7 @@ import { h } from '../lib/elements.js';
 import { nextWorks, seenWorks, markSeen } from './walk.js';
 import { seriesInfo } from '../color/scope.js';
 import { CATALOGUE } from './catalogue.js';
+import { listImage, listPictureAt } from './series-notes.js';
 import { nextBandColor } from './next-tone.js';
 import { toneOf } from '../themes/tone-choice.js';
 
@@ -32,7 +33,7 @@ export const renderWorkNext = ({ work, scope, intro }) => {
       const series = seriesInfo(other.series);
       return h('a', { class: 'wp-next-item', href: other.href },
         h('span', { class: 'wp-next-kind' }, KIND_TITLE[kind]),
-        entry && h('span', { class: 'wp-next-picture' }, h('img', { src: `${entry.image.src}?format=500w`, alt: '', loading: 'lazy', width: entry.image.width, height: entry.image.height })),
+        entry && h('span', { class: 'wp-next-picture' }, h('img', { src: listPictureAt(entry, 500), alt: '', loading: 'lazy', width: listImage(entry).width, height: listImage(entry).height })),
         h('span', { class: 'wp-next-strip', 'aria-hidden': 'true' }, other.palette.map(([hex, , share]) => h('i', { style: { '--color': hex, '--share': share } }))),
         h('b', null, other.title),
         h('span', { class: 'wp-next-reason' }, reason, crossSeries && series ? ` From ${series.label}.` : ''));

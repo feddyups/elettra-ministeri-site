@@ -20,11 +20,17 @@ export const worksOfSeries = (series) => Object.entries(CATALOGUE).filter(([, wo
 /** The address of a work's picture at a given width. */
 export const pictureAt = (work, width) => `${work.image.src}?format=${width}w`;
 
+/** The picture a work shows in lists (the grids, the index, the strips and the home): its `thumbnail` when the entry has one (a view without its frame), otherwise its `image`. */
+export const listImage = (work) => work.thumbnail || work.image;
+
+/** The address of a work's list picture at a given width. */
+export const listPictureAt = (work, width) => `${listImage(work).src}?format=${width}w`;
+
 /** The picture that stands for a series, at a given width (the first work of the series if the chosen cover is gone). */
 export const coverOf = (series, width) => {
   const chosen = CATALOGUE[(SERIES_NOTES[series] || {}).cover];
   const work = chosen && chosen.series === series ? chosen : (worksOfSeries(series)[0] || [])[1];
-  return work ? pictureAt(work, width) : null;
+  return work ? listPictureAt(work, width) : null;
 };
 
 /** A work of the series chosen at random, as `[slug, work]` (or null for a series without works): a different one on each visit. */

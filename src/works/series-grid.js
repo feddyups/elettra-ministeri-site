@@ -1,5 +1,5 @@
 import { h } from '../lib/elements.js';
-import { worksOfSeries, pictureAt } from './series-notes.js';
+import { worksOfSeries, listImage, listPictureAt } from './series-notes.js';
 import { seriesGroups } from './series-order.js';
 import { workPath } from './work-path.js';
 import { markPicks } from './pick-star.js';
@@ -24,11 +24,11 @@ const setLine = (slug, grouped) => {
 /** One entry of a series page: the picture, its title and facts, and the way to enquire with the price beside it. */
 export const renderEntry = (slug, work, grouped = false) => {
   const page = workPath(slug);
-  const { width, height } = work.image;
+  const { width, height } = listImage(work);
   return h('li', { class: 'th-work', id: slug },
     h('a', { class: 'th-img', href: page },
       h('img', {
-        src: pictureAt(work, 1000), srcset: WIDTHS.map((w) => `${pictureAt(work, w)} ${w}w`).join(', '), sizes: SIZES,
+        src: listPictureAt(work, 1000), srcset: WIDTHS.map((w) => `${listPictureAt(work, w)} ${w}w`).join(', '), sizes: SIZES,
         alt: work.alt, width: 1000, height: Math.round(1000 * height / width), loading: 'lazy',
       }),
       onSale(work) && h('span', { class: 'th-sale' }, `${discountOf(work)}% off`)),
