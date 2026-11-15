@@ -143,3 +143,5 @@ html .th-group-head p { margin: 0; color: var(--em-muted); font-size: var(--em-t
 
 /* a painting the artist has sold shows the word where its price would be */
 html .th-price.is-sold { text-transform: uppercase; letter-spacing: var(--em-tracking-label); opacity: 0.8; }
+/* the price, or the word Sold, and the way to enquire sit at the right of the caption, also when they wrap under the title */
+html .th-cap .th-act { margin-left: auto; }
