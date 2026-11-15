@@ -35,7 +35,7 @@ html[data-series="journal"] .jl-kicker,
   color: var(--em-muted);
 }
 .jl-kicker-text { margin: 0 0 var(--em-space-ml); }
-html[data-series="journal"] a.jl-kicker { display: inline-block; margin-bottom: var(--em-space-l); color: var(--em-ink) !important; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+html[data-series="journal"] a.jl-kicker { display: inline-block; width: fit-content; align-self: flex-start; margin-bottom: var(--em-space-l); color: var(--em-ink) !important; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
 html[data-series="journal"] a.jl-kicker:hover { color: var(--jl-hover) !important; }
 html[data-series="journal"] .jl-link { color: var(--em-ink) !important; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
 html[data-series="journal"] .jl-link:hover { color: var(--jl-hover) !important; }
@@ -82,9 +82,18 @@ html[data-series="journal"] .blog-list[data-jl-hidden] { display: none; }
 
 /* ----- an entry ----- */
 html[data-series="journal"] article[data-jl-ready] { padding-top: clamp(6rem, 11vw, 8.5rem); }
-html[data-series="journal"] article[data-jl-ready] .blog-item-top-wrapper,
-html[data-series="journal"] article[data-jl-ready] .blog-item-content > .sqs-layout { max-width: var(--jl-col); margin-inline: auto; }
-html[data-series="journal"] article[data-jl-ready] .blog-item-meta-wrapper { display: none; }
+html[data-series="journal"] article[data-jl-ready] .blog-item-top-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: var(--jl-col);
+  margin-inline: auto;
+}
+html[data-series="journal"] article[data-jl-ready] :is(.blog-item-meta-wrapper, .blog-meta-section, .blog-item-author-date-wrapper) { display: none !important; }
+/* the entry's blocks follow each other in the order they were written, as a column, whatever grid cell they were once placed in */
+html[data-series="journal"] article[data-jl-ready] .blog-item-content :is(.sqs-layout, .sqs-row, .sqs-col-12) { display: block !important; max-width: none; width: 100%; }
+html[data-series="journal"] article[data-jl-ready] .blog-item-content .sqs-block { width: 100% !important; max-width: none; }
+html[data-series="journal"] article[data-jl-ready] .blog-item-content .sqs-block-image .sqs-block-content { width: 100% !important; }
 html[data-series="journal"] article[data-jl-ready] .entry-title {
   margin: 0 0 var(--em-space-l);
   max-width: none;
@@ -97,7 +106,7 @@ html[data-series="journal"] article[data-jl-ready] .entry-title {
   text-wrap: balance;
   color: var(--em-ink) !important;
 }
-.jl-meta { margin: 0 0 clamp(2rem, 4vw, 3.25rem); }
+.jl-meta { margin: 0 0 clamp(2rem, 4vw, 3.25rem); text-align: left; align-self: flex-start; }
 
 /* the text: Jost for reading, set to a comfortable measure */
 html[data-series="journal"] article[data-jl-ready] .blog-item-content { color: var(--em-body); }
