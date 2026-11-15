@@ -219,3 +219,29 @@ html[data-series="journal"] article[data-jl-ready] .blog-item-comments { display
 .jl-card-text p:not(.jl-kicker-text) { margin: 0; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.65; color: var(--em-muted); max-width: 44ch; }
 .jl-card-text .jl-link { margin-top: var(--em-space-xs); }
 @media (max-width: 40em) { .jl-card { grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr); } }
+
+/* the title and its meta line, and a steadier rhythm between the blocks of an entry */
+html[data-series="journal"] article[data-jl-ready] .blog-item-title { margin: 0; padding: 0; height: auto; width: 100%; }
+html[data-series="journal"] article[data-jl-ready] .entry-title { margin-bottom: 0; padding-bottom: 0.1em; }
+.jl-meta { margin-top: var(--em-space-l); }
+html[data-series="journal"] article[data-jl-ready] .blog-item-content :is(.sqs-block-html, .sqs-block-horizontalrule) { margin-block: 0 !important; padding-block: 0 !important; }
+html[data-series="journal"] article[data-jl-ready] .blog-item-content .sqs-block-html .sqs-block-content { margin: 0; padding: 0; }
+html[data-series="journal"] .blog-item-content hr { margin-block: clamp(1.75rem, 3.5vw, 3rem); }
+
+/* the entry's tags, which lead to related entries, are chips like the filters of the index */
+html[data-series="journal"] article[data-jl-ready] .blog-item-tags,
+html[data-series="journal"] article[data-jl-ready] .blog-item-tags-wrapper { display: flex; flex-wrap: wrap; gap: var(--em-space-xs); max-width: var(--jl-col); margin: clamp(2rem, 4vw, 3rem) auto 0; padding: 0; }
+html[data-series="journal"] a.blog-item-tag {
+  padding: 0.6rem 0.95rem;
+  border: 1px solid var(--em-line);
+  border-radius: var(--em-radius-pill);
+  font-family: var(--em-font-sans);
+  font-size: var(--em-text-xs);
+  font-weight: var(--em-weight-medium);
+  line-height: 1;
+  letter-spacing: var(--em-tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--em-muted) !important;
+}
+html[data-series="journal"] a.blog-item-tag:hover { border-color: var(--em-ink); color: var(--em-ink) !important; }
