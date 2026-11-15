@@ -4,9 +4,10 @@
  * the "Set" column belong together (a "Set description" column gives the set its short text), and what is written there replaces this list. `works` are page addresses, in the order the set is read.
  */
 export const DEFAULT_SETS = [
-  { label: 'Maternity', description: 'Three paintings on motherhood, made together in one family of colors.', works: ['maternity-i', 'maternity-ii', 'maternity-iii'] },
-  { label: 'Bonds', description: 'Three paintings of two figures together, in one key of red, green and blue: two embraces and a sphere lifted by both.', works: ['amore-e-pandemia-i', 'amore-e-pandemia-ii', 'the-bonding'] },
-  { label: 'Talismans', description: 'Three small paintings of luck and protection: a horn, a hand holding a heart, and a scarab lifting the sun, on green nights of stars and gems.', works: ['heart-in-hand', 'scarab', 'scio'] },
-  { label: 'Messengers of Love', description: 'Two doves shaped like hands, facing each other inside a red heart: a message arriving in a time of great deprivation.', works: ['messengers-of-love'] },
-  { label: 'Icons of Sicily', description: 'Six paintings of the emblems of Sicily: the painted cart and its wheel, pistachios, the sun, the paladino and Santa Rosalia.', works: ['carretto', 'cart-wheel', 'pistacchi', 'sole', 'paladino-siciliano', 'santa-rosalia'] },
+  { label: 'Maternity', description: 'Pregnancy as it is lived: strength, change and tenderness, without idealizing.', works: ['maternity-i', 'maternity-ii', 'maternity-iii'] },
+  { label: 'Bonds', description: 'What passes between two people: the embrace, the shared weight, the gesture that holds.', works: ['amore-e-pandemia-i', 'amore-e-pandemia-ii', 'the-bonding'] },
+  { label: 'Talismans', description: 'Small charms for luck and protection, glittering against the night.', works: ['heart-in-hand', 'scarab', 'scio'] },
+  { label: 'Messengers of Love', description: 'A message of love, arriving when it is needed most.', works: ['messengers-of-love'] },
+  { label: 'Works on Paper', description: 'Color on paper: small, intimate works where the hand stays close to the surface.', works: ['cactus-in-the-desert', 'help', 'lemons', 'lilies', 'rainbow-and-cacti', 'rainbow-shell', 'seahorse', 'swan-in-a-shell'] },
+  { label: 'Icons of Sicily', description: 'The island\'s emblems, painted as vividly as Sicily itself.', works: ['carretto', 'cart-wheel', 'pistacchi', 'sole', 'paladino-siciliano', 'santa-rosalia'] },
 ];
