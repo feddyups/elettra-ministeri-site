@@ -25,7 +25,7 @@ export const WORKS = [
   { id: 'medusa', anchor: 'medusa', title: 'Medusa', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-medusa.jpg' },
   { id: 'vacanze-in-santorini', anchor: 'vacanze-in-santorini', title: 'Vacanze a Santorini', series: 'mediterranean', onSite: true, catalogue: 'rectified/archive-donkey-in-santorini.jpg' },
   { id: 'aegean-sea', anchor: 'aegean-sea', title: 'Aegean Sea', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-aegean-sea.jpg' },
-  { id: 'cloudy-lighthouse', anchor: 'cloudy-lighthouse', title: 'Cloudy Lighthouse', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-cloudy-lighthouse.jpg' },
+  { id: 'cloudy-lighthouse', anchor: 'cloudy-lighthouse', title: 'Cloudy Lighthouse', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-cloudy-lighthouse-v2.jpg' },
   { id: 'salty-sun', anchor: 'salty-sun', title: 'Salty Sun', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-salty-sun.jpg' },
   { id: 'sea-treasures', anchor: 'sea-treasures', title: 'Sea Treasures', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-sea-treasures.jpg' },
 

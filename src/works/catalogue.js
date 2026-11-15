@@ -148,14 +148,14 @@ export const CATALOGUE = {
     size: "21 × 15 cm",
     price: 80,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/74188465-66b4-4aa9-b7e0-ba41c170e3f9/mediterranean-cloudy-lighthouse.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/9af7e5a9-d4a3-4aff-9f40-dac36bfdb4a3/mediterranean-cloudy-lighthouse-v2.jpg",
       width: 2400,
       height: 3361
     },
-    alt: "Cloudy Lighthouse: a blue lighthouse with white clouds drifting across its tower, on a light blue ground with a border of blue and white squares, acrylic on a pinewood board",
+    alt: "Cloudy Lighthouse: a blue lighthouse with white clouds woven into its tower, floating in a pale blue sky inside a border of blue and white squares, acrylic on a pinewood board",
     story: [
-      "A lighthouse in every blue I could find, with clouds drifting right across its tower, as if the weather had walked in.",
-      "Even a lighthouse has cloudy days. The border around it is made of blue and white squares, like a small patchwork of sea and foam."
+      "A lighthouse that seems to float, as if it were standing on air and the sky had slipped inside it. The clouds are not weather here: they are lightness, the part of the sky that lets a heavy tower rest.",
+      "I painted it in every blue I could find, and framed it with a border of blue and white squares, like a small patchwork of sea and foam."
     ]
   },
   'salty-sun': {
@@ -183,7 +183,7 @@ export const CATALOGUE = {
     frame: "Rope frame, part of the work",
     frameNote: "rope frame",
     framePrice: 20,
-    price: 70,
+    price: 60,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/bf0fccf8-8a73-4a39-ac8f-12e793a58cd4/mediterranean-sea-treasures-with-rope-frame.jpg",
       width: 2400,
