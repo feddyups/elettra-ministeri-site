@@ -12,17 +12,40 @@ const loadStylesheet = () => {
   document.head.appendChild(link);
 };
 
-/** The enquiry form shown inside an iframe (the drawer, or inline on a painting page): hide the site chrome, report its height so an inline frame can fit it, and let Escape close the drawer. */
+/** The parts of the page that make up the form: what is above its first field and below its last (a confirmation takes the form's place) is not counted. */
+const FORM_PARTS = '.em-ask, .form-wrapper, .form-submission-text, .form-submission-html';
+const BREATHING_ROOM = 24;
+
+/**
+ * The enquiry form shown inside an iframe (the drawer, or inline on a painting page): hide the site chrome and let Escape close the drawer.
+ * Inline (`inline=1`) the frame is exactly as tall as the form: the page inside has no height of its own (enquiry.css), so the height reported to the
+ * painting page is the bottom of the form's own parts, and follows every change of the form (fields that appear, errors, the confirmation, fonts, a new width).
+ */
 const initEmbeddedForm = () => {
   document.documentElement.classList.add('em-embed');
+  const inline = /[?&]inline=1/.test(location.search);
+  if (inline) document.documentElement.classList.add('em-inline');
   showEnquiringAbout();
   initSmartForm();
-  // The frame is as tall as the form's own content: the document is never shorter than the frame, so its scroll height could only ever grow.
-  const contentHeight = () => Math.ceil(Math.max(0, ...[...document.querySelectorAll('main, .sqs-block')].map((el) => el.getBoundingClientRect().bottom)) + window.scrollY);
-  const reportHeight = () => window.parent.postMessage({ type: 'em-height', height: contentHeight() }, location.origin);
-  const resizes = new ResizeObserver(reportHeight);
-  resizes.observe(document.documentElement);
-  document.querySelectorAll('main, .sqs-block').forEach((el) => resizes.observe(el));
+  const parts = () => [...document.querySelectorAll(FORM_PARTS)].filter((el) => el.getClientRects().length);
+  const contentHeight = () => Math.ceil(Math.max(0, ...parts().map((el) => el.getBoundingClientRect().bottom)) + window.scrollY + BREATHING_ROOM);
+  let reported = 0;
+  const reportHeight = () => {
+    const height = contentHeight();
+    if (height === reported) return;
+    reported = height;
+    window.parent.postMessage({ type: 'em-height', height }, location.origin);
+  };
+  if (inline) {
+    const resizes = new ResizeObserver(reportHeight);
+    const watch = () => parts().forEach((el) => resizes.observe(el));
+    watch();
+    new MutationObserver(() => { watch(); reportHeight(); }).observe(document.body, { childList: true, subtree: true, attributes: true });
+    document.fonts && document.fonts.ready.then(reportHeight);
+    window.addEventListener('load', reportHeight);
+    window.addEventListener('resize', reportHeight);
+    reportHeight();
+  }
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') window.parent.postMessage('em-close', location.origin);
   });

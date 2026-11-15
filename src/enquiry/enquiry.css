@@ -15,6 +15,14 @@ html.em-embed body,
 html.em-embed #page { background: var(--em-paper-warm) !important; }
 html.em-embed #page section:first-of-type .content-wrapper { padding-top: var(--em-space-xl) !important; }
 
+/* Inline on a painting page the frame is as tall as the form (enquiry/main.js), so the page inside has no height of its own: nothing to leave blank under the form, nothing to scroll. */
+html.em-inline,
+html.em-inline body { height: auto !important; min-height: 0 !important; overflow: hidden; }
+html.em-inline #page,
+html.em-inline #page section,
+html.em-inline #page .content-wrapper { min-height: 0 !important; }
+html.em-inline #page section:last-of-type .content-wrapper { padding-bottom: 0 !important; }
+
 /* "Enquiring about: <work>" note above the form */
 .em-ask {
   margin: 0 0 var(--em-space-l);
