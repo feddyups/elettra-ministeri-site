@@ -189,3 +189,64 @@ html[data-series="journal"] main time span,
 html[data-series="journal"] main .blog-item-meta-wrapper span { color: inherit !important; }
 html[data-series="journal"] main hr,
 html[data-series="journal"] main .blog-meta-item--tags a { border-color: var(--em-line); }
+
+/*
+ * The Journal's type. A post or a list of posts is read, so the text sits in a column of about 65 characters (not the full width of the page),
+ * is set larger as the screen grows, in the regular weight, with room between the lines and the paragraphs. Pictures and rules keep the wider
+ * page; the text blocks, the excerpts and the headings share the column.
+ */
+html[data-series="journal"] {
+  --journal-text: clamp(1.125rem, 1rem + 0.32vw, 1.375rem);
+  --journal-column: 41rem;
+}
+html[data-series="journal"] main .sqs-block-html .sqs-block-content,
+html[data-series="journal"] main .blog-excerpt-wrapper,
+html[data-series="journal"] main .blog-item-content .sqs-block-content > :is(p, ul, ol, blockquote, h2, h3, h4) {
+  max-width: var(--journal-column);
+  margin-inline: auto;
+}
+html[data-series="journal"] main .blog-item-content p,
+html[data-series="journal"] main .blog-item-content li,
+html[data-series="journal"] main .blog-excerpt-wrapper,
+html[data-series="journal"] main .blog-excerpt-wrapper p {
+  font-size: var(--journal-text) !important;
+  font-weight: 400 !important;
+  line-height: 1.75 !important;
+  letter-spacing: 0.003em !important;
+}
+html[data-series="journal"] main .blog-item-content p { margin-block: 0 1.1em !important; }
+html[data-series="journal"] main .blog-item-content :is(h2, h3, h4) {
+  font-family: var(--em-display, "Cormorant Garamond", Georgia, serif);
+  font-weight: 500;
+  line-height: 1.15;
+  margin-block: 2.2em 0.6em;
+}
+html[data-series="journal"] main .blog-item-content h2 { font-size: clamp(1.9rem, 1.4rem + 1.2vw, 2.7rem) !important; }
+html[data-series="journal"] main .blog-item-content h3 { font-size: clamp(1.6rem, 1.3rem + 0.8vw, 2.2rem) !important; }
+html[data-series="journal"] main .blog-item-content h4 { font-size: clamp(1.3rem, 1.15rem + 0.4vw, 1.6rem) !important; }
+html[data-series="journal"] main blockquote {
+  font-family: var(--em-display, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(1.6rem, 1.3rem + 0.9vw, 2.3rem) !important;
+  font-weight: 400 !important;
+  font-style: italic;
+  line-height: 1.35 !important;
+  padding-left: 1.2em;
+  border-left: 2px solid var(--journal-accent);
+}
+html[data-series="journal"] main h1.blog-title,
+html[data-series="journal"] main .blog-title {
+  font-size: clamp(2.4rem, 1.5rem + 2.6vw, 4.2rem) !important;
+  line-height: 1.08 !important;
+  max-width: 24ch;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+html[data-series="journal"] main .blog-meta-item,
+html[data-series="journal"] main .blog-meta-item a,
+html[data-series="journal"] main .blog-more-link {
+  font-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem) !important;
+  letter-spacing: 0.06em;
+}
+/* the pictures keep a generous width of their own and sit in the middle of the page */
+html[data-series="journal"] main .image-block-outer-wrapper,
+html[data-series="journal"] main .sqs-block-image { margin-inline: auto; }
