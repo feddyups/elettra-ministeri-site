@@ -126,20 +126,6 @@ const markOpening = (content) => {
 /** An entry that is mostly headings is a poem: its lines are set as verse. */
 const markPoem = (content) => { if (content.querySelectorAll('h3').length >= 8) content.classList.add('jl-poem'); };
 
-/** Each picture is held to a size that suits its shape and its resolution, so a portrait drawing is not stretched across the page. */
-const sizePictures = (content) => {
-  content.querySelectorAll('.sqs-block-image').forEach((block) => {
-    const img = block.querySelector('img[data-image-dimensions]');
-    const outer = block.querySelector('.image-block-outer-wrapper');
-    if (!img || !outer) return;
-    const [width, height] = img.getAttribute('data-image-dimensions').split('x').map(Number);
-    if (!width || !height) return;
-    outer.classList.add('jl-picture', width >= height ? 'jl-landscape' : 'jl-portrait');
-    outer.style.setProperty('--jl-ar', (width / height).toFixed(4));
-    outer.style.setProperty('--jl-w', `${width}px`);
-  });
-};
-
 const postcardEnd = (path) => {
   const slug = lastPart(path);
   const monthly = card(ENTRY_CARDS[slug]);
@@ -167,7 +153,6 @@ const initEntry = (article) => {
   content.setAttribute('lang', 'it');
   markOpening(content);
   markPoem(content);
-  sizePictures(content);
 
   const top = article.querySelector('.blog-item-top-wrapper');
   const title = article.querySelector('.entry-title, h1');
@@ -179,7 +164,7 @@ const initEntry = (article) => {
     title.after(h('p', { class: 'jl-meta' }, [date && date.trim(), category, `${minutes} min read`].filter(Boolean).join(' · ')));
   }
   const end = postcardEnd(location.pathname);
-  if (end) content.after(end);
+  if (end) { content.after(end); article.setAttribute('data-jl-card', ''); }
   article.setAttribute('data-jl-ready', '');
 };
 

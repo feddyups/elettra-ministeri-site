@@ -194,16 +194,19 @@ html[data-series="journal"] .blog-item-content .sqs-html-content a {
 }
 html[data-series="journal"] .blog-item-content .sqs-html-content a:hover { color: var(--jl-hover) !important; text-decoration-color: currentColor; }
 
-/* pictures: each is held to a size that suits its shape and resolution; her drawings sit on their own white paper */
-html[data-series="journal"] .blog-item-content .jl-picture {
-  --jl-fit: min(var(--jl-wide), calc(var(--jl-picture-height) * var(--jl-ar)), calc(var(--jl-w) * 1.6));
-  width: 100%;
-  max-width: var(--jl-fit);
-  margin-inline: auto;
-}
-html[data-series="journal"] .blog-item-content .jl-picture img { box-shadow: var(--em-shadow-plate, none); }
+/* pictures keep the size they were made at (Squarespace holds each to its own pixels), centered, with the soft shadow the site gives a picture */
 html[data-series="journal"] .blog-item-content .sqs-block-image { margin-block: clamp(1.5rem, 4vw, 3rem); }
+html[data-series="journal"] .blog-item-content .sqs-block-image figure { margin-inline: auto; max-width: min(100%, var(--jl-wide)); }
+html[data-series="journal"] .blog-item-content .sqs-block-image img { box-shadow: var(--em-shadow-plate, none); }
 html[data-series="journal"] .blog-item-content .image-caption { font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.6; color: var(--em-muted) !important; text-align: center; }
+
+/* the old project card (a picture with a title and a caption): the caption reads as text, and it gives way to the postcard block where that appears */
+html[data-series="journal"] .blog-item-content .image-card .image-title p { font-family: var(--em-font-serif) !important; font-size: var(--em-display-sm) !important; font-weight: var(--em-weight-medium) !important; line-height: 1.15 !important; letter-spacing: var(--em-tracking-tight) !important; text-transform: none !important; color: var(--em-ink) !important; }
+html[data-series="journal"] .blog-item-content .image-card .image-subtitle :is(p, a) { font-family: var(--em-font-sans) !important; font-size: var(--em-text-md) !important; font-weight: 400 !important; line-height: 1.7 !important; letter-spacing: 0.003em !important; text-transform: none !important; color: var(--em-muted) !important; }
+html[data-series="journal"] article[data-jl-card] .sqs-block-image:has(.image-card) { display: none; }
+
+/* the comment form is Squarespace's own white card, which has no place on the night ground of a diary */
+html[data-series="journal"] article[data-jl-ready] .blog-item-comments { display: none; }
 
 /* the postcard of the month, at the end of its entries */
 .jl-card { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: clamp(1.25rem, 4vw, 3rem); align-items: center; max-width: var(--jl-col); margin: clamp(3rem, 7vw, 5.5rem) auto 0; padding-top: var(--em-space-xl); border-top: 1px solid var(--em-line); }
