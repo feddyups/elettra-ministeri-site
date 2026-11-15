@@ -146,7 +146,8 @@ html .ca-family {
 html .ca-family i { display: block; flex: var(--share); min-width: 0; background: var(--color); }
 html .ca-family:hover,
 html .ca-family:focus-visible { transform: translateY(var(--ca-lift)); }
-.ca-note { max-width: var(--em-measure-narrow); margin: 0 0 var(--em-space-m); color: var(--ca-muted); font-size: var(--em-text-sm); }
+.ca-section + .ca-top { margin-top: var(--em-section-gap); }
+html .ca .ca-note { max-width: var(--em-measure-narrow); margin: 0 0 var(--em-space-m); color: var(--ca-muted); font-size: var(--em-text-sm); }
 .ca-names { display: flex; flex-wrap: wrap; gap: var(--em-space-xs) var(--em-space-m); margin: var(--em-space-s) 0 0; padding: 0; list-style: none; }
 .ca-names li { display: flex; align-items: center; gap: var(--em-space-xs); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-caps); text-transform: uppercase; color: var(--ca-muted); }
 .ca-names li::before { content: ""; width: var(--em-space-s); height: var(--em-space-s); border-radius: 50%; background: var(--color); }

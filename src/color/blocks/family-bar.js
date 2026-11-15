@@ -11,13 +11,15 @@ const SHOWN_FROM = 0.01;
  */
 export const renderFamilyBar = (scope) => {
   const families = colorFamilies(scope).filter((family) => family.share >= SHOWN_FROM);
+  const total = families.reduce((sum, family) => sum + family.share, 0);
   const segments = families.map((family) => {
+    const inner = family.shades.reduce((sum, [, , share]) => sum + share, 0);
     const shades = [...new Set(family.shades.map(([, name]) => name))].join(', ');
     const many = `${Math.round(family.share * 100)}% of an average painting · in ${family.carriers.length} of ${scope.works.length} paintings`;
     const segment = h('button', {
-      type: 'button', class: 'ca-family', style: { '--share': family.share },
+      type: 'button', class: 'ca-family', style: { '--share': family.share / total },
       'data-tip': family.label, 'data-meta': many, 'aria-label': `${family.label} (${shades}), ${many}`,
-    }, family.shades.map(([hex, , share]) => h('i', { style: { '--color': hex, '--share': share } })));
+    }, family.shades.map(([hex, , share]) => h('i', { style: { '--color': hex, '--share': share / inner } })));
     const ids = family.carriers.map((work) => String(work.id));
     const light = (lit) => segment.dispatchEvent(new CustomEvent('ca:light', { bubbles: true, detail: { ids: lit } }));
     segment.addEventListener('pointerenter', (event) => { if (event.pointerType === 'mouse') light(ids); });
