@@ -185,9 +185,9 @@ export const CATALOGUE = {
     framePrice: 20,
     price: 70,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/620df478-155b-42c8-bb3f-d668937751db/mediterranean-sea-treasures.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/bf0fccf8-8a73-4a39-ac8f-12e793a58cd4/mediterranean-sea-treasures-with-rope-frame.jpg",
       width: 2400,
-      height: 2400
+      height: 2428
     },
     alt: "Sea Treasures: a starfish dusted with glitter, a scallop shell, a wave, small pale fish and a sprig of dark seaweed on a deep blue ground, acrylic on canvas in a frame of twisted rope",
     story: [
