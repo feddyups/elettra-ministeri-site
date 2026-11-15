@@ -13,6 +13,7 @@ import { offersReady } from './offers.js';
 import { cardOf } from '../print/cards.js';
 import { initCardPage } from '../print/card-page.js';
 import { renderWorkEnquiry } from './work-enquiry.js';
+import { applyWorkSeo } from './work-seo.js';
 
 /**
  * Renders a painting's page into `<div data-work-page></div>`: the painting is the page's own address
@@ -34,6 +35,7 @@ export const initWorkPage = async (host) => {
   host.classList.add('ca', 'wp');
   host.dataset.surface = 'theme';
 
+  applyWorkSeo(info);
   const hero = renderWorkHero(info, work, series);
 
   host.replaceChildren(...[
