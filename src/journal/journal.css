@@ -1,0 +1,207 @@
+@import url('../theme/tokens.css');
+
+/*
+ * The Journal (/blog and its entries), on the site's night ground (series-theme.css sets the colors for data-series="journal").
+ * It speaks the way the rest of the site does: a small uppercase kicker, Cormorant for her own words, Jost for the reading text, hairlines instead
+ * of rules, and the same glass of links. See journal-page.js for what is added to the page.
+ */
+html[data-series="journal"] {
+  --jl-col: 40rem;
+  --jl-wide: 56rem;
+  --jl-picture-height: 76vh;
+  --jl-text: clamp(1.125rem, 1.02rem + 0.28vw, 1.3125rem);
+  --jl-lede: clamp(1.5rem, 1.2rem + 0.95vw, 2.1rem);
+  --jl-hover: color-mix(in srgb, var(--em-accent, #b5472b) 55%, var(--em-ink));
+}
+
+/* Squarespace paints a blog's sections on a border layer of its own */
+html[data-series="journal"] .section-border { background-color: var(--em-bg) !important; }
+
+/* ----- shared small things ----- */
+.jl-kicker-text,
+html[data-series="journal"] .jl-kicker,
+.jl-meta,
+.jl-count,
+.jl-chip,
+.jl-row-meta,
+.jl-link,
+.jl-project-go {
+  font-family: var(--em-font-sans);
+  font-size: var(--em-text-xs);
+  font-weight: var(--em-weight-medium);
+  line-height: 1;
+  letter-spacing: var(--em-tracking-label);
+  text-transform: uppercase;
+  color: var(--em-muted);
+}
+.jl-kicker-text { margin: 0 0 var(--em-space-ml); }
+html[data-series="journal"] a.jl-kicker { display: inline-block; margin-bottom: var(--em-space-l); color: var(--em-ink) !important; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+html[data-series="journal"] a.jl-kicker:hover { color: var(--jl-hover) !important; }
+html[data-series="journal"] .jl-link { color: var(--em-ink) !important; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+html[data-series="journal"] .jl-link:hover { color: var(--jl-hover) !important; }
+
+/* ----- the index ----- */
+.jl-overview { max-width: var(--em-content-max, 100rem); margin: 0 auto; padding: clamp(6rem, 12vw, 9rem) var(--sqs-site-gutter, var(--em-gutter, 2rem)) var(--em-section-gap, 6rem); box-sizing: border-box; color: var(--em-body); }
+.jl-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: end; margin-bottom: clamp(2.5rem, 5vw, 5rem); }
+.jl-head h1 { margin: 0; font-family: var(--em-font-serif); font-size: var(--em-display-lg); font-weight: var(--em-weight-medium); line-height: var(--em-leading-tight); letter-spacing: var(--em-tracking-tight); color: var(--em-ink); }
+.jl-lede { margin: 0; max-width: 58ch; font-family: var(--em-font-sans); font-size: var(--em-text-lg); line-height: 1.75; color: var(--em-body); }
+.jl-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--em-space-m) var(--em-space-xl); padding-bottom: var(--em-space-l); border-bottom: 1px solid var(--em-line); }
+.jl-chips { display: flex; flex-wrap: wrap; gap: var(--em-space-xs); }
+.jl-chip { cursor: pointer; padding: 0.7rem 1.1rem; border: 1px solid var(--em-line); border-radius: var(--em-radius-pill); background: none; color: var(--em-body); }
+.jl-chip:hover { border-color: var(--em-ink); color: var(--em-ink); }
+.jl-chip[aria-pressed="true"] { background: var(--em-ink); border-color: var(--em-ink); color: var(--em-bg); }
+.jl-chip:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.jl-count { margin: 0; }
+.jl-list { margin: 0; padding: 0; list-style: none; }
+.jl-row { border-bottom: 1px solid var(--em-line); }
+.jl-row > a { display: grid; grid-template-columns: 11rem minmax(0, 1fr) 5.5rem; gap: clamp(1rem, 3vw, 3rem); align-items: center; padding: var(--em-space-xl) 0; color: inherit; text-decoration: none; }
+.jl-row-meta { display: grid; gap: var(--em-space-xs); }
+.jl-row-meta span { color: var(--em-muted); opacity: 0.85; }
+.jl-row-text { display: grid; gap: var(--em-space-s); min-width: 0; }
+.jl-row-text b { font-family: var(--em-font-serif); font-size: var(--em-display-sm); font-weight: var(--em-weight-medium); line-height: 1.12; color: var(--em-ink); transition: color var(--em-duration-quick, 0.2s) ease; }
+.jl-row-text small { max-width: 60ch; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.65; color: var(--em-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.jl-row-picture { display: block; width: 5.5rem; height: 5.5rem; background: var(--em-bg-alt, transparent); }
+.jl-row-picture img { display: block; width: 100%; height: 100%; object-fit: cover; box-shadow: var(--em-shadow-plate, none); }
+.jl-row > a:hover .jl-row-text b, .jl-row > a:focus-visible .jl-row-text b { color: var(--jl-hover); }
+.jl-row > a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.jl-project { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--em-space-m) var(--em-space-xl); margin-top: var(--em-section-gap, 6rem); padding: var(--em-space-xl) 0 0; border-top: 1px solid var(--em-line); color: inherit; text-decoration: none; }
+.jl-project .jl-kicker-text { margin: 0; }
+.jl-project b { font-family: var(--em-font-serif); font-size: var(--em-display-sm); font-weight: var(--em-weight-medium); line-height: 1.15; color: var(--em-ink); }
+.jl-project:hover .jl-project-go { color: var(--jl-hover); }
+html[data-series="journal"] .blog-list[data-jl-hidden] { display: none; }
+
+@media (max-width: 56.25em) {
+  .jl-head { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .jl-row > a { grid-template-columns: minmax(0, 1fr) 4.5rem; grid-template-areas: "meta picture" "text picture"; gap: var(--em-space-s) var(--em-space-m); }
+  .jl-row-meta { grid-area: meta; grid-auto-flow: column; justify-content: start; gap: var(--em-space-m); }
+  .jl-row-text { grid-area: text; }
+  .jl-row-picture { grid-area: picture; width: 4.5rem; height: 4.5rem; align-self: start; }
+}
+
+/* ----- an entry ----- */
+html[data-series="journal"] article[data-jl-ready] { padding-top: clamp(6rem, 11vw, 8.5rem); }
+html[data-series="journal"] article[data-jl-ready] .blog-item-top-wrapper,
+html[data-series="journal"] article[data-jl-ready] .blog-item-content > .sqs-layout { max-width: var(--jl-col); margin-inline: auto; }
+html[data-series="journal"] article[data-jl-ready] .blog-item-meta-wrapper { display: none; }
+html[data-series="journal"] article[data-jl-ready] .entry-title {
+  margin: 0 0 var(--em-space-l);
+  max-width: none;
+  font-family: var(--em-font-serif);
+  font-size: clamp(2.3rem, 1.5rem + 2.5vw, 3.9rem) !important;
+  font-weight: var(--em-weight-medium);
+  line-height: 1.06 !important;
+  letter-spacing: var(--em-tracking-tight);
+  text-align: left;
+  text-wrap: balance;
+  color: var(--em-ink) !important;
+}
+.jl-meta { margin: 0 0 clamp(2rem, 4vw, 3.25rem); }
+
+/* the text: Jost for reading, set to a comfortable measure */
+html[data-series="journal"] article[data-jl-ready] .blog-item-content { color: var(--em-body); }
+html[data-series="journal"] .blog-item-content .sqs-html-content { max-width: var(--jl-col); margin-inline: auto; color: var(--em-body) !important; }
+html[data-series="journal"] .blog-item-content .sqs-html-content :is(p, li) {
+  font-family: var(--em-font-sans);
+  font-size: var(--jl-text) !important;
+  font-weight: 400 !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.003em !important;
+  text-align: left;
+  color: var(--em-body) !important;
+}
+html[data-series="journal"] .blog-item-content .sqs-html-content p { margin: 0 0 1.15em !important; }
+html[data-series="journal"] .blog-item-content .sqs-html-content :is(ul, ol) { padding-left: 1.2em; margin: 0 0 1.4em; }
+html[data-series="journal"] .blog-item-content .sqs-html-content li { margin-bottom: 0.4em; }
+html[data-series="journal"] .blog-item-content .sqs-html-content li::marker { color: var(--em-muted); }
+html[data-series="journal"] .blog-item-content .sqs-html-content strong { font-weight: 500; color: var(--em-ink); }
+
+/* her own words first, set like the story of a painting */
+html[data-series="journal"] .blog-item-content p.jl-lede {
+  font-family: var(--em-font-serif) !important;
+  font-size: var(--jl-lede) !important;
+  line-height: 1.4 !important;
+  color: var(--em-ink) !important;
+  margin-bottom: 1.2em !important;
+}
+
+/* the opening quotation and the quotations inside */
+html[data-series="journal"] .blog-item-content p.jl-epigraph,
+html[data-series="journal"] .blog-item-content blockquote,
+html[data-series="journal"] .blog-item-content blockquote p {
+  font-family: var(--em-font-serif) !important;
+  font-style: italic;
+  font-weight: 400 !important;
+  line-height: 1.42 !important;
+  color: var(--em-ink) !important;
+}
+html[data-series="journal"] .blog-item-content p.jl-epigraph { font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.75rem) !important; margin: 0 0 0.5em !important; padding-left: 1.25em; border-left: 1px solid var(--em-line); color: var(--em-body) !important; }
+html[data-series="journal"] .blog-item-content p.jl-epigraph-by { margin: 0 0 2.4em !important; padding-left: calc(1.25em + 1px); font-family: var(--em-font-sans) !important; font-size: var(--em-text-xs) !important; letter-spacing: var(--em-tracking-label) !important; text-transform: uppercase; color: var(--em-muted) !important; }
+html[data-series="journal"] .blog-item-content blockquote { max-width: var(--jl-col); margin: 2em auto; padding-left: 1.25em; border-left: 1px solid var(--em-line); font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.75rem) !important; }
+html[data-series="journal"] .blog-item-content blockquote p { font-size: inherit !important; margin: 0 !important; }
+
+/* subheadings */
+html[data-series="journal"] .blog-item-content .sqs-html-content :is(h2, h3, h4) {
+  font-family: var(--em-font-serif);
+  font-weight: var(--em-weight-medium);
+  line-height: 1.18;
+  letter-spacing: var(--em-tracking-tight);
+  margin: 2.2em 0 0.6em;
+  text-align: left;
+  color: var(--em-ink) !important;
+}
+html[data-series="journal"] .blog-item-content .sqs-html-content h2 { font-size: clamp(1.8rem, 1.4rem + 1.2vw, 2.5rem) !important; }
+html[data-series="journal"] .blog-item-content .sqs-html-content :is(h3, h4) { font-size: clamp(1.5rem, 1.25rem + 0.8vw, 2rem) !important; }
+
+/* a poem is set as verse: its lines are headings in the entry */
+html[data-series="journal"] .blog-item-content.jl-poem .sqs-html-content :is(h2, h3, h4) { margin: 0 0 1.1em; font-style: italic; font-weight: 400; }
+html[data-series="journal"] .blog-item-content.jl-poem .sqs-html-content h2 { margin-top: 0; font-style: normal; font-weight: 500; }
+html[data-series="journal"] .blog-item-content.jl-poem .sqs-html-content :is(h3, h4) { font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.7rem) !important; line-height: 1.45; }
+
+/* dividers are a short hairline in the site's line color, not a rule across the page */
+html[data-series="journal"] .blog-item-content .sqs-block-horizontalrule { padding: 0 !important; }
+html[data-series="journal"] .blog-item-content hr {
+  width: 3.5rem;
+  height: 0;
+  margin: clamp(2.5rem, 5vw, 4rem) auto;
+  border: 0;
+  border-top: 1px solid var(--em-line) !important;
+  background: none;
+}
+
+/* links in the text */
+html[data-series="journal"] .blog-item-content .sqs-html-content a {
+  color: var(--em-ink) !important;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  text-decoration: underline;
+  text-decoration-color: var(--em-line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  border: 0;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+html[data-series="journal"] .blog-item-content .sqs-html-content a:hover { color: var(--jl-hover) !important; text-decoration-color: currentColor; }
+
+/* pictures: each is held to a size that suits its shape and resolution; her drawings sit on their own white paper */
+html[data-series="journal"] .blog-item-content .jl-picture {
+  --jl-fit: min(var(--jl-wide), calc(var(--jl-picture-height) * var(--jl-ar)), calc(var(--jl-w) * 1.6));
+  width: 100%;
+  max-width: var(--jl-fit);
+  margin-inline: auto;
+}
+html[data-series="journal"] .blog-item-content .jl-picture img { box-shadow: var(--em-shadow-plate, none); }
+html[data-series="journal"] .blog-item-content .sqs-block-image { margin-block: clamp(1.5rem, 4vw, 3rem); }
+html[data-series="journal"] .blog-item-content .image-caption { font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.6; color: var(--em-muted) !important; text-align: center; }
+
+/* the postcard of the month, at the end of its entries */
+.jl-card { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: clamp(1.25rem, 4vw, 3rem); align-items: center; max-width: var(--jl-col); margin: clamp(3rem, 7vw, 5.5rem) auto 0; padding-top: var(--em-space-xl); border-top: 1px solid var(--em-line); }
+.jl-card--text { grid-template-columns: minmax(0, 1fr); }
+.jl-card-picture { display: block; }
+.jl-card-picture img { display: block; width: 100%; height: auto; box-shadow: var(--em-shadow-plate, none); }
+.jl-card-text { display: grid; gap: var(--em-space-s); justify-items: start; }
+.jl-card-text .jl-kicker-text { margin: 0; }
+.jl-card-text b { font-family: var(--em-font-serif); font-size: var(--em-display-sm); font-weight: var(--em-weight-medium); line-height: 1.15; color: var(--em-ink); }
+.jl-card-text p:not(.jl-kicker-text) { margin: 0; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.65; color: var(--em-muted); max-width: 44ch; }
+.jl-card-text .jl-link { margin-top: var(--em-space-xs); }
+@media (max-width: 40em) { .jl-card { grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr); } }

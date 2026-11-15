@@ -4,6 +4,7 @@ import { CARDS, cardPath } from './cards.js';
 import { renderCardBack } from './card-back.js';
 import { at, full, printCard } from './print-actions.js';
 import { initSlideshow } from '../works/work-slideshow.js';
+import { entriesOfCard } from '../journal/postcards.js';
 
 const WIDTHS = [500, 1000, 1500];
 
@@ -39,6 +40,7 @@ export const initCardPage = (host, card) => {
       h('p', { class: 'ca-label' }, 'The story'),
       h('p', { class: 'wp-lede' }, card.dek),
       card.article.map((paragraph) => h('p', null, paragraph)),
+      entriesOfCard(card.slug).length > 0 && h('p', { class: 'pr-journal' }, 'I wrote about this month in my Journal, in Italian: ', entriesOfCard(card.slug).map((entry, i) => [i > 0 && ' · ', h('a', { href: entry.path }, entry.title)])),
       h('div', { class: 'pr-prompt' }, h('p', { class: 'ca-label' }, 'To write on the back'), h('p', null, card.prompt)));
 
     const back = h('section', { class: 'wp-section pr-back-section' },

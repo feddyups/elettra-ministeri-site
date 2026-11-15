@@ -15,4 +15,5 @@ import './color/strip-label.js';
 import './works/main.js';
 import './overview/main.js';
 import './print/main.js';
+import './journal/journal-page.js';
 import './features/paint-portrait.js';
