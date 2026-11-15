@@ -24,9 +24,9 @@ export const WORKS = [
   { id: 'fishfit', anchor: 'fishfit', title: 'FishFit', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-fishfit.jpg' },
   { id: 'medusa', anchor: 'medusa', title: 'Medusa', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-medusa.jpg' },
   { id: 'vacanze-in-santorini', anchor: 'vacanze-in-santorini', title: 'Vacanze a Santorini', series: 'mediterranean', onSite: true, catalogue: 'rectified/archive-donkey-in-santorini.jpg' },
-  { id: 'aegean-sea', anchor: 'aegean-sea', title: 'Aegean Sea', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-aegean-sea.jpg' },
+  { id: 'aegean-sea', anchor: 'aegean-sea', title: 'Aegean Sea', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-aegean-sea-v2.jpg' },
   { id: 'cloudy-lighthouse', anchor: 'cloudy-lighthouse', title: 'Cloudy Lighthouse', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-cloudy-lighthouse-v2.jpg' },
-  { id: 'salty-sun', anchor: 'salty-sun', title: 'Salty Sun', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-salty-sun.jpg' },
+  { id: 'salty-sun', anchor: 'salty-sun', title: 'Salty Sun', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-salty-sun-v2.jpg' },
   { id: 'sea-treasures', anchor: 'sea-treasures', title: 'Sea Treasures', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-sea-treasures.jpg' },
 
   { id: 'maternity-1', anchor: 'maternity-i', title: 'Maternity I', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-i-v2.jpg' },

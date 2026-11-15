@@ -131,14 +131,14 @@ export const CATALOGUE = {
     size: "15 × 15 cm",
     price: 60,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/b9d53022-89ae-431d-9bed-a6b30500ddaf/mediterranean-aegean-sea.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/f9b8bf2d-7615-46e9-9ce8-ebd4dcb73298/mediterranean-aegean-sea-v2.jpg",
       width: 2400,
       height: 2400
     },
-    alt: "Aegean Sea: four rows of curling waves in deep blue on cream, inside a bright blue border, acrylic on a square pinewood board",
+    alt: "Aegean Sea: four rows of curling waves in deep blue on cream, painted as the Greek wave scroll, inside a bright blue border, acrylic on a square pinewood board",
     story: [
-      "Waves in rows, one after another, the way you see them on old painted tiles and pottery: blue curling over cream, and then blue again.",
-      "I wanted the sea to be a pattern you can read at a glance and still keep looking at. It is small, painted on pinewood, and held in a border of bright blue."
+      "The waves here are painted in the old Greek way: the wave scroll, a band of spirals that curl and roll on, one into the next. It is a cousin of the meander, the key pattern you find on Greek vases and carved along the edges of temples.",
+      "I wanted the sea to be a pattern you can read at a glance and still keep looking at: deep blue curling over cream, row after row, held in a border of bright blue on a small pinewood board."
     ]
   },
   'cloudy-lighthouse': {
@@ -165,7 +165,7 @@ export const CATALOGUE = {
     size: "15 × 15 cm",
     price: 60,
     image: {
-      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/7048b0db-8f3d-4594-ba71-62a7611ab7a6/mediterranean-salty-sun.jpg",
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/47c9f69c-e336-4f2c-889a-a665a058e8bf/mediterranean-salty-sun-v2.jpg",
       width: 2400,
       height: 2400
     },
