@@ -124,6 +124,57 @@ export const CATALOGUE = {
       "Dome, whitewashed walls, steps and sea are flat shapes held together by black outlines."
     ]
   },
+  'aegean-sea': {
+    title: "Aegean Sea",
+    series: "mediterranean",
+    medium: "Acrylic on pinewood board",
+    size: "15 × 15 cm",
+    price: 60,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/b9d53022-89ae-431d-9bed-a6b30500ddaf/mediterranean-aegean-sea.jpg",
+      width: 2400,
+      height: 2400
+    },
+    alt: "Aegean Sea: four rows of curling waves in deep blue on cream, inside a bright blue border, acrylic on a square pinewood board",
+    story: [
+      "Waves in rows, one after another, the way you see them on old painted tiles and pottery: blue curling over cream, and then blue again.",
+      "I wanted the sea to be a pattern you can read at a glance and still keep looking at. It is small, painted on pinewood, and held in a border of bright blue."
+    ]
+  },
+  'cloudy-lighthouse': {
+    title: "Cloudy Lighthouse",
+    series: "mediterranean",
+    medium: "Acrylic on pinewood board",
+    size: "21 × 15 cm",
+    price: 80,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/74188465-66b4-4aa9-b7e0-ba41c170e3f9/mediterranean-cloudy-lighthouse.jpg",
+      width: 2400,
+      height: 3361
+    },
+    alt: "Cloudy Lighthouse: a blue lighthouse with white clouds drifting across its tower, on a light blue ground with a border of blue and white squares, acrylic on a pinewood board",
+    story: [
+      "A lighthouse in every blue I could find, with clouds drifting right across its tower, as if the weather had walked in.",
+      "Even a lighthouse has cloudy days. The border around it is made of blue and white squares, like a small patchwork of sea and foam."
+    ]
+  },
+  'salty-sun': {
+    title: "Salty Sun",
+    series: "mediterranean",
+    medium: "Acrylic on pinewood board",
+    size: "15 × 15 cm",
+    price: 60,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/7048b0db-8f3d-4594-ba71-62a7611ab7a6/mediterranean-salty-sun.jpg",
+      width: 2400,
+      height: 2400
+    },
+    alt: "Salty Sun: a smiling sun with rippled rays in pale blue on a deep blue ground scattered with stars, acrylic on a square pinewood board",
+    story: [
+      "A sun with a calm face and rays that ripple like waves, in the blues of deep water and night, with stars scattered around it.",
+      "I think of it as the sun after a day at sea: a little salty, very quiet, and still shining."
+    ]
+  },
   'maternity-i': {
     title: "Maternity I",
     series: "maternity",
@@ -637,6 +688,42 @@ export const CATALOGUE = {
         }
       ]
     }
+  },
+  'rainbow-moka-i': {
+    title: "Rainbow Moka I",
+    series: "archive",
+    medium: "Mixed media (watercolor and acrylic) on watercolor paper",
+    size: "33 × 24 cm with frame",
+    price: 70,
+    framePrice: 60,
+    frame: "Painted frame, part of the work",
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/449f9f22-401f-4fd9-a873-6cc71df2190f/archive-rainbow-moka-i.jpg",
+      width: 2400,
+      height: 3301
+    },
+    alt: "Rainbow Moka I: a moka pot striped in blue, ochre, green, violet and orange on a soft orange and green wash, with a light blue mat, in a frame painted blue, ochre, teal and green",
+    story: [
+      "The moka pot is the first sound of an Italian morning, so I painted it in stripes, one for every color of the day.",
+      "This one sits on a wash of orange and green, and I framed it in blue, ochre and teal so the frame carries the same colors on."
+    ]
+  },
+  'rainbow-moka-ii': {
+    title: "Rainbow Moka II",
+    series: "archive",
+    medium: "Mixed media (watercolor and acrylic) on watercolor paper",
+    size: "27 × 38 cm",
+    price: 150,
+    image: {
+      src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/41e5b17a-dc3a-48b1-b821-ba3000286225/archive-rainbow-moka-ii.jpg",
+      width: 2400,
+      height: 3426
+    },
+    alt: "Rainbow Moka II: a moka pot striped in red, orange, yellow, green and blue with a black handle, on a soft wash of pink, blue and green, watercolor and acrylic on paper",
+    story: [
+      "A second moka pot, larger, in bright stripes of orange, yellow, red, green and blue, with a black handle.",
+      "Behind it the paper is a soft wash of pink, blue and green, as if the morning light were still moving across it. I painted it in watercolor and acrylic on a full sheet of watercolor paper."
+    ]
   },
   'mask-divine': {
     title: "Mask Divine",

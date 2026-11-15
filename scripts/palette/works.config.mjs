@@ -24,6 +24,9 @@ export const WORKS = [
   { id: 'fishfit', anchor: 'fishfit', title: 'FishFit', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-fishfit.jpg' },
   { id: 'medusa', anchor: 'medusa', title: 'Medusa', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-medusa.jpg' },
   { id: 'vacanze-in-santorini', anchor: 'vacanze-in-santorini', title: 'Vacanze a Santorini', series: 'mediterranean', onSite: true, catalogue: 'rectified/archive-donkey-in-santorini.jpg' },
+  { id: 'aegean-sea', anchor: 'aegean-sea', title: 'Aegean Sea', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-aegean-sea.jpg' },
+  { id: 'cloudy-lighthouse', anchor: 'cloudy-lighthouse', title: 'Cloudy Lighthouse', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-cloudy-lighthouse.jpg' },
+  { id: 'salty-sun', anchor: 'salty-sun', title: 'Salty Sun', series: 'mediterranean', onSite: true, catalogue: 'rectified/mediterranean-salty-sun.jpg' },
 
   { id: 'maternity-1', anchor: 'maternity-i', title: 'Maternity I', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-i-v2.jpg' },
   { id: 'maternity-2', anchor: 'maternity-ii', title: 'Maternity II', series: 'maternity', onSite: true, catalogue: 'rectified/maternity-ii-v2.jpg' },
@@ -56,6 +59,8 @@ export const WORKS = [
   { id: 'rainbow-shell', anchor: 'rainbow-shell', title: 'Rainbow shell', series: 'archive', onSite: true, catalogue: 'rectified/archive-rainbow-shell.jpg' },
   { id: 'heart-in-hand', anchor: 'heart-in-hand', title: 'Heart in hand', series: 'archive', onSite: true, catalogue: 'rectified/archive-heart-in-hand.jpg' },
   { id: 'scio', anchor: 'scio', title: 'Sciò', series: 'archive', onSite: true, catalogue: 'rectified/archive-scio.jpg' },
+  { id: 'rainbow-moka-i', anchor: 'rainbow-moka-i', title: 'Rainbow Moka I', series: 'archive', onSite: true, catalogue: 'rectified/archive-rainbow-moka-i.jpg' },
+  { id: 'rainbow-moka-ii', anchor: 'rainbow-moka-ii', title: 'Rainbow Moka II', series: 'archive', onSite: true, catalogue: 'rectified/archive-rainbow-moka-ii.jpg' },
   { id: 'scarab', anchor: 'scarab', title: 'Scarab', series: 'archive', onSite: true, catalogue: '12.jpg', crop: [0.14, 0.11, 0.93, 0.88] },
   { id: 'textile-mask', anchor: 'mask-divine', title: 'Mask Divine', series: 'textiles', onSite: true, material: 'textile', catalogue: sent('08.png'), crop: [0.10, 0.26, 0.90, 0.96] },
   { id: 'saguaro', anchor: 'saguaro', title: 'Saguaro', series: 'textiles', onSite: true, material: 'textile', catalogue: 'rectified/textile-saguaro-v2.jpg', crop: [0.08, 0.04, 0.94, 0.80] },
