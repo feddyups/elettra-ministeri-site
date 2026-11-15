@@ -66,7 +66,7 @@ const renderRow = (entry) => h('li', { class: 'jl-row', 'data-category': entry.c
 
 const initIndex = async (list) => {
   let entries;
-  try { entries = (await fetchEntries()).map(describe).filter((entry) => entry.excerpt || entry.cover); } catch (error) { return; }
+  try { entries = (await fetchEntries()).map(describe).filter((entry) => entry.excerpt); } catch (error) { return; }
   if (!entries.length) return;
   const present = [...new Set(entries.map((entry) => entry.category))];
   const categories = [...CATEGORY_ORDER.filter((c) => present.includes(c)), ...present.filter((c) => !CATEGORY_ORDER.includes(c))];
