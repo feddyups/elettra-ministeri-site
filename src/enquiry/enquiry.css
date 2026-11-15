@@ -22,6 +22,7 @@ html.em-inline #page,
 html.em-inline #page section,
 html.em-inline #page .content-wrapper { min-height: 0 !important; }
 html.em-inline #page section:last-of-type .content-wrapper { padding-bottom: 0 !important; }
+html.em-inline .form-wrapper { padding-bottom: var(--em-space-xl); }
 
 /* "Enquiring about: <work>" note above the form */
 .em-ask {

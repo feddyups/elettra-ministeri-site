@@ -14,7 +14,7 @@ const loadStylesheet = () => {
 
 /** The parts of the page that make up the form: what is above its first field and below its last (a confirmation takes the form's place) is not counted. */
 const FORM_PARTS = '.em-ask, .form-wrapper, .form-submission-text, .form-submission-html';
-const BREATHING_ROOM = 24;
+const BREATHING_ROOM = 8; // room for a focus ring; the space under the form is its own padding (enquiry.css)
 
 /**
  * The enquiry form shown inside an iframe (the drawer, or inline on a painting page): hide the site chrome and let Escape close the drawer.
