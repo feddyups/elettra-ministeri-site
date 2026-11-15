@@ -41,7 +41,8 @@ html[data-series="journal"] .jl-link { color: var(--em-ink) !important; text-dec
 html[data-series="journal"] .jl-link:hover { color: var(--jl-hover) !important; }
 
 /* ----- the index ----- */
-.jl-overview { max-width: var(--em-content-max, 100rem); margin: 0 auto; padding: clamp(6rem, 12vw, 9rem) var(--sqs-site-gutter, var(--em-gutter, 2rem)) var(--em-section-gap, 6rem); box-sizing: border-box; color: var(--em-body); }
+.jl-overview { box-sizing: border-box; padding: clamp(6rem, 12vw, 9rem) 24px var(--em-section-gap, 6rem); color: var(--em-body); }
+@media (min-width: 768px) { .jl-overview { padding-inline: 64px; } }
 .jl-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: end; margin-bottom: clamp(2.5rem, 5vw, 5rem); }
 .jl-head h1 { margin: 0; font-family: var(--em-font-serif); font-size: var(--em-display-lg); font-weight: var(--em-weight-medium); line-height: var(--em-leading-tight); letter-spacing: var(--em-tracking-tight); color: var(--em-ink); }
 .jl-lede { margin: 0; max-width: 58ch; font-family: var(--em-font-sans); font-size: var(--em-text-lg); line-height: 1.75; color: var(--em-body); }
@@ -60,6 +61,7 @@ html[data-series="journal"] .jl-link:hover { color: var(--jl-hover) !important; 
 .jl-row-text { display: grid; gap: var(--em-space-s); min-width: 0; }
 .jl-row-text b { font-family: var(--em-font-serif); font-size: var(--em-display-sm); font-weight: var(--em-weight-medium); line-height: 1.12; color: var(--em-ink); transition: color var(--em-duration-quick, 0.2s) ease; }
 .jl-row-text small { max-width: 60ch; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.65; color: var(--em-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.jl-row > a:not(:has(.jl-row-picture)) { grid-template-columns: 11rem minmax(0, 1fr); }
 .jl-row-picture { display: block; width: 5.5rem; height: 5.5rem; background: var(--em-bg-alt, transparent); }
 .jl-row-picture img { display: block; width: 100%; height: 100%; object-fit: cover; box-shadow: var(--em-shadow-plate, none); }
 .jl-row > a:hover .jl-row-text b, .jl-row > a:focus-visible .jl-row-text b { color: var(--jl-hover); }

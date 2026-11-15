@@ -17,6 +17,7 @@ const plain = (html) => { const div = document.createElement('div'); div.innerHT
 const dateOf = (ms) => new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(ms));
 const minutesOf = (text) => Math.max(1, Math.round(text.split(/\s+/).filter(Boolean).length / WORDS_PER_MINUTE));
 const shorten = (text) => (text.length <= EXCERPT_LENGTH ? text : `${text.slice(0, EXCERPT_LENGTH).replace(/\s+\S*$/, '')}…`);
+const CATEGORY_ORDER = ['Scrivo una cartolina', 'Travel', 'About me', 'Versi liberi'];
 const card = (slug) => CARDS.find((c) => c.slug === slug);
 
 /* ----- the index ----- */
@@ -61,13 +62,14 @@ const renderRow = (entry) => h('li', { class: 'jl-row', 'data-category': entry.c
   h('a', { href: entry.path },
     h('span', { class: 'jl-row-meta' }, entry.date, h('span', null, entry.category)),
     h('span', { class: 'jl-row-text' }, h('b', null, entry.title), entry.excerpt && h('small', null, entry.excerpt)),
-    h('span', { class: 'jl-row-picture' }, entry.cover && h('img', { src: entry.cover, alt: '', loading: 'lazy' }))));
+    entry.cover && h('span', { class: 'jl-row-picture' }, h('img', { src: entry.cover, alt: '', loading: 'lazy' }))));
 
 const initIndex = async (list) => {
   let entries;
-  try { entries = (await fetchEntries()).map(describe); } catch (error) { return; }
+  try { entries = (await fetchEntries()).map(describe).filter((entry) => entry.excerpt || entry.cover); } catch (error) { return; }
   if (!entries.length) return;
-  const categories = [...new Set(entries.map((entry) => entry.category))];
+  const present = [...new Set(entries.map((entry) => entry.category))];
+  const categories = [...CATEGORY_ORDER.filter((c) => present.includes(c)), ...present.filter((c) => !CATEGORY_ORDER.includes(c))];
   const start = decodeURIComponent((location.pathname.match(/\/blog\/category\/([^/]+)/) || [])[1] || '').replace(/\+/g, ' ');
   let current = categories.find((c) => c.toLowerCase() === start.toLowerCase()) || null;
 
