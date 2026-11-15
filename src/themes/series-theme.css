@@ -93,7 +93,8 @@ html[data-series="print"] {
   --series-body: rgba(250, 248, 245, 0.88);
 }
 /* and it has no navigation at its foot: neither the links of a series page nor the collection's Previous / Next bar */
-html[data-series="artist-picks"] .item-pagination { display: none !important; }
+html[data-series="artist-picks"] .item-pagination,
+html[data-series="print"] .item-pagination { display: none !important; }
 /* a grid is drawn from the catalogue by script (works/series-grid.js, works/picks-grid.js); it stays invisible until its final entries are in
    place (data-ready) so the page's stored entries are never seen reshuffling, and shows itself anyway after a moment if the script cannot run */
 html .th-grid:not([data-ready]) { opacity: 0; animation: th-grid-fallback 0s 2.5s forwards; }
