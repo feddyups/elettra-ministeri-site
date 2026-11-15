@@ -197,7 +197,7 @@ html[data-series="journal"] main .blog-meta-item--tags a { border-color: var(--e
  */
 html[data-series="journal"] {
   --journal-text: clamp(1.125rem, 1rem + 0.32vw, 1.375rem);
-  --journal-column: 41rem;
+  --journal-column: 43rem;
 }
 html[data-series="journal"] main .sqs-block-html .sqs-block-content,
 html[data-series="journal"] main .blog-excerpt-wrapper,
@@ -234,7 +234,8 @@ html[data-series="journal"] main blockquote {
   border-left: 2px solid var(--journal-accent);
 }
 html[data-series="journal"] main h1.blog-title,
-html[data-series="journal"] main .blog-title {
+html[data-series="journal"] main .blog-title,
+html[data-series="journal"] main .entry-title {
   font-size: clamp(2.4rem, 1.5rem + 2.6vw, 4.2rem) !important;
   line-height: 1.08 !important;
   max-width: 24ch;
