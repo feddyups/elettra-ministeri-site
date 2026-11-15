@@ -57,12 +57,12 @@ export const mountSeriesPages = () => {
   const card = !picks && !series && /^\/(postcards|print)\/[a-z-]+$/.test(here) && cardOf(here.split('/').pop());
   const main = document.querySelector('main#page, main');
   if ((!picks && !series && !card) || !main || main.querySelector('[data-series-page], [data-work-page], .th')) return;
-  if (card) { main.append(h('div', { 'data-work-page': '' })); return; }
-  const shell = h('div', { 'data-series-page': picks ? 'artist-picks' : series.slug, 'data-em-series-page': '1' });
+  const shell = card ? h('div', { 'data-work-page': '', 'data-em-mounted': '' }) : h('div', { 'data-series-page': picks ? 'artist-picks' : series.slug, 'data-em-series-page': '1', 'data-em-mounted': '' });
   main.append(shell);
   const header = document.querySelector('header');
   const clear = () => shell.style.setProperty('--em-series-top', `${header ? header.getBoundingClientRect().height : 0}px`);
   clear();
   addEventListener('resize', clear);
+  if (card) return;
   if (picks) initPicksPage(shell); else initSeriesPage(shell);
 };

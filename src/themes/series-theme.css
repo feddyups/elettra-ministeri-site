@@ -148,8 +148,10 @@ html .th-price.is-sold b { padding: 0.2em 0.65em; background: var(--em-ink); col
 /* the price, or the word Sold, and the way to enquire sit at the right of the caption, also when they wrap under the title */
 html .th-cap .th-act { margin-left: auto; }
 
-/* A series page or the Artist picks page built into an empty Squarespace page (works/series-page.js): the margins of a section and the clearance of the header. */
-main [data-series-page] { box-sizing: border-box; padding: calc(var(--em-series-top, 85px) + 56px) 24px 56px; }
+/* A series page, the Artist picks page or a postcard page built into an empty Squarespace page (works/series-page.js): the margins of a section and the clearance of the header. */
+main [data-em-mounted] { box-sizing: border-box; padding: calc(var(--em-series-top, 85px) + 56px) 24px 56px; }
+main [data-work-page][data-em-mounted] { padding-top: calc(var(--em-series-top, 85px) + 32px); padding-bottom: 0; }
 @media (min-width: 768px) {
-  main [data-series-page] { padding: calc(var(--em-series-top, 134px) + 106px) 64px 106px; }
+  main [data-em-mounted] { padding: calc(var(--em-series-top, 134px) + 106px) 64px 106px; }
+  main [data-work-page][data-em-mounted] { padding-top: calc(var(--em-series-top, 134px) + 32px); padding-bottom: 0; }
 }
