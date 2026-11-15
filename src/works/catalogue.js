@@ -198,7 +198,7 @@ export const CATALOGUE = {
   'maternity-i': {
     title: "Maternity I",
     series: "maternity",
-    medium: "Acrylic on watercolor paper",
+    medium: "Watercolor on watercolor paper",
     size: "18 × 25.5 cm",
     price: 15,
     image: {
@@ -206,7 +206,7 @@ export const CATALOGUE = {
       width: 1000,
       height: 1433
     },
-    alt: "Maternity I: a pregnant body in profile, pink and orange with black outlines, on a yellow ground in a blue frame, acrylic on canvas",
+    alt: "Maternity I: a pregnant body in profile, pink and orange with black outlines, on a yellow ground in a blue frame, watercolor on watercolor paper",
     story: [
       "A body in profile, round and unhurried, drawn with a heavy black line and held inside a blue frame on a warm yellow ground. I wanted the pregnant body to look the way it is: strong, ordinary and very much present.",
       "Maternity I is the first of three paintings from my own pregnancy."
@@ -215,7 +215,7 @@ export const CATALOGUE = {
   'maternity-ii': {
     title: "Maternity II",
     series: "maternity",
-    medium: "Acrylic on watercolor paper",
+    medium: "Watercolor on watercolor paper",
     size: "18 × 25.5 cm",
     price: 15,
     image: {
@@ -223,7 +223,7 @@ export const CATALOGUE = {
       width: 1000,
       height: 1433
     },
-    alt: "Maternity II: a pregnant torso seen from the front in vivid red and orange, outlined in deep blue, acrylic on canvas",
+    alt: "Maternity II: a pregnant torso seen from the front in vivid red and orange, outlined in deep blue, watercolor on watercolor paper",
     story: [
       "A torso seen from the front, so close that the body becomes the whole picture: red and orange pressed against a deep blue edge. There is nothing to look past, and no idealized image to measure it against.",
       "Maternity II is the loudest of the three, and the most direct about the intensity of that time."
@@ -232,7 +232,7 @@ export const CATALOGUE = {
   'maternity-iii': {
     title: "Maternity III",
     series: "maternity",
-    medium: "Acrylic on watercolor paper",
+    medium: "Watercolor on watercolor paper",
     size: "18 × 25.5 cm",
     price: 15,
     image: {
@@ -240,7 +240,7 @@ export const CATALOGUE = {
       width: 2400,
       height: 3438
     },
-    alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, acrylic on watercolor paper",
+    alt: "Maternity III: a seated pregnant figure in orange against pink and crimson, in a deep blue frame, watercolor on watercolor paper",
     story: [
       "A figure sits, orange against pink and crimson, and takes up the space she needs. Her posture says what the whole series says: this body is holy.",
       "Maternity III is the third of the paintings from my pregnancy."

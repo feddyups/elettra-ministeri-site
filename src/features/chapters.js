@@ -29,7 +29,8 @@ export const initChapter = (chapter) => {
   const pick = series && randomWorkOf(series);
   if (pick) chapter.setAttribute('data-img', pictureAt(pick[1], 1500)); // a different work of the series on each visit; its number of works comes from the catalogue
   const meta = chapter.querySelector('.meta');
-  if (meta && series) meta.textContent = meta.textContent.replace(/^\d+ works?/, `${worksOfSeries(series).length} works`);
+  const media = series && (SERIES_NOTES[series] || {}).media;
+  if (meta && series) meta.textContent = media ? `${worksOfSeries(series).length} works · ${media}` : meta.textContent.replace(/^\d+ works?/, `${worksOfSeries(series).length} works`);
   const desc = chapter.querySelector('.desc');
   const home = series && (SERIES_NOTES[series] || {}).home;
   if (desc && home) desc.textContent = home;

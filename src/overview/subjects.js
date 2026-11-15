@@ -27,7 +27,7 @@ export const subjectsOf = (slug) => {
 export const MEDIA = [
   { key: 'canvas', label: 'Acrylic on canvas', test: (m) => /canvas/i.test(m) && !/paper/i.test(m) },
   { key: 'paper', label: 'Acrylic on paper', test: (m) => /acrylic/i.test(m) && /paper/i.test(m) },
-  { key: 'watercolor', label: 'Watercolor on vintage paper', test: (m) => /watercolor/i.test(m) },
+  { key: 'watercolor', label: 'Watercolor on paper', test: (m) => /^watercolor/i.test(m) },
   { key: 'pastel', label: 'Oil pastel on handmade paper', test: (m) => /pastel/i.test(m) },
   { key: 'felt', label: 'Felt, buttons and linen', test: (m) => /felt/i.test(m) },
   { key: 'wood', label: 'Painted wood', test: (m) => /wood/i.test(m) },
