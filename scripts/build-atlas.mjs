@@ -92,7 +92,7 @@ writeFileSync(
 (function () {
   var paintingSeries = ${JSON.stringify(workSeries)};
   var path = location.pathname.replace(/\\/$/, '');
-  var match = path.match(/^\\/(?:paintings|textiles|print)\\/([a-z0-9-]+)$/);
+  var match = path.match(/^\\/(?:paintings|textile-works|textiles|print)\\/([a-z0-9-]+)$/);
   var series = match ? (paintingSeries[match[1]] || match[1]) : path === '/textiles' ? 'textiles' : path === '/print' ? 'print' : path === '/paintings' ? 'all' : null;
   if (series) document.documentElement.setAttribute('data-series', series);
   // the background the visitor chose for this series (theme/tone-control.js keeps the preset's name in localStorage), before the first paint
@@ -100,8 +100,8 @@ writeFileSync(
     var tone = series && localStorage.getItem('em-tone-' + series);
     if (tone && tone !== '${DEFAULT_PRESET}' && ${JSON.stringify(PRESET_IDS)}.indexOf(tone) > -1) document.documentElement.setAttribute('data-tone', tone);
   } catch (e) { /* storage blocked: the default preset shows */ }
-  // a textile reached through its old /paintings address shows its own /textiles address
-  if (match && (series === 'textiles' || series === 'print') && path.indexOf('/paintings/') === 0) history.replaceState(history.state, '', '/' + series + '/' + match[1] + location.search + location.hash);
+  // a textile reached through the address of its page (/textile-works/<name>, or the old /paintings/<name>) shows its own /textiles address
+  if (match && (series === 'textiles' || series === 'print') && path.indexOf('/' + series + '/') !== 0) history.replaceState(history.state, '', '/' + series + '/' + match[1] + location.search + location.hash);
 })();
 `,
 );
