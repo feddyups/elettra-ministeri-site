@@ -37,6 +37,6 @@ html .wp .pr-prompt p:not(.ca-label) { margin: 0; font-style: italic; }
 }
 
 /* the line on a postcard's page that leads to the Journal entries of its month */
-.pr-journal { max-width: var(--em-measure); margin: 1.4em 0 0; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.7; color: var(--em-muted); }
-.pr-journal a { color: var(--em-ink); text-decoration: underline; text-decoration-color: var(--em-line); text-underline-offset: 0.22em; }
-.pr-journal a:hover { color: var(--em-accent); text-decoration-color: currentColor; }
+html body .wp .wp-story p.pr-journal { max-width: var(--em-measure); margin: 1.6em 0 0; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.7; color: var(--em-muted); }
+html body .wp .wp-story p.pr-journal a { color: var(--em-ink); text-decoration: underline; text-decoration-color: var(--em-line); text-underline-offset: 0.22em; }
+html body .wp .wp-story p.pr-journal a:hover { color: var(--em-accent); text-decoration-color: currentColor; }
