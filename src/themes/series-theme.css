@@ -251,3 +251,6 @@ html[data-series="journal"] main .blog-more-link {
 /* the pictures keep a generous width of their own and sit in the middle of the page */
 html[data-series="journal"] main .image-block-outer-wrapper,
 html[data-series="journal"] main .sqs-block-image { margin-inline: auto; }
+html[data-series="journal"] main .blog-item-title,
+html[data-series="journal"] main .blog-basic-grid--text .blog-title { display: flex; justify-content: center; }
+html[data-series="journal"] main .entry-title { text-align: center; }
