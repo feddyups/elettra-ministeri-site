@@ -154,8 +154,8 @@ export const CATALOGUE = {
     },
     alt: "Cloudy Lighthouse: a blue lighthouse with white clouds woven into its tower, floating in a pale blue sky inside a border of blue and white squares, acrylic on a pinewood board",
     story: [
-      "A lighthouse that seems to float, as if it were standing on air and the sky had slipped inside it. The clouds are not weather here: they are lightness, the part of the sky that lets a heavy tower rest.",
-      "I painted it in every blue I could find, and framed it with a border of blue and white squares, like a small patchwork of sea and foam."
+      "A lighthouse that floats, as if the sky had picked it up. The clouds drift through its tower like they belong there, and for me they mean lightness: even something tall and heavy can feel like air.",
+      "I used every blue I could find, and a border of blue and white squares around it, like a little quilt of sea and foam."
     ]
   },
   'salty-sun': {
