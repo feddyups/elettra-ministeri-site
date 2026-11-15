@@ -729,8 +729,8 @@ export const CATALOGUE = {
     },
     alt: "Rainbow Moka I: a moka pot striped in blue, ochre, green, violet and orange on a soft orange and green wash, with a light blue mat, in a frame painted blue, ochre, teal and green",
     story: [
-      "The moka pot is the first sound of an Italian morning, so I painted it in stripes, one for every color of the day.",
-      "This one sits on a wash of orange and green, and I framed it in blue, ochre and teal so the frame carries the same colors on."
+      "The moka pot is the first sound of an Italian morning, so I gave it a rainbow of stripes, as many colors as a morning can hold.",
+      "It sits on a wash of orange and green, and I painted the frame in blue, ochre, teal and green so the colors keep going past the edge of the paper."
     ]
   },
   'rainbow-moka-ii': {
@@ -746,7 +746,7 @@ export const CATALOGUE = {
     },
     alt: "Rainbow Moka II: a moka pot striped in red, orange, yellow, green and blue with a black handle, on a soft wash of pink, blue and green, watercolor and acrylic on paper",
     story: [
-      "A second moka pot, larger, in bright stripes of orange, yellow, red, green and blue, with a black handle.",
+      "A moka pot in bright stripes of red, orange, yellow, green and blue, with a black handle, standing tall in the middle of the sheet.",
       "Behind it the paper is a soft wash of pink, blue and green, as if the morning light were still moving across it. I painted it in watercolor and acrylic on a full sheet of watercolor paper."
     ]
   },
