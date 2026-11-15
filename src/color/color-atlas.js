@@ -2,10 +2,11 @@ import { h } from '../lib/elements.js';
 import { resolveScope } from './scope.js';
 import { joinNames } from './text.js';
 import { renderPaletteBar } from './blocks/palette-bar.js';
+import { renderFamilyBar } from './blocks/family-bar.js';
 import { gistOf } from './gist.js';
 import { renderWorkStrips } from './blocks/work-strips.js';
 
-const ALL_BLOCKS = 'palette,strips';
+const ALL_BLOCKS = 'families,palette,strips';
 const SERIES_BLOCKS = 'palette,strips';
 const MAIN_COLORS_SHOWN = 3;
 
@@ -41,8 +42,11 @@ export const initAtlas = (host) => {
   const top = wanted.has('palette') && h('div', { class: 'ca-side' },
     section(scope.id === 'all' ? 'The colors that stand out' : `What ${scope.label} is made of`, renderPaletteBar(scope)));
 
+  const families = wanted.has('families') && section('The color families', h('p', { class: 'ca-note' }, 'Shades that sit close together are gathered into one family, each as wide as the share of an average painting it covers.'), renderFamilyBar(scope));
+
   host.replaceChildren(...[
     host.dataset.heading !== 'none' && h('header', { class: 'ca-head' }, h('p', { class: 'ca-label' }, kicker), title && h('h2', null, title), h('p', { class: 'ca-lede' }, lede)),
+    families,
     top && h('div', { class: 'ca-top' }, top),
     wanted.has('strips') && section(scope.id === 'all' ? 'Every work, as a strip of its colors' : 'Each work, as a strip of its colors', renderWorkStrips(scope)),
     more,
