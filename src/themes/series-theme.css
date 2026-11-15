@@ -157,3 +157,32 @@ main [data-work-page][data-em-mounted] { padding-top: calc(var(--em-series-top, 
   main [data-em-mounted] { padding: calc(var(--em-series-top, 134px) + 106px) 64px 106px; }
   main [data-work-page][data-em-mounted] { padding-top: calc(var(--em-series-top, 134px) + 32px); padding-bottom: 0; }
 }
+
+/*
+ * The Journal (/blog and its posts): Squarespace paints a blog's sections on a border layer of their own and sets its text in dark ink, so both
+ * follow the night color here. Links and titles take the site's accent lightened toward the text color, which keeps them readable on the dark ground.
+ */
+html[data-series="journal"] {
+  --journal-accent: color-mix(in srgb, #b5472b 55%, var(--em-ink));
+}
+html[data-series="journal"] .section-border { background-color: var(--em-bg) !important; }
+html[data-series="journal"] main,
+html[data-series="journal"] main .blog-item-content,
+html[data-series="journal"] main .blog-item-wrapper,
+html[data-series="journal"] main .blog-excerpt-wrapper,
+html[data-series="journal"] main .blog-date,
+html[data-series="journal"] main .blog-meta-item,
+html[data-series="journal"] main .entry-content,
+html[data-series="journal"] main .sqs-block-content p,
+html[data-series="journal"] main .sqs-block-content li { color: var(--em-body) !important; }
+html[data-series="journal"] main h1,
+html[data-series="journal"] main h2,
+html[data-series="journal"] main h3,
+html[data-series="journal"] main .blog-title,
+html[data-series="journal"] main .entry-title { color: var(--em-ink) !important; }
+html[data-series="journal"] main a,
+html[data-series="journal"] main .blog-more-link,
+html[data-series="journal"] main .blog-title a { color: var(--journal-accent) !important; }
+html[data-series="journal"] main .blog-title a { color: var(--em-ink) !important; }
+html[data-series="journal"] main hr,
+html[data-series="journal"] main .blog-meta-item--tags a { border-color: var(--em-line); }
