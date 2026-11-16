@@ -240,7 +240,7 @@ html[data-series="journal"] article[data-jl-ready] .blog-meta-item--tags {
   padding: 0;
 }
 html[data-series="journal"] .blog-item-tag-wrapper { display: contents; }
-html[data-series="journal"] .blog-item-tag-wrapper::after { content: none; }
+html[data-series="journal"] .blog-item-tag-wrapper::after { content: none !important; display: none !important; }
 html[data-series="journal"] a.blog-item-tag {
   display: inline-flex;
   align-items: center;
