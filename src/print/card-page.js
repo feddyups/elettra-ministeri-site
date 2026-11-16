@@ -40,6 +40,7 @@ export const initCardPage = (host, card) => {
 
     const article = h('section', { class: 'wp-section wp-story' },
       h('p', { class: 'ca-label' }, 'The story'),
+      h('blockquote', { class: 'pr-quote' }, card.epigraph.lines.map((line) => h('p', null, line)), h('cite', null, card.epigraph.by)),
       h('p', { class: 'wp-lede' }, card.dek),
       card.article.map((paragraph) => h('p', null, paragraph)),
       renderCardJournal(card),
