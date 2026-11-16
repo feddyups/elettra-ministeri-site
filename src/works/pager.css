@@ -39,6 +39,17 @@ html .em-pager .em-pager-link:hover b,
 html .em-pager .em-pager-link:focus-visible b { border-bottom-color: currentColor; }
 html .em-pager .em-pager-link:focus-visible { outline: var(--em-stroke) solid var(--em-ink); outline-offset: var(--em-space-xs); }
 
+/* The Journal's bar: the earlier entry, a way back to the Journal, the later entry. Where a neighbor is missing its place stays empty, so the way back keeps its center. */
+.em-pager-inner--journal { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; }
+.em-pager-inner--journal .em-pager-link--prev { justify-self: start; }
+.em-pager-inner--journal .em-pager-link--next { justify-self: end; margin-left: 0; }
+.em-pager-link--back { text-align: center; }
+.em-pager-inner--journal .em-pager-link b { font-size: clamp(1.25rem, 2.2vw, 1.75rem); }
+@media (max-width: 40em) {
+  .em-pager-inner--journal { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); row-gap: var(--em-space-l); }
+  .em-pager-inner--journal .em-pager-link--back { grid-column: 1 / -1; grid-row: 2; justify-self: center; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .em-pager-link b { transition: none; }
 }

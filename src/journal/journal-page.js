@@ -1,6 +1,7 @@
 import { h } from '../lib/elements.js';
 import { CARDS, cardPath } from '../print/cards.js';
 import { ENTRY_CARDS, PROJECT_ENTRY } from './postcards.js';
+import { pagerLink } from '../works/pager-link.js';
 
 /*
  * The Journal (/blog and its entries). Squarespace draws a blog with its own layout; this gives it the site's: an index of every entry (the native list
@@ -147,6 +148,24 @@ const postcardEnd = (path) => {
   return null;
 };
 
+/**
+ * The bar at the foot of an entry replaces Squarespace's own: the entry written before this one on the left, the one after it on the right, and a way back
+ * to the Journal between them. Only entries that appear in the index take part, so a draft or an empty entry is never a neighbor.
+ */
+const initPager = async (bar) => {
+  let entries;
+  try { entries = (await fetchEntries()).map(describe).filter((entry) => entry.excerpt); } catch (error) { return; }
+  const index = entries.findIndex((entry) => entry.path === location.pathname.replace(/\/$/, ''));
+  if (index < 0) return;
+  const earlier = entries[index + 1];
+  const later = entries[index - 1];
+  bar.classList.add('em-pager');
+  bar.replaceChildren(h('nav', { class: 'em-pager-inner em-pager-inner--journal', 'aria-label': 'Journal entries' },
+    earlier ? pagerLink('prev', 'Earlier entry', earlier.title, earlier.path) : h('span'),
+    pagerLink('back', 'Back to', 'The Journal', BLOG),
+    later ? pagerLink('next', 'Later entry', later.title, later.path) : h('span')));
+};
+
 const initEntry = (article) => {
   const content = article.querySelector('.blog-item-content');
   if (!content) return;
@@ -166,6 +185,8 @@ const initEntry = (article) => {
   const end = postcardEnd(location.pathname);
   if (end) { content.after(end); article.setAttribute('data-jl-card', ''); }
   article.setAttribute('data-jl-ready', '');
+  const bar = document.querySelector('.item-pagination');
+  if (bar) initPager(bar);
 };
 
 /* ----- start ----- */

@@ -2,13 +2,10 @@ import { h } from '../lib/elements.js';
 import { initOnceFor } from '../lib/dom.js';
 import { seriesList, seriesInfo } from '../color/scope.js';
 import { CATALOGUE } from './catalogue.js';
+import { pagerLink as link } from './pager-link.js';
 
 /** The series of paintings, in display order (the textiles have their own page). */
 export const paintingSeries = () => seriesList().filter((s) => s.slug !== 'textiles');
-
-const link = (direction, label, title, href) => h('a', { class: `em-pager-link em-pager-link--${direction}`, href },
-  h('small', null, direction === 'prev' ? `‹ ${label}` : `${label} ›`),
-  h('b', null, title));
 
 /** The bar at the bottom of a series page: the previous and next series, going around from the last to the first. */
 export const seriesPager = (slug) => {
