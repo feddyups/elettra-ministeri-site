@@ -16,8 +16,9 @@ const action = (label, onClick) => {
 };
 
 /**
- * The page of one postcard, in the layout of a painting's page: the card, its month and title and the ways to print it, the article that goes
- * with it and a question to start the message with, the plain back to write on, and the way to the other cards (the arrow keys and a swipe go there too).
+ * The page of one postcard, in the layout of a painting's page: the card, its month and title and the ways to print it, what the series is, the story of the
+ * month in a few sentences with a question to start the message with, the plain back to write on, and the way to the other cards (the arrow keys and a swipe go
+ * there too).
  */
 export const initCardPage = (host, card) => {
   loadStylesheet(new URL('./print.css', import.meta.url).href).then(() => {
@@ -40,8 +41,7 @@ export const initCardPage = (host, card) => {
     const article = h('section', { class: 'wp-section wp-story' },
       h('p', { class: 'ca-label' }, 'The story'),
       h('p', { class: 'wp-lede' }, card.dek),
-      card.article.map((part) => (typeof part === 'string' ? h('p', null, part)
-        : h('blockquote', { class: 'pr-quote' }, part.quote.map((line) => h('p', null, line)), part.by && h('cite', null, part.by)))),
+      card.article.map((paragraph) => h('p', null, paragraph)),
       renderCardJournal(card),
       h('div', { class: 'pr-prompt' }, h('p', { class: 'ca-label' }, 'To write on the back'), h('p', null, card.prompt)));
 
@@ -60,7 +60,7 @@ export const initCardPage = (host, card) => {
       h('p', { class: 'wp-keys wp-keys--keys' }, 'Use the ← and → keys to move through the postcards.'),
       h('p', { class: 'wp-keys wp-keys--swipe' }, 'Swipe left or right to move through the postcards.'));
 
-    host.replaceChildren(hero, article, renderCardSeries(), back, pager);
+    host.replaceChildren(hero, renderCardSeries(), article, back, pager);
     initSlideshow({ host, slug: card.slug, ordered: CARDS.map((c) => ({ slug: c.slug, href: cardPath(c) })) });
   });
 };

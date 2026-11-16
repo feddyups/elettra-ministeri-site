@@ -51,11 +51,7 @@ html body .wp .wp-story .pr-journal a:hover { color: var(--em-accent); text-deco
 .pr-project a { color: var(--em-ink); text-decoration: underline; text-decoration-color: var(--em-line); text-underline-offset: 0.22em; }
 .pr-project a:hover { color: var(--em-accent); text-decoration-color: currentColor; }
 
-/* a quotation within a card's story, and the short note on the series that follows it (card-page.js, card-series.js) */
-html body .wp .wp-story .pr-quote { max-width: var(--em-measure); margin: var(--em-space-l) 0; padding-left: var(--em-space-m); border-left: var(--em-hairline) solid var(--em-line); font-style: italic; }
-html body .wp .wp-story .pr-quote p:not(.ca-label) { margin: 0; }
-html body .wp .wp-story .pr-quote cite { display: block; margin-top: var(--em-space-xs); font: var(--em-weight-medium) var(--em-text-2xs) / 1.4 var(--em-font-sans); font-style: normal; letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--em-muted); }
-html body .wp .wp-story .pr-quote cite::before { content: '— '; }
+/* the short note on the series, under the card (card-series.js) */
 html .wp .pr-series p:not(.ca-label) { max-width: var(--em-measure); margin: var(--em-space-s) 0 0; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.7; color: var(--em-muted); }
 html .wp .pr-series .pr-series-links { display: flex; flex-wrap: wrap; gap: var(--em-space-xs) var(--em-space-l); }
 html .wp .pr-series a { color: var(--em-ink); text-decoration: underline; text-decoration-color: var(--em-line); text-underline-offset: 0.22em; }
