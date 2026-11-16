@@ -17,3 +17,4 @@ import './overview/main.js';
 import './print/main.js';
 import './journal/journal-page.js';
 import './features/paint-portrait.js';
+import './features/about-journal.js';
