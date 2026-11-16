@@ -4,7 +4,8 @@ import { CARDS, cardPath } from './cards.js';
 import { renderCardBack } from './card-back.js';
 import { at, full, printCard } from './print-actions.js';
 import { initSlideshow } from '../works/work-slideshow.js';
-import { entriesOfCard } from '../journal/postcards.js';
+import { renderCardJournal } from './card-journal.js';
+import { renderCardSeries } from './card-series.js';
 
 const WIDTHS = [500, 1000, 1500];
 
@@ -33,14 +34,15 @@ export const initCardPage = (host, card) => {
       h('div', { class: 'wp-info' },
         h('a', { class: 'wp-kicker', href: '/print' }, 'Print ›'),
         h('h1', null, card.title),
-        h('p', { class: 'wp-facts' }, `Postcard for ${card.month}`),
+        h('p', { class: 'wp-facts' }, `Postcard for ${card.month} ${card.year} · from the series Scrivo una cartolina`),
         h('p', { class: 'pr-actions' }, action('Print the card', () => printCard(card, 'both')), action('Full size', () => window.open(full(card), '_blank', 'noopener')))));
 
     const article = h('section', { class: 'wp-section wp-story' },
       h('p', { class: 'ca-label' }, 'The story'),
       h('p', { class: 'wp-lede' }, card.dek),
-      card.article.map((paragraph) => h('p', null, paragraph)),
-      entriesOfCard(card.slug).length > 0 && h('p', { class: 'pr-journal' }, 'I wrote about this month in my Journal, in Italian: ', entriesOfCard(card.slug).map((entry, i) => [i > 0 && ' · ', h('a', { href: entry.path }, entry.title)])),
+      card.article.map((part) => (typeof part === 'string' ? h('p', null, part)
+        : h('blockquote', { class: 'pr-quote' }, part.quote.map((line) => h('p', null, line)), part.by && h('cite', null, part.by)))),
+      renderCardJournal(card),
       h('div', { class: 'pr-prompt' }, h('p', { class: 'ca-label' }, 'To write on the back'), h('p', null, card.prompt)));
 
     const back = h('section', { class: 'wp-section pr-back-section' },
@@ -58,7 +60,7 @@ export const initCardPage = (host, card) => {
       h('p', { class: 'wp-keys wp-keys--keys' }, 'Use the ← and → keys to move through the postcards.'),
       h('p', { class: 'wp-keys wp-keys--swipe' }, 'Swipe left or right to move through the postcards.'));
 
-    host.replaceChildren(hero, article, back, pager);
+    host.replaceChildren(hero, article, renderCardSeries(), back, pager);
     initSlideshow({ host, slug: card.slug, ordered: CARDS.map((c) => ({ slug: c.slug, href: cardPath(c) })) });
   });
 };

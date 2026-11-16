@@ -36,7 +36,27 @@ html .wp .pr-prompt p:not(.ca-label) { margin: 0; font-style: italic; }
   html.pr-printing .pr-page > .pr-back { width: min(100%, calc(100vh * var(--ratio, 0.77))); box-shadow: none; border: 0.2mm solid #b9b9b9; }
 }
 
-/* the line on a postcard's page that leads to the Journal entries of its month */
-html body .wp .wp-story p.pr-journal { max-width: var(--em-measure); margin: 1.6em 0 0; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.7; color: var(--em-muted); }
-html body .wp .wp-story p.pr-journal a { color: var(--em-ink); text-decoration: underline; text-decoration-color: var(--em-line); text-underline-offset: 0.22em; }
-html body .wp .wp-story p.pr-journal a:hover { color: var(--em-accent); text-decoration-color: currentColor; }
+/* what the Journal holds for a postcard's month (card-journal.js) */
+html body .wp .wp-story .pr-journal { max-width: var(--em-measure); margin: var(--em-space-xl) 0 0; padding-top: var(--em-space-l); border-top: var(--em-hairline) solid var(--ca-line, currentColor); }
+html body .wp .wp-story .pr-journal p:not(.ca-label), html body .wp .wp-story .pr-journal li { margin: var(--em-space-s) 0 0; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.7; color: var(--em-muted); }
+html body .wp .wp-story .pr-journal ul { margin: var(--em-space-xs) 0 0; padding-left: 1.2em; }
+html body .wp .wp-story .pr-journal a { color: var(--em-ink); text-decoration: underline; text-decoration-color: var(--em-line); text-underline-offset: 0.22em; }
+html body .wp .wp-story .pr-journal a:hover { color: var(--em-accent); text-decoration-color: currentColor; }
+
+/* the story of the series, under the grid of the Print page (print-page.js) */
+.pr-project { max-width: var(--em-measure); margin: var(--em-space-2xl, 4rem) 0 0; padding-top: var(--em-space-l); border-top: var(--em-hairline) solid var(--em-line); }
+.pr-project p { margin: var(--em-space-s) 0 0; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.7; color: var(--em-muted); }
+.pr-project .pr-project-label { margin: 0; font: var(--em-weight-medium) var(--em-text-2xs) / 1 var(--em-font-sans); letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--em-muted); }
+.pr-project .pr-project-links { display: flex; flex-wrap: wrap; gap: var(--em-space-xs) var(--em-space-l); }
+.pr-project a { color: var(--em-ink); text-decoration: underline; text-decoration-color: var(--em-line); text-underline-offset: 0.22em; }
+.pr-project a:hover { color: var(--em-accent); text-decoration-color: currentColor; }
+
+/* a quotation within a card's story, and the short note on the series that follows it (card-page.js, card-series.js) */
+html body .wp .wp-story .pr-quote { max-width: var(--em-measure); margin: var(--em-space-l) 0; padding-left: var(--em-space-m); border-left: var(--em-hairline) solid var(--em-line); font-style: italic; }
+html body .wp .wp-story .pr-quote p:not(.ca-label) { margin: 0; }
+html body .wp .wp-story .pr-quote cite { display: block; margin-top: var(--em-space-xs); font: var(--em-weight-medium) var(--em-text-2xs) / 1.4 var(--em-font-sans); font-style: normal; letter-spacing: var(--em-tracking-label); text-transform: uppercase; color: var(--em-muted); }
+html body .wp .wp-story .pr-quote cite::before { content: '— '; }
+html .wp .pr-series p:not(.ca-label) { max-width: var(--em-measure); margin: var(--em-space-s) 0 0; font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.7; color: var(--em-muted); }
+html .wp .pr-series .pr-series-links { display: flex; flex-wrap: wrap; gap: var(--em-space-xs) var(--em-space-l); }
+html .wp .pr-series a { color: var(--em-ink); text-decoration: underline; text-decoration-color: var(--em-line); text-underline-offset: 0.22em; }
+html .wp .pr-series a:hover { color: var(--em-accent); text-decoration-color: currentColor; }
