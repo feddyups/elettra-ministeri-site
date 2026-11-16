@@ -11,7 +11,7 @@ const SERIES_BLOCKS = 'palette,strips';
 const MAIN_COLORS_SHOWN = 3;
 
 const heading = (scope) => (scope.id === 'all'
-  ? { kicker: 'The colors I speak in', title: 'My colors, measured.', lede: `I went through all ${scope.count} of my paintings and looked at their colors one by one. Here are the ones I come back to most, and how they sit next to each other.` }
+  ? { kicker: 'The colors I speak in', title: 'My colors, measured.', lede: `The colors of all ${scope.count} of my paintings, shown three ways: gathered into families, ranked by how much of an average painting each one covers, and laid out work by work.` }
   : {
     kicker: `Color in ${scope.label}`,
     title: null,
