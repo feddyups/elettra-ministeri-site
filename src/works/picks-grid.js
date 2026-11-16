@@ -5,7 +5,8 @@ import { groupsOf } from './series-order.js';
 import { readPickSlugs } from './picks.js';
 import { offersReady, discountedSlugs } from './offers.js';
 import { markSlugs } from './pick-star.js';
-import { renderEntry } from './series-grid.js';
+import { renderEntry, scaleEntries } from './series-grid.js';
+import { longestSideCm } from './picture-scale.js';
 import { masonry } from './masonry.js';
 
 const MESSAGES = {
@@ -15,7 +16,7 @@ const MESSAGES = {
 
 /**
  * Fills the Artist picks page's grid (`<ul class="th-grid" data-picks>`) with the paintings the artist has marked in her sheet and those she has put
- * on sale (see picks.js and offers.js; a work on sale appears here whether or not it is a pick, and only the picks carry the star), in the same layout as a series page and in its smooth path through color with the sets first (series-order.js).
+ * on sale (see picks.js and offers.js; a work on sale appears here whether or not it is a pick, and only the picks carry the star), in the same layout as a series page (each picture sized by its painting's real size, the largest of those shown at full width) and in its smooth path through color with the sets first (series-order.js).
  * Changing a tick in the sheet changes the page; nothing here is typed by hand.
  */
 export const initPicksGrid = async (list) => {
@@ -30,6 +31,7 @@ export const initPicksGrid = async (list) => {
       return;
     }
     list.replaceChildren(...works.map((slug) => renderEntry(slug, CATALOGUE[slug])));
+    scaleEntries(list, (slug) => CATALOGUE[slug], Math.max(0, ...works.map((slug) => longestSideCm(CATALOGUE[slug]) || 0)));
     if (slugs && slugs.length) markSlugs(list, slugs);
     masonry(list);
   } finally {

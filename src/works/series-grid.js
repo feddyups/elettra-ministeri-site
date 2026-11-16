@@ -21,6 +21,14 @@ const setLine = (slug, grouped) => {
   return place && place.total > 1 && h('small', { class: 'th-set' }, grouped ? `${place.number} of ${place.total}` : `Part of ${place.label} · ${place.number} of ${place.total}`);
 };
 
+/** Sizes each entry of a grid by its painting's real size, the largest painting (`largestCm`) taking the full width of its card (see picture-scale.js). */
+export const scaleEntries = (grid, workOf, largestCm) => {
+  grid.querySelectorAll('.th-work').forEach((item) => {
+    item.classList.add('th-scaled');
+    item.style.setProperty('--th-share', pictureShare(workOf(item.id), largestCm).toFixed(3));
+  });
+};
+
 /** One entry of a series page: the picture, its title and facts, and the way to enquire with the price beside it. */
 export const renderEntry = (slug, work, grouped = false) => {
   const page = workPath(slug);
@@ -76,10 +84,7 @@ export const initSeriesGrid = async (list) => {
         if (i === 0) list.before(head); else after.after(head, grid);
       }
       grid.replaceChildren(...group.entries.map(([slug, work]) => renderEntry(slug, work, Boolean(group.label))));
-      grid.querySelectorAll('.th-work').forEach((item) => {
-        item.classList.add('th-scaled');
-        item.style.setProperty('--th-share', pictureShare(entries.find(([name]) => name === item.id)[1], largest).toFixed(3));
-      });
+      scaleEntries(grid, (slug) => entries.find(([name]) => name === slug)[1], largest);
       markPicks(grid);
       masonry(grid);
       after = grid;
