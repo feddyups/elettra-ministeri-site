@@ -3,7 +3,7 @@ import { CATALOGUE } from './catalogue.js';
 import { allPaintings } from '../color/scope.js';
 import { groupsOf } from './series-order.js';
 import { readPickSlugs } from './picks.js';
-import { offersReady, discountedSlugs } from './offers.js';
+import { offersComplete, discountedSlugs } from './offers.js';
 import { markSlugs } from './pick-star.js';
 import { renderEntry, scaleEntries } from './series-grid.js';
 import { longestSideCm } from './picture-scale.js';
@@ -21,7 +21,7 @@ const MESSAGES = {
  */
 export const initPicksGrid = async (list) => {
   try {
-    const [slugs] = await Promise.all([readPickSlugs(), offersReady()]);
+    const [slugs] = await Promise.all([readPickSlugs(), offersComplete()]);
     const marked = new Set([...(slugs || []), ...discountedSlugs()]);
     const works = groupsOf(allPaintings().filter((work) => marked.has(work.slug) && CATALOGUE[work.slug])).flatMap((group) => group.works).map((work) => work.slug);
     // a work without a color analysis (a textile) still belongs on the page, after the others

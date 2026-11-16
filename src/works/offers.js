@@ -5,6 +5,10 @@ let discounts = new Map();
 let sets = null;
 let sold = new Set();
 let ready;
+let loading;
+
+const load = () => { loading ||= Promise.all([readDiscounts(), readSets(), readSold()]); return loading; };
+const apply = ([found, declared, gone]) => { if (found) discounts = found; sets = declared; if (gone) sold = gone; };
 
 /**
  * The discounts, sets and sold paintings the artist has entered in her sheet (picks.js), as far as a page can know them when it draws its prices, its groups and its enquiry buttons. A page awaits this once
@@ -14,11 +18,20 @@ let ready;
 export const offersReady = () => {
   if (!ready) {
     let settled = false;
-    const load = Promise.all([readDiscounts(), readSets(), readSold()]).then(([found, declared, gone]) => { if (settled) return; if (found) discounts = found; sets = declared; if (gone) sold = gone; });
+    const answer = load().then((found) => { if (!settled) apply(found); });
     const timeout = new Promise((resolve) => setTimeout(resolve, WAIT_MS));
-    ready = Promise.race([load, timeout]).then(() => { settled = true; });
+    ready = Promise.race([answer, timeout]).then(() => { settled = true; });
   }
   return ready;
+};
+
+/**
+ * For a page whose content comes from the sheet itself (the Artist picks page, which is empty without it): waits for the sheet's answer, up to `limitMs`, and uses it
+ * however long it took, so a slow first read never shows the page as having no picks. Such a page draws only after this resolves, so it never shows two prices.
+ */
+export const offersComplete = async (limitMs = 6000) => {
+  const answer = await Promise.race([load(), new Promise((resolve) => setTimeout(resolve, limitMs))]);
+  if (answer) apply(answer);
 };
 
 /** The percentage off for a work (by its page address), or 0: a sold work is never on sale. */
