@@ -2,6 +2,10 @@ import { h } from '../lib/elements.js';
 import { CARDS, cardPath } from '../print/cards.js';
 import { ENTRY_CARDS, PROJECT_ENTRY } from './postcards.js';
 import { pagerLink } from '../works/pager-link.js';
+import { CATALOGUE } from '../works/catalogue.js';
+import { listImage, listPictureAt } from '../works/series-notes.js';
+import { seriesInfo } from '../color/scope.js';
+import { RELATED } from './related.js';
 
 /*
  * The Journal (/blog and its entries). Squarespace draws a blog with its own layout; this gives it the site's: an index of every entry (the native list
@@ -22,6 +26,10 @@ const CATEGORY_ORDER = ['Scrivo una cartolina', 'Travel', 'About me', 'Versi lib
 const card = (slug) => CARDS.find((c) => c.slug === slug);
 
 /* ----- the index ----- */
+
+let entriesLoad = null;
+/** Every entry that appears in the index, newest first, loaded once for the index, the pager and the related entries. */
+const loadEntries = () => { entriesLoad = entriesLoad || fetchEntries().then((items) => items.map(describe).filter((entry) => entry.excerpt)); return entriesLoad; };
 
 const fetchEntries = async () => {
   const entries = new Map();
@@ -50,6 +58,7 @@ const describe = (item) => {
   const lead = [...body.querySelectorAll('p')].map((p) => p.textContent.replace(/\s+/g, ' ').trim()).find((t) => t.length > 60 && !/^["“«\-–—]/.test(t));
   return {
     path: new URL(item.fullUrl, location.origin).pathname,
+    tags: item.tags || [],
     title: item.title,
     date: dateOf(item.addedOn),
     category: sentence((item.categories || [])[0] || 'notes'),
@@ -67,7 +76,7 @@ const renderRow = (entry) => h('li', { class: 'jl-row', 'data-category': entry.c
 
 const initIndex = async (list) => {
   let entries;
-  try { entries = (await fetchEntries()).map(describe).filter((entry) => entry.excerpt); } catch (error) { return; }
+  try { entries = await loadEntries(); } catch (error) { return; }
   if (!entries.length) return;
   const present = [...new Set(entries.map((entry) => entry.category))];
   const categories = [...CATEGORY_ORDER.filter((c) => present.includes(c)), ...present.filter((c) => !CATEGORY_ORDER.includes(c))];
@@ -154,7 +163,7 @@ const postcardEnd = (path) => {
  */
 const initPager = async (bar) => {
   let entries;
-  try { entries = (await fetchEntries()).map(describe).filter((entry) => entry.excerpt); } catch (error) { return; }
+  try { entries = await loadEntries(); } catch (error) { return; }
   const index = entries.findIndex((entry) => entry.path === location.pathname.replace(/\/$/, ''));
   if (index < 0) return;
   const earlier = entries[index + 1];
@@ -166,12 +175,105 @@ const initPager = async (bar) => {
     later ? pagerLink('next', 'Later entry', later.title, later.path) : h('span')));
 };
 
+/* ----- links and pictures inside an entry ----- */
+
+const OWN_ADDRESS = /^https?:\/\/(www\.)?elettraministeri\.com(?=\/|$)/i;
+const ABOUT = '/about-me';
+const IS_POSTCARD_PICTURE = /_final\.|illustrazione|arriverderci/i;
+const NEEDS_DESCRIPTION = (alt) => !alt || /\.(jpe?g|png)$/i.test(alt) || alt.length < 12;
+
+/**
+ * Entries were written when downloads lived in a shared folder and addresses were absolute. Here the links that went to that folder lead to the postcard of the
+ * entry's month (or to the entry's own free print), and a link to this site is an address on this site. A postcard's picture in an entry is described by the
+ * postcard's own description.
+ */
+const repairLinks = (content, slug) => {
+  const monthly = card(ENTRY_CARDS[slug]);
+  const postcards = monthly ? cardPath(monthly) : '/print';
+  const freePrint = content.querySelector('img[data-src*="freeprint"]');
+  content.querySelectorAll('a[href]').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (/goo\.gl\/7uFUmF/.test(href)) { link.setAttribute('href', slug === PROJECT_ENTRY ? '/print' : postcards); return; }
+    if (/drive\.google\.com\/drive/.test(href)) {
+      link.setAttribute('href', freePrint ? freePrint.getAttribute('data-src') : postcards);
+      if (freePrint) { link.setAttribute('target', '_blank'); link.setAttribute('rel', 'noopener'); }
+      return;
+    }
+    if (OWN_ADDRESS.test(href)) {
+      const url = new URL(href);
+      link.setAttribute('href', url.pathname === '/' && /^blog$/i.test(link.textContent.trim()) ? BLOG : `${url.pathname}${url.search}${url.hash}`);
+    }
+  });
+  if (monthly) {
+    content.querySelectorAll('img').forEach((image) => {
+      const source = image.getAttribute('data-src') || '';
+      if (IS_POSTCARD_PICTURE.test(source) && NEEDS_DESCRIPTION(image.getAttribute('alt'))) image.setAttribute('alt', monthly.alt);
+    });
+  }
+};
+
+/* ----- what an entry leads on to ----- */
+
+const GENERIC_TAGS = new Set(['blog', 'beginning', 'new', 'elettraministeri', 'europe', 'travel']);
+const plainTag = (tag) => tag.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+const topicsOf = (entry) => new Set(entry.tags.map(plainTag).filter((tag) => tag && !GENERIC_TAGS.has(tag)));
+
+/** The entries that share the most topics with this one, at most three. */
+const relatedEntries = (entries, current) => {
+  const mine = topicsOf(current);
+  return entries
+    .filter((entry) => entry.path !== current.path)
+    .map((entry) => ({ entry, shared: [...topicsOf(entry)].filter((tag) => mine.has(tag)).length }))
+    .filter(({ shared }) => shared > 0)
+    .sort((a, b) => b.shared - a.shared)
+    .slice(0, 3)
+    .map(({ entry }) => entry);
+};
+
+const workItem = (slug) => {
+  const work = CATALOGUE[slug];
+  if (!work) return null;
+  const series = seriesInfo(work.series);
+  const image = listImage(work);
+  return h('li', null, h('a', { href: `/paintings/${slug}` },
+    h('img', { src: listPictureAt(work, 500), alt: work.alt, width: image.width, height: image.height, loading: 'lazy' }),
+    h('b', null, work.title),
+    series && h('small', null, series.label)));
+};
+
+/** The paintings, the series and the About page an entry leads on to (related.js), and the entries that share its topics, once they are known. */
+const renderRelated = (slug, article, after) => {
+  const plan = RELATED[slug] || {};
+  const works = (plan.works || []).map(workItem).filter(Boolean);
+  const series = plan.series && seriesInfo(plan.series);
+  const places = [
+    series && h('a', { class: 'jl-link', href: series.path }, `The ${series.label} series ›`),
+    plan.about && h('a', { class: 'jl-link', href: ABOUT }, 'About Elettra ›'),
+  ].filter(Boolean);
+  const entries = h('div', { class: 'jl-related-entries', hidden: true });
+  const block = h('aside', { class: 'jl-related', 'aria-label': 'More from the studio', hidden: !works.length && !places.length },
+    works.length > 0 && h('div', null, h('p', { class: 'jl-kicker-text' }, 'Paintings on the same subject'), h('ul', { class: 'jl-related-list' }, works)),
+    places.length > 0 && h('div', { class: 'jl-related-places' }, places),
+    entries);
+  after.after(block);
+  loadEntries().then((all) => {
+    const current = all.find((entry) => entry.path === location.pathname.replace(/\/$/, ''));
+    const more = current ? relatedEntries(all, current) : [];
+    if (!more.length) return;
+    entries.append(h('p', { class: 'jl-kicker-text' }, 'More in the Journal'),
+      h('ul', { class: 'jl-related-posts' }, more.map((entry) => h('li', null, h('a', { href: entry.path }, h('b', null, entry.title), h('small', null, `${entry.date} · ${entry.category}`))))));
+    entries.hidden = false;
+    block.hidden = false;
+  }).catch(() => {});
+};
+
 const initEntry = (article) => {
   const content = article.querySelector('.blog-item-content');
   if (!content) return;
   content.setAttribute('lang', 'it');
   markOpening(content);
   markPoem(content);
+  repairLinks(content, lastPart(location.pathname));
 
   const top = article.querySelector('.blog-item-top-wrapper');
   const title = article.querySelector('.entry-title, h1');
@@ -184,6 +286,7 @@ const initEntry = (article) => {
   }
   const end = postcardEnd(location.pathname);
   if (end) { content.after(end); article.setAttribute('data-jl-card', ''); }
+  renderRelated(lastPart(location.pathname), article, end || content);
   article.setAttribute('data-jl-ready', '');
   const bar = document.querySelector('.item-pagination');
   if (bar) initPager(bar);

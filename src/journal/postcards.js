@@ -6,6 +6,8 @@ export const ENTRIES = [
   { path: "/blog/2017/9/2/cambio-di-stagione-settembre", title: "Cambio di stagione. Settembre", card: 'september' },
   { path: "/blog/2017/10/2/poesia-di-ottobre", title: "Poesia di Ottobre", card: 'october' },
   { path: "/blog/2017/10/3/riti-di-passaggio-misteri-eleusini", title: "L'antico culto dei Misteri Eleusini", card: 'october' },
+  { path: "/blog/2017/10/19/la-vita-eterna-del-ricordo-da-de-muertos-1-crt27", title: "La vita eterna del ricordo", card: 'november' },
+  { path: "/blog/2017/10/27/quando-nostalgia-e-divertimento-vanno-di-pari-passo", title: "Día de Muertos", card: 'november' },
   { path: "/blog/2017/11/14/tra-il-sacro-e-il-profano-simboli-del-da-de-muertos-kydg3", title: "Tra il sacro e il profano: simboli del Dìa de Muertos", card: 'november' },
   { path: "/blog/2017/11/20/dicembre-magico", title: "La magia della Luce. Dicembre", card: 'december' },
   { path: "/blog/2018/1/8/ogni-nuovo-inizio-proviene-dalla-fine-di-un-altro-inizio-gennaio", title: "Gennaio, ciò che lascio, ciò che trovo", card: 'january' },
