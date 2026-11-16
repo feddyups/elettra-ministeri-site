@@ -5,7 +5,8 @@
  *   favicon-32.png       32 px
  *   favicon-96.png       96 px, a multiple of 48 as Google asks for its search results
  *   apple-touch-icon.png 180 px, full-bleed (iOS rounds the corners itself)
- *   icon-512.png         512 px, rounded; the file to upload as the Squarespace Browser Icon
+ *   icon-192.png         192 px, rounded; upload as the Squarespace favicon (PNG, 100 to 300 px, up to 0.1 MB)
+ *   icon-192-dark.png    the same on the lifted tile of the dark-tab icon; upload as the favicon's dark-mode variant
  * Run: npm run build:icons
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -14,6 +15,7 @@ import { ARMS, CREAM, GRID, INK, STEM, TILE_RADIUS, TRIAD, markSvg } from '../sr
 
 const OUT = new URL('../src/brand/icons/', import.meta.url);
 const SAMPLES = 6;
+const LIFTED = '#2a2420';
 
 const hex = (value) => [1, 3, 5].map((i) => parseInt(value.slice(i, i + 2), 16));
 const inside = ({ x, y, w, h }, px, py) => px >= x && px < x + w && py >= y && py < y + h;
@@ -25,21 +27,21 @@ const inTile = (px, py) => {
 };
 
 /** Colour of the mark at a point of the 64-unit grid, or null where nothing is drawn. */
-const shade = (px, py, rounded) => {
+const shade = (px, py, rounded, tile) => {
   if (rounded && !inTile(px, py)) return null;
   if (inside(STEM, px, py)) return hex(CREAM);
   const arm = ARMS.findIndex((a) => inside(a, px, py));
-  return hex(arm >= 0 ? TRIAD[arm] : INK);
+  return hex(arm >= 0 ? TRIAD[arm] : tile);
 };
 
-const render = (size, { rounded }) => {
+const render = (size, { rounded, tile = INK }) => {
   const png = new PNG({ width: size, height: size });
   for (let y = 0; y < size; y += 1) {
     for (let x = 0; x < size; x += 1) {
       let r = 0; let g = 0; let b = 0; let n = 0;
       for (let sy = 0; sy < SAMPLES; sy += 1) {
         for (let sx = 0; sx < SAMPLES; sx += 1) {
-          const c = shade(((x + (sx + 0.5) / SAMPLES) / size) * GRID, ((y + (sy + 0.5) / SAMPLES) / size) * GRID, rounded);
+          const c = shade(((x + (sx + 0.5) / SAMPLES) / size) * GRID, ((y + (sy + 0.5) / SAMPLES) / size) * GRID, rounded, tile);
           if (c) { r += c[0]; g += c[1]; b += c[2]; n += 1; }
         }
       }
@@ -78,4 +80,5 @@ write('favicon.ico', ico([16, 32, 48]));
 write('favicon-32.png', render(32, { rounded: true }));
 write('favicon-96.png', render(96, { rounded: true }));
 write('apple-touch-icon.png', render(180, { rounded: false }));
-write('icon-512.png', render(512, { rounded: true }));
+write('icon-192.png', render(192, { rounded: true }));
+write('icon-192-dark.png', render(192, { rounded: true, tile: LIFTED }));
