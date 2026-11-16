@@ -40,8 +40,14 @@ const shadesOf = (members, count) => {
   return groups.sort((a, b) => b.share - a.share).slice(0, SHADES_SHOWN).map((group) => [toHex(oklabToRgb(group.center)), nearestName(group.center), group.share / count]);
 };
 
+/** The one color a family is shown as: all of its colors across the works blended, each in proportion to the share of a painting it covers (averaged in OKLab, so the blend looks like what the eye would mix). */
+const tintOf = (members) => {
+  const total = members.reduce((sum, member) => sum + member.share, 0);
+  return toHex(oklabToRgb([0, 1, 2].map((axis) => members.reduce((sum, member) => sum + member.point[axis] * member.share, 0) / total)));
+};
+
 /**
- * The families of a scope, the widest first: `{ id, label, share, shades, carriers }`. `share` is how much of an average painting of the scope
+ * The families of a scope, the widest first: `{ id, label, share, tint, shades, carriers }`. `share` is how much of an average painting of the scope
  * is of the family; `carriers` are the works with at least ENOUGH of it.
  */
 export const colorFamilies = (scope) => {
@@ -55,6 +61,6 @@ export const colorFamilies = (scope) => {
       if (own >= ENOUGH) carriers.push(work);
     });
     const share = members.reduce((sum, member) => sum + member.share, 0) / count;
-    return { id: family.id, label: family.label, share, shades: shadesOf(members, count), carriers };
+    return { id: family.id, label: family.label, share, tint: tintOf(members), shades: shadesOf(members, count), carriers };
   }).filter((family) => family.share > 0).sort((a, b) => b.share - a.share);
 };

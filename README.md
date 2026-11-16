@@ -141,7 +141,7 @@ src/
     atlas.generated.js        generated: every work's palette and every series' color fingerprint
     blocks/
       palette-bar.js          the main colors, sized by coverage, each linking to a painting
-      family-bar.js           the colors gathered into families of similar colors (families.js), each split into its main shades
+      family-bar.js           the colors gathered into families of similar colors (families.js), each shown as one tint, the blend of its colors
       gist.js                 a one-line gist of what a set of works does with color
       work-strips.js          each work as a strip of its colors, linking to the work
   theme/
