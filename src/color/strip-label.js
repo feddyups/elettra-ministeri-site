@@ -8,27 +8,39 @@ import { loadStylesheet } from '../lib/stylesheet.js';
  * (`data-series`) and `data-meta`.
  */
 const GAP = 10;
+const STYLES_WAIT_MS = 30000;
 let label;
 let current;
 
-/** Loads with the page, so that the label's styles are there before anyone points at a color: it is measured to be placed, which only makes sense once it is styled. */
-const styled = loadStylesheet(new URL('./strip-label.css', import.meta.url).href);
+// loads with the page, so that the label's styles are usually there before anyone points at a color
+loadStylesheet(new URL('./strip-label.css', import.meta.url).href);
 
+/** The label, invisible until it is shown: it is added to the page at once but takes no place and no look until its stylesheet applies. */
 const ensure = () => {
   if (label) return label;
-  label = h('div', { class: 'em-strip-label', role: 'status', 'data-glass': 'dark' });
+  label = h('div', { class: 'em-strip-label', role: 'status', 'data-glass': 'dark', style: { position: 'fixed', left: '0', top: '0', visibility: 'hidden', 'pointer-events': 'none' } });
   document.body.append(label);
   return label;
 };
 
+/** Resolves when the label's stylesheet has applied (the label is a grid then), which is the only moment it can be measured to be placed. False if it never does. */
+const styled = (tip) => new Promise((resolve) => {
+  const started = performance.now();
+  const check = () => {
+    if (getComputedStyle(tip).display === 'grid') resolve(true);
+    else if (performance.now() - started > STYLES_WAIT_MS) resolve(false);
+    else setTimeout(check, 100);
+  };
+  check();
+});
+
 const place = (strip) => {
-  const tip = ensure();
   const box = strip.getBoundingClientRect();
-  const { width, height } = tip.getBoundingClientRect();
+  const { width, height } = label.getBoundingClientRect();
   const left = Math.min(Math.max(box.left + box.width / 2 - width / 2, GAP), innerWidth - width - GAP);
   const above = box.top - height - GAP;
-  tip.style.left = `${left}px`;
-  tip.style.top = `${above >= GAP ? above : box.bottom + GAP}px`;
+  label.style.left = `${left}px`;
+  label.style.top = `${above >= GAP ? above : box.bottom + GAP}px`;
 };
 
 const show = (event) => {
@@ -37,12 +49,13 @@ const show = (event) => {
   const swatch = strip.dataset.name ? strip : event.target.closest('i[data-name]');
   const lines = [strip.dataset.tip || strip.getAttribute('aria-label'), swatch && swatch.dataset.name, strip.dataset.series, strip.dataset.meta].filter(Boolean);
   current = strip;
-  // drawn once its styles have arrived (at once, after the first time), so it is never measured, nor seen, unstyled
-  styled.then(() => {
-    if (current !== strip) return;
-    const tip = ensure();
+  const tip = ensure();
+  // shown once its styles apply (at once after the first time), so it is never measured, nor seen, unstyled
+  styled(tip).then((ready) => {
+    if (!ready || current !== strip) return;
     tip.replaceChildren(h('b', null, lines[0]), ...lines.slice(1).map((text) => h('span', null, text)));
     place(strip);
+    tip.style.visibility = 'visible';
     tip.classList.add('is-visible');
     requestAnimationFrame(() => current === strip && place(strip));
   });
@@ -58,4 +71,4 @@ document.addEventListener('pointerover', show);
 document.addEventListener('focusin', show);
 document.addEventListener('pointerout', hide);
 document.addEventListener('focusout', hide);
-addEventListener('scroll', () => current && place(current), { passive: true });
+addEventListener('scroll', () => current && label && label.classList.contains('is-visible') && place(current), { passive: true });
