@@ -11,9 +11,11 @@ const GAP = 10;
 let label;
 let current;
 
+/** Loads with the page, so that the label's styles are there before anyone points at a color: it is measured to be placed, which only makes sense once it is styled. */
+const styled = loadStylesheet(new URL('./strip-label.css', import.meta.url).href);
+
 const ensure = () => {
   if (label) return label;
-  loadStylesheet(new URL('./strip-label.css', import.meta.url).href);
   label = h('div', { class: 'em-strip-label', role: 'status', 'data-glass': 'dark' });
   document.body.append(label);
   return label;
@@ -37,9 +39,13 @@ const show = (event) => {
   const lines = [strip.dataset.tip || strip.getAttribute('aria-label'), swatch && swatch.dataset.name, strip.dataset.series, strip.dataset.meta].filter(Boolean);
   tip.replaceChildren(h('b', null, lines[0]), ...lines.slice(1).map((text) => h('span', null, text)));
   current = strip;
-  place(strip);
-  requestAnimationFrame(() => current === strip && place(strip));
-  tip.classList.add('is-visible');
+  // shown once its styles have arrived (at once, after the first time), so it is never measured, nor seen, unstyled
+  styled.then(() => {
+    if (current !== strip) return;
+    place(strip);
+    tip.classList.add('is-visible');
+    requestAnimationFrame(() => current === strip && place(strip));
+  });
 };
 
 const hide = (event) => {
