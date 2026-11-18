@@ -1,5 +1,5 @@
 import { h } from '../lib/elements.js';
-import { copyColor } from './copy-color.js';
+import { copyColor, COPIED_MS } from './copy-color.js';
 
 /**
  * A color you can point at and click: clicking copies its hex code, and it shows its name. The same
@@ -14,8 +14,12 @@ import { copyColor } from './copy-color.js';
  *   `work` and `series` say where the color was found; `showName` / `showHex` put them in the swatch as text
  *   (the name is always its tooltip and its accessible name).
  */
-/** How long a tapped color stays lit on a touch screen once the finger is up (a mouse lights a color only while it points at it). */
-const TOUCH_HOLD_MS = 2500;
+/**
+ * How long a tapped color stays lit on a touch screen once the finger is up (a mouse lights a color only while it points at it): it starts to fade
+ * a fade early, so that the light is out just as the swatch's "copied" border goes (COPIED_MS), and the two end together.
+ */
+const FADE_MS = 300;
+const TOUCH_HOLD_MS = COPIED_MS - FADE_MS;
 
 /**
  * The one color a finger has just let go of, still lit: lifting a finger over a swatch fires `pointerleave` at once, which would put the light out before it could be seen,

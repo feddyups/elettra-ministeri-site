@@ -1,4 +1,5 @@
-const COPIED_MS = 1400;
+/** How long a swatch shows that its code was copied (the border round it, the words "Copied ..."). */
+export const COPIED_MS = 1400;
 
 /**
  * Copies a color's hex code to the clipboard and announces it on `document` as an `em:color` event
