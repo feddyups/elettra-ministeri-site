@@ -71,6 +71,12 @@ html[data-series="journal"] .jl-link:hover { color: var(--jl-hover) !important; 
 .jl-project b { font-family: var(--em-font-serif); font-size: var(--em-display-sm); font-weight: var(--em-weight-medium); line-height: 1.15; color: var(--em-ink); }
 .jl-project:hover .jl-project-go { color: var(--jl-hover); }
 html[data-series="journal"] .blog-list[data-jl-hidden] { display: none; }
+/*
+ * Squarespace's own list of entries is there from the first paint, long before the index replaces it (journal-page.js has to fetch the entries first), so it is kept out of sight meanwhile:
+ * no height, nothing to see. It comes back at once if the index cannot be drawn (`data-jl-show`), and after 8 seconds whatever happens, so the page is never left empty.
+ */
+html[data-series="journal"] .blog-list:not([data-jl-hidden]):not([data-jl-show]) { visibility: hidden; height: 0; overflow: hidden; animation: jl-native-list 0s 8s forwards; }
+@keyframes jl-native-list { to { visibility: visible; height: auto; overflow: visible; } }
 
 @media (max-width: 56.25em) {
   .jl-head { grid-template-columns: minmax(0, 1fr); align-items: start; }

@@ -10,7 +10,7 @@ import { RELATED } from './related.js';
 /*
  * The Journal (/blog and its entries). Squarespace draws a blog with its own layout; this gives it the site's: an index of every entry (the native list
  * shows three at a time and whole entries), and on an entry a reading column with a lede, epigraph, pictures of a sensible size, and the postcard it belongs to.
- * The native markup stays in the page: the index is drawn beside it and hides it only once it is ready.
+ * The native markup stays in the page, out of sight from the first paint (journal.css): the index is drawn beside it and hides it for good once it is ready; if the index cannot be drawn the native list is shown.
  */
 const WORDS_PER_MINUTE = 200;
 const EXCERPT_LENGTH = 170;
@@ -76,8 +76,8 @@ const renderRow = (entry) => h('li', { class: 'jl-row', 'data-category': entry.c
 
 const initIndex = async (list) => {
   let entries;
-  try { entries = await loadEntries(); } catch (error) { return; }
-  if (!entries.length) return;
+  try { entries = await loadEntries(); } catch (error) { list.setAttribute('data-jl-show', ''); return; }
+  if (!entries.length) { list.setAttribute('data-jl-show', ''); return; }
   const present = [...new Set(entries.map((entry) => entry.category))];
   const categories = [...CATEGORY_ORDER.filter((c) => present.includes(c)), ...present.filter((c) => !CATEGORY_ORDER.includes(c))];
   const start = decodeURIComponent((location.pathname.match(/\/blog\/category\/([^/]+)/) || [])[1] || '').replace(/\+/g, ' ');
