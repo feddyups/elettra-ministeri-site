@@ -10,6 +10,11 @@ const CYCLE_MS = 14000;
 const SLIDES_PER_VISIT = 6;
 const LAST_WORK_KEY = 'em-hero-first';
 
+/** Swiping sideways over the hero changes the slide: at least this far, mostly horizontal, within this time, and not from the screen's edge (where a phone's own back gesture lives). */
+const SWIPE_MIN = 60;
+const SWIPE_MS = 900;
+const EDGE = 24;
+
 /** A new random selection of paintings for every visit, which never opens on the painting the previous visit opened on. */
 const pickPlaylist = () => {
   try {
@@ -132,6 +137,32 @@ export const initHero = (root) => {
 
   root.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { hovering = true; pause(); } });
   root.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { hovering = false; resume(); } });
+
+  const swipe = { x: 0, y: 0, at: 0, active: false };
+  let swipedAt = 0;
+  root.addEventListener('touchstart', (event) => {
+    swipe.active = false;
+    if (event.touches.length !== 1) return;
+    const touch = event.touches[0];
+    if (touch.clientX < EDGE || touch.clientX > innerWidth - EDGE) return;
+    Object.assign(swipe, { x: touch.clientX, y: touch.clientY, at: Date.now(), active: true });
+  }, { passive: true });
+  root.addEventListener('touchmove', (event) => {
+    if (!swipe.active) return;
+    if (Math.abs(event.touches[0].clientY - swipe.y) > Math.abs(event.touches[0].clientX - swipe.x)) swipe.active = false;
+  }, { passive: true });
+  root.addEventListener('touchend', (event) => {
+    if (!swipe.active) return;
+    swipe.active = false;
+    const dx = event.changedTouches[0].clientX - swipe.x;
+    const dy = event.changedTouches[0].clientY - swipe.y;
+    if (Math.abs(dx) < SWIPE_MIN || Math.abs(dx) <= Math.abs(dy) * 1.5 || Date.now() - swipe.at > SWIPE_MS) return;
+    swipedAt = Date.now();
+    show((current + (dx < 0 ? 1 : WORKS.length - 1)) % WORKS.length);
+  });
+  root.addEventListener('touchcancel', () => { swipe.active = false; });
+  // lifting a finger at the end of a swipe over a link or color sample must not also follow it
+  root.addEventListener('click', (event) => { if (Date.now() - swipedAt < 400) { event.preventDefault(); event.stopPropagation(); } }, true);
 
   new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; }, { threshold: 0.3 }).observe(root);
   show(current);
