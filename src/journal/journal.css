@@ -7,8 +7,6 @@
  */
 html[data-series="journal"] {
   --jl-col: 40rem;
-  --jl-wide: 56rem;
-  --jl-picture-height: 76vh;
   --jl-text: clamp(1.125rem, 1.02rem + 0.28vw, 1.3125rem);
   --jl-lede: clamp(1.5rem, 1.2rem + 0.95vw, 2.1rem);
   --jl-hover: color-mix(in srgb, var(--em-accent, #b5472b) 55%, var(--em-ink));
@@ -201,15 +199,13 @@ html[data-series="journal"] .blog-item-content .sqs-html-content a {
 html[data-series="journal"] .blog-item-content .sqs-html-content a:hover { color: var(--jl-hover) !important; text-decoration-color: currentColor; }
 
 /*
- * pictures are sized by their shape (journal-page.js marks it), whatever size each was uploaded at, centered, with the soft shadow the site gives a picture:
- * a landscape takes the reading width, a square or a portrait one common size that never outgrows the window (a square is 44rem across, less on a short window,
- * a portrait narrower by its ratio). Squarespace holds each picture to its own pixels with an inline `max-width`, hence the `!important`.
+ * pictures are sized alike, whatever size each was uploaded at (journal-page.js gives each its proportions), centered, with the soft shadow the site gives a picture:
+ * never wider than the text, and never taller than the window allows, so a landscape is as wide as the text, a square the same unless the window is short,
+ * a portrait narrower by its proportions. Squarespace holds each picture to its own pixels with an inline `max-width`, hence the `!important`.
  */
 html[data-series="journal"] .blog-item-content .sqs-block-image { margin-block: clamp(1.5rem, 4vw, 3rem); }
-html[data-series="journal"] .blog-item-content .sqs-block-image figure { margin-inline: auto; max-width: min(100%, var(--jl-wide)); }
-html[data-series="journal"] .blog-item-content .sqs-block-image[data-jl-shape="wide"] { --jl-picture: var(--jl-wide); }
-html[data-series="journal"] .blog-item-content .sqs-block-image:is([data-jl-shape="square"], [data-jl-shape="tall"]) { --jl-picture: min(44rem, calc(var(--jl-ratio) * 80svh)); }
-html[data-series="journal"] .blog-item-content .sqs-block-image[data-jl-shape] figure { width: 100%; max-width: min(100%, var(--jl-picture)) !important; }
+html[data-series="journal"] .blog-item-content .sqs-block-image figure { margin-inline: auto; max-width: min(100%, var(--jl-col)); }
+html[data-series="journal"] .blog-item-content .sqs-block-image[data-jl-picture] figure { width: 100%; max-width: min(100%, var(--jl-col), calc(var(--jl-ratio) * 80svh)) !important; }
 html[data-series="journal"] .blog-item-content .sqs-block-image .image-block-outer-wrapper { margin-bottom: 0 !important; }
 html[data-series="journal"] .blog-item-content .sqs-block-image img { box-shadow: var(--em-shadow-plate, none); }
 html[data-series="journal"] .blog-item-content .image-caption { font-family: var(--em-font-sans); font-size: var(--em-text-md); line-height: 1.6; color: var(--em-muted) !important; text-align: center; }

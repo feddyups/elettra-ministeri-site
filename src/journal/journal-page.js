@@ -136,13 +136,9 @@ const markOpening = (content) => {
 /** An entry that is mostly headings is a poem: its lines are set as verse. */
 const markPoem = (content) => { if (content.querySelectorAll('h3').length >= 8) content.classList.add('jl-poem'); };
 
-/** A picture at least this much wider than tall is a landscape; one less than `UPRIGHT` times as wide as tall is a portrait; the rest are squares. */
-const LANDSCAPE = 1.2;
-const UPRIGHT = 0.85;
-
 /**
- * Marks the shape of each picture of an entry (`data-jl-shape` and its `--jl-ratio` on the picture's block, from the dimensions Squarespace states for the original) so that journal.css sizes
- * pictures of one shape alike, whatever size each was uploaded at: landscapes at the reading width, squares and portraits at one size that never outgrows the window.
+ * Marks each picture of an entry with its proportions (`--jl-ratio` and `data-jl-picture` on the picture's block, from the dimensions Squarespace states for the original) so that journal.css
+ * sizes every picture alike, whatever size it was uploaded at: no wider than the text, and no taller than the window allows.
  */
 const markPictures = (content) => {
   content.querySelectorAll('.sqs-block-image').forEach((block) => {
@@ -152,9 +148,8 @@ const markPictures = (content) => {
     const width = Number(stated ? stated[1] : img.getAttribute('width'));
     const height = Number(stated ? stated[2] : img.getAttribute('height'));
     if (!width || !height) return;
-    const ratio = width / height;
-    block.style.setProperty('--jl-ratio', ratio.toFixed(3));
-    block.setAttribute('data-jl-shape', ratio >= LANDSCAPE ? 'wide' : ratio < UPRIGHT ? 'tall' : 'square');
+    block.style.setProperty('--jl-ratio', (width / height).toFixed(3));
+    block.setAttribute('data-jl-picture', '');
   });
 };
 
