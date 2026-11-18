@@ -22,6 +22,20 @@
 .em-strip .em-strip-chip:hover i,
 .em-strip .em-strip-chip:focus-visible i { transform: scaleY(var(--es-lift)); }
 
+/*
+ * On a touch screen a color must be easy to press with a finger, though the strip stays as thin and as proportioned as it looks: each color keeps a minimum width,
+ * and its press area reaches about 44px tall (the gap above the strip, so it never covers the picture, and below it), without drawing anything.
+ */
+.em-strip .em-strip-chip { position: relative; }
+@media (pointer: coarse) {
+  .em-strip .em-strip-chip { min-width: 1.75rem; }
+  .em-strip .em-strip-chip::before {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--em-space-xs)) 0 -1.75rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .em-strip .em-strip-chip i { transition: none; }
 }

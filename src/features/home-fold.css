@@ -29,6 +29,15 @@ html .em-home .eh-hero .samples {
 }
 
 /*
+ * The color focus over a picture (a canvas laid on it, see color/color-focus.js) lights and goes out in the quick fade of the swatch that calls it,
+ * not in the slow fade the site's Custom CSS gives the other canvases of a chapter's frame or of the hero: a tapped color's light then ends with the swatch's copied border.
+ */
+html .em-home .frame.done canvas.em-focus,
+html .em-home .eh-hero.done .stage canvas.em-focus {
+  transition: opacity var(--em-duration-base) var(--em-ease);
+}
+
+/*
  * The page's background and text color follow the scroll position (page-tone.js sets --eh-bg and --eh-fg), so the
  * sections themselves are transparent and nothing eases them over time: the color moves only as the page does.
  */
