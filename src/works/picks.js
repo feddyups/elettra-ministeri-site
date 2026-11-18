@@ -64,6 +64,19 @@ export const readDiscounts = async () => {
 };
 
 /**
+ * The reasons the artist has given for her discounts, from the sheet's "Discount reason" column (read as "Sale reason", "Discount label" or "Reason" too): a map from a work's page address
+ * to the words she wrote ("Black Friday sales"), for the works that have one. A reason belongs to the discount, so one on a work without a discount is simply never shown.
+ * Resolves to `null` when the sheet cannot be read, and to an empty map when it has no such column or no reasons.
+ */
+export const readDiscountReasons = async () => {
+  const sheet = await readRows();
+  if (!sheet) return null;
+  const found = new Map();
+  if (sheet.reason >= 0) sheet.rows.forEach((cells) => { const text = (cells[sheet.reason] || '').replace(/\s+/g, ' ').trim(); if (text) found.set(slugOf(cells[sheet.address]), text); });
+  return found;
+};
+
+/**
  * The sets the artist has declared, from the sheet's "Set" column: paintings with the same text there belong together, in the order of the sheet's rows.
  * A set needs one painting or more. Resolves to `null` when the sheet cannot be read or has no "Set" column, and to a list of `{ label, works }` otherwise
  * (the works are page addresses).
@@ -110,6 +123,7 @@ const readSheet = async () => {
       address, rows,
       pick: column('artist pick', 'artist picks', 'favorite', 'favorites'),
       discount: column('discount', 'discount %', 'discount (%)', 'sale', 'sale %', 'sale (%)', 'percent off'),
+      reason: column('discount reason', 'discount label', 'sale reason', 'sale label', 'reason'),
       set: column('set', 'sets', 'group'),
       setNote: column('set description', 'set note', 'set notes'),
       status: column('status', 'availability'),

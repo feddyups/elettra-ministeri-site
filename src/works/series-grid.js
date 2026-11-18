@@ -4,7 +4,7 @@ import { seriesGroups } from './series-order.js';
 import { workPath } from './work-path.js';
 import { markPicks } from './pick-star.js';
 import { factsLine } from './facts.js';
-import { enquiryTopic, onSale, discountOf, isSoldWork } from './price.js';
+import { enquiryTopic, onSale, discountOf, discountReasonOf, isSoldWork } from './price.js';
 import { renderPrice } from './price-view.js';
 import { offersReady } from './offers.js';
 import { placeInSet, setOf } from './sets.js';
@@ -39,7 +39,7 @@ export const renderEntry = (slug, work, grouped = false) => {
         src: listPictureAt(work, 1000), srcset: WIDTHS.map((w) => `${listPictureAt(work, w)} ${w}w`).join(', '), sizes: SIZES,
         alt: work.alt, width: 1000, height: Math.round(1000 * height / width), loading: 'lazy',
       }),
-      onSale(work) && h('span', { class: 'th-sale' }, `${discountOf(work)}% off`)),
+      onSale(work) && h('span', { class: 'th-sale' }, `${discountOf(work)}% off`, discountReasonOf(work) && h('small', null, discountReasonOf(work)))),
     h('div', { class: 'th-cap' },
       h('div', null, h('b', null, h('a', { href: page }, work.title)), h('small', null, factsLine(work)), setLine(slug, grouped)),
       h('div', { class: 'th-act' },

@@ -1,14 +1,15 @@
-import { readDiscounts, readSets, readSold } from './picks.js';
+import { readDiscounts, readDiscountReasons, readSets, readSold } from './picks.js';
 
 const WAIT_MS = 1500;
 let discounts = new Map();
+let reasons = new Map();
 let sets = null;
 let sold = new Set();
 let ready;
 let loading;
 
-const load = () => { loading ||= Promise.all([readDiscounts(), readSets(), readSold()]); return loading; };
-const apply = ([found, declared, gone]) => { if (found) discounts = found; sets = declared; if (gone) sold = gone; };
+const load = () => { loading ||= Promise.all([readDiscounts(), readSets(), readSold(), readDiscountReasons()]); return loading; };
+const apply = ([found, declared, gone, given]) => { if (found) discounts = found; sets = declared; if (gone) sold = gone; if (given) reasons = given; };
 
 /**
  * The discounts, sets and sold paintings the artist has entered in her sheet (picks.js), as far as a page can know them when it draws its prices, its groups and its enquiry buttons. A page awaits this once
@@ -39,6 +40,9 @@ export const discountFor = (slug) => (sold.has(slug) ? 0 : discounts.get(slug) |
 
 /** Whether the artist has marked a work (by its page address) as sold. */
 export const isSold = (slug) => sold.has(slug);
+
+/** The reason the artist gave for a work's discount (by its page address), or an empty string: it is shown wherever the discount is, and never for a work that has none. */
+export const discountReasonFor = (slug) => (discountFor(slug) ? reasons.get(slug) || '' : '');
 
 /** The page addresses of every work with a discount (a sold work has none). */
 export const discountedSlugs = () => [...discounts.keys()].filter((slug) => !sold.has(slug));

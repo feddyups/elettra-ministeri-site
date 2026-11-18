@@ -133,7 +133,12 @@ html .th-work > a.th-img .th-sale {
   font: var(--em-weight-medium) var(--em-text-2xs) / 1 var(--em-font-sans);
   letter-spacing: var(--em-tracking-label);
   text-transform: uppercase;
+  display: grid;
+  gap: var(--em-space-3xs);
+  max-width: calc(100% - 2 * var(--em-space-s));
 }
+/* the artist's reason for the discount ("Black Friday sales"), under the percentage */
+html .th-work > a.th-img .th-sale small { font-weight: var(--em-weight-regular); line-height: var(--em-leading-tight); }
 
 /* The set a painting belongs to, on its entry in the grid: a quiet line under the facts line */
 html .th-work .th-cap small.th-set { display: block; margin-top: var(--em-space-3xs); font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; opacity: 0.78; }

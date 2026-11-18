@@ -223,7 +223,7 @@ html .wp .wp-next .wp-colors + .wp-next-suggestions { margin-top: var(--em-space
 /* a work on sale: the list price struck through, the price now, and the percentage as a small tag (hero and technical details) */
 html .wp .is-sale s { margin-right: 0.5em; opacity: 0.6; text-decoration-thickness: var(--em-hairline); }
 html .wp .is-sale b { font-weight: inherit; }
-html .wp .is-sale small { margin-left: 0.75em; padding: 0.15em 0.5em; border: var(--em-hairline) solid currentColor; font-size: var(--em-text-2xs); letter-spacing: var(--em-tracking-label); text-transform: uppercase; vertical-align: 0.2em; }
+html .wp .is-sale small { display: inline-block; max-width: 100%; margin-left: 0.75em; padding: 0.15em 0.5em; border: var(--em-hairline) solid currentColor; font-size: var(--em-text-2xs); line-height: 1.35; letter-spacing: var(--em-tracking-label); text-transform: uppercase; vertical-align: 0.2em; }
 html .wp .wp-price.is-sale s { font-size: 0.7em; }
 
 /* "Part of a set": the paintings made together with this one, each as its picture and title; this one is marked */

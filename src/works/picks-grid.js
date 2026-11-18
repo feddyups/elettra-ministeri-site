@@ -14,26 +14,48 @@ const MESSAGES = {
   none: 'The artist has not marked any picks or sales yet.',
 };
 
+const PICKS = 'Artist picks';
+const DISCOUNTED = 'Discounted';
+
+/** The works named by `slugs` that the catalogue knows, in the smooth path through color with the sets first (series-order.js); a work without a color analysis (a textile) comes after the others. */
+const inOrder = (slugs) => {
+  const ordered = groupsOf(allPaintings().filter((work) => slugs.has(work.slug) && CATALOGUE[work.slug])).flatMap((group) => group.works).map((work) => work.slug);
+  [...slugs].filter((slug) => CATALOGUE[slug] && !ordered.includes(slug)).forEach((slug) => ordered.push(slug));
+  return ordered;
+};
+
 /**
- * Fills the Artist picks page's grid (`<ul class="th-grid" data-picks>`) with the paintings the artist has marked in her sheet and those she has put
- * on sale (see picks.js and offers.js; a work on sale appears here whether or not it is a pick, and only the picks carry the star), in the same layout as a series page (each picture sized by its painting's real size, the largest of those shown at full width) and in its smooth path through color with the sets first (series-order.js).
- * Changing a tick in the sheet changes the page; nothing here is typed by hand.
+ * Fills the Artist picks page's grid (`<ul class="th-grid" data-picks>`) from the artist's sheet (see picks.js and offers.js), in the same layout as a series page: each picture sized by its painting's real size
+ * (the largest of those shown at full width) and in its smooth path through color with the sets first (series-order.js). The works come in two groups, each under its own name:
+ * the paintings she has marked as picks ("Artist picks", whether or not they are also on sale, in which case they carry the sale's tag too, and only the picks carry the star), then the paintings that are only on sale
+ * ("Discounted"). The names are shown unless the page holds picks and nothing else, where the page's own title says it all.
+ * Changing a tick or a discount in the sheet changes the page; nothing here is typed by hand.
  */
 export const initPicksGrid = async (list) => {
   try {
     const [slugs] = await Promise.all([readPickSlugs(), offersComplete()]);
-    const marked = new Set([...(slugs || []), ...discountedSlugs()]);
-    const works = groupsOf(allPaintings().filter((work) => marked.has(work.slug) && CATALOGUE[work.slug])).flatMap((group) => group.works).map((work) => work.slug);
-    // a work without a color analysis (a textile) still belongs on the page, after the others
-    [...marked].filter((slug) => CATALOGUE[slug] && !works.includes(slug)).forEach((slug) => works.push(slug));
-    if (!works.length) {
+    const picked = new Set(slugs || []);
+    const onSaleOnly = new Set(discountedSlugs().filter((slug) => !picked.has(slug)));
+    const groups = [{ title: PICKS, works: inOrder(picked) }, { title: DISCOUNTED, works: inOrder(onSaleOnly) }].filter((group) => group.works.length);
+    if (!groups.length) {
       list.replaceChildren(h('li', { class: 'th-empty' }, slugs === null ? MESSAGES.unreadable : MESSAGES.none));
       return;
     }
-    list.replaceChildren(...works.map((slug) => renderEntry(slug, CATALOGUE[slug])));
-    scaleEntries(list, (slug) => CATALOGUE[slug], Math.max(0, ...works.map((slug) => longestSideCm(CATALOGUE[slug]) || 0)));
-    if (slugs && slugs.length) markSlugs(list, slugs);
-    masonry(list);
+    const named = groups.length > 1 || groups[0].title !== PICKS;
+    const largest = Math.max(0, ...groups.flatMap((group) => group.works).map((slug) => longestSideCm(CATALOGUE[slug]) || 0));
+    let after = list;
+    groups.forEach((group, i) => {
+      const grid = i === 0 ? list : h('ul', { class: 'th-grid', 'data-group': '', 'data-ready': '' });
+      grid.replaceChildren(...group.works.map((slug) => renderEntry(slug, CATALOGUE[slug])));
+      scaleEntries(grid, (slug) => CATALOGUE[slug], largest);
+      if (slugs && slugs.length) markSlugs(grid, slugs);
+      if (named) {
+        const head = h('header', { class: 'th-group-head' }, h('h2', null, group.title), h('p', null, `${group.works.length} ${group.works.length === 1 ? 'painting' : 'paintings'}`));
+        if (i === 0) list.before(head); else after.after(head, grid);
+      }
+      masonry(grid);
+      after = grid;
+    });
   } finally {
     list.setAttribute('data-ready', '');
   }

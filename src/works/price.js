@@ -1,5 +1,5 @@
 import { CATALOGUE } from './catalogue.js';
-import { discountFor, isSold } from './offers.js';
+import { discountFor, discountReasonFor, isSold } from './offers.js';
 
 const EUR = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 
@@ -23,6 +23,12 @@ export const discountOf = (work) => {
 
 /** Whether the artist has marked a work as sold. */
 export const isSoldWork = (work) => isSold(SLUGS.get(work));
+
+/** The reason the artist gave for a work's discount ("Black Friday sales"), or an empty string: only for a work that is on sale. */
+export const discountReasonOf = (work) => (discountOf(work) ? discountReasonFor(SLUGS.get(work)) : '');
+
+/** What the tag of a discount says: the percentage, then the artist's reason when she gave one ("25% off · Black Friday sales"). */
+export const saleTagOf = (work) => `${discountOf(work)}% off${discountReasonOf(work) ? ` · ${discountReasonOf(work)}` : ''}`;
 
 /** Whether a work is on sale. */
 export const onSale = (work) => discountOf(work) > 0;
