@@ -53,3 +53,19 @@ html .wp button.wp-repaint:focus-visible { outline: var(--em-stroke) solid var(-
   html .wp a.wp-cta,
   html .wp button.wp-repaint { transition: none; }
 }
+
+/*
+ * The words of a button are never selectable: pressing a control, or holding it on a touch screen, must not select the text in it,
+ * nor open the copy menu. This covers every button of the site, whatever its page: the glass buttons above, the menu and rail controls,
+ * the form's buttons, and links that look and act as buttons.
+ */
+html button,
+html a.btn,
+html a.wp-cta,
+html [role="button"],
+html input[type="button"],
+html input[type="submit"] {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
