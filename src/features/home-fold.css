@@ -13,6 +13,15 @@
 }
 
 /*
+ * The hero is exactly as tall as the visible window. `100vh` is the window with a phone's or tablet's browser bars hidden, so while they
+ * show, the bottom of the hero falls beneath the screen; `100svh` is the window as it is with the bars showing (the plain `vh` line is for browsers without it).
+ */
+html .em-home .eh-hero {
+  height: 100vh;
+  height: 100svh;
+}
+
+/*
  * The page's background and text color follow the scroll position (page-tone.js sets --eh-bg and --eh-fg), so the
  * sections themselves are transparent and nothing eases them over time: the color moves only as the page does.
  */
