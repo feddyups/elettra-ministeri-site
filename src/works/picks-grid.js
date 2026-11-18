@@ -27,8 +27,8 @@ const inOrder = (slugs) => {
 /**
  * Fills the Artist picks page's grid (`<ul class="th-grid" data-picks>`) from the artist's sheet (see picks.js and offers.js), in the same layout as a series page: each picture sized by its painting's real size
  * (the largest of those shown at full width) and in its smooth path through color with the sets first (series-order.js). The works come in two groups, each under its own name:
- * the paintings she has marked as picks ("Artist picks", whether or not they are also on sale, in which case they carry the sale's tag too, and only the picks carry the star), then the paintings that are only on sale
- * ("Discounted"). The names are shown unless the page holds picks and nothing else, where the page's own title says it all.
+ * the paintings she has marked as picks (whether or not they are also on sale, in which case they carry the sale's tag too, and only the picks carry the star), which the page's own title names, then the paintings that are only on sale
+ * under the heading "Discounted".
  * Changing a tick or a discount in the sheet changes the page; nothing here is typed by hand.
  */
 export const initPicksGrid = async (list) => {
@@ -41,7 +41,6 @@ export const initPicksGrid = async (list) => {
       list.replaceChildren(h('li', { class: 'th-empty' }, slugs === null ? MESSAGES.unreadable : MESSAGES.none));
       return;
     }
-    const named = groups.length > 1 || groups[0].title !== PICKS;
     const largest = Math.max(0, ...groups.flatMap((group) => group.works).map((slug) => longestSideCm(CATALOGUE[slug]) || 0));
     let after = list;
     groups.forEach((group, i) => {
@@ -49,7 +48,7 @@ export const initPicksGrid = async (list) => {
       grid.replaceChildren(...group.works.map((slug) => renderEntry(slug, CATALOGUE[slug])));
       scaleEntries(grid, (slug) => CATALOGUE[slug], largest);
       if (slugs && slugs.length) markSlugs(grid, slugs);
-      if (named) {
+      if (group.title !== PICKS) {
         const head = h('header', { class: 'th-group-head' }, h('h2', null, group.title), h('p', null, `${group.works.length} ${group.works.length === 1 ? 'painting' : 'paintings'}`));
         if (i === 0) list.before(head); else after.after(head, grid);
       }
