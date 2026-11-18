@@ -34,14 +34,14 @@ const place = (strip) => {
 const show = (event) => {
   const strip = event.target.closest && event.target.closest('.ca-strip[aria-label], [data-tip]');
   if (!strip) return;
-  const tip = ensure();
   const swatch = strip.dataset.name ? strip : event.target.closest('i[data-name]');
   const lines = [strip.dataset.tip || strip.getAttribute('aria-label'), swatch && swatch.dataset.name, strip.dataset.series, strip.dataset.meta].filter(Boolean);
-  tip.replaceChildren(h('b', null, lines[0]), ...lines.slice(1).map((text) => h('span', null, text)));
   current = strip;
-  // shown once its styles have arrived (at once, after the first time), so it is never measured, nor seen, unstyled
+  // drawn once its styles have arrived (at once, after the first time), so it is never measured, nor seen, unstyled
   styled.then(() => {
     if (current !== strip) return;
+    const tip = ensure();
+    tip.replaceChildren(h('b', null, lines[0]), ...lines.slice(1).map((text) => h('span', null, text)));
     place(strip);
     tip.classList.add('is-visible');
     requestAnimationFrame(() => current === strip && place(strip));
@@ -49,9 +49,9 @@ const show = (event) => {
 };
 
 const hide = (event) => {
-  if (!label || (event.relatedTarget && current && current.contains(event.relatedTarget))) return;
-  label.classList.remove('is-visible');
+  if (event.relatedTarget && current && current.contains(event.relatedTarget)) return;
   current = null;
+  if (label) label.classList.remove('is-visible');
 };
 
 document.addEventListener('pointerover', show);
