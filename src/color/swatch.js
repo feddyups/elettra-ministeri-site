@@ -14,6 +14,21 @@ import { copyColor } from './copy-color.js';
  *   `work` and `series` say where the color was found; `showName` / `showHex` put them in the swatch as text
  *   (the name is always its tooltip and its accessible name).
  */
+/** How long a tapped color stays lit on a touch screen once the finger is up (a mouse lights a color only while it points at it). */
+const TOUCH_HOLD_MS = 2500;
+
+/**
+ * The one color a finger has just let go of, still lit: lifting a finger over a swatch fires `pointerleave` at once, which would put the light out before it could be seen,
+ * so a touch keeps it lit for a moment, and another touch puts it out first.
+ */
+let held = null;
+const releaseHeld = () => {
+  if (!held) return;
+  clearTimeout(held.timer);
+  held.leave();
+  held = null;
+};
+
 export const renderSwatch = (color, options = {}) => {
   const { work, series, className = 'em-swatch', nameFirst = false, showName = true, showHex = false, onEnter, onLeave } = options;
   const detail = { hex: color.hex, name: color.name, share: color.share, work, series };
@@ -27,9 +42,18 @@ export const renderSwatch = (color, options = {}) => {
   }, nameFirst ? [label, chip, code] : [chip, label, code]);
 
   const announce = () => document.dispatchEvent(new CustomEvent('em:color', { detail: { action: 'hover', ...detail } }));
-  button.addEventListener('pointerenter', () => { announce(); if (onEnter) onEnter(); });
+  button.addEventListener('pointerenter', (event) => {
+    if (event.pointerType !== 'mouse') releaseHeld();
+    announce();
+    if (onEnter) onEnter();
+  });
   button.addEventListener('focus', () => { announce(); if (onEnter) onEnter(); });
-  button.addEventListener('pointerleave', () => { if (onLeave) onLeave(); });
+  button.addEventListener('pointerleave', (event) => {
+    if (!onLeave) return;
+    if (event.pointerType === 'mouse') { onLeave(); return; }
+    releaseHeld();
+    held = { leave: onLeave, timer: setTimeout(releaseHeld, TOUCH_HOLD_MS) };
+  });
   button.addEventListener('blur', () => { if (onLeave) onLeave(); });
   button.addEventListener('click', () => {
     const ms = copyColor(detail);
