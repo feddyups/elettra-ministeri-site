@@ -115,6 +115,18 @@ html .ca .ca-lede {
 html .ca-strip { transition: opacity var(--em-duration-base) var(--em-ease), transform var(--em-duration-quick) var(--em-ease); }
 html .ca-strip.is-dim { opacity: 0.22; }
 
+/*
+ * Pressing a color (or a strip) lights the paintings that carry it, so on a touch screen a press must not also select the words nearby,
+ * open the copy menu or flash a tap highlight, and a double tap must not zoom.
+ */
+.ca-bar, .ca-names, .ca-strips {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+html .ca-swatch, html .ca-family, html .ca-strip { touch-action: manipulation; }
+
 /* palette bar */
 .ca-bar { display: flex; height: var(--ca-bar-height); overflow: hidden; box-shadow: var(--em-shadow-plate); }
 html .ca-swatch {
