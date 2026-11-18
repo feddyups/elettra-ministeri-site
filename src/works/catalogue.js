@@ -276,6 +276,7 @@ export const CATALOGUE = {
     size: "33 × 42 cm with frame",
     price: 325,
     frame: "Hand-painted frame, part of the work",
+    framePrice: 75,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/d0403442-5dd2-4b6c-8c1b-93b9b2388298/carretto-siciliano-v2.jpg",
       width: 2400,
@@ -294,6 +295,7 @@ export const CATALOGUE = {
     size: "33 × 42 cm with frame",
     price: 325,
     frame: "Hand-painted frame, part of the work",
+    framePrice: 75,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/34d3cfec-6b34-4410-9aee-d191daad4102/pistacchi-v2.jpg",
       width: 2400,
@@ -312,6 +314,7 @@ export const CATALOGUE = {
     size: "33 × 42 cm with frame",
     price: 325,
     frame: "Hand-painted frame, part of the work",
+    framePrice: 75,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/3daf7474-cbdc-4815-a08a-1949bf772d23/il-sole-v2.jpg",
       width: 2400,
@@ -350,6 +353,7 @@ export const CATALOGUE = {
     size: "42 × 33 cm with frame",
     price: 325,
     frame: "Hand-painted frame, part of the work",
+    framePrice: 75,
     image: {
       src: "https://images.squarespace-cdn.com/content/596fbc34c534a5fa937bd9bf/63077b44-b92a-44af-824e-52d0a57003c3/sicily-lilies-v2.jpg",
       width: 2400,
