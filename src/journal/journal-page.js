@@ -136,6 +136,28 @@ const markOpening = (content) => {
 /** An entry that is mostly headings is a poem: its lines are set as verse. */
 const markPoem = (content) => { if (content.querySelectorAll('h3').length >= 8) content.classList.add('jl-poem'); };
 
+/** A picture at least this much wider than tall is a landscape; one less than `UPRIGHT` times as wide as tall is a portrait; the rest are squares. */
+const LANDSCAPE = 1.2;
+const UPRIGHT = 0.85;
+
+/**
+ * Marks the shape of each picture of an entry (`data-jl-shape` and its `--jl-ratio` on the picture's block, from the dimensions Squarespace states for the original) so that journal.css sizes
+ * pictures of one shape alike, whatever size each was uploaded at: landscapes at the reading width, squares and portraits at one size that never outgrows the window.
+ */
+const markPictures = (content) => {
+  content.querySelectorAll('.sqs-block-image').forEach((block) => {
+    const img = block.querySelector('img');
+    if (!img) return;
+    const stated = (img.getAttribute('data-image-dimensions') || '').match(/^(\d+)\s*x\s*(\d+)$/);
+    const width = Number(stated ? stated[1] : img.getAttribute('width'));
+    const height = Number(stated ? stated[2] : img.getAttribute('height'));
+    if (!width || !height) return;
+    const ratio = width / height;
+    block.style.setProperty('--jl-ratio', ratio.toFixed(3));
+    block.setAttribute('data-jl-shape', ratio >= LANDSCAPE ? 'wide' : ratio < UPRIGHT ? 'tall' : 'square');
+  });
+};
+
 const postcardEnd = (path) => {
   const slug = lastPart(path);
   const monthly = card(ENTRY_CARDS[slug]);
@@ -273,6 +295,7 @@ const initEntry = (article) => {
   content.setAttribute('lang', 'it');
   markOpening(content);
   markPoem(content);
+  markPictures(content);
   repairLinks(content, lastPart(location.pathname));
 
   const top = article.querySelector('.blog-item-top-wrapper');
