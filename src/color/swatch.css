@@ -6,6 +6,11 @@ button.em-swatch {
   box-sizing: border-box;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  /* pressing and holding a color shows where it lives (color-focus.js); on a touch screen that must not also select the words around it, open the copy menu or zoom */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
 }
 button.em-swatch:focus-visible { outline: var(--em-stroke) solid currentColor; outline-offset: var(--em-space-2xs); }
 button.em-swatch.is-copied i { box-shadow: 0 0 0 var(--em-stroke) currentColor; }

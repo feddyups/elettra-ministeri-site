@@ -21,6 +21,13 @@ html .em-home .eh-hero {
   height: 100svh;
 }
 
+/* the hero's row of colors: pressing between or beside the swatches must not start selecting the page either */
+html .em-home .eh-hero .samples {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
 /*
  * The page's background and text color follow the scroll position (page-tone.js sets --eh-bg and --eh-fg), so the
  * sections themselves are transparent and nothing eases them over time: the color moves only as the page does.
