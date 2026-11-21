@@ -33,7 +33,7 @@ export const renderWorkHero = (info, work, series) => {
   const facts = [info.medium, info.size].filter(Boolean).join(' · ');
   const stage = h('div', { class: 'wp-stage' }, zoom);
   const figure = h('figure', { class: 'wp-figure', style: { '--ratio': width / height } }, stage);
-  const painter = createWorkPaint({ figure, zoom, canvas: paintCanvas, url: `${src}?format=1500w`, width, height });
+  const painter = createWorkPaint({ figure, zoom, canvas: paintCanvas, url: `${src}?format=1500w`, width, height, colors: work.palette.map(([hex]) => hex) });
   const repaint = painter.ready && h('button', { class: 'wp-repaint', type: 'button' }, 'Repaint');
   if (repaint) { repaint.addEventListener('click', painter.replay); stage.append(repaint); }
   const focus = createColorFocus({ canvas: focusCanvas, source: `${src}?format=500w`, hexes: work.palette.map(([hex]) => hex) });

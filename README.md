@@ -4,7 +4,7 @@ Front-end modules for [elettraministeri.com](https://www.elettraministeri.com), 
 
 ## What it does
 
-- **Painting effect** – the home hero repaints each work stroke by stroke (leaves, pills and dots that follow the contours of the painting), then lays soft patches of the real image across the canvas and eases a uniform glaze in over the top, so the last frame is the picture itself.
+- **Painting effect** – the home hero and every painting page paint a work the way a painter works from a drawing. The picture first appears as a pencil sketch on paper (`paint/sketch.js`). Then each of the painting's colors is painted in turn, in the parts of the picture where that color lives (`paint/zones.js`, measured like the color focus but a little wider), each window overlapping the next, and each color starting with broad translucent washes, going on to bristle strokes that follow the form (`paint/bristles.js`) and ending with small opaque touches. Last the pencil lifts and soft patches and a glaze of the real image come in, so the last frame is the picture itself. It takes `PAINT.durationMs` (about 8 seconds); every number is in `paint/config.js` (`LIVE`). A picture whose colors are not known (the About me portrait) is painted with the earlier effect: leaves, pills and dots that follow the contours, then patches and a glaze.
 - **Hero slideshow** – every visit gets a new random selection of six paintings from the whole body of work (never more than two from one series, never opening on the painting the last visit opened on; `hero/works.js`), cycled with dots to jump to one and a thin two-part line showing the time left on the current slide: a gold segment while the painting is being painted, an off-white one while the finished painting is on show. Hovering the hero with a mouse holds the current work once its painting has been revealed (never while it is still being painted); leaving lets the remaining time run out.
 - **Series chapters** – each chapter takes its tone and color swatches from its painting.
 - **Page tone** (each home section carries its own background and text color, and fades in from the color of the section before it as the page scrolls; `--em-tone-fade` sets how far) – the page background and header follow the section in view.
@@ -75,11 +75,16 @@ src/
     scroll-direction.js       watchScrollDirection(onChange, options): "up" or "down" once the page has moved a set distance
     hover-focus-hold.js       holdWhileEngaged(element, onChange): is the pointer over it or focus inside it
   paint/
-    paint-image.js            paintImage(img, canvas, W, H, speed): the timeline
-    config.js                 duration, stroke counts, sizes, shape mix
+    paint-image.js            paintImage(img, canvas, W, H, speed, { colors }): the timeline of the earlier effect, and the way into the live painting when the colors are given
+    live-paint.js             the live painting: sketch, each color in its zone in turn, then the real picture
+    sketch.js                 the picture as a pencil drawing on paper
+    zones.js                  where each of the painting's colors lives, and where its strokes start
+    bristles.js               strokes made of fine bristles, drawn along their path
+    fit.js                    the size to work at for a large or tall picture
+    config.js                 duration, stroke counts, sizes, shape mix, and the live painting's settings (LIVE)
     source-pixels.js          cover-fitted pixel access to the source image
     flow-field.js             contour directions for strokes to follow
-    brush-hand.js             where, how big and which way the next mark goes
+    brush-hand.js             where, how big and which way the next mark goes (and, optionally, where a cluster starts and how opaque)
     shapes.js                 leaf, pill and dot marks
     reveal.js                 soft patches of the real image laid across the canvas
   menu/

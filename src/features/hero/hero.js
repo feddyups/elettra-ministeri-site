@@ -49,6 +49,7 @@ export const initHero = (root) => {
   let visible = true;
   let hovering = false;
   let paused = false;
+  let colors = [];
   let timeLeft = CYCLE_MS;
   let scheduledAt = 0;
 
@@ -64,7 +65,7 @@ export const initHero = (root) => {
     setTimeout(() => root.classList.add('titled'), 500);
     const W = Math.min(1440, root.clientWidth);
     const H = Math.round(W * root.clientHeight / root.clientWidth);
-    paintImage(image, canvas, W, H).then((finished) => {
+    paintImage(image, canvas, W, H, 1, { colors }).then((finished) => {
       if (!finished) return;
       root.classList.add('done');
       pause();
@@ -124,7 +125,7 @@ export const initHero = (root) => {
       image.alt = work.alt;
       link.textContent = `View ${work.series}`;
       link.setAttribute('href', work.href);
-      renderColorSamples(samples, { root, canvas, image }, work);
+      colors = renderColorSamples(samples, { root, canvas, image }, work).map((color) => color.hex);
       paint();
       queueNext();
       preloadNext();

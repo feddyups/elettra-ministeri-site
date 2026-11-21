@@ -3,6 +3,7 @@ import { createSourcePixels } from './source-pixels.js';
 import { createFlowField } from './flow-field.js';
 import { createBrushHand } from './brush-hand.js';
 import { createReveal } from './reveal.js';
+import { paintLive } from './live-paint.js';
 
 const runs = new WeakMap();
 
@@ -15,10 +16,13 @@ const smoothstep = (x) => x * x * (3 - 2 * x);
  *
  * Starting a new paint on the same canvas cancels the previous one.
  *
+ * With `colors` (the painting's colors as hex codes) it is painted as a live painting instead (live-paint.js): a pencil sketch, then each color in turn.
+ *
  * @param {number} speed 1 is the full duration; 2 takes half as long
+ * @param {{ colors?: string[] }} [options]
  * @returns {Promise<boolean>} true when the painting finished, false if it was cancelled
  */
-export const paintImage = (img, canvas, W, H, speed = 1) => new Promise((resolve) => {
+export const paintImage = (img, canvas, W, H, speed = 1, { colors } = {}) => new Promise((resolve) => {
   const run = {};
   runs.set(canvas, run);
   canvas.width = W;
@@ -28,6 +32,10 @@ export const paintImage = (img, canvas, W, H, speed = 1) => new Promise((resolve
   canvas.style.opacity = 1;
   void canvas.offsetWidth;
   canvas.style.transition = '';
+  if (colors && colors.length) {
+    paintLive({ img, canvas, W, H, speed, colors, alive: () => runs.get(canvas) === run }).then(resolve);
+    return;
+  }
   const ctx = canvas.getContext('2d');
 
   const source = createSourcePixels(img, W, H);

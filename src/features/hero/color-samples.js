@@ -24,6 +24,7 @@ const colorsFor = (work, img) => {
  * @param {HTMLElement} container the row of swatches
  * @param {{ root: HTMLElement, canvas: HTMLCanvasElement, image: HTMLImageElement }} hero the hero, its painting canvas and its image
  * @param {{ title: string }} work the work being shown
+ * @returns {{ hex: string, name: string }[]} the colors shown, which the painting of the hero follows too
  */
 export const renderColorSamples = (container, { root, canvas, image }, work) => {
   container.querySelectorAll('button').forEach((button) => button.remove());
@@ -42,4 +43,5 @@ export const renderColorSamples = (container, { root, canvas, image }, work) => 
   colors.forEach((color, index) => {
     container.appendChild(renderSwatch(color, { work: slug, series, nameFirst: true, onEnter: () => focus.show(index), onLeave: () => focus.hide() }));
   });
+  return colors;
 };

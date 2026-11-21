@@ -11,9 +11,9 @@ const GIVE_UP_MS = 9000;
  * then lets the real image show; `replay` paints it again. If the image cannot be read, or the visitor prefers
  * reduced motion, the picture is simply shown.
  *
- * @param {{ figure: HTMLElement, zoom: HTMLElement, canvas: HTMLCanvasElement, url: string, width: number, height: number }} parts
+ * @param {{ figure: HTMLElement, zoom: HTMLElement, canvas: HTMLCanvasElement, url: string, width: number, height: number, colors?: string[] }} parts (`colors`: the painting's colors, which the live painting follows)
  */
-export const createWorkPaint = ({ figure, zoom, canvas, url, width, height }) => {
+export const createWorkPaint = ({ figure, zoom, canvas, url, width, height, colors }) => {
   const show = () => figure.classList.remove('is-painting');
   if (prefersReducedMotion) return { replay: () => {}, ready: false };
 
@@ -30,7 +30,7 @@ export const createWorkPaint = ({ figure, zoom, canvas, url, width, height }) =>
     const W = Math.min(MAX_WIDTH, Math.round(zoom.clientWidth)) || MAX_WIDTH;
     const H = Math.round(W * height / width);
     canvas.style.opacity = 1;
-    const finished = await paintImage(img, canvas, W, H);
+    const finished = await paintImage(img, canvas, W, H, 1, { colors });
     if (!finished) return;
     show();
     canvas.style.opacity = 0;

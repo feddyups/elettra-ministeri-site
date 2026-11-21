@@ -7,15 +7,18 @@ import { drawMark } from './shapes.js';
  * toward the contours of the painting.
  *
  * @param {number} sizeScale canvas-width factor so marks scale with the canvas
+ * @param {() => (number[] | null)} [place] where a new cluster starts, as [x, y] (null or omitted: anywhere)
+ * @param {number} [alpha] how opaque a mark is
  */
-export const createBrushHand = ({ ctx, W, H, sizeScale, flowField, source }) => {
+export const createBrushHand = ({ ctx, W, H, sizeScale, flowField, source, place, alpha = 0.97 }) => {
   const hand = { x: W / 2, y: H / 2, marksLeft: 0, angle: 0 };
   const { strokeSizeStart, strokeSizeEnd, strokeSizeMax, strokeSizeMin } = PAINT;
 
   return (progress) => {
     if (hand.marksLeft <= 0) {
-      hand.x = Math.random() * W;
-      hand.y = Math.random() * H;
+      const at = place ? place() : null;
+      hand.x = at ? at[0] : Math.random() * W;
+      hand.y = at ? at[1] : Math.random() * H;
       hand.marksLeft = 4 + Math.floor(Math.random() * 20);
       hand.angle = Math.random() * Math.PI;
     }
@@ -40,6 +43,6 @@ export const createBrushHand = ({ ctx, W, H, sizeScale, flowField, source }) => 
 
     const angle = (flow.angle === null ? hand.angle : flow.angle) + (Math.random() - 0.5) * (0.5 - 0.3 * progress);
     const color = width > 14 ? source.mean(x, y, width * 0.4) : (width > 7 ? source.mean(x, y, width * 0.25) : source.pixel(x, y));
-    drawMark(ctx, { x, y, angle, length, width, color, alpha: 0.97, jitter: (Math.random() - 0.5) * (12 - 6 * progress) });
+    drawMark(ctx, { x, y, angle, length, width, color, alpha, jitter: (Math.random() - 0.5) * (12 - 6 * progress) });
   };
 };
